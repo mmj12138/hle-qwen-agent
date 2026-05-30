@@ -1,0 +1,18 @@
+from src.agents.direct_agent import DirectAgent
+from src.agents.feedback_agent import FeedbackAgent
+from src.agents.tool_agent import ToolAgent
+
+
+def get_agent(agent_name: str, max_iterations: int = 2):
+    agent_name = agent_name.lower()
+
+    if agent_name == "direct":
+        return DirectAgent()
+
+    if agent_name == "feedback":
+        return FeedbackAgent(max_iterations=max_iterations)
+
+    if agent_name == "tool":
+        return ToolAgent(max_iterations=max_iterations)
+
+    raise ValueError(f"Unknown agent: {agent_name}")
