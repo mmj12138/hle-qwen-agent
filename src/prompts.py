@@ -46,21 +46,31 @@ Question:
 Current answer:
 {current_answer}
 
+Your task is to decide whether the current answer should be revised.
+
+Important rules:
+- Be conservative.
+- Do NOT mark the answer as incorrect unless there is a clear and specific error.
+- If the answer is plausible but you are not sure, output Status: uncertain.
+- If the answer has the correct format and is not clearly contradicted by the question, output Status: correct.
+- For expert-level math, science, medicine, law, history, or philosophy questions, do not overrule the answer unless you can identify a concrete mistake.
+- Do not use the gold answer. You only have the question and the current answer.
+
 Check:
-1. Does the answer match the question type?
-2. For multiple-choice, is the selected option consistent with the question?
+1. Does the answer match the requested format?
+2. For multiple-choice, is the answer one of the available options?
 3. For exact-match, is the answer concise and in the expected form?
-4. Are there obvious reasoning, factual, or calculation errors?
-5. Is the solver overconfident despite missing information?
+4. Is there a clear contradiction, arithmetic error, or reasoning error?
+5. Is there enough evidence to justify changing the answer?
 
 Output exactly two lines:
-Status: correct OR incorrect
-Feedback: <short feedback>
+Status: correct OR incorrect OR uncertain
+Feedback: <one short sentence explaining the status>
 """
 
-FEEDBACK_REVISION_PROMPT = """You are the Solver Agent.
+FEEDBACK_REVISION_PROMPT = """You are the Revision Agent.
 
-Revise your answer using the critic feedback.
+Revise the answer only based on the critic feedback.
 
 Question:
 {question}
@@ -70,6 +80,13 @@ Current answer:
 
 Critic feedback:
 {feedback}
+
+Important rules:
+- Make the smallest necessary change.
+- If the feedback only complains about format, only fix the format.
+- Do not introduce unrelated reasoning.
+- Do not change the answer unless the critic identified a concrete error.
+- Do not mention the critic in the final answer.
 
 {base_instructions}
 """
@@ -150,4 +167,31 @@ Important rules:
 Output exactly two lines:
 Status: correct OR incorrect
 Final Answer: <answer>
+"""
+
+ORACLE_REVISION_PROMPT = """You are the Revision Agent.
+
+The previous answer was judged incorrect by an external evaluator.
+The correct answer is NOT provided.
+
+Question:
+{question}
+
+Previous answer:
+{current_answer}
+
+Answer type:
+{answer_type}
+
+Revise your answer.
+
+Important rules:
+- The previous answer is incorrect.
+- Do not repeat the same final answer.
+- Reconsider the problem from scratch.
+- For multiple-choice questions, choose a different option only if you can justify it.
+- For exact-match questions, output a concise answer.
+- Do not mention the evaluator or oracle in the final answer.
+
+{base_instructions}
 """

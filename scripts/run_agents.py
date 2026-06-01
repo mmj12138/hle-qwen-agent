@@ -48,7 +48,7 @@ def compute_accuracy(records: list[dict]) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--agent", choices=["direct", "feedback", "tool"], required=True)
+    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback"], required=True)
     parser.add_argument("--split", default=None)
     parser.add_argument("--limit", type=int, default=5)
     parser.add_argument("--output", default=None)
@@ -91,11 +91,19 @@ def main():
         ex = normalize_hle_item(dict(item))
         question = format_question(ex)
 
-        result = agent.run(
-            llm,
-            question,
-            answer_type=ex["answer_type"],
-        )
+        if args.agent == "oracle_feedback":
+            result = agent.run(
+                llm,
+                question=question,
+                answer_type=ex["answer_type"],
+                gold_answer=ex["answer"],
+            )
+        else:
+            result = agent.run(
+                llm,
+                question=question,
+                answer_type=ex["answer_type"],
+            )
 
         score = score_prediction(
             result["final_output"],

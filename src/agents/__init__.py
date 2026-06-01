@@ -1,6 +1,7 @@
 from src.agents.direct_agent import DirectAgent
 from src.agents.feedback_agent import FeedbackAgent
 from src.agents.tool_agent import ToolAgent
+from src.agents.oracle_feedback_agent import OracleFeedbackAgent
 
 
 def get_agent(agent_name: str, max_iterations: int = 2):
@@ -14,5 +15,8 @@ def get_agent(agent_name: str, max_iterations: int = 2):
 
     if agent_name == "tool":
         return ToolAgent(max_iterations=max_iterations)
+
+    elif agent_name == "oracle_feedback":
+        return OracleFeedbackAgent(max_iterations=max_iterations)
 
     raise ValueError(f"Unknown agent: {agent_name}")
