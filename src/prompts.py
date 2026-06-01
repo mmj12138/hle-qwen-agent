@@ -119,15 +119,15 @@ Previous verifier feedback:
 {verifier_feedback}
 
 Important rules:
-- Tool results are optional hints, not final answers.
-- If the tool result says "No tool was used", ignore it and answer from your own reasoning.
-- Do not answer "No tool was used".
+- Tool results are optional evidence, not final answers.
+- Use tool results only when they are directly relevant to the question.
+- If the tool result is only an answer-format hint, solve normally and do not change your reasoning just because of the tool.
 - Do not mention tool usage in the final answer.
 
 {base_instructions}
 """
 
-TOOL_VERIFIER_PROMPT = """You are a Verifier Agent.
+TOOL_VERIFIER_PROMPT = """You are the Verifier Agent.
 
 Question:
 {question}
@@ -138,13 +138,14 @@ Candidate answer:
 Tool results:
 {tool_results}
 
-Your job is only to check whether the candidate answer is clearly contradicted by the tool results.
+Your job is to check whether the candidate answer is clearly contradicted by the tool results.
 
 Important rules:
-- If the tool result is "No tool was used", do not use it as evidence.
-- If the tool result is not helpful, keep the candidate answer.
-- Only mark incorrect if there is a clear contradiction or obvious format error.
-- Do not change the answer unless you are confident.
+- Be conservative.
+- Only mark incorrect if the candidate answer clearly conflicts with a real tool result.
+- If the tool result is only an answer-format hint, do not change the answer.
+- If the tool result is not directly relevant, keep the candidate answer.
+- Do not change the answer unless the tool result provides clear evidence.
 
 Output exactly two lines:
 Status: correct OR incorrect
