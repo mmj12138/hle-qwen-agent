@@ -14,7 +14,7 @@ PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
 cd "${PROJECT_ROOT}"
 
 MODEL_NAME="Qwen/Qwen2.5-7B-Instruct"
-LIMIT=100
+LIMIT=1000
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 
