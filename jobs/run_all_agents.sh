@@ -14,7 +14,7 @@ PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
 cd "${PROJECT_ROOT}"
 
 MODEL_NAME="Qwen/Qwen2.5-7B-Instruct"
-LIMIT=1000
+LIMIT=100
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 
@@ -43,30 +43,30 @@ if [ "${TEXT_ONLY}" = "1" ]; then
   TEXT_ONLY_FLAG="--text-only"
 fi
 
-echo
-echo "Checking dataset..."
-python scripts/check_dataset.py \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG}
-
-echo
-echo "Running Direct Agent..."
-python scripts/run_agents.py \
-  --agent direct \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --output "${DIRECT_OUTPUT}"
-
-echo
-echo "Running Feedback Agent..."
-python scripts/run_agents.py \
-  --agent feedback \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --max-iterations "${MAX_ITERATIONS}" \
-  --output "${FEEDBACK_OUTPUT}"
-
-echo
+#echo
+#echo "Checking dataset..."
+#python scripts/check_dataset.py \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG}
+#
+#echo
+#echo "Running Direct Agent..."
+#python scripts/run_agents.py \
+#  --agent direct \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --output "${DIRECT_OUTPUT}"
+#
+#echo
+#echo "Running Feedback Agent..."
+#python scripts/run_agents.py \
+#  --agent feedback \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --max-iterations "${MAX_ITERATIONS}" \
+#  --output "${FEEDBACK_OUTPUT}"
+#
+#echo
 echo "Running Tool Agent..."
 python scripts/run_agents.py \
   --agent tool \

@@ -210,7 +210,7 @@ def integer_search_tool(question: str, max_abs_x: int = 10000) -> str:
         if result is not None:
             return result
 
-    # Pattern 2: non-negative integer solutions to sum of five squares = 2024
+    # Pattern 2: non-negative integer solutions to sum of k squares = n
     if (
         "non-negative integer solutions" in q_lower
         and "squares" in q_lower
@@ -265,14 +265,12 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
     """
     q = question.lower()
 
-    # Extract target n from '= 2024' or 'equals 2024'
     target_match = re.search(r"(?:=|equals|equal to)\s*(\d+)", q)
     if not target_match:
         return None
 
     target = int(target_match.group(1))
 
-    # Detect number of variables/squares.
     k = None
 
     word_to_num = {
@@ -299,7 +297,6 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
             k = int(m.group(1))
 
     if k is None:
-        # Try to infer from variables like x_1, ..., x_5
         vars_found = re.findall(r"x[_\{]?(\d+)", question)
         if vars_found:
             k = max(int(v) for v in vars_found)
@@ -328,7 +325,6 @@ def _count_ordered_nonnegative_square_solutions(k: int, target: int) -> int:
         squares.append(x * x)
         x += 1
 
-    # dp[i][s] = number of ordered ways using i variables to sum to s.
     dp = [0] * (target + 1)
     dp[0] = 1
 
@@ -582,16 +578,12 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
 
     if has_acl_word and (has_ip_word or has_ipv4):
         tools.append("ip_acl")
-        return {
-            "tools": tools,
-        }
+        return {"tools": tools}
 
     # Knapsack tools
     if "knapsack" in q:
         tools.append("knapsack_solver")
-        return {
-            "tools": tools,
-        }
+        return {"tools": tools}
 
     # Integer search / bounded counting tools
     if (
@@ -603,13 +595,9 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
         or "sum of 5 squares" in q
     ):
         tools.append("integer_search")
-        return {
-            "tools": tools,
-        }
+        return {"tools": tools}
 
-    return {
-        "tools": tools,
-    }
+    return {"tools": tools}
 
 def has_real_tool(plan: Dict[str, Any]) -> bool:
     tools = plan.get("tools", [])
@@ -665,25 +653,17 @@ def run_tools(plan: Dict[str, Any], question: str, answer_type: str = "") -> Dic
     return results
 
 if __name__ == '__main__':
+
     questions = [
-
         "For how many integers x in Z is the quantity x^3 - 16x^2 - 72x + 1056 a perfect square?",
-
         "How many non-negative integer solutions are there to the sum of five squares = 2024?",
-
         "What is the smallest appropriate IP access control list entry for 172.20.96.0/19 and 172.20.128.0/19?",
-
         "In Blender, the FLIP fluid solver is used for simulation."
-
     ]
 
     for q in questions:
         print("=" * 80)
-
         print(q)
-
         plan = rule_based_tool_plan(q, answer_type="exactMatch")
-
         print("PLAN:", plan)
-
         print(run_tools(plan, q, answer_type="exactMatch"))
