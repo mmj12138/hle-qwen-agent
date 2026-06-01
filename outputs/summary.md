@@ -6,7 +6,7 @@
 |---|---:|---:|---|
 | direct | 0.0600 | 6 / 100 | `outputs/direct_results.jsonl` |
 | feedback | 0.0900 | 9 / 100 | `outputs/feedback_results.jsonl` |
-| tool | 0.0600 | 6 / 100 | `outputs/tool_results.jsonl` |
+| tool | 0.0700 | 7 / 100 | `outputs/tool_results.jsonl` |
 
 ## Accuracy by Category
 
@@ -30,7 +30,7 @@
 | feedback | Physics | 0.0000 | 0 / 8 |
 | tool | Biology/Medicine | 0.1250 | 1 / 8 |
 | tool | Chemistry | 0.0000 | 0 / 1 |
-| tool | Computer Science/AI | 0.0000 | 0 / 18 |
+| tool | Computer Science/AI | 0.0556 | 1 / 18 |
 | tool | Engineering | 0.0000 | 0 / 2 |
 | tool | Humanities/Social Science | 0.1000 | 2 / 20 |
 | tool | Math | 0.0385 | 1 / 26 |
@@ -74,10 +74,10 @@ Shared examples: **100**
 
 | Case type | Count |
 |---|---:|
-| Wrong → Right | 2 |
+| Wrong → Right | 3 |
 | Right → Wrong | 2 |
 | Same Correct | 4 |
-| Same Wrong | 92 |
+| Same Wrong | 91 |
 
 #### Examples: Wrong → Right
 
@@ -85,6 +85,7 @@ Shared examples: **100**
 |---:|---|---|---|---|---|
 | 70 | Math | For how many integers $x \in \mathbb{Z}$ is the quantity $x^3 - 16x^2 - 72x + 1056$ a perfect square? | `8` | `4` | `4` |
 | 75 | Humanities/Social Science | An adhesion contract, also known as a contract of adhesion, is a contract where the parties are of such disproportionate... | `B` | `C` | `C` |
+| 77 | Computer Science/AI | Knapsack Problem with Multiple Capacities and Unique Item Usage.  Given the following details: Number of Knapsacks: 3 It... | `324` | `684` | `684` |
 
 #### Examples: Right → Wrong
 
