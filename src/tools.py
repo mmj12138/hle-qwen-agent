@@ -652,6 +652,29 @@ def run_tools(plan: Dict[str, Any], question: str, answer_type: str = "") -> Dic
 
     return results
 
+def extract_recommended_final_answer(tool_results: Dict[str, Any]) -> str:
+    """
+    Extract deterministic tool answer if a tool output contains:
+    'Recommended final answer: ...'
+
+    This is used to prevent the LLM from ignoring reliable tool results.
+    """
+    pattern = r"Recommended final answer:\s*(.+)"
+
+    for tool_name, result in tool_results.items():
+        if isinstance(result, str):
+            match = re.search(pattern, result)
+            if match:
+                return match.group(1).strip()
+
+        if isinstance(result, dict):
+            text = str(result)
+            match = re.search(pattern, text)
+            if match:
+                return match.group(1).strip()
+
+    return ""
+
 if __name__ == '__main__':
 
     questions = [

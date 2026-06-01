@@ -12,6 +12,7 @@ from src.tools import (
     run_tools,
     rule_based_tool_plan,
     has_real_tool,
+    extract_recommended_final_answer
 )
 from src.agents.base import chat
 from src.evaluator import extract_final_answer
@@ -28,13 +29,38 @@ class ToolAgent:
         tool_results = run_tools(plan, question, answer_type=answer_type)
         real_tool_used = has_real_tool(plan)
 
+        recommended_answer = extract_recommended_final_answer(tool_results)
+
         trace = {
             "planner_type": "rule_based",
             "parsed_plan": plan,
             "tool_results": tool_results,
             "real_tool_used": real_tool_used,
+            "recommended_answer": recommended_answer,
             "iterations": [],
         }
+
+        # If a deterministic tool gives a recommended final answer,
+        # trust the tool and skip LLM regeneration.
+        if recommended_answer:
+            final_output = f"Final Answer: {recommended_answer}"
+
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "deterministic_tool_direct",
+                    "recommended_answer": recommended_answer,
+                    "final_answer_for_this_step": final_output,
+                    "should_stop": True,
+                    "stop_reason": "recommended_tool_answer",
+                }
+            )
+
+            return {
+                "agent": self.name,
+                "final_output": final_output,
+                "trace": trace,
+            }
 
         # If only answer_format_hint is available, do not run verifier loop.
         # This avoids answer drift on questions where tools add no real evidence.
