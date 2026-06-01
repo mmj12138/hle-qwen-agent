@@ -24,8 +24,8 @@ mkdir -p outputs/logs
 module load Python/3.10
 source ~/venvs/myddlenv/bin/activate
 
-pip install -r requirements.txt
-pip install pillow
+#pip install -r requirements.txt
+#pip install pillow
 
 set -a
 source .env

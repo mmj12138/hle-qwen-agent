@@ -14,7 +14,7 @@ PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
 cd "${PROJECT_ROOT}"
 
 MODEL_NAME="Qwen/Qwen2.5-7B-Instruct"
-LIMIT=50
+LIMIT=100
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 
@@ -46,7 +46,7 @@ fi
 echo
 echo "Checking dataset..."
 python scripts/check_dataset.py \
-  --limit 3 \
+  --limit "${LIMIT}" \
   ${TEXT_ONLY_FLAG}
 
 echo

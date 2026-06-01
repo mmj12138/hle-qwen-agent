@@ -31,7 +31,12 @@ def main():
     # Important:
     # Load full dataset first, then filter, then limit.
     # Otherwise the first few samples may all be image-based and filtering gives 0 samples.
-    data = load_hle_dataset(split=split, limit=None)
+    data = load_hle_dataset(
+        split=split,
+        limit=args.limit,
+        text_only=args.text_only,
+        export_path="outputs/hle_text_only.jsonl",
+    )
 
     print("Dataset loaded successfully.")
     print("Original dataset size:", len(data))

@@ -9,7 +9,7 @@ from src.prompts import (
     TOOL_SOLVER_PROMPT,
     TOOL_VERIFIER_PROMPT,
 )
-from src.tools import run_tools
+from src.tools import run_tools, rule_based_tool_plan
 from src.agents.base import chat
 
 
@@ -32,11 +32,12 @@ class ToolAgent:
             if verifier_feedback != "None.":
                 planner_question += "\n\nPrevious verifier feedback:\n" + verifier_feedback
 
-            planner_prompt = TOOL_PLANNER_PROMPT.format(question=planner_question)
-            raw_plan = chat(llm, planner_prompt)
-            plan = self._parse_plan(raw_plan)
+            # Use deterministic rule-based planning to avoid noisy tool selection.
+            plan = rule_based_tool_plan(question, answer_type=answer_type)
+            raw_plan = json.dumps(plan, ensure_ascii=False)
 
             tool_results = run_tools(plan, question, answer_type=answer_type)
+            planner_prompt = "Rule-based planner was used."
 
             solver_prompt = TOOL_SOLVER_PROMPT.format(
                 question=question,

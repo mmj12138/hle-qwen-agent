@@ -5,10 +5,19 @@ from datasets import load_dataset
 
 from src.data_utils import is_text_only
 
+from pathlib import Path
+import json
+from typing import Optional
+
+from datasets import load_dataset
+from src.data_utils import is_text_only
+
+
 def load_hle_dataset(
     split: str = "test",
     limit: Optional[int] = None,
     text_only: bool = False,
+    export_path: Optional[str] = None,
 ):
     """
     Load HLE from Hugging Face.
@@ -17,6 +26,9 @@ def load_hle_dataset(
     - load the full split first
     - filter out samples with images
     - then apply limit
+
+    If export_path is provided:
+    - write the loaded/filtered/limited data to a JSONL file
     """
     ds = load_dataset("cais/hle", token=True)
 
@@ -31,6 +43,26 @@ def load_hle_dataset(
 
     if limit is not None:
         data = data.select(range(min(limit, len(data))))
+
+    if export_path is not None:
+        output_path = Path(export_path)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+
+        with output_path.open("w", encoding="utf-8") as f:
+            for idx, item in enumerate(data):
+                record = {
+                    "index": idx,
+                    "id": item.get("id", ""),
+                    "category": item.get("category", ""),
+                    "raw_subject": item.get("raw_subject", ""),
+                    "answer_type": item.get("answer_type", ""),
+                    "question": item.get("question", ""),
+                    "answer": item.get("answer", ""),
+                    "canary": item.get("canary", ""),
+                }
+                f.write(json.dumps(record, ensure_ascii=False) + "\n")
+
+        print(f"Exported dataset to {export_path}")
 
     return data
 
