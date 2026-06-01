@@ -9,3 +9,5 @@ outputs/logs
 
 .env
 .cache/
+
+.idea
