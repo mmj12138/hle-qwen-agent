@@ -8,21 +8,29 @@
 #SBATCH --qos=job_gratis
 #SBATCH --gres=gpu:rtx4090:1
 
-#SBATCH --time=24:00:00
+#SBATCH --time=12:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=64G
+#SBATCH --mem=32G
 
 set -euo pipefail
 
-PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
 cd "${PROJECT_ROOT}"
 
 mkdir -p outputs/logs
 
 module load Python/3.10
-source ~/venvs/hle-agent/bin/activate
+source ~/venvs/myddlenv/bin/activate
+
+pip install -r requirements.txt
+pip install pillow
+
+set -a
+source .env
+set +a
+echo "HF_TOKEN is set: ${HF_TOKEN:+yes}"
 
 echo "============================================================"
 echo "Ubelix job started"

@@ -10,12 +10,12 @@ set -euo pipefail
 # Then summarizes accuracy.
 # ============================================================
 
-PROJECT_ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
 cd "${PROJECT_ROOT}"
 
-MODEL_NAME="Qwen/Qwen3.5-27B"
-LIMIT=1000
-MAX_ITERATIONS=5
+MODEL_NAME="Qwen/Qwen2.5-7B-Instruct"
+LIMIT=50
+MAX_ITERATIONS=3
 TEXT_ONLY=1
 
 OUTPUT_DIR="outputs"

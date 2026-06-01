@@ -1,0 +1,20 @@
+HF_TOKEN is set: yes
+============================================================
+Ubelix job started
+Node: gnode23
+Python: /storage/homefs/mj24z011/venvs/myddlenv/bin/python
+Start time: Sun May 31 04:36:12 PM CEST 2026
+SLURM_JOB_ID: 5043517
+============================================================
+============================================================
+HLE Agent Experiment - Local
+============================================================
+PROJECT_ROOT     = /storage/homefs/mj24z011/hle-qwen-agent
+MODEL_NAME       = Qwen/Qwen3.5-27B
+LIMIT            = 1000
+MAX_ITERATIONS   = 5
+TEXT_ONLY        = 1
+OUTPUT_DIR       = outputs
+============================================================
+
+Checking dataset...
