@@ -261,10 +261,18 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
     Count ordered non-negative integer solutions to:
     x1^2 + x2^2 + ... + xk^2 = n
 
-    This assumes ordered tuples unless the question explicitly says unordered.
+    Supports:
+    - "sum of five squares = 2024"
+    - "sum of 5 squares = 2024"
+    - LaTeX forms:
+        x_1^2
+        x_{1}^2
+        x_1^{2}
+        x_{1}^{2}
     """
     q = question.lower()
 
+    # Extract target n from = 2024 / equals 2024 / equal to 2024
     target_match = re.search(r"(?:=|equals|equal to)\s*(\d+)", q)
     if not target_match:
         return None
@@ -273,6 +281,7 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
 
     k = None
 
+    # Case 1: natural language, e.g. "sum of five squares"
     word_to_num = {
         "one": 1,
         "two": 2,
@@ -296,8 +305,24 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
         if m:
             k = int(m.group(1))
 
+    # Case 2: LaTeX variables with square exponent.
+    # Matches:
+    # x_1^2, x_{1}^2, x_1^{2}, x_{1}^{2}
     if k is None:
-        vars_found = re.findall(r"x[_\{]?(\d+)", question)
+        vars_found = re.findall(
+            r"x_\{?(\d+)\}?\s*\^\s*\{?2\}?",
+            question,
+        )
+        if vars_found:
+            k = max(int(v) for v in vars_found)
+
+    # Case 3: fallback, any x_i style variable.
+    # Matches x_1, x_{1}
+    if k is None:
+        vars_found = re.findall(
+            r"x_\{?(\d+)\}?",
+            question,
+        )
         if vars_found:
             k = max(int(v) for v in vars_found)
 
@@ -312,7 +337,6 @@ def _solve_sum_of_squares_count(question: str) -> str | None:
         f"- count: {count}\n"
         f"- Recommended final answer: {count}"
     )
-
 
 def _count_ordered_nonnegative_square_solutions(k: int, target: int) -> int:
     """
@@ -393,6 +417,7 @@ def knapsack_solver_tool(question: str) -> str:
             f"- weights: {weights}\n"
             f"- capacity: {capacities[0]}\n"
             f"- optimal total value: {best_value}\n"
+            f"- Recommended final answer: {best_value}\n"
         )
 
     best_value = _solve_multi_knapsack_unique(values, weights, capacities)
@@ -403,6 +428,7 @@ def knapsack_solver_tool(question: str) -> str:
         f"- capacities: {capacities}\n"
         f"- unique item usage: yes\n"
         f"- optimal total value: {best_value}\n"
+        f"- Recommended final answer: {best_value}\n"
     )
 
 
@@ -677,16 +703,31 @@ def extract_recommended_final_answer(tool_results: Dict[str, Any]) -> str:
 
 if __name__ == '__main__':
 
-    questions = [
-        "For how many integers x in Z is the quantity x^3 - 16x^2 - 72x + 1056 a perfect square?",
-        "How many non-negative integer solutions are there to the sum of five squares = 2024?",
-        "What is the smallest appropriate IP access control list entry for 172.20.96.0/19 and 172.20.128.0/19?",
-        "In Blender, the FLIP fluid solver is used for simulation."
-    ]
+    q = r"""
+    How many of numbers are there of non-negative integer solutions to the Diophantine equation of the form:
 
-    for q in questions:
-        print("=" * 80)
-        print(q)
-        plan = rule_based_tool_plan(q, answer_type="exactMatch")
-        print("PLAN:", plan)
-        print(run_tools(plan, q, answer_type="exactMatch"))
+    \[
+    x_1^2 + x_2^2 + x_3^2 + x_4^2 + x_5^2 = 2024
+    \]
+
+    where \(x_1, x_2, x_3, x_4, x_5\) are non-negative integers?
+    """
+
+    plan = rule_based_tool_plan(q, answer_type="exactMatch")
+    print("PLAN:", plan)
+    print(run_tools(plan, q, answer_type="exactMatch"))
+
+    import json
+
+    with open("../outputs/tool_results.jsonl", "r", encoding="utf-8") as f:
+
+        for line in f:
+
+            r = json.loads(line)
+
+            if r["index"] == 86:
+                print(r["question"])
+
+                break
+
+
