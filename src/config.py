@@ -10,7 +10,9 @@ except Exception:
 
 @dataclass
 class Config:
-    model_name: str = os.getenv("MODEL_NAME", "Qwen/Qwen3.5-27B")
+    model_name: str = os.getenv("MODEL_NAME", "Qwen/Qwen2.5-7B-Instruct")
+    critic_model_name: str = os.getenv("CRITIC_MODEL_NAME", os.getenv("MODEL_NAME", "Qwen/Qwen2.5-7B-Instruct"))
+
     hle_split: str = os.getenv("HLE_SPLIT", "test")
     max_new_tokens: int = int(os.getenv("MAX_NEW_TOKENS", "512"))
     temperature: float = float(os.getenv("TEMPERATURE", "0.0"))

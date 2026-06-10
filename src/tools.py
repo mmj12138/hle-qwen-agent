@@ -23,24 +23,24 @@ _ALLOWED_OPERATORS = {
 def safe_calculator(expression: str) -> str:
     try:
         tree = ast.parse(expression, mode="eval")
-        value = _eval_ast(tree.body)
+        value = _eval_calc_ast(tree.body)
         return str(value)
     except Exception as exc:
         return f"calculator_error: {exc}"
 
 
-def _eval_ast(node):
+def _eval_calc_ast(node):
     if isinstance(node, ast.Constant) and isinstance(node.value, (int, float)):
         return node.value
 
     if isinstance(node, ast.BinOp) and type(node.op) in _ALLOWED_OPERATORS:
         return _ALLOWED_OPERATORS[type(node.op)](
-            _eval_ast(node.left),
-            _eval_ast(node.right),
+            _eval_calc_ast(node.left),
+            _eval_calc_ast(node.right),
         )
 
     if isinstance(node, ast.UnaryOp) and type(node.op) in _ALLOWED_OPERATORS:
-        return _ALLOWED_OPERATORS[type(node.op)](_eval_ast(node.operand))
+        return _ALLOWED_OPERATORS[type(node.op)](_eval_calc_ast(node.operand))
 
     raise ValueError(f"Unsupported expression node: {type(node).__name__}")
 
@@ -193,38 +193,402 @@ def _single_acl_cover_for_cidrs(cidrs: List[str]) -> Tuple[str, str]:
     return str(network), str(wildcard)
 
 def integer_search_tool(question: str, max_abs_x: int = 10000) -> str:
-    """
-    Handle several bounded integer-search patterns.
-
-    Supported:
-    1. Cubic polynomial perfect square:
-       x^3 - 16x^2 - 72x + 1056 is a perfect square
-    2. Count non-negative integer solutions to a sum of k squares = n.
-    """
     q = question.replace("−", "-")
     q_lower = q.lower()
 
-    # Pattern 1: x^3 - 16x^2 - 72x + 1056 is a perfect square
-    if "perfect square" in q_lower and "x^3" in q_lower:
-        result = _solve_cubic_perfect_square(q, max_abs_x=max_abs_x)
+    # Pattern 1: cubic / polynomial perfect square search
+    if "perfect square" in q_lower and ("x^3" in q_lower or "x^2" in q_lower):
+        result = _solve_polynomial_perfect_square(q, max_abs_x=max_abs_x)
         if result is not None:
             return result
 
-    # Pattern 2: non-negative integer solutions to sum of k squares = n
+    # Pattern 2: ordered non-negative integer solutions to sum of k squares
     if (
-        "non-negative integer solutions" in q_lower
-        and "squares" in q_lower
+        ("non-negative integer" in q_lower or "nonnegative integer" in q_lower)
+        and "solution" in q_lower
+        and "^2" in q
+        and "=" in q
     ):
         result = _solve_sum_of_squares_count(q)
         if result is not None:
             return result
 
+    if (
+        "sum of five squares" in q_lower
+        or "sum of 5 squares" in q_lower
+        or "squares = " in q_lower
+    ):
+        result = _solve_sum_of_squares_count(q)
+        if result is not None:
+            return result
+
+    # Pattern 3: simple modular / divisibility brute force
+    if "modulo" in q_lower or "mod " in q_lower or "divisible by" in q_lower:
+        result = _solve_simple_modular_search(q)
+        if result is not None:
+            return result
+
     return (
         "integer_search result:\n"
-        "- No supported exact pattern was detected.\n"
-        "- Use this only as a hint; solve normally."
+        "- No supported exact integer-search pattern was detected.\n"
+        "- Use this only as a weak hint; solve normally."
     )
 
+def _solve_sum_of_squares_count(question: str) -> str | None:
+    q = question.lower()
+
+    target_match = re.search(r"=\s*(\d+)", q)
+    if not target_match:
+        target_match = re.search(r"(?:equals|equal to)\s*(\d+)", q)
+    if not target_match:
+        return None
+
+    target = int(target_match.group(1))
+
+    k = None
+
+    # Supports x_1^2, x_{1}^2, x_1^{2}, x_{1}^{2}
+    vars_found = re.findall(r"x_\{?(\d+)\}?\s*\^\s*\{?2\}?", question)
+    if vars_found:
+        k = max(int(v) for v in vars_found)
+
+    if k is None:
+        word_to_num = {
+            "one": 1,
+            "two": 2,
+            "three": 3,
+            "four": 4,
+            "five": 5,
+            "six": 6,
+            "seven": 7,
+            "eight": 8,
+            "nine": 9,
+            "ten": 10,
+        }
+        for word, num in word_to_num.items():
+            if f"sum of {word} squares" in q:
+                k = num
+                break
+
+    if k is None:
+        m = re.search(r"sum of (\d+) squares", q)
+        if m:
+            k = int(m.group(1))
+
+    if k is None:
+        return None
+
+    if k <= 0 or k > 10 or target > 100000:
+        return (
+            "integer_search result:\n"
+            f"- Detected sum-of-squares problem with k={k}, target={target}, but it is too large for the controlled DP limit.\n"
+            "- Use this only as a weak hint; solve normally."
+        )
+
+    count = _count_ordered_nonnegative_square_solutions(k, target)
+
+    return (
+        "integer_search result:\n"
+        f"- problem type: ordered non-negative integer solutions to sum of {k} squares = {target}\n"
+        f"- count: {count}\n"
+        f"- Recommended final answer: {count}"
+    )
+
+
+def _count_ordered_nonnegative_square_solutions(k: int, target: int) -> int:
+    squares = []
+    x = 0
+    while x * x <= target:
+        squares.append(x * x)
+        x += 1
+
+    dp = [0] * (target + 1)
+    dp[0] = 1
+
+    for _ in range(k):
+        new_dp = [0] * (target + 1)
+        for current_sum in range(target + 1):
+            if dp[current_sum] == 0:
+                continue
+            for sq in squares:
+                next_sum = current_sum + sq
+                if next_sum > target:
+                    break
+                new_dp[next_sum] += dp[current_sum]
+        dp = new_dp
+
+    return dp[target]
+
+def _solve_polynomial_perfect_square(question: str, max_abs_x: int = 10000) -> str | None:
+    expr = _extract_polynomial_expression(question)
+    if expr is None:
+        return None
+
+    safe_expr = expr.replace("^", "**")
+
+    valid_xs = []
+    for x in range(-max_abs_x, max_abs_x + 1):
+        try:
+            value = _safe_eval_expr(safe_expr, {"x": x})
+        except Exception:
+            continue
+
+        if isinstance(value, int) and value >= 0:
+            root = math.isqrt(value)
+            if root * root == value:
+                valid_xs.append(x)
+
+    if not valid_xs:
+        return (
+            "integer_search result:\n"
+            f"- expression: {expr}\n"
+            "- no integer x in the search range makes it a perfect square\n"
+            "- Recommended final answer: 0"
+        )
+
+    return (
+        "integer_search result:\n"
+        f"- expression: {expr}\n"
+        f"- search range: [{-max_abs_x}, {max_abs_x}]\n"
+        f"- integer x values making it a perfect square: {valid_xs}\n"
+        f"- count: {len(valid_xs)}\n"
+        f"- Recommended final answer: {len(valid_xs)}"
+    )
+
+
+def _extract_polynomial_expression(question: str) -> str | None:
+    q = question.replace("−", "-")
+
+    # Try to capture expression around "is a perfect square"
+    m = re.search(r"([xX0-9\^\*\+\-\s\(\)]+?)\s+(?:is|are)\s+(?:a\s+)?perfect square", q)
+    if m:
+        expr = m.group(1).strip()
+        if "x" in expr.lower():
+            return expr
+
+    # Fallback: capture expression after "of the form"
+    m = re.search(r"of the form\s*:?\s*([xX0-9\^\*\+\-\s\(\)]+)", q)
+    if m:
+        expr = m.group(1).strip()
+        if "x" in expr.lower():
+            return expr
+
+    return None
+
+_ALLOWED_OPERATORS = {
+    ast.Add: operator.add,
+    ast.Sub: operator.sub,
+    ast.Mult: operator.mul,
+    ast.Pow: operator.pow,
+    ast.USub: operator.neg,
+    ast.UAdd: operator.pos,
+}
+
+
+def _safe_eval_expr(expr: str, variables: Dict[str, int]) -> int:
+    node = ast.parse(expr, mode="eval").body
+    return _eval_int_ast(node, variables)
+
+
+def _eval_int_ast(node, variables: Dict[str, int]) -> int:
+    if isinstance(node, ast.Constant):
+        if isinstance(node.value, int):
+            return node.value
+        raise ValueError("Only integer constants are allowed.")
+
+    if isinstance(node, ast.Name):
+        if node.id in variables:
+            return variables[node.id]
+        if node.id.lower() in variables:
+            return variables[node.id.lower()]
+        raise ValueError(f"Unknown variable: {node.id}")
+
+    if isinstance(node, ast.BinOp):
+        op_type = type(node.op)
+        if op_type not in _ALLOWED_OPERATORS:
+            raise ValueError(f"Operator not allowed: {op_type}")
+        left = _eval_int_ast(node.left, variables)
+        right = _eval_int_ast(node.right, variables)
+
+        if isinstance(node.op, ast.Pow) and abs(right) > 10:
+            raise ValueError("Power too large.")
+
+        return _ALLOWED_OPERATORS[op_type](left, right)
+
+    if isinstance(node, ast.UnaryOp):
+        op_type = type(node.op)
+        if op_type not in _ALLOWED_OPERATORS:
+            raise ValueError(f"Unary operator not allowed: {op_type}")
+        value = _eval_int_ast(node.operand, variables)
+        return _ALLOWED_OPERATORS[op_type](value)
+
+    raise ValueError(f"Unsupported expression node: {type(node)}")
+
+
+
+def _solve_simple_modular_search(question: str) -> str | None:
+    """
+    Controlled helper for simple modular/divisibility counting questions.
+
+    Supported patterns are intentionally conservative, for example:
+    - How many integers x from 1 to 100 are divisible by 7?
+    - How many integers x between 1 and 100 have remainder 3 modulo 7?
+    - Find x in [0, 100] such that x mod 7 = 3.
+    """
+    q = question.lower().replace("−", "-")
+
+    # Detect variable name; default to x.
+    var_match = re.search(r"\b([a-z])\b", q)
+    var_name = var_match.group(1) if var_match else "x"
+
+    # Detect range.
+    range_patterns = [
+        r"(?:from|between)\s*(-?\d+)\s*(?:to|and)\s*(-?\d+)",
+        r"(-?\d+)\s*<=\s*[a-z]\s*<=\s*(-?\d+)",
+        r"[a-z]\s*\b(?:in|within)\b\s*\[\s*(-?\d+)\s*,\s*(-?\d+)\s*\]",
+    ]
+
+    lo = hi = None
+    for pat in range_patterns:
+        m = re.search(pat, q)
+        if m:
+            lo, hi = int(m.group(1)), int(m.group(2))
+            break
+
+    if lo is None or hi is None:
+        # Avoid unbounded searches.
+        return None
+
+    if lo > hi:
+        lo, hi = hi, lo
+
+    if hi - lo > 1_000_000:
+        return (
+            "integer_search result:\n"
+            f"- Detected modular/divisibility range [{lo}, {hi}], but it is too large for the controlled limit.\n"
+            "- Use this only as a weak hint; solve normally."
+        )
+
+    # Pattern: divisible by n
+    m = re.search(r"divisible by\s*(\d+)", q)
+    if m:
+        mod = int(m.group(1))
+        if mod == 0:
+            return None
+        values = [x for x in range(lo, hi + 1) if x % mod == 0]
+        return (
+            "integer_search result:\n"
+            f"- problem type: count integers divisible by {mod} in [{lo}, {hi}]\n"
+            f"- count: {len(values)}\n"
+            f"- Recommended final answer: {len(values)}"
+        )
+
+    # Pattern: remainder r modulo/mod n OR x mod n = r
+    m = re.search(r"remainder\s*(-?\d+)\s*(?:modulo|mod)\s*(\d+)", q)
+    if not m:
+        m = re.search(r"(?:modulo|mod)\s*(\d+)\s*(?:is|=)\s*(-?\d+)", q)
+        if m:
+            mod = int(m.group(1))
+            rem = int(m.group(2))
+        else:
+            mod = rem = None
+    else:
+        rem = int(m.group(1))
+        mod = int(m.group(2))
+
+    if mod is not None and rem is not None and mod != 0:
+        values = [x for x in range(lo, hi + 1) if x % mod == rem % mod]
+        return (
+            "integer_search result:\n"
+            f"- problem type: count integers x in [{lo}, {hi}] with x mod {mod} = {rem % mod}\n"
+            f"- count: {len(values)}\n"
+            f"- Recommended final answer: {len(values)}"
+        )
+
+    return None
+
+def controlled_math_tool(question: str) -> str:
+    q = question.lower()
+
+    lines = ["controlled_math_tool result:"]
+
+    # Reuse sum-of-squares deterministic solver
+    if (
+        ("non-negative integer" in q or "nonnegative integer" in q)
+        and "solution" in q
+        and "^2" in question
+        and "=" in question
+    ):
+        result = _solve_sum_of_squares_count(question)
+        if result is not None:
+            return result.replace("integer_search result:", "controlled_math_tool result:")
+
+    # Simple gcd/lcm extraction
+    if "gcd" in q or "greatest common divisor" in q:
+        nums = [int(x) for x in re.findall(r"\b\d+\b", question)]
+        if len(nums) >= 2:
+            g = nums[0]
+            for n in nums[1:]:
+                g = math.gcd(g, n)
+            lines.append(f"- detected integers: {nums}")
+            lines.append(f"- gcd: {g}")
+            lines.append(f"- Recommended final answer: {g}")
+            return "\n".join(lines)
+
+    if "lcm" in q or "least common multiple" in q:
+        nums = [int(x) for x in re.findall(r"\b\d+\b", question)]
+        if len(nums) >= 2:
+            l = nums[0]
+            for n in nums[1:]:
+                l = abs(l * n) // math.gcd(l, n)
+            lines.append(f"- detected integers: {nums}")
+            lines.append(f"- lcm: {l}")
+            lines.append(f"- Recommended final answer: {l}")
+            return "\n".join(lines)
+
+    # Binomial coefficient: C(n, k), choose
+    if "choose" in q or "binomial" in q or re.search(r"\bc\(\s*\d+\s*,\s*\d+\s*\)", q):
+        result = _solve_simple_binomial(question)
+        if result is not None:
+            return result
+
+    # Simple probability/counting hint only
+    if "probability" in q or "expected value" in q or "number of ways" in q or "how many ways" in q:
+        lines.append("- Detected a probability/counting-style problem.")
+        lines.append("- No exact controlled template matched.")
+        lines.append("- Use this as a hint only; solve normally.")
+        return "\n".join(lines)
+
+    lines.append("- No exact controlled math template matched.")
+    lines.append("- Use this as a hint only; solve normally.")
+    return "\n".join(lines)
+
+def _solve_simple_binomial(question: str) -> str | None:
+    q = question.lower()
+
+    # Pattern: C(10, 3)
+    m = re.search(r"\bc\(\s*(\d+)\s*,\s*(\d+)\s*\)", q)
+    if not m:
+        # Pattern: 10 choose 3
+        m = re.search(r"\b(\d+)\s+choose\s+(\d+)\b", q)
+
+    if not m:
+        return None
+
+    n = int(m.group(1))
+    k = int(m.group(2))
+
+    if n > 100000 or k > n:
+        return None
+
+    value = math.comb(n, k)
+
+    return (
+        "controlled_math_tool result:\n"
+        f"- detected binomial coefficient: C({n}, {k})\n"
+        f"- value: {value}\n"
+        f"- Recommended final answer: {value}"
+    )
 
 def _solve_cubic_perfect_square(question: str, max_abs_x: int = 10000) -> str | None:
     pattern = r"x\^3\s*([+-]\s*\d+)x\^2\s*([+-]\s*\d+)x\s*([+-]\s*\d+)"
@@ -565,33 +929,25 @@ def answer_format_hint(answer_type: str) -> str:
 
 
 def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]:
-    """
-    Deterministic tool planner.
-
-    Important:
-    - answer_format_hint is only a weak helper.
-    - Real tools are triggered only by clear textual patterns.
-    - Avoid false positives such as "flip" containing "ip".
-    """
     q = question.lower()
-
     tools = ["answer_format_hint"]
 
-    # Cipher / ROT tools
-    if "rot13" in q or "rot-13" in q or "caesar" in q:
+    # 1. Avoid false trigger on historical person name "Caesar".
+    # Only trigger when the question clearly refers to a cipher/rotation task.
+    if (
+        "rot13" in q
+        or "rot-13" in q
+        or "caesar cipher" in q
+        or "caesar shift" in q
+        or "rot " in q
+        or "rotate each letter" in q
+        or "shift each letter" in q
+    ):
         tools.append("caesar_cipher")
-        return {
-            "tools": tools,
-            "caesar_text": "",
-            "shift": 13,
-        }
+        return {"tools": tools, "caesar_text": "", "shift": 13}
 
-    # IP / ACL tools
     has_ipv4 = (
-        re.search(
-            r"\b(?:\d{1,3}\.){3}\d{1,3}(?:/\d{1,2})?\b",
-            question,
-        )
+        re.search(r"\b(?:\d{1,3}\.){3}\d{1,3}(?:/\d{1,2})?\b", question)
         is not None
     )
     has_ip_word = re.search(r"\bip\b", q) is not None
@@ -606,21 +962,58 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
         tools.append("ip_acl")
         return {"tools": tools}
 
-    # Knapsack tools
     if "knapsack" in q:
         tools.append("knapsack_solver")
         return {"tools": tools}
 
-    # Integer search / bounded counting tools
-    if (
-        "perfect square" in q
-        or "how many integers" in q
-        or "non-negative integer solutions" in q
-        or "integer solutions" in q
-        or "sum of five squares" in q
-        or "sum of 5 squares" in q
-    ):
+    # 2. More exact integer-search patterns.
+    integer_keywords = [
+        "perfect square",
+        "perfect cube",
+        "how many integers",
+        "non-negative integer solutions",
+        "nonnegative integer solutions",
+        "integer solutions",
+        "diophantine",
+        "sum of five squares",
+        "sum of 5 squares",
+        "modulo",
+        "divisible by",
+        "remainder",
+    ]
+
+    if any(k in q for k in integer_keywords):
         tools.append("integer_search")
+        tools.append("controlled_math_tool")
+        return {"tools": tools}
+
+    # 3. Broader controlled math / CS tool.
+    controlled_math_keywords = [
+        "shortest path",
+        "minimum path",
+        "maximum path",
+        "bfs",
+        "graph",
+        "dynamic programming",
+        "recurrence",
+        "count the number",
+        "number of ways",
+        "how many ways",
+        "probability",
+        "expected value",
+        "combinations",
+        "permutations",
+        "binomial",
+        "matrix",
+        "determinant",
+        "eigenvalue",
+        "gcd",
+        "lcm",
+        "modular",
+    ]
+
+    if any(k in q for k in controlled_math_keywords):
+        tools.append("controlled_math_tool")
         return {"tools": tools}
 
     return {"tools": tools}
@@ -636,6 +1029,7 @@ def has_real_tool(plan: Dict[str, Any]) -> bool:
         "ip_acl",
         "integer_search",
         "knapsack_solver",
+        "controlled_math_tool",
     }
 
     return any(t in real_tools for t in tools)
@@ -676,6 +1070,9 @@ def run_tools(plan: Dict[str, Any], question: str, answer_type: str = "") -> Dic
     if "knapsack_solver" in tools:
         results["knapsack_solver"] = knapsack_solver_tool(question)
 
+    if "controlled_math_tool" in tools:
+        results["controlled_math_tool"] = controlled_math_tool(question)
+
     return results
 
 def extract_recommended_final_answer(tool_results: Dict[str, Any]) -> str:
@@ -700,34 +1097,4 @@ def extract_recommended_final_answer(tool_results: Dict[str, Any]) -> str:
                 return match.group(1).strip()
 
     return ""
-
-if __name__ == '__main__':
-
-    q = r"""
-    How many of numbers are there of non-negative integer solutions to the Diophantine equation of the form:
-
-    \[
-    x_1^2 + x_2^2 + x_3^2 + x_4^2 + x_5^2 = 2024
-    \]
-
-    where \(x_1, x_2, x_3, x_4, x_5\) are non-negative integers?
-    """
-
-    plan = rule_based_tool_plan(q, answer_type="exactMatch")
-    print("PLAN:", plan)
-    print(run_tools(plan, q, answer_type="exactMatch"))
-
-    import json
-
-    with open("../outputs/tool_results.jsonl", "r", encoding="utf-8") as f:
-
-        for line in f:
-
-            r = json.loads(line)
-
-            if r["index"] == 86:
-                print(r["question"])
-
-                break
-
 

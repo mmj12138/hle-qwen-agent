@@ -48,7 +48,7 @@ def compute_accuracy(records: list[dict]) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback"], required=True)
+    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback", "strong_feedback"], required=True)
     parser.add_argument("--split", default=None)
     parser.add_argument("--limit", type=int, default=5)
     parser.add_argument("--output", default=None)
@@ -62,6 +62,19 @@ def main():
         type=int,
         default=2,
         help="Maximum feedback/tool loop iterations for feedback and tool agents.",
+    )
+    parser.add_argument(
+        "--model-name",
+        type=str,
+        default=None,
+        help="Override the default solver model name.",
+    )
+
+    parser.add_argument(
+        "--critic-model-name",
+        type=str,
+        default=None,
+        help="Model name for strong_feedback critic. If not set, use the solver model.",
     )
     args = parser.parse_args()
 
@@ -80,6 +93,16 @@ def main():
     print(f"Output path: {output_path}")
 
     llm = QwenLLM(config)
+
+    critic_llm = None
+    if args.agent == "strong_feedback":
+        print(f"Loading critic model: {config.critic_model_name}")
+
+        critic_config = get_config()
+        critic_config.model_name = config.critic_model_name
+
+        critic_llm = QwenLLM(critic_config)
+
     agent = get_agent(
         args.agent,
         max_iterations=args.max_iterations,
@@ -98,6 +121,15 @@ def main():
                 answer_type=ex["answer_type"],
                 gold_answer=ex["answer"],
             )
+
+        elif args.agent == "strong_feedback":
+            result = agent.run(
+                llm,
+                question=question,
+                answer_type=ex["answer_type"],
+                critic_llm=critic_llm,
+            )
+
         else:
             result = agent.run(
                 llm,
