@@ -7,7 +7,7 @@
 | direct | 0.0488 | 93 / 1904 | `outputs/direct_results.jsonl` |
 | feedback | 0.0362 | 69 / 1904 | `outputs/feedback_results.jsonl` |
 | tool | 0.0515 | 98 / 1904 | `outputs/tool_results.jsonl` |
-| oracle_feedback | 0.0861 | 164 / 1904 | `outputs/oracle_feedback_results.jsonl` |
+| oracle_feedback | 0.1145 | 218 / 1904 | `outputs/oracle_feedback_results.jsonl` |
 | oracle_tool | 0.1161 | 221 / 1904 | `outputs/oracle_tool_results.jsonl` |
 
 ## Accuracy by Category
@@ -30,14 +30,14 @@
 | feedback | Math | 0.0173 | 15 / 866 |
 | feedback | Other | 0.0709 | 10 / 141 |
 | feedback | Physics | 0.0170 | 3 / 176 |
-| oracle_feedback | Biology/Medicine | 0.2105 | 44 / 209 |
+| oracle_feedback | Biology/Medicine | 0.1962 | 41 / 209 |
 | oracle_feedback | Chemistry | 0.1184 | 9 / 76 |
-| oracle_feedback | Computer Science/AI | 0.0945 | 19 / 201 |
-| oracle_feedback | Engineering | 0.1053 | 6 / 57 |
-| oracle_feedback | Humanities/Social Science | 0.1517 | 27 / 178 |
-| oracle_feedback | Math | 0.0370 | 32 / 866 |
-| oracle_feedback | Other | 0.1206 | 17 / 141 |
-| oracle_feedback | Physics | 0.0568 | 10 / 176 |
+| oracle_feedback | Computer Science/AI | 0.1144 | 23 / 201 |
+| oracle_feedback | Engineering | 0.1228 | 7 / 57 |
+| oracle_feedback | Humanities/Social Science | 0.1573 | 28 / 178 |
+| oracle_feedback | Math | 0.0831 | 72 / 866 |
+| oracle_feedback | Other | 0.1418 | 20 / 141 |
+| oracle_feedback | Physics | 0.1023 | 18 / 176 |
 | oracle_tool | Biology/Medicine | 0.1914 | 40 / 209 |
 | oracle_tool | Chemistry | 0.1184 | 9 / 76 |
 | oracle_tool | Computer Science/AI | 0.1244 | 25 / 201 |
@@ -121,10 +121,10 @@ Shared examples: **1904**
 
 | Case type | Count |
 |---|---:|
-| Wrong → Right | 102 |
-| Right → Wrong | 31 |
-| Same Correct | 62 |
-| Same Wrong | 1709 |
+| Wrong → Right | 125 |
+| Right → Wrong | 0 |
+| Same Correct | 93 |
+| Same Wrong | 1686 |
 
 #### Examples: Wrong → Right
 
@@ -134,17 +134,7 @@ Shared examples: **1904**
 | 12 | Computer Science/AI | For a vanilla transformer-based language model with a residual stream dimension \(d_{\text{model}}\), an attention outpu... | `D` | `C` | `C` |
 | 18 | Humanities/Social Science | In Immanuel Kant's Critique of Judgment, he describes the conditions under which human beings can make aesthetic judgmen... | `no` | `yes` | `Yes` |
 | 44 | Humanities/Social Science | What were the root cause factor most likely to determine the value of non-agency RMBS in the 2004 to 2008 period in the ... | `E` | `C` | `C` |
-| 61 | Biology/Medicine | You are a spine surgeon triaging patients for further assessment and treatment. You have three patients with the followi... | `A` | `C` | `C` |
-
-#### Examples: Right → Wrong
-
-| Index | Category | Question | Direct Pred | Agent Pred | Gold |
-|---:|---|---|---|---|---|
-| 6 | Physics | Take a 5-dimensional gravitational theory compactified on a circle down to a 4-dimensional vacuum. The 5-dimensional spa... | `3` | `B` | `3` |
-| 132 | Math | How many 2-vertex-connected simple nonisomorphic graphs are there with 5 vertices? | `10` | `B` | `10` |
-| 206 | Other | There are exactly four logicians, with a good theory of mind and common sense. Everyone is visible to others.  It is pub... | `4` | `B` | `4` |
-| 324 | Math | Given a matrix $A$, vector $b$ and nonzero vector $x$, let $E$ be a matrix such that $x$ exactly solves the least-square... | `2` | `A` | `2` |
-| 340 | Math | Define the points $p = (1,0)$ and $p_n = (1, 1/n)$ for $n =1,2, \ldots$. Let $L$ be the line segment from $p$ to the ori... | `2` | `C` | `2` |
+| 70 | Math | For how many integers $x \in \mathbb{Z}$ is the quantity $x^3 - 16x^2 - 72x + 1056$ a perfect square? | `8` | `4` | `4` |
 
 ### Direct vs oracle_tool
 
