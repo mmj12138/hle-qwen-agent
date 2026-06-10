@@ -26,6 +26,41 @@ class ToolAgent:
 
     def run(self, llm, question: str, answer_type: str = "") -> Dict[str, Any]:
         plan = rule_based_tool_plan(question, answer_type=answer_type)
+        tools = plan.get("tools", [])
+        if isinstance(tools, str):
+            tools = [tools]
+
+        if not tools:
+            solver_prompt = TOOL_SOLVER_PROMPT.format(
+                question=question,
+                tool_results={},
+                verifier_feedback="",
+                base_instructions=BASE_SOLVER_INSTRUCTIONS,
+            )
+            final_output = chat(llm, solver_prompt)
+
+            trace = {
+                "planner_type": "rule_based",
+                "parsed_plan": plan,
+                "tool_results": {},
+                "real_tool_used": False,
+                "recommended_answer": "",
+                "iterations": [
+                    {
+                        "step": 1,
+                        "mode": "no_tool_direct",
+                        "final_answer_for_this_step": final_output,
+                        "should_stop": True,
+                        "stop_reason": "no_tool_matched",
+                    }
+                ],
+            }
+
+            return {
+                "agent": self.name,
+                "final_output": final_output,
+                "trace": trace,
+            }
         tool_results = run_tools(plan, question, answer_type=answer_type)
         real_tool_used = has_real_tool(plan)
 
