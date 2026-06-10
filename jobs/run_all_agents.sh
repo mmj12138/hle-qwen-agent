@@ -52,29 +52,29 @@ if [ "${TEXT_ONLY}" = "1" ]; then
 fi
 
 echo
-echo "Checking dataset..."
-python scripts/check_dataset.py \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG}
-
-echo
-echo "Running Direct Agent..."
-python scripts/run_agents.py \
-  --agent direct \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --output "${DIRECT_OUTPUT}"
-
-echo
-echo "Running Feedback Agent..."
-python scripts/run_agents.py \
-  --agent feedback \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --max-iterations "${MAX_ITERATIONS}" \
-  --output "${FEEDBACK_OUTPUT}"
-
-echo
+#echo "Checking dataset..."
+#python scripts/check_dataset.py \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG}
+#
+#echo
+#echo "Running Direct Agent..."
+#python scripts/run_agents.py \
+#  --agent direct \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --output "${DIRECT_OUTPUT}"
+#
+#echo
+#echo "Running Feedback Agent..."
+#python scripts/run_agents.py \
+#  --agent feedback \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --max-iterations "${MAX_ITERATIONS}" \
+#  --output "${FEEDBACK_OUTPUT}"
+#
+#echo
 echo "Running Tool Agent..."
 python scripts/run_agents.py \
   --agent tool \
@@ -84,15 +84,15 @@ python scripts/run_agents.py \
   --output "${TOOL_OUTPUT}"
 
 echo
-echo "Running Oracle Feedback Agent..."
-python scripts/run_agents.py \
-  --agent oracle_feedback \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --max-iterations "${MAX_ITERATIONS}" \
-  --output "${ORACLE_FEEDBACK_OUTPUT}"
-
-echo
+#echo "Running Oracle Feedback Agent..."
+#python scripts/run_agents.py \
+#  --agent oracle_feedback \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --max-iterations "${MAX_ITERATIONS}" \
+#  --output "${ORACLE_FEEDBACK_OUTPUT}"
+#
+#echo
 echo "Summarizing results..."
 python scripts/summarize_results.py \
   --input \
