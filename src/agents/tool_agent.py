@@ -16,6 +16,7 @@ from src.tools import (
 )
 from src.agents.base import chat
 from src.evaluator import extract_final_answer
+from src.agents.direct_agent import DirectAgent
 
 
 class ToolAgent:
@@ -31,13 +32,11 @@ class ToolAgent:
             tools = [tools]
 
         if not tools:
-            solver_prompt = TOOL_SOLVER_PROMPT.format(
+            direct_result = DirectAgent().run(
+                llm,
                 question=question,
-                tool_results={},
-                verifier_feedback="",
-                base_instructions=BASE_SOLVER_INSTRUCTIONS,
+                answer_type=answer_type,
             )
-            final_output = chat(llm, solver_prompt)
 
             trace = {
                 "planner_type": "rule_based",
@@ -48,8 +47,8 @@ class ToolAgent:
                 "iterations": [
                     {
                         "step": 1,
-                        "mode": "no_tool_direct",
-                        "final_answer_for_this_step": final_output,
+                        "mode": "no_tool_use_direct_agent",
+                        "direct_result": direct_result,
                         "should_stop": True,
                         "stop_reason": "no_tool_matched",
                     }
@@ -58,7 +57,7 @@ class ToolAgent:
 
             return {
                 "agent": self.name,
-                "final_output": final_output,
+                "final_output": direct_result["final_output"],
                 "trace": trace,
             }
         tool_results = run_tools(plan, question, answer_type=answer_type)
