@@ -48,7 +48,7 @@ def compute_accuracy(records: list[dict]) -> dict:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback", "strong_feedback"], required=True)
+    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback", "strong_feedback", "oracle_tool"], required=True)
     parser.add_argument("--split", default=None)
     parser.add_argument("--limit", type=int, default=5)
     parser.add_argument("--output", default=None)
@@ -114,7 +114,7 @@ def main():
         ex = normalize_hle_item(dict(item))
         question = format_question(ex)
 
-        if args.agent == "oracle_feedback":
+        if args.agent in {"oracle_feedback", "oracle_tool"}:
             result = agent.run(
                 llm,
                 question=question,

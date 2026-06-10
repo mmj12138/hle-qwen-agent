@@ -24,6 +24,7 @@ DIRECT_OUTPUT="${OUTPUT_DIR}/direct_results.jsonl"
 FEEDBACK_OUTPUT="${OUTPUT_DIR}/feedback_results.jsonl"
 TOOL_OUTPUT="${OUTPUT_DIR}/tool_results.jsonl"
 ORACLE_FEEDBACK_OUTPUT="${OUTPUT_DIR}/oracle_feedback_results.jsonl"
+ORACLE_TOOL_OUTPUT="${OUTPUT_DIR}/oracle_tool_results.jsonl"
 SUMMARY_OUTPUT="${OUTPUT_DIR}/summary.md"
 
 mkdir -p "${OUTPUT_DIR}"
@@ -93,6 +94,16 @@ echo
 #  --output "${ORACLE_FEEDBACK_OUTPUT}"
 #
 #echo
+
+echo "Running Oracle Tool Agent..."
+python scripts/run_agents.py \
+  --agent oracle_tool \
+  --limit "${LIMIT}" \
+  ${TEXT_ONLY_FLAG} \
+  --max-iterations "${MAX_ITERATIONS}" \
+  --output "${ORACLE_TOOL_OUTPUT}"
+
+echo
 echo "Summarizing results..."
 python scripts/summarize_results.py \
   --input \
@@ -100,6 +111,7 @@ python scripts/summarize_results.py \
     "${FEEDBACK_OUTPUT}" \
     "${TOOL_OUTPUT}" \
     "${ORACLE_FEEDBACK_OUTPUT}" \
+    "${ORACLE_TOOL_OUTPUT}" \
   --output "${SUMMARY_OUTPUT}"
 
 echo
