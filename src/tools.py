@@ -359,19 +359,30 @@ def _solve_polynomial_perfect_square(question: str, max_abs_x: int = 10000) -> s
 def _extract_polynomial_expression(question: str) -> str | None:
     q = question.replace("−", "-")
 
-    # Try to capture expression around "is a perfect square"
-    m = re.search(r"([xX0-9\^\*\+\-\s\(\)]+?)\s+(?:is|are)\s+(?:a\s+)?perfect square", q)
-    if m:
+    patterns = [
+        r"quantity\s*\$?([^$?]+?)\$?\s+(?:is|are)\s+(?:a\s+)?perfect square",
+        r"expression\s*\$?([^$?]+?)\$?\s+(?:is|are)\s+(?:a\s+)?perfect square",
+        r"([xX][xX0-9\^\*\+\-\s\(\)]*?)\s+(?:is|are)\s+(?:a\s+)?perfect square",
+        r"of the form\s*:?\s*\$?([^$]+?)\$?",
+    ]
+
+    for pattern in patterns:
+        m = re.search(pattern, q, flags=re.IGNORECASE)
+        if not m:
+            continue
+
         expr = m.group(1).strip()
-        if "x" in expr.lower():
+        expr = expr.strip("$").strip()
+        expr = expr.replace("\\", "")
+
+        if "x" in expr.lower() and any(op in expr for op in ["^", "*", "+", "-"]):
             return expr
 
-    # Fallback: capture expression after "of the form"
-    m = re.search(r"of the form\s*:?\s*([xX0-9\^\*\+\-\s\(\)]+)", q)
-    if m:
-        expr = m.group(1).strip()
-        if "x" in expr.lower():
-            return expr
+    # Fallback: capture inline math containing x and powers
+    math_chunks = re.findall(r"\$([^$]*x[^$]*)\$", q, flags=re.IGNORECASE)
+    for expr in math_chunks:
+        if "perfect square" not in expr.lower() and any(op in expr for op in ["^", "*", "+", "-"]):
+            return expr.strip()
 
     return None
 
@@ -1200,27 +1211,14 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
 
     # 3. Broader controlled math / CS tool.
     controlled_math_keywords = [
-        "shortest path",
-        "minimum path",
-        "maximum path",
-        "bfs",
-        "graph",
-        "dynamic programming",
-        "recurrence",
-        "count the number",
-        "number of ways",
-        "how many ways",
-        "probability",
-        "expected value",
-        "combinations",
-        "permutations",
-        "binomial",
-        "matrix",
-        "determinant",
-        "eigenvalue",
         "gcd",
+        "greatest common divisor",
         "lcm",
-        "modular",
+        "least common multiple",
+        "binomial coefficient",
+        "choose",
+        "tiling",
+        "tile",
     ]
 
     if any(k in q for k in controlled_math_keywords):

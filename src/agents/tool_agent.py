@@ -62,6 +62,28 @@ class ToolAgent:
                 "trace": trace,
             }
 
+        # If tools only produced weak hints and no deterministic answer,
+        # do not force the model into the tool-reasoning branch.
+        if not recommended_answer:
+            weak_hint_markers = [
+                "use this as a hint only",
+                "no exact controlled template matched",
+                "no supported exact",
+                "no recommended final answer",
+            ]
+
+            non_format_results = [
+                str(v).lower()
+                for k, v in tool_results.items()
+                if k != "answer_format_hint"
+            ]
+
+            if non_format_results and all(
+                    any(marker in result for marker in weak_hint_markers)
+                    for result in non_format_results
+            ):
+                real_tool_used = False
+
         # If only answer_format_hint is available, do not run verifier loop.
         # This avoids answer drift on questions where tools add no real evidence.
         if not real_tool_used:
