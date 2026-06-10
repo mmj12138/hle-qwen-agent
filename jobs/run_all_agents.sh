@@ -76,34 +76,34 @@ echo
 #  --output "${FEEDBACK_OUTPUT}"
 #
 #echo
-echo "Running Tool Agent..."
-python scripts/run_agents.py \
-  --agent tool \
-  --limit "${LIMIT}" \
-  ${TEXT_ONLY_FLAG} \
-  --max-iterations "${MAX_ITERATIONS}" \
-  --output "${TOOL_OUTPUT}"
-
-echo
-#echo "Running Oracle Feedback Agent..."
+#echo "Running Tool Agent..."
 #python scripts/run_agents.py \
-#  --agent oracle_feedback \
+#  --agent tool \
 #  --limit "${LIMIT}" \
 #  ${TEXT_ONLY_FLAG} \
 #  --max-iterations "${MAX_ITERATIONS}" \
-#  --output "${ORACLE_FEEDBACK_OUTPUT}"
+#  --output "${TOOL_OUTPUT}"
 #
 #echo
-
-echo "Running Oracle Tool Agent..."
+echo "Running Oracle Feedback Agent..."
 python scripts/run_agents.py \
-  --agent oracle_tool \
+  --agent oracle_feedback \
   --limit "${LIMIT}" \
   ${TEXT_ONLY_FLAG} \
   --max-iterations "${MAX_ITERATIONS}" \
-  --output "${ORACLE_TOOL_OUTPUT}"
+  --output "${ORACLE_FEEDBACK_OUTPUT}"
 
 echo
+
+#echo "Running Oracle Tool Agent..."
+#python scripts/run_agents.py \
+#  --agent oracle_tool \
+#  --limit "${LIMIT}" \
+#  ${TEXT_ONLY_FLAG} \
+#  --max-iterations "${MAX_ITERATIONS}" \
+#  --output "${ORACLE_TOOL_OUTPUT}"
+#
+#echo
 echo "Summarizing results..."
 python scripts/summarize_results.py \
   --input \
