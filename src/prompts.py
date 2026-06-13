@@ -213,27 +213,22 @@ not be reliably solved from reasoning alone.
 Do not use search when:
 - the answer can be derived entirely from information in the question;
 - it is a self-contained mathematical, logical, symbolic, or coding problem;
-- a deterministic local tool is more appropriate;
+- a deterministic local tool already gives an exact answer;
 - search is unlikely to produce evidence relevant to the exact question.
 
-Generate a concise query that searches for the underlying fact or concept.
-Do not copy the complete benchmark question into the query.
-Do not search for phrases such as "HLE answer", "benchmark answer", or
-"correct answer".
+Generate a concise query for the underlying fact or concept.
+Do not copy the complete benchmark question.
+Do not search for phrases such as "HLE answer", "benchmark answer",
+"gold answer", or "correct answer".
 
-Return only one JSON object:
-{{
-  "use_search": true,
-  "reason": "short reason",
-  "search_query": "concise search query"
-}}
+Return exactly these three lines:
 
-If search is unnecessary:
-{{
-  "use_search": false,
-  "reason": "short reason",
-  "search_query": ""
-}}
+USE_SEARCH: YES or NO
+SEARCH_QUERY: concise query, or empty
+REASON: one short plain-text reason
+
+Do not use JSON.
+Do not use LaTeX in the reason.
 """
 
 
@@ -249,9 +244,9 @@ Web search evidence:
 {search_evidence}
 
 Instructions:
-- Use the evidence only when it is relevant to the question.
+- Use the evidence only when it is relevant.
 - Search snippets can be incomplete or misleading; reconcile multiple results.
-- Do not claim that a fact is supported if the evidence does not contain it.
+- Do not claim that a fact is supported when the evidence does not contain it.
 - Never mention benchmark answers, gold answers, the router, or internal tools.
 - For multiple-choice questions, end with: Final Answer: <letter>
 - For exact or short-answer questions, end with: Final Answer: <concise answer>
