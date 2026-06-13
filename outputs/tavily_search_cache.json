@@ -1,0 +1,32 @@
+{
+  "tavily:basic:general:3:university of bern artificial intelligence research": {
+    "provider": "tavily",
+    "query": "University of Bern artificial intelligence research",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "MSc Artificial Intelligence in Medicine – University of Bern",
+        "snippet": "The University of Bern is a global leader in biomedical engineering and artificial intelligence (AI) in medicine research. Engineers and",
+        "link": "https://ci2s-enterprise.com.ar/2022/03/08/msc-artificial-intelligence-in-medicine-university-of-bern-switzerland",
+        "score": 0.87706697
+      },
+      {
+        "title": "Departments",
+        "snippet": "Center for Artificial Intelligence in Medicine. Department for BioMedical Research, Center for Artificial Intelligence in Medicine. The Center for Artificial Intelligence in Medicine (CAIM) is a research, teaching and translation platform for medical technology that uses AI to facilitate the work of doctors and nurses and to deliver better care to patients. It was inaugurated in January 2021 as specialized center of the University of Bern and the Inselspital, Bern University Hospital, with the University Psychiatry Services (UPD) and the Swiss Institute for Translational and Entrepreneurial Medicine, sitem-insel, as partners. sitem Center for Translational Medicine and Biomedical Entrepreneurship. Department of Clinical Child and Adolescent Psychology, Institute of Psychology, University of Bern, Center for Artificial Intelligence in Medicine. Institute of Computer Science, Center for Artificial Intelligence in Medicine. Translational Medicine and Entrepreneurship, sitem Center for Translational Medicine and Biomedical Entrepreneurship, Center for Artificial Intelligence in Medicine. Department of Emergency Medicine, Center for Artificial Intelligence in Medicine.",
+        "link": "https://www.sairop.swiss/organisations/departments/center-for-artificial-intelligence-in-medicine",
+        "score": 0.8573986
+      },
+      {
+        "title": "Data Science Lab - University of Bern",
+        "snippet": "## Data Science Lab. DSL provides university-wide support and training for researchers and research groups in data science, machine learning, artificial intelligence and research IT related matters. DSL is a university core facility of the University of Bern. It is a member of the EnhanceR research IT and SwissNLP associations. The Data Science Lab supports the new National Competence Center for Research CLIM+ as partner. The dates for the Bern Winter School on Machine Learning 2027 are now confirmed. The DSL collaborates with the DDM and helps you with support and training in data science, machine learning, artificial intelligence and research IT related matters. ### DSL and BFH Collaboration 2026. The Vice-Rectorate Research of the Berner Fachhochschule (BFH) and the DSL have entered a pilot-collaboration for the year 2026 on the usage of DSL services. The Data Science Lab, together with the Institute of Early Modern Art History submitted the “Archive Image Matching” challenge to the Swiss {ai} Weeks Hackathon in Bern.",
+        "link": "https://www.dsl.unibe.ch",
+        "score": 0.79484755
+      }
+    ],
+    "result_count": 3,
+    "response_time": 0.72,
+    "request_id": "84e917e5-315e-42cd-b63e-a6ad28773551",
+    "from_cache": false
+  }
+}

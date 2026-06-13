@@ -195,3 +195,66 @@ Important rules:
 
 {base_instructions}
 """
+
+SEARCH_ROUTER_PROMPT = """You are a search-routing agent for a difficult QA benchmark.
+
+Question:
+{question}
+
+Dataset category (auxiliary metadata only):
+{category}
+
+Decide whether web search is likely to provide useful external evidence.
+
+Use search when the question depends on specific factual, scientific, historical,
+literary, legal, biographical, bibliographic, or other domain knowledge that may
+not be reliably solved from reasoning alone.
+
+Do not use search when:
+- the answer can be derived entirely from information in the question;
+- it is a self-contained mathematical, logical, symbolic, or coding problem;
+- a deterministic local tool is more appropriate;
+- search is unlikely to produce evidence relevant to the exact question.
+
+Generate a concise query that searches for the underlying fact or concept.
+Do not copy the complete benchmark question into the query.
+Do not search for phrases such as "HLE answer", "benchmark answer", or
+"correct answer".
+
+Return only one JSON object:
+{{
+  "use_search": true,
+  "reason": "short reason",
+  "search_query": "concise search query"
+}}
+
+If search is unnecessary:
+{{
+  "use_search": false,
+  "reason": "short reason",
+  "search_query": ""
+}}
+"""
+
+
+SEARCH_SOLVER_PROMPT = """You are a search-augmented solver.
+
+Question:
+{question}
+
+Dataset category:
+{category}
+
+Web search evidence:
+{search_evidence}
+
+Instructions:
+- Use the evidence only when it is relevant to the question.
+- Search snippets can be incomplete or misleading; reconcile multiple results.
+- Do not claim that a fact is supported if the evidence does not contain it.
+- Never mention benchmark answers, gold answers, the router, or internal tools.
+- For multiple-choice questions, end with: Final Answer: <letter>
+- For exact or short-answer questions, end with: Final Answer: <concise answer>
+
+{base_instructions}
+"""

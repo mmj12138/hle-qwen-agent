@@ -27,6 +27,9 @@ ORACLE_FEEDBACK_OUTPUT="${OUTPUT_DIR}/oracle_feedback_results.jsonl"
 ORACLE_TOOL_OUTPUT="${OUTPUT_DIR}/oracle_tool_results.jsonl"
 SUMMARY_OUTPUT="${OUTPUT_DIR}/summary.md"
 
+export TAVILY_API_KEY="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"
+
+
 mkdir -p "${OUTPUT_DIR}"
 
 echo "============================================================"

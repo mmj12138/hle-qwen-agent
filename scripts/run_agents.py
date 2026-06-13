@@ -11,71 +11,49 @@ from src.config import get_config
 from src.dataset_hle import load_hle_dataset, normalize_hle_item, format_question
 from src.llm_qwen import QwenLLM
 from src.agents import get_agent
+from src.agents.tool_search_agent import ToolSearchAgent
 from src.evaluator import score_prediction
 
 
 def write_jsonl(path: str, records: list[dict]):
     output_path = Path(path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    # Important:
-    # use "w" mode so each run overwrites old results.
     with output_path.open("w", encoding="utf-8") as f:
         for record in records:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
 
 
 def compute_accuracy(records: list[dict]) -> dict:
-    valid = [
-        r for r in records
-        if r["score"]["exact_match"] is not None
-    ]
-
-    correct = sum(
-        1 for r in valid
-        if r["score"]["exact_match"] is True
-    )
-
+    valid = [r for r in records if r["score"]["exact_match"] is not None]
+    correct = sum(1 for r in valid if r["score"]["exact_match"] is True)
     total = len(valid)
-    accuracy = correct / total if total > 0 else 0.0
-
     return {
         "correct": correct,
         "total": total,
-        "accuracy": accuracy,
+        "accuracy": correct / total if total else 0.0,
     }
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--agent", choices=["direct", "feedback", "tool", "oracle_feedback", "strong_feedback", "oracle_tool"], required=True)
+    parser.add_argument(
+        "--agent",
+        choices=[
+            "direct",
+            "feedback",
+            "tool",
+            "tool_search",
+            "oracle_feedback",
+            "oracle_tool",
+            "strong_feedback",
+        ],
+        required=True,
+    )
     parser.add_argument("--split", default=None)
     parser.add_argument("--limit", type=int, default=5)
     parser.add_argument("--output", default=None)
-    parser.add_argument(
-        "--text-only",
-        action="store_true",
-        help="Run only on samples without images.",
-    )
-    parser.add_argument(
-        "--max-iterations",
-        type=int,
-        default=2,
-        help="Maximum feedback/tool loop iterations for feedback and tool agents.",
-    )
-    parser.add_argument(
-        "--model-name",
-        type=str,
-        default=None,
-        help="Override the default solver model name.",
-    )
-
-    parser.add_argument(
-        "--critic-model-name",
-        type=str,
-        default=None,
-        help="Model name for strong_feedback critic. If not set, use the solver model.",
-    )
+    parser.add_argument("--text-only", action="store_true")
+    parser.add_argument("--max-iterations", type=int, default=2)
     args = parser.parse_args()
 
     config = get_config()
@@ -114,28 +92,25 @@ def main():
         ex = normalize_hle_item(dict(item))
         question = format_question(ex)
 
-        if args.agent in {"oracle_feedback", "oracle_tool"}:
+        common_kwargs = {
+            "question": question,
+            "answer_type": ex["answer_type"],
+        }
+
+        if args.agent == "tool_search":
             result = agent.run(
                 llm,
-                question=question,
-                answer_type=ex["answer_type"],
+                category=ex.get("category", ""),
+                **common_kwargs,
+            )
+        elif args.agent in {"oracle_feedback", "oracle_tool"}:
+            result = agent.run(
+                llm,
                 gold_answer=ex["answer"],
+                **common_kwargs,
             )
-
-        elif args.agent == "strong_feedback":
-            result = agent.run(
-                llm,
-                question=question,
-                answer_type=ex["answer_type"],
-                critic_llm=critic_llm,
-            )
-
         else:
-            result = agent.run(
-                llm,
-                question=question,
-                answer_type=ex["answer_type"],
-            )
+            result = agent.run(llm, **common_kwargs)
 
         score = score_prediction(
             result["final_output"],
@@ -143,22 +118,21 @@ def main():
             ex["answer_type"],
         )
 
-        record = {
-            "index": idx,
-            "agent": args.agent,
-            "category": ex["category"],
-            "answer_type": ex["answer_type"],
-            "question": question,
-            "gold_answer": ex["answer"],
-            "final_output": result["final_output"],
-            "score": score,
-            "trace": result["trace"],
-        }
-
-        records.append(record)
+        records.append(
+            {
+                "index": idx,
+                "agent": args.agent,
+                "category": ex.get("category", ""),
+                "answer_type": ex["answer_type"],
+                "question": question,
+                "gold_answer": ex["answer"],
+                "final_output": result["final_output"],
+                "score": score,
+                "trace": result["trace"],
+            }
+        )
 
     write_jsonl(output_path, records)
-
     metrics = compute_accuracy(records)
 
     print("=" * 80)
