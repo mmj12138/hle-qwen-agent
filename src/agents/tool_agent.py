@@ -25,11 +25,71 @@ class ToolAgent:
     def __init__(self, max_iterations: int = 2):
         self.max_iterations = max_iterations
 
-    def run(self, llm, question: str, answer_type: str = "") -> Dict[str, Any]:
+    def prepare_tool_context(
+        self,
+        question: str,
+        answer_type: str = "",
+    ) -> Dict[str, Any]:
+        """Run the shared rule-based planner and local tools once.
+
+        This helper is reused by ToolAgent and ToolSearchAgent so both agents
+        use exactly the same tool matching, execution, and exact-answer logic.
+        """
         plan = rule_based_tool_plan(question, answer_type=answer_type)
         tools = plan.get("tools", [])
         if isinstance(tools, str):
             tools = [tools]
+
+        tool_results = (
+            run_tools(plan, question, answer_type=answer_type)
+            if tools
+            else {}
+        )
+        recommended_answer = extract_recommended_final_answer(
+            tool_results
+        ).strip()
+        real_tool_used = has_real_tool(plan)
+
+        weak_hint_markers = [
+            "use this as a hint only",
+            "no exact controlled math template matched",
+            "no exact controlled template matched",
+            "no supported exact",
+            "no recommended final answer",
+            "no text provided",
+            "no expression provided",
+        ]
+
+        non_format_results = [
+            str(value).lower()
+            for key, value in tool_results.items()
+            if key != "answer_format_hint"
+        ]
+
+        weak_hints_only = bool(non_format_results) and all(
+            any(marker in result for marker in weak_hint_markers)
+            for result in non_format_results
+        )
+
+        if weak_hints_only:
+            real_tool_used = False
+
+        return {
+            "plan": plan,
+            "tools": tools,
+            "tool_results": tool_results,
+            "recommended_answer": recommended_answer,
+            "real_tool_used": real_tool_used,
+            "weak_hints_only": weak_hints_only,
+        }
+
+    def run(self, llm, question: str, answer_type: str = "") -> Dict[str, Any]:
+        context = self.prepare_tool_context(
+            question=question,
+            answer_type=answer_type,
+        )
+        plan = context["plan"]
+        tools = context["tools"]
 
         if not tools:
             direct_result = DirectAgent().run(
@@ -60,10 +120,9 @@ class ToolAgent:
                 "final_output": direct_result["final_output"],
                 "trace": trace,
             }
-        tool_results = run_tools(plan, question, answer_type=answer_type)
-        real_tool_used = has_real_tool(plan)
-
-        recommended_answer = extract_recommended_final_answer(tool_results)
+        tool_results = context["tool_results"]
+        real_tool_used = context["real_tool_used"]
+        recommended_answer = context["recommended_answer"]
 
         trace = {
             "planner_type": "rule_based",
@@ -95,28 +154,6 @@ class ToolAgent:
                 "final_output": final_output,
                 "trace": trace,
             }
-
-        # If tools only produced weak hints and no deterministic answer,
-        # do not force the model into the tool-reasoning branch.
-        if not recommended_answer:
-            weak_hint_markers = [
-                "use this as a hint only",
-                "no exact controlled template matched",
-                "no supported exact",
-                "no recommended final answer",
-            ]
-
-            non_format_results = [
-                str(v).lower()
-                for k, v in tool_results.items()
-                if k != "answer_format_hint"
-            ]
-
-            if non_format_results and all(
-                    any(marker in result for marker in weak_hint_markers)
-                    for result in non_format_results
-            ):
-                real_tool_used = False
 
         # If only answer_format_hint is available, do not run verifier loop.
         # This avoids answer drift on questions where tools add no real evidence.

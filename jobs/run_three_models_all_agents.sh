@@ -27,15 +27,15 @@ cd "${PROJECT_ROOT}"
 # Experiment configuration
 # ----------------------------
 MODELS=(
-  "Qwen/Qwen3.5-0.8B"
-  "Qwen/Qwen2.5-7B-Instruct"
-#  "Qwen/Qwen3.5-27B"
+#  "Qwen/Qwen3.5-0.8B"
+#  "Qwen/Qwen2.5-7B-Instruct"
+  "Qwen/Qwen3.5-27B"
 )
 
 MODEL_TAGS=(
-  "qwen35_08b"
-  "qwen25_7b"
-#  "qwen35_27b"
+#  "qwen35_08b"
+#  "qwen25_7b"
+  "qwen35_27b"
 )
 
 AGENTS=(
@@ -48,7 +48,7 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=2000
+LIMIT=100
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=512

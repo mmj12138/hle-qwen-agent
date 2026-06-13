@@ -6,29 +6,23 @@ from typing import Any, Dict
 
 from src.agents.base import chat
 from src.agents.direct_agent import DirectAgent
-from src.prompts import BASE_SOLVER_INSTRUCTIONS, SEARCH_SOLVER_PROMPT, SEARCH_ROUTER_PROMPT
-from src.search_web import TavilySearchError, TavilyWebSearch
-from src.tools import (
-    extract_recommended_final_answer,
-    rule_based_tool_plan,
-    run_tools,
+from src.agents.tool_agent import ToolAgent
+from src.prompts import (
+    BASE_SOLVER_INSTRUCTIONS,
+    SEARCH_ROUTER_PROMPT,
+    SEARCH_SOLVER_PROMPT,
 )
+from src.search_web import TavilySearchError, TavilyWebSearch
+
 
 class ToolSearchAgent:
-    """Deterministic tools + LLM-routed Tavily search.
-
-    Routing order:
-      1. Run matching local tools.
-      2. Use the deterministic path only when a tool returns an exact
-         ``Recommended final answer``.
-      3. Otherwise ask the LLM router whether web search is useful.
-      4. Fall back to DirectAgent when search is unnecessary or unavailable.
-    """
+    """Reuse ToolAgent's local-tool pipeline, then optionally use Tavily."""
 
     name = "tool_search"
 
     def __init__(self, max_iterations: int = 2):
         self.max_iterations = max_iterations
+        self.tool_agent = ToolAgent(max_iterations=max_iterations)
         self.direct_agent = DirectAgent()
         self.search_client = TavilyWebSearch()
 
@@ -41,23 +35,18 @@ class ToolSearchAgent:
     ) -> Dict[str, Any]:
         category = str(category or "unknown").strip()
 
-        deterministic_plan = rule_based_tool_plan(
-            question,
+        # Reuse exactly the same planner, tools, weak-hint filtering,
+        # and exact-answer extraction as ToolAgent.
+        tool_context = self.tool_agent.prepare_tool_context(
+            question=question,
             answer_type=answer_type,
         )
-        deterministic_results = run_tools(
-            deterministic_plan,
-            question,
-            answer_type=answer_type,
-        )
-        recommended_answer = extract_recommended_final_answer(
-            deterministic_results
-        ).strip()
 
-        # A tool match alone is not enough. It must produce an exact answer.
-        # This prevents false deterministic routing such as:
-        # - Caesar tool with empty input
-        # - controlled_math_tool returning only a weak hint
+        plan = tool_context["plan"]
+        tool_results = tool_context["tool_results"]
+        recommended_answer = tool_context["recommended_answer"]
+
+        # Only an actual exact tool answer can terminate immediately.
         if recommended_answer:
             final_output = f"Final Answer: {recommended_answer}"
             return {
@@ -66,8 +55,10 @@ class ToolSearchAgent:
                 "trace": {
                     "tool_search_path": "deterministic_tool",
                     "dataset_category": category,
-                    "deterministic_plan": deterministic_plan,
-                    "deterministic_tool_results": deterministic_results,
+                    "parsed_plan": plan,
+                    "tool_results": tool_results,
+                    "real_tool_used": tool_context["real_tool_used"],
+                    "weak_hints_only": tool_context["weak_hints_only"],
                     "recommended_answer": recommended_answer,
                     "search_used": False,
                     "final_output": final_output,
@@ -86,8 +77,7 @@ class ToolSearchAgent:
                 question=question,
                 answer_type=answer_type,
                 category=category,
-                deterministic_plan=deterministic_plan,
-                deterministic_results=deterministic_results,
+                tool_context=tool_context,
                 router_decision=router_decision,
                 reason="router_selected_direct",
             )
@@ -99,8 +89,7 @@ class ToolSearchAgent:
                 question=question,
                 answer_type=answer_type,
                 category=category,
-                deterministic_plan=deterministic_plan,
-                deterministic_results=deterministic_results,
+                tool_context=tool_context,
                 router_decision=router_decision,
                 reason="empty_search_query",
             )
@@ -113,8 +102,7 @@ class ToolSearchAgent:
                 question=question,
                 answer_type=answer_type,
                 category=category,
-                deterministic_plan=deterministic_plan,
-                deterministic_results=deterministic_results,
+                tool_context=tool_context,
                 router_decision=router_decision,
                 reason="search_error",
                 search_error=str(exc),
@@ -126,8 +114,7 @@ class ToolSearchAgent:
                 question=question,
                 answer_type=answer_type,
                 category=category,
-                deterministic_plan=deterministic_plan,
-                deterministic_results=deterministic_results,
+                tool_context=tool_context,
                 router_decision=router_decision,
                 reason="no_search_results",
                 search_output=search_output,
@@ -153,8 +140,10 @@ class ToolSearchAgent:
             "trace": {
                 "tool_search_path": "web_search",
                 "dataset_category": category,
-                "deterministic_plan": deterministic_plan,
-                "deterministic_tool_results": deterministic_results,
+                "parsed_plan": plan,
+                "tool_results": tool_results,
+                "real_tool_used": tool_context["real_tool_used"],
+                "weak_hints_only": tool_context["weak_hints_only"],
                 "recommended_answer": "",
                 "router_decision": router_decision,
                 "search_used": True,
@@ -177,8 +166,8 @@ class ToolSearchAgent:
             category=category,
         )
         raw_output = chat(llm, prompt)
-
         parsed = _parse_router_output(raw_output)
+
         use_search = _coerce_bool(parsed.get("use_search", False))
         search_query = _clean_search_query(
             str(parsed.get("search_query", ""))
@@ -200,9 +189,6 @@ class ToolSearchAgent:
                 "parser": parsed.get("_parser", "unknown"),
             }
 
-        # If the router says YES but omits the query, use a conservative
-        # compact query derived from the question instead of silently falling
-        # back because of formatting failure.
         if use_search and not search_query:
             search_query = _fallback_query(question)
 
@@ -220,8 +206,7 @@ class ToolSearchAgent:
         question: str,
         answer_type: str,
         category: str,
-        deterministic_plan: Dict[str, Any],
-        deterministic_results: Dict[str, Any],
+        tool_context: Dict[str, Any],
         router_decision: Dict[str, Any],
         reason: str,
         search_error: str = "",
@@ -240,8 +225,10 @@ class ToolSearchAgent:
                 "tool_search_path": "direct_fallback",
                 "fallback_reason": reason,
                 "dataset_category": category,
-                "deterministic_plan": deterministic_plan,
-                "deterministic_tool_results": deterministic_results,
+                "parsed_plan": tool_context["plan"],
+                "tool_results": tool_context["tool_results"],
+                "real_tool_used": tool_context["real_tool_used"],
+                "weak_hints_only": tool_context["weak_hints_only"],
                 "recommended_answer": "",
                 "router_decision": router_decision,
                 "search_used": False,
@@ -253,17 +240,9 @@ class ToolSearchAgent:
 
 
 def _parse_router_output(text: str) -> Dict[str, Any]:
-    """Parse both the new three-line format and imperfect legacy JSON.
-
-    The fallback parser intentionally tolerates:
-    - a missing final ``}``;
-    - invalid JSON backslash escapes from LaTeX;
-    - fenced JSON;
-    - extra prose around the structured response.
-    """
+    """Parse the preferred line format and tolerate legacy malformed JSON."""
     raw = str(text or "").strip()
 
-    # 1. Preferred line-based format.
     use_match = re.search(
         r"(?im)^\s*USE_SEARCH\s*:\s*(YES|NO|TRUE|FALSE|1|0)\s*$",
         raw,
@@ -285,14 +264,12 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
             "_parser": "line_format",
         }
 
-    # 2. Strict JSON when the model follows the old prompt.
     parsed_json = _extract_json_object(raw)
     if parsed_json is not None:
         parsed_json["_parser"] = "strict_json"
         return parsed_json
 
-    # 3. Recover individual fields from incomplete/invalid JSON.
-    json_bool_match = re.search(
+    bool_match = re.search(
         r'(?is)["\']?use_search["\']?\s*:\s*(true|false|yes|no|1|0)',
         raw,
     )
@@ -307,9 +284,9 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
         raw,
     )
 
-    if json_bool_match:
+    if bool_match:
         return {
-            "use_search": _coerce_bool(json_bool_match.group(1)),
+            "use_search": _coerce_bool(bool_match.group(1)),
             "search_query": (
                 _unescape_router_text(json_query_match.group(1))
                 if json_query_match
@@ -323,8 +300,6 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
             "_parser": "regex_recovery",
         }
 
-    # Conservative default: do not spend a search credit when the model
-    # produced no recognizable routing decision.
     return {
         "use_search": False,
         "search_query": "",
@@ -361,8 +336,6 @@ def _extract_json_object(text: str) -> Dict[str, Any] | None:
 
 
 def _unescape_router_text(text: str) -> str:
-    # Do not decode arbitrary escapes. Only normalize formatting escapes
-    # commonly produced by the model.
     return (
         text.replace(r"\"", '"')
         .replace(r"\'", "'")
@@ -379,17 +352,13 @@ def _clean_search_query(query: str) -> str:
 
 
 def _fallback_query(question: str) -> str:
-    """Create a compact fallback query without benchmark-answer language."""
     text = re.sub(r"\s+", " ", str(question or "")).strip()
     text = re.sub(
         r"(?i)\b(final answer|correct answer|gold answer|benchmark answer)\b",
         "",
         text,
     )
-
-    # Keep enough context for a useful search while avoiding a full long prompt.
-    words = text.split()
-    return " ".join(words[:32])[:300]
+    return " ".join(text.split()[:32])[:300]
 
 
 def _coerce_bool(value: Any) -> bool:
