@@ -54,7 +54,7 @@ TEXT_ONLY=1
 MAX_NEW_TOKENS=512
 TEMPERATURE=0.0
 OUTPUT_ROOT="outputs/three_model_comparison"
-RUN_SCRIPT="scripts/run_agents_with_search.py"
+RUN_SCRIPT="scripts/run_agents.py"
 
 # Quantization:
 # "auto" means only the 27B model is loaded in NF4 4-bit.
