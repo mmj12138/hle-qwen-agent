@@ -72,9 +72,9 @@ class QwenLLM:
                 bnb_4bit_use_double_quant=True,
             )
             # The non-quantized layers use this dtype.
-            model_kwargs["torch_dtype"] = compute_dtype
+            model_kwargs["dtype"] = compute_dtype
         else:
-            model_kwargs["torch_dtype"] = torch_dtype
+            model_kwargs["dtype"] = torch_dtype
 
         if self.is_qwen35:
             # Qwen3.5 is released as an image-text-to-text / multimodal model,
