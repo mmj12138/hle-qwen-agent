@@ -21,7 +21,7 @@ cd "${PROJECT_ROOT}"
 module load Python/3.10
 source "${HOME}/venvs/myddlenv/bin/activate"
 
-python -m pip install -U "bitsandbytes>=0.46.1" accelerate
+#python -m pip install -U "bitsandbytes>=0.46.1" accelerate
 
 # Secrets only. Do not put API keys in the experiment shell script.
 if [[ -f "${PROJECT_ROOT}/.env" ]]; then
