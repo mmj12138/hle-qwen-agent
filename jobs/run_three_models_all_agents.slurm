@@ -21,8 +21,6 @@ cd "${PROJECT_ROOT}"
 module load Python/3.10
 source "${HOME}/venvs/myddlenv/bin/activate"
 
-pip install tavily-python
-
 # Secrets only. Do not put API keys in the experiment shell script.
 if [[ -f "${PROJECT_ROOT}/.env" ]]; then
     set -a
