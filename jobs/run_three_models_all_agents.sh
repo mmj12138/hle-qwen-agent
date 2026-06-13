@@ -35,7 +35,7 @@ MODELS=(
 MODEL_TAGS=(
   "qwen35_08b"
   "qwen25_7b"
-  "qwen35_27b"
+#  "qwen35_27b"
 )
 
 AGENTS=(
@@ -162,7 +162,7 @@ agents = [
     "direct",
     "feedback",
     "tool",
-    "tool_search",
+#    "tool_search",
     "oracle_feedback",
     "oracle_tool",
 ]
