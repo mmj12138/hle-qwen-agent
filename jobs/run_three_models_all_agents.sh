@@ -48,7 +48,7 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=2000
+LIMIT=200
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=512
@@ -117,10 +117,10 @@ run_one_agent() {
 
   mkdir -p "${model_dir}"
 
-  if [[ "${SKIP_EXISTING}" == "1" && -s "${output_file}" ]]; then
-    echo "[SKIP] ${model_tag} / ${agent}: ${output_file} already exists."
-    return 0
-  fi
+#  if [[ "${SKIP_EXISTING}" == "1" && -s "${output_file}" ]]; then
+#    echo "[SKIP] ${model_tag} / ${agent}: ${output_file} already exists."
+#    return 0
+#  fi
 
   echo
   echo "============================================================"

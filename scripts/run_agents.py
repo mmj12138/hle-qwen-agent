@@ -86,43 +86,59 @@ def main():
         max_iterations=args.max_iterations,
     )
 
+    output_file = Path(output_path)
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+
+    completed_indices = set()
     records = []
 
-    for idx, item in enumerate(tqdm(data, desc=f"Running {args.agent} agent")):
-        ex = normalize_hle_item(dict(item))
-        question = format_question(ex)
+    if output_file.exists():
+        with output_file.open("r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
 
-        common_kwargs = {
-            "question": question,
-            "answer_type": ex["answer_type"],
-        }
+                record = json.loads(line)
+                records.append(record)
+                completed_indices.add(record["index"])
 
-        if args.agent == "tool_search":
-            result = agent.run(
-                llm,
-                category=ex.get("category", ""),
-                **common_kwargs,
+    print(f"Resuming with {len(completed_indices)} completed samples.")
+
+    with output_file.open("a", encoding="utf-8", buffering=1) as f:
+        for idx, item in enumerate(
+                tqdm(data, desc=f"Running {args.agent} agent")
+        ):
+            if idx in completed_indices:
+                continue
+
+            ex = normalize_hle_item(dict(item))
+            question = format_question(ex)
+
+            if args.agent == "oracle_feedback":
+                result = agent.run(
+                    llm,
+                    question=question,
+                    answer_type=ex["answer_type"],
+                    gold_answer=ex["answer"],
+                )
+            else:
+                result = agent.run(
+                    llm,
+                    question=question,
+                    answer_type=ex["answer_type"],
+                )
+
+            score = score_prediction(
+                result["final_output"],
+                ex["answer"],
+                ex["answer_type"],
             )
-        elif args.agent in {"oracle_feedback", "oracle_tool"}:
-            result = agent.run(
-                llm,
-                gold_answer=ex["answer"],
-                **common_kwargs,
-            )
-        else:
-            result = agent.run(llm, **common_kwargs)
 
-        score = score_prediction(
-            result["final_output"],
-            ex["answer"],
-            ex["answer_type"],
-        )
-
-        records.append(
-            {
+            record = {
                 "index": idx,
                 "agent": args.agent,
-                "category": ex.get("category", ""),
+                "category": ex["category"],
                 "answer_type": ex["answer_type"],
                 "question": question,
                 "gold_answer": ex["answer"],
@@ -130,9 +146,12 @@ def main():
                 "score": score,
                 "trace": result["trace"],
             }
-        )
 
-    write_jsonl(output_path, records)
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+            f.flush()
+
+            records.append(record)
+
     metrics = compute_accuracy(records)
 
     print("=" * 80)
