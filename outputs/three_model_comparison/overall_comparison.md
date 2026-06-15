@@ -2,12 +2,12 @@
 
 | Model | Agent | Accuracy | Correct / Total | Wrong→Right | Right→Wrong | Net vs Direct |
 |---|---|---:|---:|---:|---:|---:|
-| Qwen/Qwen2.5-7B-Instruct | direct | 0.0488 | 93 / 1904 | -- | -- | -- |
-| Qwen/Qwen2.5-7B-Instruct | feedback | 0.0362 | 69 / 1904 | 26 | 50 | -24 |
-| Qwen/Qwen2.5-7B-Instruct | tool | 0.0515 | 98 / 1904 | 6 | 1 | +5 |
-| Qwen/Qwen2.5-7B-Instruct | tool_search | 0.0572 | 109 / 1904 | 42 | 26 | +16 |
-| Qwen/Qwen2.5-7B-Instruct | oracle_feedback | 0.1145 | 218 / 1904 | 125 | 0 | +125 |
-| Qwen/Qwen2.5-7B-Instruct | oracle_tool | 0.1161 | 221 / 1904 | 129 | 1 | +128 |
+| Qwen/Qwen2.5-7B-Instruct | direct | 0.0551 | 105 / 1904 | -- | -- | -- |
+| Qwen/Qwen2.5-7B-Instruct | feedback | 0.0362 | 69 / 1904 | 21 | 57 | -36 |
+| Qwen/Qwen2.5-7B-Instruct | tool | 0.0562 | 107 / 1904 | 4 | 2 | +2 |
+| Qwen/Qwen2.5-7B-Instruct | tool_search | 0.0000 | 0 / 0 | 0 | 0 | +0 |
+| Qwen/Qwen2.5-7B-Instruct | oracle_feedback | 0.1192 | 227 / 1904 | 122 | 0 | +122 |
+| Qwen/Qwen2.5-7B-Instruct | oracle_tool | 0.1176 | 224 / 1904 | 121 | 2 | +119 |
 
 ## Notes
 
