@@ -39,12 +39,12 @@ MODEL_TAGS=(
 )
 
 AGENTS=(
-#  "direct"
+  "direct"
 #  "feedback"
-  "tool"
+#  "tool"
 #  "tool_search"
-  "oracle_feedback"
-  "oracle_tool"
+#  "oracle_feedback"
+#  "oracle_tool"
 )
 
 # All experiment parameters are intentionally fixed here.
