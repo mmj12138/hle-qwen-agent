@@ -48,7 +48,7 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=2000
+LIMIT=200
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=64
@@ -80,6 +80,8 @@ export TAVILY_SEARCH_TOPIC
 export HF_HOME
 export TOKENIZERS_PARALLELISM
 export PYTORCH_CUDA_ALLOC_CONF
+export PYTHON_PROGRAMMER_MAX_NEW_TOKENS=512
+export PYTHON_VERIFIER_MAX_NEW_TOKENS=96
 
 # Optional: load Tavily key from a private file on Ubelix.
 # The file should contain:
