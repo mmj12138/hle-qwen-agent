@@ -434,6 +434,7 @@ def _parse_programmer_output(
         bool(use_match)
         and use_match.group(1).upper() == "YES"
     )
+
     reason = (
         reason_match.group(1).strip()
         if reason_match
@@ -443,18 +444,71 @@ def _parse_programmer_output(
     if not use_python:
         return False, reason, ""
 
-    # Preferred: complete fenced code block.
+    # Require an explicit description of the inputs, target, and algorithm.
+    inputs_match = re.search(
+        r"(?im)^\s*INPUTS\s*:\s*(.*?)\s*$",
+        raw,
+    )
+    target_match = re.search(
+        r"(?im)^\s*TARGET\s*:\s*(.*?)\s*$",
+        raw,
+    )
+    algorithm_match = re.search(
+        r"(?im)^\s*ALGORITHM\s*:\s*(.*?)\s*$",
+        raw,
+    )
+
+    if not inputs_match:
+        return False, "missing_explicit_inputs", ""
+
+    if not target_match:
+        return False, "missing_explicit_target", ""
+
+    if not algorithm_match:
+        return False, "missing_explicit_algorithm", ""
+
+    inputs_text = inputs_match.group(1).strip()
+    target_text = target_match.group(1).strip()
+    algorithm_text = algorithm_match.group(1).strip()
+
+    invalid_values = {
+        "",
+        "none",
+        "n/a",
+        "na",
+        "unknown",
+        "not specified",
+        "not provided",
+        "no explicit inputs",
+        "no inputs",
+        "missing",
+    }
+
+    if inputs_text.lower() in invalid_values:
+        return False, "invalid_explicit_inputs", ""
+
+    if target_text.lower() in invalid_values or len(target_text) < 5:
+        return False, "invalid_explicit_target", ""
+
+    if algorithm_text.lower() in invalid_values or len(algorithm_text) < 5:
+        return False, "invalid_explicit_algorithm", ""
+
+    # Preferred: complete fenced Python code block.
     complete_match = re.search(
         r"```(?:python)?\s*(.*?)```",
         raw,
         flags=re.IGNORECASE | re.DOTALL,
     )
     if complete_match:
-        return True, reason, complete_match.group(1).strip()
+        code = complete_match.group(1).strip()
 
-    # Recovery: model reached the token limit after opening a code fence.
-    # The executor's AST validation decides whether the recovered code is
-    # syntactically complete. Incomplete code is safely rejected.
+        if not code:
+            return False, "empty_python_code", ""
+
+        return True, reason, code
+
+    # Recovery: the model may reach its token limit after opening
+    # the code fence. The executor will perform AST validation.
     open_match = re.search(
         r"```(?:python)?\s*(.*)\Z",
         raw,
@@ -462,11 +516,18 @@ def _parse_programmer_output(
     )
     if open_match:
         recovered = open_match.group(1).strip()
-        recovered = re.sub(r"\n?`{1,3}\s*\Z", "", recovered).strip()
+        recovered = re.sub(
+            r"\n?`{1,3}\s*\Z",
+            "",
+            recovered,
+        ).strip()
+
+        if not recovered:
+            return False, "empty_python_code", ""
+
         return True, reason, recovered
 
-    return True, reason, ""
-
+    return False, "missing_python_code", ""
 
 def _normalize_candidate(
     text: str,
