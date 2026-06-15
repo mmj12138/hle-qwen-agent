@@ -42,13 +42,13 @@ AGENTS=(
   "direct"
   "feedback"
   "tool"
-#  "tool_search"
+  "tool_search"
   "oracle_feedback"
   "oracle_tool"
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=2000
+LIMIT=500
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=64
