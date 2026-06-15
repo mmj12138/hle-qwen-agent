@@ -27,14 +27,14 @@ cd "${PROJECT_ROOT}"
 # Experiment configuration
 # ----------------------------
 MODELS=(
-#  "Qwen/Qwen3.5-0.8B"
-  "Qwen/Qwen2.5-7B-Instruct"
+  "Qwen/Qwen3.5-0.8B"
+#  "Qwen/Qwen2.5-7B-Instruct"
 #  "Qwen/Qwen3.5-27B"
 )
 
 MODEL_TAGS=(
-#  "qwen35_08b"
-  "qwen25_7b"
+  "qwen35_08b"
+#  "qwen25_7b"
 #  "qwen35_27b"
 )
 
@@ -42,7 +42,7 @@ AGENTS=(
   "direct"
   "feedback"
   "tool"
-#  "tool_search"
+  "tool_search"
   "oracle_feedback"
   "oracle_tool"
 )
@@ -51,7 +51,7 @@ AGENTS=(
 LIMIT=2000
 MAX_ITERATIONS=3
 TEXT_ONLY=1
-MAX_NEW_TOKENS=512
+MAX_NEW_TOKENS=64
 TEMPERATURE=0.0
 OUTPUT_ROOT="outputs/three_model_comparison"
 RUN_SCRIPT="scripts/run_agents.py"
