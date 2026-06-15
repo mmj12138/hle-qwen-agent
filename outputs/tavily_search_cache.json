@@ -3430,5 +3430,551 @@
     "response_time": 0.91,
     "request_id": "5b4b8fd2-2bf1-4714-b678-7e5d5cc9f06e",
     "from_cache": false
+  },
+  "tavily:basic:general:5:arrhenius's sixth impossibility theorem critical-level views violation": {
+    "provider": "tavily",
+    "query": "Arrhenius's sixth impossibility theorem critical-level views violation",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "[PDF] reconstructing arrhenius's impossibility theorems",
+        "snippet": "Theorems Abbreviations Hypotheses 1 2 3 4 5 6 ED Egalitarian Dominance X X X X X X Q Quantity X DA Dominance Addition X X NS Non-Sadism X NS = ⇒ WNS Weak Non-Sadism X X GNE General Non-Elitism X GNE = ⇒ GIAA Gen. Inequality-Averse Addition (β′) GNE = ⇒ NE Non-Elitism (almost the same!) X X NE = ⇒ IAA Inequality-Averse Addition (β) IAA = ⇒ IA Inequality Aversion X X GNEP General Non-Extreme Priority X X X GNEP = ⇒ ST Sufﬁcient Tradeoffs (δ) GNEP = ⇒ NEP Non-Extreme Priority X Conclusions RC Repugnant Conclusion3 X X RC = ⇒ RA Repugnant Addition4 X X RC ⇐ = VRC Very Repugnant Conclusion5 X VRC = ⇒ VRA* Very Repugnant Addition*6 X 3Contradicts the ‘Quality Condition’. RECONSTRUCTING ARRHENIUS’S IMPOSSIBILITY THEOREMS 6 n m x 0 z FIGURE 6. For any welfare level z < 0 and any m ∈N, there is some population P such that, for any n ∈N, there exists N ∈N with P + mz+ N3 ≻P + nA.",
+        "link": "https://users.ox.ac.uk/~mert2060/webfiles/Reconstructing-Arrhenius-for-web.pdf",
+        "score": 0.53269315
+      },
+      {
+        "title": "Arrhenius's Sixth Impossibility Theorem | Intelligence (AI) & Semantics",
+        "snippet": "This document discusses impossibility and uncertainty theorems related to defining objective functions or utility functions for AI systems.",
+        "link": "https://www.scribd.com/document/688629887/1901-00064",
+        "score": 0.3599269
+      },
+      {
+        "title": "[PDF] an-impossibility-theorem-in-population-axiology-with-weak-ordering ...",
+        "snippet": "Total Utilitarianism violates the following condition: The Quality Addition Condition (informal formulation): There is at least one population with very high welfare such that its addition is at least as good as an addition of any population with very low positive welfare, other things being equal. Consequently, this principle satisfies the Quality Addition Condition but it violates the following weak egalitarian condition: The Minimal Inequality Aversion Condition (informal formulation): For any welfare levels of the best off and the worst off people, and for any n, there is an m > n such that for population of n best off and m worst off, a loss for the n best off can be balanced (compensated for) by a gain for the m worst off such that everybody would be equally well off, other things being equal.",
+        "link": "https://www.iffs.se/media/2265/an-impossibility-theorem-in-population-axiology-with-weak-ordering-assumptions-i-henschens-festskrift.pdf",
+        "score": 0.33385113
+      },
+      {
+        "title": "[PDF] The Impossibility of a Satisfactory Population Prospect Axiology ...",
+        "snippet": "6.5 The Risky Fifth Impossibility Theorem Arrhenius’s Fifth Impossibility Theorem states that the following adequacy conditions are incompatible: Egalitarian Dominance (exact formulation): For any 푎∈ 핎, any 푛∈ℕ, and any population 푋 of size 푛 with all lives at welfare levels below 푎, 푋≺푛⟦푎⟧ Dominance Addition (exact formulation): For any 푋 and 푌 of the same size with all welfare levels in 푋 higher than all welfare levels in 푌, any 푎∈핎 with 푎> 0, and any 푚∈ℕ, 푋+ 푚⟦푎⟧⊀푌 General Non-Elitism (exact formulation): For any 푎, 푐∈ 핎 with 푎−1 > 푐, there exists 푛∈ℕ such that, for any population 푋, 푋+ ⟦푎⟧+ 푛⟦푐⟧⪯푋+ ⟦푎−1⟧+ 푛⟦푎−1⟧ General Non-Extreme Priority (exact formulation): For any 푎∈핎, there exists 푛∈ℕ such that, for any 푏, 푐∈ 핎 with 0 < 푏≤3, 푐≥훽, and any population 푋, 푋+ ⟦푎+ 1⟧+ 푛⟦푏⟧⪯푋+ ⟦푎⟧+ 푛⟦푐⟧ Weak Quality (exact formulation): There exists 푎, 푏∈핎 with 푎≥훽, 푏< 0, and 푚, 푛∈ℕ such that, for any 푐∈핎 with 0 < 푐≤3 and any 푞∈ℕ, 푚⟦푏⟧+ 푞⟦푐⟧⪯푛⟦푎⟧ As we saw above, General Non-Extreme Priority follows from its risky version.",
+        "link": "https://philpapers.org/archive/THOTIO-57.pdf",
+        "score": 0.18714789
+      },
+      {
+        "title": "An Impossibility Theorem for Welfarist Axiology | Request PDF",
+        "snippet": "The answer is that it avoids the Strong (or Very) Sadistic Conclusion, but entails the Sadistic Conclusion. Variable Value views have their own problems,",
+        "link": "https://www.researchgate.net/publication/227390853_An_Impossibility_Theorem_for_Welfarist_Axiology",
+        "score": 0.17418572
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.67,
+    "request_id": "b4835335-571e-43df-83fc-1d842522f96b",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:derivative of activation functions compared to sigmoid": {
+    "provider": "tavily",
+    "query": "derivative of activation functions compared to sigmoid",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Sigmoid Activation Function - ApX Machine Learning",
+        "snippet": "The derivative of the Sigmoid function is largest at x = 0 x=0 x=0 (value ... compared to using activation functions with zero-centered outputs. Usage",
+        "link": "https://apxml.com/courses/introduction-to-deep-learning/chapter-2-activation-functions-architecture/sigmoid-activation",
+        "score": 0.86928266
+      },
+      {
+        "title": "Derivative of Sigmoid and Tanh",
+        "snippet": "# Derivative of Sigmoid and Tanh. Mathematical Explanation of Derivatives… | by Vikram Pande | Medium. Mathematical Explanation of Derivatives of Activation Functions Asked in Deep Learning Interviews. Today, I am going to demonstrate the derivative that was asked of me in one of the deep-learning interview questions. So, I simply decided to post the derivation of derivatives of logistic family functions like Sigmoid and Tanh that was asked in one of my interviews. The Sigmoid function is a fundamental activation function in the field of deep learning, which takes input from previous layers and converts the input values into 0 and 1. The graph of the Sigmoid function looks like an ‘S’ curve, and it is a continuous and differentiable function at any point in its domain. Below is the derivative of the Sigmoid function using the chain rule. An advantage of the tanh function is that its derivative (gradient vector) is relatively higher than that of the sigmoid function, especially around the origin.",
+        "link": "https://medium.com/@vikrampande783/derivative-of-sigmoid-and-tanh-ffdea6efb464",
+        "score": 0.8591094
+      },
+      {
+        "title": "Derivation: Derivatives for Common Neural Network Activation Functions | The Clever Machine",
+        "snippet": "# Derivation: Derivatives for Common Neural Network Activation Functions. Three of the most commonly-used activation functions used in ANNs are the identity function, the logistic sigmoid function, and the hyperbolic tangent function. ***Figure 1:*** Common activation functions functions used in artificial neural, along with their derivatives. In the remainder of this post, we derive the derivatives/gradients for each of these common activation functions. # The Identity Activation Function. The simplest activation function, one that is commonly used for the output layer activation function in regression problems, is the identity/linear activation function (***Figure 1***, red curves):. # The Logistic Sigmoid Activation Function. Another function that is often used as the output activation function for binary classification problems (i.e. outputs values that range (0, 1)), is the logistic sigmoid (***Figure 1***, blue curves). Similar to the derivative for the logistic sigmoid, the derivative of \\(g\\_{\\text{tanh}}(z)\\) is a function of feed-forward activation evaluated at z, namely \\((1-g\\_{\\text{tanh}}(z)^2)\\).",
+        "link": "https://dustinstansbury.github.io/theclevermachine/derivation-common-neural-network-activation-functions",
+        "score": 0.7992077
+      },
+      {
+        "title": "machine learning - Why is tanh almost always better than sigmoid as an activation function? - Cross Validated",
+        "snippet": "Stack Exchange network consists of 184 Q&A communities including Stack Overflow, the largest, most trusted online community for developers to learn, share their knowledge, and build their careers. # Why is tanh almost always better than sigmoid as an activation function? In Andrew Ng's Neural Networks and Deep Learning course on Coursera he says that using $tanh$ is almost always preferable to using $sigmoid$. The reason he gives is that the outputs using $tanh$ centre around 0 rather than $sigmoid$'s 0.5, and this \"makes learning for the next layer a little bit easier\". Weights to a particular node in the first weight layer are updated by an amount proportional to $\\delta x$ where $\\delta$ is the (scalar) error at that node and $x$ is the input vector (see equations (5) and (10)). @elkout says *\"The real reason that tanh is preferred compared to sigmoid (...) is that the derivatives of the tanh are larger than the derivatives of the sigmoid.\"*.",
+        "link": "https://stats.stackexchange.com/questions/330559/why-is-tanh-almost-always-better-than-sigmoid-as-an-activation-function",
+        "score": 0.7101667
+      },
+      {
+        "title": "Why is Relu considered superior compared to Tanh or sigmoid?",
+        "snippet": "# Why is Relu considered superior compared to Tanh or sigmoid? Skip to main contentWhy is Relu considered superior compared to Tanh or sigmoid? So, the way I understand it so far, Tanh is better than sigmoid because, Tanh distributes the gradients well compared to Sigmoid which handles the problem of vanishing or exploding gradient better, but Relu activation doesn't seem to distribute the gradients well because it's 0 for all negative values and increases linearly along the x-axis, the mean of the distribution won't be 0 in that case as far as I can think. I read once, that it is cheaper to compute (derivative is 0 or 1), it doesn‘t have the vanishing gradient problem and it allows for neurons to express „extreme opinions“, tanh and sigmoid can only have values in one magnitude, while relu can have values of any magnitude.",
+        "link": "https://www.reddit.com/r/learnmachinelearning/comments/ua6n6s/why_is_relu_considered_superior_compared_to_tanh",
+        "score": 0.60805947
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.76,
+    "request_id": "a6872d0d-53c4-4ac6-ad6b-1d454450e17c",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:kant's critique of judgment": {
+    "provider": "tavily",
+    "query": "Kant's Critique of Judgment",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Critique of Judgment - Wikipedia",
+        "snippet": "# *Critique of Judgment*. | Major works  * *Critique of Pure Reason* * *Prolegomena to Any Future Metaphysics* * \"Answering the Question: What Is Enlightenment?\" * *Groundwork of the Metaphysic of Morals* * *Critique of Practical Reason* * *Critique of Judgment* * *Religion within the Bounds of Bare Reason* * *Perpetual Peace* * *The Metaphysics of Morals* * \"On a Supposed Right to Tell Lies from Benevolent Motives\" * *Opus Postumum* |. The ***Critique of Judgment*** (German: *Kritik der Urteilskraft*), also translated as the ***Critique of the Power of Judgment***, is a 1790 book by the German philosopher Immanuel Kant. Sometimes referred to as the \"third critique\", the *Critique of Judgment* follows the *Critique of Pure Reason* (1781) and the *Critique of Practical Reason* (1788). Immanuel Kant's *Critique of Judgment* is the third critique in Kant's Critical project begun in the *Critique of Pure Reason* and the *Critique of Practical Reason* (the *First* and *Second Critiques*, respectively). The book is divided into two main sections: the *Critique of Aesthetic Judgment* and the *Critique of Teleological Judgment*, and also includes a large overview of the entirety of Kant's Critical system, arranged in its final form.",
+        "link": "https://en.wikipedia.org/wiki/Critique_of_Judgment",
+        "score": 0.95791626
+      },
+      {
+        "title": "Critique of Judgment by Immanuel Kant - Goodreads",
+        "snippet": "Kant argues that our minds are inclined to see purpose and order in nature and this is the main principle underlying all of our judgments.",
+        "link": "https://www.goodreads.com/book/show/375410.Critique_of_Judgment",
+        "score": 0.86632514
+      },
+      {
+        "title": "Kant’s Aesthetics and Teleology (Stanford Encyclopedia of Philosophy)",
+        "snippet": "Kant’s views on aesthetics and teleology are most fully. presented in his *Critique of Judgment* (*Kritik der. This work is in two parts, preceded by a long introduction in which. Kant explains and defends the work’s importance to his critical. In the first part, the “Critique of Aesthetic. Judgment”, Kant discusses aesthetic experience and judgment, in. particular of the beautiful and the sublime, and also artistic. creation; in the second part, the “Critique of Teleological. Judgment”, he discusses the role of teleology (that is, appeal. to ends, purposes or goals) in natural science and in our. Judgment* was the third and last of Kant’s three. metaphysics and epistemology, and the *Critique of Practical. Although interest in the *Critique of Judgment* has increased. *Critiques*: that is, how to make sense of the work as a whole. other, but also with the “faculty of judgment” which is. particular, both in Kant’s view of teleology in its own right,.",
+        "link": "https://plato.stanford.edu/entries/kant-aesthetics",
+        "score": 0.850382
+      },
+      {
+        "title": "The Critique of Judgment: Kant, Immanuel - Amazon.com",
+        "snippet": "In this work Kant seeks to establish the a priori principles underlying the faculty of judgement, just as he did in his previous analyses of pure and practical",
+        "link": "https://www.amazon.com/Critique-Judgment-Great-Books-Philosophy/dp/1573928372",
+        "score": 0.8319231
+      },
+      {
+        "title": "Clarifying Kant's Critique of Judgement : r/askphilosophy",
+        "snippet": "# Clarifying Kant's Critique of Judgement : r/askphilosophy. Skip to main contentClarifying Kant's Critique of Judgement : r/askphilosophy. In any act of judgement, representations -- as opposed to objects -- are given to a subject by the imagination. Edit: I see now that the beauty I have characterized above, in which what is given to the imagination finds particular fitness in extant concepts, is not in fact \"purposiveness without a purpose,\" but rather a form of \"adherent beauty.\" I was merely trying to apply \"adherent beauty\" to a description of \"free beauty\" and getting confused. For instance, he frequently talks about a rose: it's beautiful because it seems to exhibit purposiveness, but we can't posit any agent who designed it to be the way that it is, and this purposiveness without a purpose causes pleasure in us (and we judge that it ought to cause pleasure in others as well). It's not without purpose in the way that a natural object is.",
+        "link": "https://www.reddit.com/r/askphilosophy/comments/3986q0/clarifying_kants_critique_of_judgement",
+        "score": 0.8252664
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.83,
+    "request_id": "5c77dbe3-fa95-4e09-83e3-d6c1355f8ae0",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:worst suited jack open range poker": {
+    "provider": "tavily",
+    "query": "worst suited jack open range poker",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "What's the worst hand in your poker opening range? - Facebook",
+        "snippet": "Pocket Jacks are my least favorite hand. Jacks are the 4th best starting hand in Hold'em right? jacks hit a lot on the board underdogs to their",
+        "link": "https://www.facebook.com/groups/teammichiganpoker/posts/7084279804974863",
+        "score": 0.5342973
+      },
+      {
+        "title": "Why is King Jack off suit a bad hand in poker? - Quora",
+        "snippet": "Basically, this hand is the king of kicker problems. Which means you may have the best pair, but your opponent has a higher kicker.",
+        "link": "https://www.quora.com/Why-is-King-Jack-off-suit-a-bad-hand-in-poker",
+        "score": 0.2796986
+      },
+      {
+        "title": "Poker Hand Rankings Chart - Reddit",
+        "snippet": "# Poker Hand Rankings Chart : r/poker. Skip to main contentPoker Hand Rankings Chart : r/poker. Image 1 Go to poker. # Poker Hand Rankings Chart. Image 2: r/poker - Poker Hand Rankings Chart. Basically, the weighing was not cumulative with the rankings, but rather the same \"steps\" for the whole chart. I was surprised at the lack of poker charts online that could truly help learn ranges well, given that you should adjust your range based on position, stack, type of players, etc. This shows hand rankings (not EV!) as a percentile of the 1326 possible initial hands. The lower the percentile number underneath, the better the hand is. Also, in theory, the number should match the percentage number of hands that you want to be playing based on your range. For example, if you want to be playing the top 20% of hands then the worst hand you should play is 55.",
+        "link": "https://www.reddit.com/r/poker/comments/ig8nvw/poker_hand_rankings_chart",
+        "score": 0.19947985
+      },
+      {
+        "title": "The Hijack – Basic Strategy Concepts - 888 Poker",
+        "snippet": "HJ generally faces strong open raising ranges (lojack and earlier). Acts fifth from last preflop (our cold calls can easily get overcalled or",
+        "link": "https://www.888poker.com/magazine/strategy/the-hijack",
+        "score": 0.1636194
+      },
+      {
+        "title": "Poker Ranges & Range Reading In 2026 | SplitSuit Poker",
+        "snippet": "# Poker Ranges & Range Reading. The ability to identify and read **poker ranges** is one of the most important skills a player can have. But with logical deduction and strong technical knowledge, we can build our opponent’s range and use that information to make even more profitable plays. ## What Is A Poker Range? **A range is a collection of all the possible hands a player can have right this moment.** Ranges exist both preflop and postflop, and can vary widely since tight players will have fewer hands in their range, and looser players will have many starting hands in their range. You always begin by building your opponent’s range preflop, and you continue to refine that range as they take action throughout the hand. **Want all of my preflop ranges?** Get GTO and exploitative ranges for the exact games you play. Meaning if you see just a range matrix, you should know roughly how many combos are in it.",
+        "link": "https://www.splitsuit.com/poker-ranges-reading",
+        "score": 0.1513414
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.59,
+    "request_id": "1d8d5ba7-0b7c-4ae6-9d67-e2546f9da8c1",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:longest running turing machine configurations": {
+    "provider": "tavily",
+    "query": "longest running turing machine configurations",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Busy beaver - Wikipedia",
+        "snippet": "*(Learn how and when to remove these messages)* |  | | --- | | This article **may be too technical for most readers to understand**. In theoretical computer science, the **busy beaver game** aims to find a terminating program of a given size that (depending on definition) either produces the most output possible, or runs for the longest number of steps. Producing the most output is defined as writing the largest number of 1s on the tape, also referred to as achieving the highest score, and running for the longest time is defined as taking the longest number of steps to halt. The *n-*state busy beaver game consists of finding the longest-running or highest-scoring Turing machine which has *n* states and eventually halts. One of the most consequential aspects of the busy beaver game is that, if it were possible to compute the functions Σ(n) and S(n) for all *n*, then this would resolve all mathematical conjectures which can be encoded in the form \"does ⟨this Turing machine⟩ halt\".",
+        "link": "https://en.wikipedia.org/wiki/Busy_beaver",
+        "score": 0.5674818
+      },
+      {
+        "title": "time complexity - Max number of configurations of a Turing Machine - Computer Science Stack Exchange",
+        "snippet": "Stack Exchange network consists of 184 Q&A communities including Stack Overflow, the largest, most trusted online community for developers to learn, share their knowledge, and build their careers. ### your communities. ### more stack exchange communities. I was wondering about a result in the Sipser book which states that any $f(n)$ space bounded Turing machine also runs in time $2^{O(f(n))}$. Is this because a configuration consists of a state, a position of the head and the contents of the work tape, which is $\\vert Q \\vert \\cdot f(n) \\cdot \\vert \\Gamma \\vert ^{f(n)}$. To be honest I'm not quite sure why this is equal to $2^{O(f(n))}$. Then $|\\Gamma|^{f(n)} = (2^c)^{f(n)} = 2^{c f(n)} = 2^{O(f(n)}$. So, the number of possible configurations of a $f(n)$-space-bounded Turing machine is $2^{O(f(n)}$, and thus any such machine must either halt in time at most $2^{O(f(n)}$ or loop forever. Thanks for contributing an answer to Computer Science Stack Exchange!",
+        "link": "https://cs.stackexchange.com/questions/104561/max-number-of-configurations-of-a-turing-machine",
+        "score": 0.5253938
+      },
+      {
+        "title": "Shtetl-Optimized  » Blog Archive   » BusyBeaver(5) is now known to be 47,176,870",
+        "snippet": "Today, an international collaboration called bbchallenge is announcing that it’s determined, and even formally verified using the Coq) proof system, that BB(5) is equal to 47,176,870—the value that’s been *conjectured* since 1990, when Heiner Marxen and Jürgen Buntrock discovered a 5-state Turing machine that runs for exactly 47,176,870 steps before halting, when started on a blank tape. The new bbchallenge achievement is to prove that all 5-state Turing machines that run for more steps than 47,176,870, actually run forever—or in other words, that 47,176,870 is the maximum *finite* number of steps for which any 5-state Turing machine can run. More precisely, the Busy Beaver function grows faster than any function that can be computed, and we know that *because* if a systematic method existed to compute arbitrary BB(n) values, then we could use that method to determine whether a given Turing machine halts (if the machine has n states, just check whether it runs for more than BB(n) steps; if it does, it must run forever).",
+        "link": "https://scottaaronson.blog?p=8088",
+        "score": 0.35213548
+      },
+      {
+        "title": "Busy Beaver Turing Machines - Computerphile",
+        "snippet": "Busy Beaver Turing Machines - Computerphile\nComputerphile\n2620000 subscribers\n9000 likes\n473361 views\n2 Sep 2014\nThe Busy Beaver game, pointless? Or a lesson in the problems of computability? - How do you decide if something can be computed or not?\n\nProfessor Brailsford's code and further reading: http://bit.ly/busybeaver \n\nTuring Machine Primer: http://youtu.be/DILF8usqp7M \nBusy Beaver Code: http://youtu.be/ZiTeuZSDB0U \nAckermann Follow Up: http://youtu.be/uNACwX-O5lk \nOriginal 'Ackermann' Film (Most Difficult Program to Compute): http://youtu.be/i7sm9dzFtEI \n\nhttp://www.facebook.com/computerphile\nhttps://twitter.com/computer_phile\n\nThis video was filmed and edited by Sean Riley.\n\nComputer Science at the University of Nottingham: http://bit.ly/nottscomputer\n\nComputerphile is a sister project to Brady Haran's Numberphile. See the full list of Brady's video projects at: http://bit.ly/bradychannels\n556 comments",
+        "link": "https://www.youtube.com/watch?v=CE8UhcyJS0I",
+        "score": 0.12992094
+      },
+      {
+        "title": "lo.logic - Finite verification for theorems due to Busy Beaver numbers - MathOverflow",
+        "snippet": "I recently learned about the Busy Beaver function, and a formulation of it that essentially tells us if a turing machine of $n$ states takes over $BB(n)$ steps, it will never halt. One consequence I thought of this, is that if we're able to construct say a turing machine that checks that every even number one by one is a sum of two primes, we would only need to run this machine for a finite number of steps before being sure of Goldbach's conjecture. As we’ll see in Section 5.2, there happens to be a Turing machine with $27$ states, which given a blank input, runs through all even numbers $4$ and greater, halting if it finds one that isn’t a sum of two primes. If Goldbach's conjecture is false, the smallest counterexample $n$ must be at most $2\\cdot BB(27)+2$, since the machine will find the counterexample and halt after checking $\\frac{n-2}{2}$ numbers, and this number must be at most $BB(27)$.",
+        "link": "https://mathoverflow.net/questions/474976/finite-verification-for-theorems-due-to-busy-beaver-numbers",
+        "score": 0.12612738
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.72,
+    "request_id": "f7510113-0a42-4df0-8e81-9a885a19681d",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:reconstructed proto-indo-arian root for kãːs and kə̃d͡ʒʱ": {
+    "provider": "tavily",
+    "query": "reconstructed proto-indo-arian root for kãːs and kə̃d͡ʒʱ",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Reconstruction:Proto-Indo-Aryan/Hagníṣ",
+        "snippet": "This Proto-Indo-Aryan entry contains reconstructed terms and roots. As such, the term(s) in this entry are not directly attested, but are hypothesized to have",
+        "link": "https://en.wiktionary.org/wiki/Reconstruction:Proto-Indo-Aryan/Hagn%C3%AD%E1%B9%A3",
+        "score": 0.6609831
+      },
+      {
+        "title": "Proto-Indo-Aryan language - Wikipedia",
+        "snippet": "Proto-Indo-Aryan is the reconstructed proto-language of the Indo-Aryan languages. It is intended to reconstruct the language of the Indo-Aryans,",
+        "link": "https://en.wikipedia.org/wiki/Proto-Indo-Aryan_language",
+        "score": 0.63750535
+      },
+      {
+        "title": "Proto-Indo-Aryan Numbers and their Descendants in Sanskrit and ...",
+        "snippet": "According Acharyan 713 roots plus 196 derived words from a total of 2200 reconstructed words. https://www.facebook. com/groups",
+        "link": "https://www.facebook.com/groups/416065382227600/posts/1797653260735465",
+        "score": 0.41976747
+      },
+      {
+        "title": "Proto-indo-european ancestor from ganj dareh tepe - Facebook",
+        "snippet": "A plausible early Proto-Indo-European from Ganj Dareh Tepe, Iran. About 10000 years ago** **This is an anthropological reconstruction.",
+        "link": "https://www.facebook.com/groups/416065382227600/posts/2285094641991322",
+        "score": 0.26349205
+      },
+      {
+        "title": "Exploring Linguistic Theories: Sanskrit and Proto-Indo Aryan - TikTok",
+        "snippet": "The speaker argues that its evolution from Proto-Indo-Aryan suggests Prakrit evolved in parallel with Sanskrit, rather than from it. They claim",
+        "link": "https://www.tiktok.com/@arumnatzorkhang/video/7121017319907740970",
+        "score": 0.15583521
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.83,
+    "request_id": "89f0c44a-2c97-4086-b1d7-50b34a51b19e",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:relationship between probabilistic representational alignment and number of triplet statements": {
+    "provider": "tavily",
+    "query": "relationship between probabilistic representational alignment and number of triplet statements",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Neural Representational Consistency Emerges from Probabilistic...",
+        "snippet": "**TL;DR:** We developed PNBA, a representation alignment framework that reveals preserved neural representations despite neural heterogeneity in multiple cortices via zero-shot validation, showcasing its practicality through zero-shot behavior decoding. While recent studies have observed preserved neural representations in motor cortex through manual alignment across subjects, the zero-shot validation of such preservation and its generalization to more cortices remain unexplored. Here we present PNBA (Probabilistic Neural-Behavioral Representation Alignment), a new framework that leverages probabilistic modeling to address hierarchical variability across trials, sessions, and subjects, with generative constraints preventing representation degeneration. By establishing reliable cross-modal representational alignment, PNBA reveals robust preserved neural representations in monkey primary motor cortex (M1) and dorsal premotor cortex (PMd) through zero-shot validation. These findings resolve the paradox of neural heterogeneity by establishing zero-shot preserved neural representations across cortices and species, enriching neural coding insights and enabling zero-shot behavior decoding. Using this approach, we discovered that the low-dimensional representations of neural population activity are remarkably preserved across individuals in both monkey and mouse brain regions, including those cortices responsible for movement and vision.",
+        "link": "https://openreview.net/forum?id=RP8K523PyW",
+        "score": 0.15059036
+      },
+      {
+        "title": "Symbolic numerical generalization through representational alignment",
+        "snippet": "# Symbolic numerical generalization through representational alignment. The mapping between nonsymbolic quantities and symbolic numbers lays the foundation for mathematical development in children. These findings highlight representational alignment as a fundamental mechanism in numerical cognition and suggest that targeted cross-format comparison tasks may be particularly effective in improving mathematical learning in children with numerical processing difficulties. In this study, we investigate the neural representation of numerical cognition by simulating both symbolic and nonsymbolic number processing in a biologically inspired neural network using comparison tasks. Drawing on developmental trajectories observed in children’s mathematical learning, we implement a three-stage training sequence: (1) nonsymbolic training where the model learns to compare dot arrays, (2) mapping training where connections between symbolic and nonsymbolic representations are established, and (3) symbolic training where the model learns numeral comparisons. We used 3 different comparison tasks: (1) nonsymbolic format comparison, (2) symbolic format comparison, and (3) cross-format comparison, where one number was represented as a symbolic (numeral) and the other as a nonsymbolic (dot) image.",
+        "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12445152",
+        "score": 0.14202973
+      },
+      {
+        "title": "[PDF] The Representational Alignment between Humans and Language ...",
+        "snippet": "Using Representational Similarity Analysis, we find that the representational similarity space of par-ticipants and the semantic representations of language models are significantly aligned and that both are implic-itly aligned to an explicit representation of concreteness, which was obtained from our participants using an ad-ditional concreteness rating task. Additionally, we controlled for the number of characters of each word (between 5 and 9), and Figure 1: Partial correlations for the behavioral model (odd-one-out) and the computational models (language models): The representational space derived from the odd-one-out (in blue) is only correlated to the rated concreteness space, while language models (other colors) are aligned to other feature spaces as well. Discussion By investigating the representational alignment between hu-mans and language models, we here show that: i) both sys-tems are independently aligned to a representational space based on explicit concreteness ratings (Fig 1), ii) removing the concreteness feature from the semantic spaces of the lan-guage models decreases their alignment with the human data (Fig. 2), and iii) removal of ‘lower-level’ orthographic or lexical features has no comparable influence on the human-model alignment (Fig. 2).",
+        "link": "https://2025.ccneuro.org/abstract_pdf/Iaia_2025_The_Representational_Alignment_Humans_Language_Models.pdf",
+        "score": 0.14124614
+      },
+      {
+        "title": "(PDF) Dimensions underlying the representational alignment of ...",
+        "snippet": "However, similarities in representations only inform us about the degree of alignment, not the factors that determine it. Drawing upon recent",
+        "link": "https://www.researchgate.net/publication/381770959_Dimensions_underlying_the_representational_alignment_of_deep_neural_networks_with_humans",
+        "score": 0.14117509
+      },
+      {
+        "title": "[PDF] Getting aligned on representational alignment",
+        "snippet": "Published in Transactions on Machine Learning Research (10/2025) Getting aligned on representational alignment Ilia Sucholutsky1,2∗& Lukas Muttenthaler3,4,5,6∗† Adrian Weller7,21 & Andi Peng8 & Andreea Bobu8 & Been Kim5 & Bradley C. How can we measure the similarity between the representations formed by these diverse systems? These questions pertaining to the study of representational alignment are at the heart of some of the most promising research areas in contemporary cognitive science, neuroscience, and machine learning. In this Perspective, we survey the exciting recent developments in representational alignment research in the fields of cognitive science, neuroscience, and machine learning. To improve communication, we propose a unifying framework that can serve as a common language for research on representational alignment, and map several streams of existing work across fields within our framework. 1 Published in Transactions on Machine Learning Research (10/2025) Contents 1 Introduction 4 2 Background and review 5 2.1 Cognitive Science . 9 2.2.3 Alignment between brain activity and model systems .",
+        "link": "https://par.nsf.gov/servlets/purl/10654567",
+        "score": 0.13710469
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.8,
+    "request_id": "dfc9ad2d-813a-48cd-9a2e-6aee531b26b3",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:what were they unable to see in smoky 19th century northern european cities": {
+    "provider": "tavily",
+    "query": "what were they unable to see in smoky 19th century northern European cities",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Went to see Eggers Nosferatu, which liked. I thought it was gorgeous ...",
+        "snippet": "... 19th century in the various Northern European states. The most ... There are “viewsheds” and sequences but they can't be dictated with",
+        "link": "https://www.instagram.com/reel/DEDfeE5yZzw",
+        "score": 0.28669366
+      },
+      {
+        "title": "Journeys in the 19th-century European world - Smarthistory",
+        "snippet": "The small, steady stream of immigrants settled in Paris's northern neighborhoods, where we know Laure lived, and made a living like other members of the",
+        "link": "https://smarthistory.org/reframing-art-history/journeys-19th-century-european-world",
+        "score": 0.13381115
+      },
+      {
+        "title": "Why do you think Northern European dishes are considered ... - Reddit",
+        "snippet": "The minimum was around 14kg in the 19th century. Food was mainly porridges and stews and later once ovens became more common bread replaced",
+        "link": "https://www.reddit.com/r/AskEurope/comments/e2d6if/why_do_you_think_northern_european_dishes_are",
+        "score": 0.10861389
+      },
+      {
+        "title": "Sixteenth-Century Northern Europe and Iberia",
+        "snippet": "+ Survey 2: Renaissance to Modern & Contemporary. * Prehistory and Prehistoric Art in Europe. * Buddhist Art and Architecture Before 1200. * Northern Renaissance Art (1400–1600). * Italian Renaissance Art (1400–1600). * Eighteenth and Early Nineteenth-Century Art in Europe and North America. * The Modern Nude in Later Nineteenth-Century French Painting. * Art and Labor in the Nineteenth Century. * Gender in Nineteenth-Century Art. Editor’s note: This lecture works in concert with Christina McCollum’s excellent **[Northern Renaissance Art (1400–1600)** lecture on Art History Teaching Resources.]. During the sixteenth century, political, social, and religious turmoil often manifested itself in works of art. Sections of the Metropolitan Museum of Art’s *The Art of Renaissance Europe: A Resource for Educators* and sections of *The Inquiring Eye: European Renaissance Art*, produced by the National Gallery of Art in Washington, DC also offer good information on artists, themes, and historic background. The art and architecture of the sixteenth century in Northern Europe and Iberia provide excellent examples.",
+        "link": "https://arthistoryteachingresources.org/lessons/sixteenth-century-northern-europe-and-iberia",
+        "score": 0.09767424
+      },
+      {
+        "title": "9 FORGOTTEN European Towns Where People Still Live Inside Medieval Walls",
+        "snippet": "9 FORGOTTEN European Towns Where People Still Live Inside Medieval Walls\nMedieval Way\n167000 subscribers\n2400 likes\n122738 views\n29 Apr 2026\nEvery year, four million tourists pour into Carcassonne. Another two million squeeze through the gates of Rothenburg. Dubrovnik gets so packed in summer the mayor had to cap the number of people allowed inside the walls. But here is what nobody tells you. These are not the real surviving medieval towns. These are the ones tourism found first. Across Europe, there are walled cities where real families still hang laundry from eight-hundred-year-old towers. Where the baker still opens at five a.m. behind ramparts from 1219. Where the kids still play football in squares that held sieges. You have never heard of most of them. Today we are going to nine forgotten European towns where people still live inside medieval walls. And by the end, you will understand why these towns survived when thousands of others were torn down.\n\nMonteriggioni, Italy\nhttps://en.wikipedia.org/wiki/Monteriggioni\nhttps://www.discovertuscany.com/monteriggioni/\nhttps://www.visittuscany.com/en/ideas/monteriggioni-a-tuscan-jewel-on-the-via-francigena/\n\nÓbidos, Portugal\nhttps://en.wikipedia.org/wiki/%C3%93bidos,_Portugal\nhttps://www.flytap.com/en-us/destinations/suggestions/obidos-one-of-the-seven-wonders-of-portugal\n\nVisby, Sweden\nhttps://whc.unesco.org/en/list/731/\nhttps://en.wikipedia.org/wiki/Visby_City_Wall\nhttps://en.wikipedia.org/wiki/Battle_of_Visby\nhttps://historiska.se/en/exhibitions/medieval-massacre/\n\nMdina, Malta\nhttps://en.wikipedia.org/wiki/Mdina\nhttps://www.nationalgeographic.com/travel/article/what-to-see-do-in-mdina-malta-silent-city\n\nNördlingen, Germany\nhttps://en.wikipedia.org/wiki/N%C3%B6rdlingen\nhttps://romantischestrasse.de/en/noerdlingen/\n\nMotovun, Croatia\nhttps://en.wikipedia.org/wiki/Motovun\nhttps://whc.unesco.org/en/tentativelists/5104/\n\nProvins, France\nhttps://whc.unesco.org/en/list/873/\nhttps://en.wikipedia.org/wiki/Provins\n\nAlbarracín, Spain\nhttps://en.wikipedia.org/wiki/Albarrac%C3%ADn\nhttps://europa.tips/en/albarracin-spain-medieval-village-aragon\n\nSton, Croatia\nhttps://en.wikipedia.org/wiki/Walls_of_Ston\nhttps://www.godubrovnik.com/travel-corner/ston-city-walls-longest-wall-in-europe\n\nMedieval Wall Construction & Materials\nhttps://en.wikipedia.org/wiki/Rubble_masonry\nhttps://www.masonry.org.uk/downloads/id1512-construction-and-materials-of-visby-medieval-city-wall-risk-of-damage/\nhttps://htt.herefordshire.gov.uk/herefordshires-past/the-medieval-period/castles/building-a-castle/preparation-and-construction/\n237 comments",
+        "link": "https://www.youtube.com/watch?v=-rBD64OJqo8",
+        "score": 0.08819807
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.04,
+    "request_id": "e2dd70f2-04bc-4134-9d21-f3fcf7174b62",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:appropriate post-procedure surveillance program for superficial femoral artery stent": {
+    "provider": "tavily",
+    "query": "appropriate post-procedure surveillance program for superficial femoral artery stent",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Impact of routine surveillance duplex ultrasound and subsequent ...",
+        "snippet": "An official website of the United States government. The **https://** ensures that you are connecting to the. official website and that any information you provide is encrypted. ## Save citation to file. # Impact of routine surveillance duplex ultrasound and subsequent reintervention after superficial femoral artery stenting. Surveillance with duplex ultrasound (DUS) can identify patients who develop ISR leading to early reintervention, but data to support this practice is sparce. The purpose of this study was to evaluate whether surveillance and subsequent reintervention improves outcomes in patients with SFA stents. Of patients who had restenosis on DUS, those who were symptomatic and did not undergo reintervention (ISR+SX+NR) did the worst, with 50% amputation rate. Routine surveillance DUS and subsequent reintervention on ISR after SFA stenting is associated with improved patency and amputation-free survival. Surveillance DUS should be routine for patients after stenting, with reintervention strongly considered if ISR is identified for both symptomatic and asymptomatic.",
+        "link": "https://pubmed.ncbi.nlm.nih.gov/37704092",
+        "score": 0.734139
+      },
+      {
+        "title": "Impact of routine surveillance duplex ultrasound and subsequent ...",
+        "snippet": "Routine surveillance DUS and subsequent reintervention on ISR after SFA stenting is associated with improved patency and amputation-free survival.",
+        "link": "https://www.sciencedirect.com/science/article/pii/S0741521423019730",
+        "score": 0.562874
+      },
+      {
+        "title": "Surveillance after Peripheral Artery Endovascular Intervention",
+        "snippet": "# Thoracic Key. ## Fastest Thoracic Insight Engine. # Surveillance after Peripheral Artery Endovascular Intervention. ## Duplex Testing Protocol. Knowledge of the type of endovascular intervention is important for the vascular technologist to perform accurate duplex surveillance. Duplex-predicted stenosis severity should be correlated with ABI and toe systolic pressures and with observed changes from prior testing. The University of Arizona group preferred to report stenosis severity as moderate (PSV 200-300 cm/s, Vr 2.0-3.0 > 2.0) or severe (PSV > 300 cm/s, Vr > 3.0). The finding of diffuse greater than 50% in-stent stenosis (Fig. 18.4) can be associated with moderately elevated PSV values (200 to 300 cm/s) along the SFA stent length and a decreased ABI producing recurrent limb ischemia. Measured ankle-brachial index was 0.54. However, in the majority of patients, the initial duplex surveillance study will be normal (<50% DR), and a protocol for follow-up testing in 6 months is appropriate. A general outpatient surveillance algorithm after infrainguinal endovascular arterial procedures. ### Share this:. ### *Related*. ### Related posts:.",
+        "link": "https://thoracickey.com/surveillance-after-peripheral-artery-endovascular-intervention-2",
+        "score": 0.4977301
+      },
+      {
+        "title": "Impact of Routine Surveillance Duplex Ultrasound Examination and ...",
+        "snippet": "Routine surveillance duplex and subsequent R on significant in-stent ST after SFA stenting is associated with improved patency and amputation-free survival.",
+        "link": "https://www.jvascsurg.org/article/S0741-5214(22)02723-9/fulltext",
+        "score": 0.48323447
+      },
+      {
+        "title": "[PDF] Standards of Practice for Superficial Femoral and Popliteal Artery ...",
+        "snippet": "In general, the latest TASC document recommends that an endovascular-ﬁrst strategy should be offered for the majority of symptomatic patients with Table 2 Best medical therapy Therapy Regimen Supervised exercise 30–45 min 3 times/week for 3 months Cilostazol 100 mg b.d. Pentoxyﬁlline 400 mg t.d.s. Aspirin 75-325 mg o.d. Clopidogrel 75 mg o.d. Blood pressure Aim for BP \\ 140/90 mmHg ( \\ 130/90 mmHg if diabetes or renal disease) Diabetes Aim for HbA1c \\ 7 % (ideally 6 %) Cholesterol Aim for LDL\\ 100 mg/dl ( \\ 70 mg/dl if high-risk) Smoking Cessation therapy Obesity Aim for BMI \\ 25 594 CIRSE Standards of Practice 123 superﬁcial femoral and popliteal artery disease based on the rationale that when two therapies (transluminal angio-plasty and bypass surgery) achieve equivalent clinical beneﬁts, the approach with the least morbidity and mor-tality should be pursued ﬁrst [2, 3].",
+        "link": "https://www.cirse.org/wp-content/uploads/2018/11/2014_Superficial-Femoral-and-Popliteal-Artey-Stenting_Katsanos.pdf",
+        "score": 0.32376534
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.69,
+    "request_id": "9d222aac-a5d2-4239-9f2f-e8d511f400ee",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:global latitudinal gradient in plant volatile organic compounds shannon-weiner diversity": {
+    "provider": "tavily",
+    "query": "global latitudinal gradient in plant volatile organic compounds shannon-weiner diversity",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Plant diversity shapes plant volatile emission differently at ... - bioRxiv",
+        "snippet": "We identified 127 volatile organic compounds (VOCs) in the communities across the gradient in plant species richness. These VOCs were classified",
+        "link": "https://www.biorxiv.org/content/10.1101/2025.04.30.651392v1.full-text",
+        "score": 0.5059329
+      },
+      {
+        "title": "Latitudinal gradient of taxonomic diversity of plants and animals",
+        "snippet": "The paper analyzes research on the global latitudinal gradient of biodiversity, one of the fundamental patterns in ecology and biogeography.",
+        "link": "https://journals.eco-vector.com/0044-4596/article/view/698800",
+        "score": 0.44869256
+      },
+      {
+        "title": "Strong evidence for latitudinal diversity gradient in mosses across the world",
+        "snippet": "Strong evidence for latitudinal diversity gradient in mosses across the world[J]. For terrestrial species at a global scale, the latitudinal diversity gradient has been confirmed in many major groups of organisms (e.g., vascular plants, Kreft et al., 2007; angiosperms, Qian et al., 2023b; ferns, Qian et al., 2023a; amphibians, Buckley et al., 2007; birds, Davies et al., 2007; mammals, Buckley et al., 2010), although the latitudinal diversity gradient may not be observed in some groups of organisms at a smaller taxonomic scale (Cerezer et al., 2022). Studies on the latitudinal diversity gradient for bryophytes as a whole at a global scale is lacking. In mosses at a global scale, Geffert et al. | Fig. 1 Species richness of mosses in each of the seven latitudinal bands in the globe (**a**), the Old World (**b**), the New World (**c**), the western Old World (**d**), and the eastern Old World (**e**).",
+        "link": "https://html.rhhz.net/PDR/html/1722240528321-1476062753.htm",
+        "score": 0.3817962
+      },
+      {
+        "title": "Latitudinal gradients in intraspecific ecological diversity",
+        "snippet": "# Latitudinal gradients in intraspecific ecological diversity - PMC. A **.gov** website belongs to an official government organization in the United States. Image 5: PMC search open icon Search. Image 9: Close Search  Image 10: Search. Image 11: PMC search open iconImage 12: Close icon. Here, we took a new perspective on this topic by measuring the degree to which individuals within populations differ in niche attributes across a latitudinal gradient (range: 54.01° S to 69.12° N). Our results add a new level of complexity to our understanding of global patterns of biodiversity and suggest the possibility that niche variation is partly responsible for the latitudinal gradients of species diversity. The latitudinal gradient of species diversity, in which the number of species increases towards the equator, is one of the most conspicuous ecological patterns [8,9]. Here, we took a new perspective on this topic by testing for the existence of a latitudinal gradient of within-species niche variation.",
+        "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3871364",
+        "score": 0.30719224
+      },
+      {
+        "title": "Latitudinal gradients of biodiversity | Biology | Khan Academy",
+        "snippet": "Latitudinal gradients of biodiversity | Biodiversity and conservation | Biology | Khan Academy\nKhan Academy India - English\n593000 subscribers\n130 likes\n8053 views\n29 Nov 2022\nIn this video, let's understand how biodiversity is distributed along latitudes.\n\n00:00 - Intro\n01:50 - Population vs. diversity of species\n03:03 - Species diversity map\n04:33 - Latitudinal gradient in diversity\n05:26 - Time is the feature for speciation \n06:37 - Niche specialization \n09:42 - Solar energy and speciation\n\n\nPractice this concept https://www.khanacademy.org/science/in-in-class-12-biology-india/xc09ed98f7a9e671b:in-in-biodiversity-and-conservation/xc09ed98f7a9e671b:in-in-patterns-of-biodiversity/e/latitudinal-gradients \n\n\nMaster the concept of “Patterns of biodiversity”  through practice exercises and videos \nhttps://www.khanacademy.org/science/in-in-class-12-biology-india/xc09ed98f7a9e671b:in-in-biodiversity-and-conservation/xc09ed98f7a9e671b:in-in-patterns-of-biodiversity/v/biodiversity\n\n\nCheck out more videos and exercises on Biodiversity and conservation:\nhttps://www.khanacademy.org/science/in-in-class-12-biology-india/xc09ed98f7a9e671b:in-in-biodiversity-and-conservation\n\n\nTo get you fully ready for your exam and help you fall in love with Biology, find the complete bank of exercises and videos for Class 12 Biology here -https://www.khanacademy.org/science/in-in-class-12-biology-india \n\nKhan Academy is a free learning platform for Class 1-12 students with videos, exercises, and tests for math, science, and more subjects. Our content is aligned to CBSE syllabus and available in Hindi, English, and many more regional languages. \n\n\nExperience the joy of easy, seamless, accessible learning anywhere, anytime with Khan Academy. \n\n\nSubscribe to our YouTube channel - https://www.youtube.com/c/khanacademy\n\nAs a 501(c)(3) nonprofit organization, we would love your help!\nDonate here: https://www.khanacademy.org/donate?ut...\n\n\nCreated by-  Khadijatul Qubra\n6 comments",
+        "link": "https://www.youtube.com/watch?v=6Hh_0AFi9Pc",
+        "score": 0.3001303
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.95,
+    "request_id": "35eb7e9e-ed6c-48ae-bd54-a8578a264605",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:vietnamese bank working days and hours for letter of credit rejection": {
+    "provider": "tavily",
+    "query": "Vietnamese bank working days and hours for letter of credit rejection",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Schedule Of Charges – BPCE International",
+        "snippet": "Import Letter Of Credit. Draft L/C opening, FREE. Opening fee, 0.125 % p.m (min USD 50). Amendment fee. Increase in amount or extension, 0.125 % p.m (min USD 30).",
+        "link": "https://bpce-vietnam.com/schedule-of-charges",
+        "score": 0.200605
+      },
+      {
+        "title": "Does a Vietnamese bank provide EU letter of credit services?",
+        "snippet": "Yes it does and thr cost depend on each bank policy. If you need contact from the bank I can provide you.",
+        "link": "https://www.facebook.com/groups/doingbusinessinvn/posts/878255255699020",
+        "score": 0.1952106
+      },
+      {
+        "title": "Credit cards declined in country",
+        "snippet": "# Credit cards declined in country - now what? UPDATE: I tried again now that I’m not sleep deprived and for some reason Apple Pay went through at the hotel but using the chipped card didn’t. I called my credit card company and they spent like half an hour on the phone with me but ultimately said that they aren’t even seeing the transaction so the problem is at the source. I can’t even see the declined transactions on my credit card statements so I think this is a problem at the source (I.e. the request doesn’t even make it to my credit card company). *   I do have a bit of cash in USD and I’m going to try to exchange it at a gold shop but it’s not nearly enough to cover the whole trip. I understand if you post things I should have done ahead of time that future redditors can use as a reference but for my purposes I’d prefer suggestions on what to do now that I’m in this situation.",
+        "link": "https://www.reddit.com/r/VietNam/comments/1j7lv9f/credit_cards_declined_in_country_now_what",
+        "score": 0.1508904
+      },
+      {
+        "title": "Important Information, News, Announcement, Notice - HSBC VN",
+        "snippet": "Change in opening hours of HSBC Branches and Transaction Offices nationwide - effective from 2 March 2026. Published on 27 February 2026. Effective 2 March 2026",
+        "link": "https://www.hsbc.com.vn/en-vn/important-information",
+        "score": 0.14850381
+      },
+      {
+        "title": "Vietnam's New Banking Law for Foreign Investors - Five Key Takeaways | Insights | Mayer Brown",
+        "snippet": "The New Law governs Vietnamese credit institutions and foreign bank branches (collectively \"credit institutions\") and will take effect from 1 July 2024. Moreover, cross-ownership across two or more credit institutions has been one of the key challenges over the years to stability in the banking sector, exemplified in a number of high profile stories in the news. Cross-ownership and the dominance of certain banks by large corporate groups, such as the highly publicised case of a property developer and its relationship with one of Vietnam's largest privately owned commercial banks, raise concerns about conflicts of interest in the lending and deposit-taking policies of banks, and highlight the need for regulatory scrutiny to ensure the stability and integrity of the financial sector. The New Law has now banned credit institutions from bundling insurance together with banking services, which provides a clear legal basis for the SBV's control of bancassurance, though it is also expected to significantly impact on credit institution's income from bancassurance.",
+        "link": "https://www.mayerbrown.com/en/insights/publications/2024/03/vietnams-new-banking-law-for-foreign-investors-five-key-takeaways",
+        "score": 0.0895264
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.88,
+    "request_id": "3361ca37-c79d-4237-8dc0-60cf5ea883f9",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:factors affecting mosquito breeding in artificial ponds": {
+    "provider": "tavily",
+    "query": "factors affecting mosquito breeding in artificial ponds",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "I would like to know about ponds/water features. We absolutely ...",
+        "snippet": "4. Factors That May Attract Mosquitoes - Stagnant water areas: If parts of the pond lack circulation, such as corners or shallow zones. - Poor",
+        "link": "https://www.facebook.com/groups/diygardendesignclub/posts/1069700460097151",
+        "score": 0.7038554
+      },
+      {
+        "title": "[PDF] Oviposition and Breeding Water Sites Preferences of Mosquitoes ...",
+        "snippet": "This work investigates preferred mosquito breeding water sites, physicochemical factors and colour cues influencing oviposition and development",
+        "link": "https://biomedres.us/pdfs/BJSTR.MS.ID.001565.pdf",
+        "score": 0.5428881
+      },
+      {
+        "title": "Importance of Reducing Mosquito Breeding Sites | Home & Garden Information Center",
+        "snippet": "# Importance of Reducing Mosquito Breeding Sites. Stagnant water is a perfect habitat for mosquito reproduction. The availability of standing water is integral to these life stages and highly influential on the overall number of mosquitoes produced. Water allowed to “stand” for five days or more can become a mosquito-breeding site. Adult female mosquitos produce eggs that are deposited in stagnant water to develop. Reducing breeding sites is simple, start by identifying potential locations of water retention and eliminate them. The mosquito life cycle consists of four developmental stages: egg, larva (referred to as the wriggler), pupa (referred to as the tumbler), and the adult. Mature female mosquitos generally require a blood meal prior to egg production and can lay masses of 50 to 200 eggs at a time in or on a water source. For the majority of permanent water mosquito species, the egg, larva, and pupa stages require water for development.",
+        "link": "https://hgic.clemson.edu/factsheet/importance-of-reducing-mosquito-breeding-sites",
+        "score": 0.30068445
+      },
+      {
+        "title": "Frontiers | Physicochemical Characteristics of Aedes Mosquito Breeding Habitats in Suburban and Urban Areas of Kinshasa, Democratic Republic of the Congo",
+        "snippet": "# Physicochemical Characteristics of *Aedes* Mosquito Breeding Habitats in Suburban and Urban Areas of Kinshasa, Democratic Republic of the Congo. The present study characterized the physicochemical properties of *Aedes* mosquito breeding habitats in Democratic Republic of the Congo. The median values of dissolved oxygen (DO) (1.0), turbidity (19.15), and salinity (0.115) in water breeding sites of *Aedes* were respectively 0.8, 55.0, and 0.29 in *Culex* breeding sites (*p* < 0.05). The physicochemical characteristics of the breeding habitat for *Ae. aegypti* and *Ae. albopictus* were almost identical. In the final model (r = 0.30, *p* = 0.01), salinity (r = 0.23) and DO (r = 0.138) adjusted to temperature, pH, and turbidity were associated positively to larvae density. The *Aedes* breeding sites and mosquito density were significantly influenced by water salinity, DO, temperature, pH, and turbidity. The present study assessed the physicochemical characteristics of *Aedes* water breeding habitats in the urban and suburban areas of Kinshasa, DRC.",
+        "link": "https://www.frontiersin.org/journals/tropical-diseases/articles/10.3389/fitd.2021.789273/full",
+        "score": 0.2491187
+      },
+      {
+        "title": "Old stagnant pond is a mosquito breeding ground : r/ponds",
+        "snippet": "# Old stagnant pond is a mosquito breeding ground : r/ponds. Skip to main contentOld stagnant pond is a mosquito breeding ground : r/ponds. Image 1 Go to ponds. # Old stagnant pond is a mosquito breeding ground. I’m buying a house, and it’s got a koi pond that has been left to green and become a mosquito breeding pool. We’ve been thinking about adding fish and a bucket filter (pump taking water into a bucket with sand and rocks. Then the water pouring back into the pond). We’re not going to chlorine bomb the pond or anything, because it’s got plant life that we like. Edit: I’m unsure of how many gallons are in the pond, but it’s a raised tin/aluminum pond that is ~2 ft tall and ~8 ft in diameter. I would get a pump and let it circulate the pond for a while (at least a few days depending on size) before adding decent fish.",
+        "link": "https://www.reddit.com/r/ponds/comments/1n2opw8/old_stagnant_pond_is_a_mosquito_breeding_ground",
+        "score": 0.2435709
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.81,
+    "request_id": "80aa4f23-e452-4364-b7d2-e2ce7707ea16",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:universal cover of torus fundamental group action": {
+    "provider": "tavily",
+    "query": "universal cover of torus fundamental group action",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "What is the covering space of the torus $T = S^1 \\times S^1 ... - Quora",
+        "snippet": "The universal cover of the torus is R2=R×R R 2 = R × R and its fundamental group is the subgroup Z2=Z×Z Z 2 = Z × Z acting by translations.",
+        "link": "https://www.quora.com/What-is-the-covering-space-of-the-torus-T-S-1-times-S-1-corresponding-to-the-subgroup-2-mathbb-Z-times-2-mathbb-Z-of-mathbb-Z-times-mathbb-Z-Can-any-one-help-me-by-describing-it",
+        "score": 0.850382
+      },
+      {
+        "title": "[PDF] Part II - Algebraic Topology - Dexter Chua",
+        "snippet": "non-trivial fundamental groups. S1 is a universal cover. What would be a universal cover of the torus S1 ×S1? An obvious guess would be p×p : R×R → S1 × S1.",
+        "link": "https://dec41.user.srcf.net/notes/II_M/algebraic_topology_trim.pdf",
+        "score": 0.7485182
+      },
+      {
+        "title": "algebraic topology - Why is a covering space of a torus $T$ homeomorphic either to $\\mathbb{R}^2$, $S^1\\times\\mathbb{R}$ or $T$? - Mathematics Stack Exchange",
+        "snippet": "# Why is a covering space of a torus $T$ homeomorphic either to $\\mathbb{R}^2$, $S^1\\times\\mathbb{R}$ or $T$? **Given any subgroup $H$ of $\\pi\\_1(X)$, it acts on $\\tilde{X}$ and the associated orbit space $\\tilde{X}/H$ is a covering space of $X$ whose fundamental group is isomorphic to $H$.**. $\\mathbb{R}^2$ is the universal covering space of $T$. The fundamental group of a torus $T=S^1\\times S^1$ is isomorphic to. Any subgroup of $\\mathbb{Z}^2$ is isomorphic either to the trivial group, $\\mathbb{Z}$ or $\\mathbb{Z}^2$. Since $\\mathbb{R}^2/\\mathbb{Z}$ **can be** $S^1\\times\\mathbb{R}$, $\\mathbb{R}^2/\\mathbb{Z}^2$ **can be** $T$, we get the conclusion we want to prove. So my problem is: Is it possible that $\\mathbb{R}^2/\\mathbb{Z}$ or $\\mathbb{R}^2/\\mathbb{Z}^2$ can be other spaces? For example, if $\\mathbb{R}\\to S^1$ is the standard covering map, the automorphism of $\\mathbb{Z}$ (viewed as a space, not a group) defined by $z\\mapsto (-1)^{z} z$ doesn't extend to a continuous automorphism of $\\mathbb{R}$.",
+        "link": "https://math.stackexchange.com/questions/34238/why-is-a-covering-space-of-a-torus-t-homeomorphic-either-to-mathbbr2-s",
+        "score": 0.6522641
+      },
+      {
+        "title": "Universal covering spaces | Algebraic Topology 29 | NJ Wildberger",
+        "snippet": "Universal covering spaces | Algebraic Topology 29 | NJ Wildberger\nInsights into Mathematics\n131000 subscribers\n309 likes\n27172 views\n2 Oct 2012\nWe begin by giving some examples of the main theorem from the last lecture: that the associated homomorphism of fundamental groups associated to a covering space p:X to B injects pi(X) as a subgroup of pi(B). We look at helical coverings of a circle, and also a two-fold covering of the wedge of two circles.\nSo a main idea is that covering spaces of a space B are associated to subgroups of pi(B). The covering space associated to the identity subgroup is called the universal covering space of B; it has the distinguishing property that it is simply connected: any loop on it is homotopic to the constant loop.\n\nTo construct the universal cover of a space B, we proceed in an indirect fashion, considering paths in B from a fixed base point b, up to homotopy. Any such path can be mapped to its endpoint: this is the covering map. The universal covering space of a sphere or projective plane is the sphere, that of the torus or Klein bottle is the Euclidean plane, while all surfaces of negative Euler characteristic, like a two holed torus, has universal cover consisting of the Hyperbolic plane. To describe this completely would be a long story, we give just an initial orientation to this important connection between geometry and topology.\n\nFinally we discuss how other covering spaces may be created from a universal covering space.\n\n************\nResearch Gate page: https://www.researchgate.net/profile/Norman_Wildberger\n\nBlog: http://njwildberger.com/\n\nOnline courses at openlearning.com (currently Algebraic Calculus One): https://www.openlearning.com/courses/algebraic-calculus-one/ Please join us for an exciting new approach to one of mathematics' most important subjects!\n\nPatreon: https://www.patreon.com/njwildberger Your support would be much appreciated.\n\nWild Egg Maths YT channel:  https://www.youtube.com/channel/UCriFv3G22iOUidUhkIGXuh \n\nInsights into Mathematics Playlists:\n\nhttps://www.youtube.com/playlist?list=PLIljB45xT85CL0-5wO4P-OwuH7SzBUyC0 (31 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85B0aMG-G9oqj-NPIuBMnq8z (18 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DHcleY93bd2WlywQYxHv7H (6 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85AZjh2GUdwsMuAWTEHXCLb- (4 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DeX148Q2T2elycnIYHTxdP (44 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85A6D0eylgAM4Xc1b_dDTgHW (8 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DGxj1x_dyaSggbauAgrB6R (226 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85A_VZD126sND3XECDSI-qGs (26 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DfokRNdx5eQ_qA43BwyM-_ (45 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85CvrEUnhS4dkTm9Lci5JTYS (43 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85D7wczwyUQdwDe2duZ7wPTf (40 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85Ar_tuHmRDI2Xr5tWOTI1oW (55 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DPSrQpExd2L870ggxd2KEB (34 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85C3-5f6-qQS3YhgygZgnGYs (8 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85D7hfVLKyEJbQxOJ4yYm1-9 (9 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85BtiJIcDF2uuFc7_ndd1UL6 ( 46 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85B6MYBrWldlJ3w-Q1LaEdoy (40 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85DIpzaWggqJDIK8m2u09dQL (7 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85Ag6ragdmHaxUOKcQsIsrXZ (7 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85A5w_vZ5BB1IQAxAMhz5o5S (19 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85BjhYV7QswANMF3gKPx9BqT (21 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85Bi7PvrTkAaAswTwsfsR5HV (10 videos)\nhttps://www.youtube.com/playlist?list=PLIljB45xT85CyF_7bKd6y36VArOy3p2oh (94 videos)\n\nWild Egg Maths Playlists:\n\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz5m3XKK0OPc31l-GTqDiAjs (4 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz4CVqTYS1fwInPOZxBxDaQf (64 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz7PpsRFHuGb3EhwZtEOdRjV (45 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz6HqaFPB4HTZOQ8jgDAVnuz (20 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz71VHhAIUN-7Y6-JVcwF-xA (8 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz75-t4UaYvHwPe5AHGA_EWe (9 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz5W25vaXSreTMTwpPhWs1w2 (52 videos)\nhttps://www.youtube.com/playlist?list=PLzdiPTrEWyz4DCenuIAr9R2kXLq4ywRAm (9 videos)\n9 comments",
+        "link": "https://www.youtube.com/watch?v=61UTn_wtHY8",
+        "score": 0.6439794
+      },
+      {
+        "title": "Universal Cover -- from Wolfram MathWorld",
+        "snippet": "# Universal Cover. The universal cover of a connected topological space X. is a simply connected space Y with a map f:Y->X that is a covering map. group, then it is its own universal cover. of a topological space X. Y with a map f:Y->X that is a covering map. f:Y->X that is a covering map. can be lifted to its universal cover, as long as it is defined locally. of a Riemann surface X, which also lifts to its universal cover. The above left diagram shows the universal cover of the torus, i.e., the plane. is in gray and can be identified with the double torus. Although it is difficult to visualize a hyperbolic regular octagon in the disk as a cut-up double torus, the illustration above attempts. First, the space is cut open to make a simply connected space with edges, which then. Any other covering map of X is in turn covered by the universal cover of X, X^~.",
+        "link": "https://mathworld.wolfram.com/UniversalCover.html",
+        "score": 0.6388584
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.99,
+    "request_id": "67247d76-84a5-4d6c-857a-cf3bab721943",
+    "from_cache": false
   }
 }
