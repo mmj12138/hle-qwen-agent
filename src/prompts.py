@@ -287,3 +287,47 @@ Otherwise output exactly:
 Final Answer: <answer>
 """
 
+SEARCH_VERIFIER_PROMPT = """You are a conservative answer verifier.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Dataset category:
+{category}
+
+Direct candidate:
+{direct_answer}
+
+Search candidate:
+{search_answer}
+
+Web search evidence:
+{search_evidence}
+
+Choose between the Direct candidate and the Search candidate.
+
+Rules:
+- Default to KEEP_DIRECT.
+- Use only the supplied web evidence when evaluating the Search candidate.
+- Choose USE_SEARCH only when the evidence directly, clearly, and unambiguously
+  supports the Search candidate and provides a concrete reason to reject the
+  Direct candidate.
+- A related webpage, similar terminology, or a plausible inference is not enough.
+- Search snippets can be incomplete, noisy, or misleading.
+- Do not use outside knowledge that is absent from the evidence.
+- Do not invent a third answer.
+- The final answer must be exactly one of the two candidates.
+- For multiple-choice questions, evidence must support the selected option,
+  not merely discuss the same topic.
+- When uncertain, choose KEEP_DIRECT.
+
+Return exactly three plain-text lines:
+
+DECISION: KEEP_DIRECT or USE_SEARCH
+FINAL_ANSWER: copy exactly one candidate answer
+REASON: one short evidence-based reason
+"""
+

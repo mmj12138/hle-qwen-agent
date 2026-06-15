@@ -7,7 +7,11 @@ from typing import Any, Dict, Optional
 from src.agents.base import chat
 from src.agents.direct_agent import DirectAgent
 from src.agents.tool_agent import ToolAgent
-from src.prompts import SEARCH_ROUTER_PROMPT, SEARCH_SOLVER_PROMPT
+from src.prompts import (
+    SEARCH_ROUTER_PROMPT,
+    SEARCH_SOLVER_PROMPT,
+    SEARCH_VERIFIER_PROMPT,
+)
 from src.search_web import TavilySearchError, TavilyWebSearch
 
 
@@ -204,14 +208,128 @@ class ToolSearchAgent:
                 raw_search_answer=raw_search_answer,
             )
 
-        final_output = _format_final_answer(
-            normalized_answer,
+        # Search is not allowed to overwrite Direct automatically.
+        # Generate a Direct candidate and ask a conservative verifier to choose.
+        direct_result = self.direct_agent.run(
+            llm,
+            question=question,
+            answer_type=answer_type,
+        )
+        direct_candidate = _normalize_candidate_answer(
+            direct_result.get("final_output", ""),
             answer_type,
         )
+
+        # Rare fallback: Direct output could not be parsed.
+        if direct_candidate is None:
+            final_output = _format_final_answer(
+                normalized_answer,
+                answer_type,
+            )
+            trace = self._base_trace(
+                category=category,
+                tool_context=tool_context,
+                path="web_search_direct_unparseable",
+                search_used=True,
+                final_output=final_output,
+            )
+            trace.update(
+                {
+                    "router_decision": router_decision,
+                    "search_query": query,
+                    "search_output": search_output,
+                    "possible_leakage_check": leakage_check,
+                    "raw_search_answer": raw_search_answer,
+                    "normalized_search_answer": normalized_answer,
+                    "direct_result": direct_result,
+                    "direct_candidate": None,
+                    "verifier_decision": "USE_SEARCH",
+                    "verifier_reason": "direct_candidate_unparseable",
+                    "search_answer_adopted": True,
+                }
+            )
+            return {
+                "agent": self.name,
+                "final_output": final_output,
+                "trace": trace,
+            }
+
+        # No verifier call is needed when both candidates already agree.
+        if _answers_equivalent(
+            direct_candidate,
+            normalized_answer,
+            answer_type,
+        ):
+            final_output = _format_final_answer(
+                direct_candidate,
+                answer_type,
+            )
+            trace = self._base_trace(
+                category=category,
+                tool_context=tool_context,
+                path="web_search_candidates_agree",
+                search_used=True,
+                final_output=final_output,
+            )
+            trace.update(
+                {
+                    "router_decision": router_decision,
+                    "search_query": query,
+                    "search_output": search_output,
+                    "possible_leakage_check": leakage_check,
+                    "raw_search_answer": raw_search_answer,
+                    "normalized_search_answer": normalized_answer,
+                    "direct_result": direct_result,
+                    "direct_candidate": direct_candidate,
+                    "verifier_decision": "AGREE",
+                    "verifier_reason": "direct_and_search_candidates_match",
+                    "search_answer_adopted": False,
+                }
+            )
+            return {
+                "agent": self.name,
+                "final_output": final_output,
+                "trace": trace,
+            }
+
+        verifier_result = self._verify_search_candidate(
+            llm=llm,
+            question=question,
+            answer_type=answer_type,
+            category=category,
+            direct_candidate=direct_candidate,
+            search_candidate=normalized_answer,
+            search_evidence=evidence,
+        )
+
+        use_search_answer = (
+            verifier_result["decision"] == "USE_SEARCH"
+            and verifier_result["selected_answer"] is not None
+            and _answers_equivalent(
+                verifier_result["selected_answer"],
+                normalized_answer,
+                answer_type,
+            )
+        )
+
+        selected_answer = (
+            normalized_answer
+            if use_search_answer
+            else direct_candidate
+        )
+        final_output = _format_final_answer(
+            selected_answer,
+            answer_type,
+        )
+
         trace = self._base_trace(
             category=category,
             tool_context=tool_context,
-            path="web_search",
+            path=(
+                "web_search_verified"
+                if use_search_answer
+                else "web_search_kept_direct"
+            ),
             search_used=True,
             final_output=final_output,
         )
@@ -223,6 +341,16 @@ class ToolSearchAgent:
                 "possible_leakage_check": leakage_check,
                 "raw_search_answer": raw_search_answer,
                 "normalized_search_answer": normalized_answer,
+                "direct_result": direct_result,
+                "direct_candidate": direct_candidate,
+                "verifier_raw_output": verifier_result["raw_output"],
+                "verifier_parser": verifier_result["parser"],
+                "verifier_decision": verifier_result["decision"],
+                "verifier_selected_answer": verifier_result[
+                    "selected_answer"
+                ],
+                "verifier_reason": verifier_result["reason"],
+                "search_answer_adopted": use_search_answer,
             }
         )
 
@@ -275,6 +403,58 @@ class ToolSearchAgent:
             "search_query": search_query if use_search else "",
             "raw_output": raw_output,
             "parser": parsed.get("_parser", "unknown"),
+        }
+
+    def _verify_search_candidate(
+        self,
+        llm,
+        question: str,
+        answer_type: str,
+        category: str,
+        direct_candidate: str,
+        search_candidate: str,
+        search_evidence: str,
+    ) -> Dict[str, Any]:
+        prompt = SEARCH_VERIFIER_PROMPT.format(
+            question=question,
+            answer_type=answer_type or "unknown",
+            category=category,
+            direct_answer=direct_candidate,
+            search_answer=search_candidate,
+            search_evidence=search_evidence,
+        )
+        raw_output = chat(llm, prompt)
+
+        parsed = _parse_verifier_output(
+            raw_output,
+            answer_type=answer_type,
+        )
+
+        decision = parsed["decision"]
+        selected_answer = parsed["selected_answer"]
+
+        # Code-level guard: never allow a third invented answer.
+        if decision == "USE_SEARCH":
+            if selected_answer is None or not _answers_equivalent(
+                selected_answer,
+                search_candidate,
+                answer_type,
+            ):
+                decision = "KEEP_DIRECT"
+                selected_answer = direct_candidate
+                parsed["reason"] = (
+                    "invalid_or_nonmatching_search_selection"
+                )
+        else:
+            decision = "KEEP_DIRECT"
+            selected_answer = direct_candidate
+
+        return {
+            "decision": decision,
+            "selected_answer": selected_answer,
+            "reason": parsed["reason"],
+            "parser": parsed["parser"],
+            "raw_output": raw_output,
         }
 
     def _direct_fallback(
@@ -424,6 +604,146 @@ def _normalize_search_answer(
     return answer
 
 
+def _normalize_candidate_answer(
+    text: str,
+    answer_type: str,
+) -> Optional[str]:
+    raw = str(text or "").strip()
+    if not raw:
+        return None
+
+    matches = list(
+        re.finditer(
+            r"(?is)final\s+answer\s*:\s*(.+)",
+            raw,
+        )
+    )
+    answer = matches[-1].group(1).strip() if matches else raw
+    answer = re.sub(
+        r"(?is)^final\s+answer\s*:\s*",
+        "",
+        answer,
+    ).strip()
+    answer = answer.splitlines()[0].strip()
+    answer = answer.strip("`*_ ")
+
+    if not answer:
+        return None
+
+    if _is_multiple_choice(answer_type):
+        match = re.fullmatch(
+            r"(?:option\s*)?\(?([A-F])\)?[.\s]*",
+            answer,
+            flags=re.IGNORECASE,
+        )
+        return match.group(1).upper() if match else None
+
+    if len(answer) > 180:
+        return None
+
+    return answer
+
+
+def _canonical_answer(
+    answer: str,
+    answer_type: str,
+) -> str:
+    value = str(answer or "").strip()
+
+    if _is_multiple_choice(answer_type):
+        return value.upper()
+
+    value = value.casefold()
+    value = re.sub(r"\s+", " ", value)
+    return value.strip(" .,:;!?\"'`")
+
+
+def _answers_equivalent(
+    left: str,
+    right: str,
+    answer_type: str,
+) -> bool:
+    return _canonical_answer(
+        left,
+        answer_type,
+    ) == _canonical_answer(
+        right,
+        answer_type,
+    )
+
+
+def _parse_verifier_output(
+    text: str,
+    answer_type: str,
+) -> Dict[str, Any]:
+    raw = str(text or "").strip()
+
+    decision_match = re.search(
+        r"(?im)^\s*DECISION\s*:\s*"
+        r"(KEEP_DIRECT|USE_SEARCH)\s*$",
+        raw,
+    )
+    answer_match = re.search(
+        r"(?im)^\s*FINAL_ANSWER\s*:\s*(.*?)\s*$",
+        raw,
+    )
+    reason_match = re.search(
+        r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
+        raw,
+    )
+
+    if decision_match:
+        selected_answer = (
+            _normalize_candidate_answer(
+                answer_match.group(1),
+                answer_type,
+            )
+            if answer_match
+            else None
+        )
+        return {
+            "decision": decision_match.group(1).upper(),
+            "selected_answer": selected_answer,
+            "reason": (
+                reason_match.group(1).strip()
+                if reason_match
+                else "parsed_from_line_format"
+            ),
+            "parser": "line_format",
+        }
+
+    short_match = re.match(
+        r"(?is)^\s*(KEEP_DIRECT|USE_SEARCH)\s*(?:\n|$)",
+        raw,
+    )
+    if short_match:
+        selected_answer = (
+            _normalize_candidate_answer(
+                answer_match.group(1),
+                answer_type,
+            )
+            if answer_match
+            else None
+        )
+        return {
+            "decision": short_match.group(1).upper(),
+            "selected_answer": selected_answer,
+            "reason": (
+                reason_match.group(1).strip()
+                if reason_match
+                else "recovered_from_short_format"
+            ),
+            "parser": "short_line_recovery",
+        }
+
+    return {
+        "decision": "KEEP_DIRECT",
+        "selected_answer": None,
+        "reason": "verifier_output_unrecognized",
+        "parser": "unrecognized",
+    }
+
+
 def _format_final_answer(answer: str, answer_type: str) -> str:
     cleaned = re.sub(
         r"(?is)^final\s+answer\s*:\s*",
@@ -443,31 +763,7 @@ def _is_multiple_choice(answer_type: str) -> bool:
 
 
 def _parse_router_output(text: str) -> Dict[str, Any]:
-    """Parse router output using several increasingly tolerant formats.
-
-    Supported formats:
-
-    1. Preferred three-line format:
-       USE_SEARCH: YES
-       SEARCH_QUERY: Kant Critique of Judgment purposiveness
-       REASON: This requires a specific external fact.
-
-    2. Short format:
-       YES
-       Kant Critique of Judgment purposiveness
-       REASON: This requires external knowledge.
-
-    3. Short NO format:
-       NO
-       REASON: This can be solved without web search.
-
-    4. Strict or partially malformed JSON:
-       {
-           "use_search": true,
-           "search_query": "...",
-           "reason": "..."
-       }
-    """
+    """Parse preferred, short, strict-JSON, and malformed router output."""
     raw = str(text or "").strip()
 
     if not raw:
@@ -478,9 +774,6 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
             "_parser": "empty",
         }
 
-    # ------------------------------------------------------------
-    # 1. Preferred explicit line format
-    # ------------------------------------------------------------
     use_match = re.search(
         r"(?im)^\s*USE_SEARCH\s*:\s*(YES|NO|TRUE|FALSE|1|0)\s*$",
         raw,
@@ -501,47 +794,23 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
             if query_match
             else ""
         )
-        reason = (
-            reason_match.group(1).strip()
-            if reason_match
-            else ""
-        )
-
         return {
             "use_search": use_search,
             "search_query": search_query if use_search else "",
-            "reason": reason or "parsed_from_line_format",
+            "reason": (
+                reason_match.group(1).strip()
+                if reason_match
+                else "parsed_from_line_format"
+            ),
             "_parser": "line_format",
         }
 
-    # ------------------------------------------------------------
-    # 2. Short line format
-    #
-    # Examples:
-    #
-    # YES
-    # Kant Critique of Judgment purposiveness
-    # REASON: Requires external textual evidence.
-    #
-    # or:
-    #
-    # YES
-    # SEARCH_QUERY: Kant Critique of Judgment
-    # REASON: Requires external textual evidence.
-    #
-    # or:
-    #
-    # NO
-    # REASON: This is a computational problem.
-    # ------------------------------------------------------------
     first_line_match = re.match(
         r"(?is)^\s*(YES|NO|TRUE|FALSE|1|0)\s*(?:\n|$)",
         raw,
     )
-
     if first_line_match:
         use_search = _coerce_bool(first_line_match.group(1))
-
         short_query_match = re.search(
             r"(?im)^\s*SEARCH_QUERY\s*:\s*(.*?)\s*$",
             raw,
@@ -550,54 +819,38 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
             r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
             raw,
         )
-
         search_query = (
             short_query_match.group(1).strip()
             if short_query_match
             else ""
         )
 
-        # Some models output:
-        #
-        # YES
-        # actual search query
-        # REASON: ...
-        #
-        # Recover the second non-empty line as the query.
         if use_search and not search_query:
             lines = [
                 line.strip()
                 for line in raw.splitlines()
                 if line.strip()
             ]
-
             if len(lines) >= 2:
                 second_line = lines[1]
-
                 if not re.match(
                     r"(?i)^(REASON|USE_SEARCH|SEARCH_QUERY)\s*:",
                     second_line,
                 ):
                     search_query = second_line
 
-        reason = (
-            short_reason_match.group(1).strip()
-            if short_reason_match
-            else "recovered_from_short_format"
-        )
-
         return {
             "use_search": use_search,
             "search_query": search_query if use_search else "",
-            "reason": reason,
+            "reason": (
+                short_reason_match.group(1).strip()
+                if short_reason_match
+                else "recovered_from_short_format"
+            ),
             "_parser": "short_line_recovery",
         }
 
-    # ------------------------------------------------------------
-    # 3. Strict JSON
-    # ------------------------------------------------------------
     parsed_json = _extract_json_object(raw)
-
     if parsed_json is not None:
         use_search = _coerce_bool(
             parsed_json.get("use_search", False)
@@ -605,102 +858,54 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
         search_query = str(
             parsed_json.get("search_query", "")
         ).strip()
-        reason = str(
-            parsed_json.get("reason", "")
-        ).strip()
-
         return {
             "use_search": use_search,
             "search_query": search_query if use_search else "",
-            "reason": reason or "parsed_from_json",
+            "reason": str(
+                parsed_json.get("reason", "parsed_from_json")
+            ).strip(),
             "_parser": "strict_json",
         }
 
-    # ------------------------------------------------------------
-    # 4. Recover fields from incomplete or invalid JSON
-    #
-    # Handles:
-    # - missing closing brace;
-    # - invalid LaTeX backslash escapes;
-    # - extra text before/after the JSON;
-    # - partially generated JSON.
-    # ------------------------------------------------------------
     bool_match = re.search(
-        r'''(?is)
-        ["']?use_search["']?
-        \s*:\s*
-        (true|false|yes|no|1|0)
-        ''',
+        r'(?is)["\']?use_search["\']?\s*:\s*(true|false|yes|no|1|0)',
         raw,
-        flags=re.VERBOSE,
     )
-
     json_query_match = re.search(
-        r'''(?is)
-        ["']?search_query["']?
-        \s*:\s*
-        ["'](.*?)(?<!\\)["']
-        (?=\s*[,}\n]|$)
-        ''',
+        r'(?is)["\']?search_query["\']?\s*:\s*["\'](.*?)(?<!\\)["\']'
+        r'(?=\s*[,}\n]|$)',
         raw,
-        flags=re.VERBOSE,
     )
-
     json_reason_match = re.search(
-        r'''(?is)
-        ["']?reason["']?
-        \s*:\s*
-        ["'](.*?)(?<!\\)["']
-        (?=
-            \s*,\s*["']?search_query
-            |
-            \s*}\s*$
-            |
-            \s*$
-        )
-        ''',
+        r'(?is)["\']?reason["\']?\s*:\s*["\'](.*?)(?<!\\)["\']'
+        r'(?=\s*,\s*["\']?search_query|\s*}\s*$|\s*$)',
         raw,
-        flags=re.VERBOSE,
     )
 
     if bool_match:
         use_search = _coerce_bool(bool_match.group(1))
-
         search_query = (
-            _unescape_router_text(
-                json_query_match.group(1)
-            )
+            _unescape_router_text(json_query_match.group(1))
             if json_query_match
             else ""
         )
-
-        reason = (
-            _unescape_router_text(
-                json_reason_match.group(1)
-            )
-            if json_reason_match
-            else "recovered_from_malformed_router_output"
-        )
-
         return {
             "use_search": use_search,
             "search_query": search_query if use_search else "",
-            "reason": reason,
+            "reason": (
+                _unescape_router_text(json_reason_match.group(1))
+                if json_reason_match
+                else "recovered_from_malformed_router_output"
+            ),
             "_parser": "regex_recovery",
         }
 
-    # ------------------------------------------------------------
-    # 5. Final conservative fallback
-    #
-    # Unrecognized output does not spend a Tavily credit.
-    # ------------------------------------------------------------
     return {
         "use_search": False,
         "search_query": "",
         "reason": "router_output_unrecognized",
         "_parser": "unrecognized",
     }
-
 
 def _extract_json_object(text: str) -> Optional[Dict[str, Any]]:
     candidates = [text.strip()]
