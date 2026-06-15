@@ -212,46 +212,55 @@ Important rules:
 {base_instructions}
 """
 
-SEARCH_ROUTER_PROMPT = """You are a search-routing agent for a difficult QA benchmark.
+SEARCH_ROUTER_PROMPT = """You are a conservative web-search router for a difficult QA benchmark.
 
 Question:
 {question}
 
-Dataset category (auxiliary metadata only):
+Answer type:
+{answer_type}
+
+Dataset category:
 {category}
 
-Decide whether web search is likely to provide useful external evidence.
+Choose web search only when external textual sources are likely to contain the
+specific fact needed to answer the question.
 
-Use search when the question depends on specific factual, scientific, historical,
-literary, legal, biographical, bibliographic, or other domain knowledge that may
-not be reliably solved from reasoning alone.
+SEARCH is appropriate for:
+- named historical, legal, literary, biographical, bibliographic, or scientific facts;
+- definitions, classifications, published findings, named theorems, or domain-specific facts;
+- questions where a concise factual query is likely to retrieve directly relevant evidence.
 
-Do not use search when:
-- the answer can be derived entirely from information in the question;
-- it is a self-contained mathematical, logical, symbolic, or coding problem;
-- a deterministic local tool already gives an exact answer;
-- search is unlikely to produce evidence relevant to the exact question.
+DO NOT SEARCH when the question primarily requires:
+- arithmetic, algebra, symbolic derivation, proof, optimization, enumeration, or programming;
+- finding a largest/smallest number, counting solutions, checking primality, or computing probability;
+- direct inspection of audio, music timestamps, images, figures, diagrams, tables, or chess positions;
+- reasoning entirely from information already included in the question;
+- a deterministic local tool that can compute the answer;
+- evidence unlikely to appear clearly in short web snippets.
 
-Generate a concise query for the underlying fact or concept.
-Do not copy the complete benchmark question.
-Do not search for phrases such as "HLE answer", "benchmark answer",
-"gold answer", or "correct answer".
+Be conservative. When uncertain, choose NO.
 
-Return exactly these three lines:
+Return exactly three plain-text lines:
 
 USE_SEARCH: YES or NO
-SEARCH_QUERY: concise query, or empty
-REASON: one short plain-text reason
+SEARCH_QUERY: concise factual query, or empty
+REASON: one short reason without LaTeX
 
-Do not use JSON.
-Do not use LaTeX in the reason.
+Do not output JSON.
+Do not copy the entire benchmark question.
+Do not include answer choices in the query.
+Do not search for "HLE answer", "benchmark answer", "gold answer", or "correct answer".
 """
 
 
-SEARCH_SOLVER_PROMPT = """You are a search-augmented solver.
+SEARCH_SOLVER_PROMPT = """You are a search-augmented answer extractor.
 
 Question:
 {question}
+
+Answer type:
+{answer_type}
 
 Dataset category:
 {category}
@@ -259,13 +268,24 @@ Dataset category:
 Web search evidence:
 {search_evidence}
 
-Instructions:
-- Use the evidence only when it is relevant.
-- Search snippets can be incomplete or misleading; reconcile multiple results.
-- Do not claim that a fact is supported when the evidence does not contain it.
-- Never mention benchmark answers, gold answers, the router, or internal tools.
-- For multiple-choice questions, end with: Final Answer: <letter>
-- For exact or short-answer questions, end with: Final Answer: <concise answer>
+Decide whether the evidence directly supports a specific answer.
 
-{base_instructions}
+Rules:
+- Search snippets may be incomplete, noisy, or misleading.
+- Use only information actually present in the evidence.
+- Do not fill gaps using unsupported guesses.
+- Do not output a webpage title when the question asks for a concept, person, section, number, or option.
+- Reconcile multiple results when possible.
+- For multiple-choice questions, return exactly one option letter.
+- For exact-match questions, return only a concise answer.
+- Do not explain your reasoning.
+- Do not mention search, tools, snippets, benchmarks, or internal routing.
+- Do not repeat the words "Final Answer" inside the answer.
+
+If the evidence is insufficient to determine a specific answer, output exactly:
+EVIDENCE_INSUFFICIENT
+
+Otherwise output exactly:
+Final Answer: <answer>
 """
+
