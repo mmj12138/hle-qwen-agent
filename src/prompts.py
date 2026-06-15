@@ -13,15 +13,31 @@ BASE_SOLVER_INSTRUCTIONS = """Instructions:
 Final Answer: <answer>
 """
 
-DIRECT_PROMPT = """You are the Solver Agent.
+# DIRECT_PROMPT = """You are the Solver Agent.
+#
+# Solve the following HLE benchmark question.
+#
+# Question:
+# {question}
+#
+# {base_instructions}
+# """
 
-Solve the following HLE benchmark question.
+DIRECT_PROMPT = """Answer the following benchmark question.
 
-Question:
 {question}
 
-{base_instructions}
-"""
+{answer_choices}
+
+Return only the final answer.
+
+For multiple-choice questions, output exactly one option letter.
+For exact-match questions, output only the concise answer.
+
+Do not explain your reasoning.
+Do not include analysis, steps, markdown, or additional text.
+
+Final Answer:"""
 
 FEEDBACK_SOLVER_PROMPT = """You are the Solver Agent.
 
