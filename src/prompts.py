@@ -27,8 +27,6 @@ DIRECT_PROMPT = """Answer the following benchmark question.
 
 {question}
 
-{answer_choices}
-
 Return only the final answer.
 
 For multiple-choice questions, output exactly one option letter.
