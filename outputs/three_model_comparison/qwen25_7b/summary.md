@@ -186,4 +186,10 @@ Shared examples: **1904**
 | 77 | Computer Science/AI | Knapsack Problem with Multiple Capacities and Unique Item Usage.  Given the following details: Number of Knapsacks: 3 It... | `831` | `684` | `684` |
 | 86 | Math | How many of numbers are there of non-negative integer solutions to the Diophantine equation of the form:  \[ x_1^2 + x_2... | `C` | `29010` | `29010` |
 | 95 | Computer Science/AI | What is the smallest appropriate IP access control list entry which will match hosts on the following networks given in ... | `A` | `172.20.0.0 0.0.255.255` | `172.20.0.0 0.0.255.255` |
-
+| Agent | Accuracy | Correct / Total | Wrong→Right | Right→Wrong | Net vs Direct |
+|---|---:|---:|---:|---:|---:|
+| direct | 0.0551 | 105 / 1904 | -- | -- | -- |
+| feedback | 0.0362 | 69 / 1904 | 21 | 57 | -36 |
+| tool | 0.1100 | 22 / 200 | 6 | 0 | +6 |
+| oracle_feedback | 0.1192 | 227 / 1904 | 122 | 0 | +122 |
+| oracle_tool | 0.1176 | 224 / 1904 | 121 | 2 | +119 |
