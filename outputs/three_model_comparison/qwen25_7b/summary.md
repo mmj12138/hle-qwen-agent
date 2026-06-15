@@ -6,7 +6,7 @@
 |---|---:|---:|---|
 | direct | 0.0551 | 105 / 1904 | `outputs/three_model_comparison/qwen25_7b/direct_results.jsonl` |
 | feedback | 0.0362 | 69 / 1904 | `outputs/three_model_comparison/qwen25_7b/feedback_results.jsonl` |
-| tool | 0.0604 | 115 / 1904 | `outputs/three_model_comparison/qwen25_7b/tool_results.jsonl` |
+| tool | 0.1100 | 22 / 200 | `outputs/three_model_comparison/qwen25_7b/tool_results.jsonl` |
 | oracle_feedback | 0.1192 | 227 / 1904 | `outputs/three_model_comparison/qwen25_7b/oracle_feedback_results.jsonl` |
 | oracle_tool | 0.1176 | 224 / 1904 | `outputs/three_model_comparison/qwen25_7b/oracle_tool_results.jsonl` |
 | tool_search | 0.0572 | 109 / 1904 | `outputs/three_model_comparison/qwen25_7b/tool_search_results.jsonl` |
@@ -47,14 +47,14 @@
 | oracle_tool | Math | 0.0901 | 78 / 866 |
 | oracle_tool | Other | 0.1348 | 19 / 141 |
 | oracle_tool | Physics | 0.1136 | 20 / 176 |
-| tool | Biology/Medicine | 0.1292 | 27 / 209 |
-| tool | Chemistry | 0.0658 | 5 / 76 |
-| tool | Computer Science/AI | 0.0448 | 9 / 201 |
-| tool | Engineering | 0.0351 | 2 / 57 |
-| tool | Humanities/Social Science | 0.0674 | 12 / 178 |
-| tool | Math | 0.0473 | 41 / 866 |
-| tool | Other | 0.0709 | 10 / 141 |
-| tool | Physics | 0.0511 | 9 / 176 |
+| tool | Biology/Medicine | 0.2500 | 5 / 20 |
+| tool | Chemistry | 0.0000 | 0 / 1 |
+| tool | Computer Science/AI | 0.0769 | 3 / 39 |
+| tool | Engineering | 0.0000 | 0 / 4 |
+| tool | Humanities/Social Science | 0.0741 | 2 / 27 |
+| tool | Math | 0.0933 | 7 / 75 |
+| tool | Other | 0.1250 | 3 / 24 |
+| tool | Physics | 0.2000 | 2 / 10 |
 | tool_search | Biology/Medicine | 0.1292 | 27 / 209 |
 | tool_search | Chemistry | 0.0658 | 5 / 76 |
 | tool_search | Computer Science/AI | 0.0498 | 10 / 201 |
@@ -99,14 +99,14 @@ Shared examples: **1904**
 
 ### Direct vs tool
 
-Shared examples: **1904**
+Shared examples: **200**
 
 | Case type | Count |
 |---|---:|
-| Wrong → Right | 10 |
+| Wrong → Right | 6 |
 | Right → Wrong | 0 |
-| Same Correct | 105 |
-| Same Wrong | 1789 |
+| Same Correct | 16 |
+| Same Wrong | 178 |
 
 #### Examples: Wrong → Right
 

@@ -1,14 +1,15 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Optional
 import ast
 import os
 import re
 import subprocess
 import sys
 import tempfile
-from dataclasses import dataclass
-from pathlib import Path
-from typing import Optional
+import textwrap
 
 
 @dataclass
@@ -92,7 +93,7 @@ class PythonExecutor:
         self.max_output_chars = max_output_chars
 
     def run(self, code: str) -> PythonExecutionResult:
-        code = str(code or "").strip()
+        code = textwrap.dedent(str(code or "")).strip()
 
         if not code:
             return PythonExecutionResult(
@@ -133,19 +134,33 @@ class PythonExecutor:
             script_path.write_text(wrapper, encoding="utf-8")
 
             try:
+                child_env = {
+                    key: value
+                    for key, value in os.environ.items()
+                    if key in {
+                        "PATH",
+                        "LD_LIBRARY_PATH",
+                        "LIBRARY_PATH",
+                        "LANG",
+                        "LC_ALL",
+                        "HOME",
+                        "TMPDIR",
+                    }
+                }
+                child_env["PYTHONIOENCODING"] = "utf-8"
+
                 completed = subprocess.run(
                     [sys.executable, "-I", "-S", str(script_path)],
                     cwd=tmp,
-                    env={
-                        "PATH": os.environ.get("PATH", ""),
-                        "PYTHONIOENCODING": "utf-8",
-                    },
+                    env=child_env,
                     text=True,
                     capture_output=True,
                     timeout=self.timeout_seconds,
-                    preexec_fn=self._resource_limiter()
-                    if os.name == "posix"
-                    else None,
+                    preexec_fn=(
+                        self._resource_limiter()
+                        if os.name == "posix"
+                        else None
+                    ),
                     check=False,
                 )
             except subprocess.TimeoutExpired as exc:
@@ -260,3 +275,27 @@ def extract_python_final_answer(stdout: str) -> str:
     if not matches:
         return ""
     return matches[-1].strip()
+
+
+if __name__ == '__main__':
+    executor = PythonExecutor()
+
+    result = executor.run("""
+
+    import math
+
+    answer = math.factorial(6)
+
+    print("FINAL_ANSWER:", answer)
+
+    """)
+
+    print("ok:", result.ok)
+
+    print("stdout:", repr(result.stdout))
+
+    print("stderr:", repr(result.stderr))
+
+    print("error:", result.error)
+
+    print("returncode:", result.returncode)
