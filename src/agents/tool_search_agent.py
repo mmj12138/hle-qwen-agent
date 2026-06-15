@@ -208,20 +208,21 @@ class ToolSearchAgent:
                 raw_search_answer=raw_search_answer,
             )
 
-        # Search is not allowed to overwrite Direct automatically.
-        # Generate a Direct candidate and ask a conservative verifier to choose.
-        direct_result = self.direct_agent.run(
+        # Search is not allowed to overwrite the local tool pipeline
+        # automatically. Run the full ToolAgent here so that deterministic
+        # tools and the conservative dynamic-Python path are both available.
+        local_result = self.tool_agent.run(
             llm,
             question=question,
             answer_type=answer_type,
         )
-        direct_candidate = _normalize_candidate_answer(
-            direct_result.get("final_output", ""),
+        local_candidate = _normalize_candidate_answer(
+            local_result.get("final_output", ""),
             answer_type,
         )
 
         # Rare fallback: Direct output could not be parsed.
-        if direct_candidate is None:
+        if local_candidate is None:
             final_output = _format_final_answer(
                 normalized_answer,
                 answer_type,
@@ -241,10 +242,12 @@ class ToolSearchAgent:
                     "possible_leakage_check": leakage_check,
                     "raw_search_answer": raw_search_answer,
                     "normalized_search_answer": normalized_answer,
-                    "direct_result": direct_result,
+                    "direct_result": local_result,
                     "direct_candidate": None,
+                    "local_tool_result": local_result,
+                    "local_tool_candidate": None,
                     "verifier_decision": "USE_SEARCH",
-                    "verifier_reason": "direct_candidate_unparseable",
+                    "verifier_reason": "local_candidate_unparseable",
                     "search_answer_adopted": True,
                 }
             )
@@ -256,12 +259,12 @@ class ToolSearchAgent:
 
         # No verifier call is needed when both candidates already agree.
         if _answers_equivalent(
-            direct_candidate,
+            local_candidate,
             normalized_answer,
             answer_type,
         ):
             final_output = _format_final_answer(
-                direct_candidate,
+                local_candidate,
                 answer_type,
             )
             trace = self._base_trace(
@@ -279,8 +282,10 @@ class ToolSearchAgent:
                     "possible_leakage_check": leakage_check,
                     "raw_search_answer": raw_search_answer,
                     "normalized_search_answer": normalized_answer,
-                    "direct_result": direct_result,
-                    "direct_candidate": direct_candidate,
+                    "direct_result": local_result,
+                    "direct_candidate": local_candidate,
+                    "local_tool_result": local_result,
+                    "local_tool_candidate": local_candidate,
                     "verifier_decision": "AGREE",
                     "verifier_reason": "direct_and_search_candidates_match",
                     "search_answer_adopted": False,
@@ -297,7 +302,7 @@ class ToolSearchAgent:
             question=question,
             answer_type=answer_type,
             category=category,
-            direct_candidate=direct_candidate,
+            direct_candidate=local_candidate,
             search_candidate=normalized_answer,
             search_evidence=evidence,
         )
@@ -315,7 +320,7 @@ class ToolSearchAgent:
         selected_answer = (
             normalized_answer
             if use_search_answer
-            else direct_candidate
+            else local_candidate
         )
         final_output = _format_final_answer(
             selected_answer,
@@ -341,8 +346,8 @@ class ToolSearchAgent:
                 "possible_leakage_check": leakage_check,
                 "raw_search_answer": raw_search_answer,
                 "normalized_search_answer": normalized_answer,
-                "direct_result": direct_result,
-                "direct_candidate": direct_candidate,
+                "local_result": local_result,
+                "local_candidate": local_candidate,
                 "verifier_raw_output": verifier_result["raw_output"],
                 "verifier_parser": verifier_result["parser"],
                 "verifier_decision": verifier_result["decision"],
@@ -470,7 +475,7 @@ class ToolSearchAgent:
         search_output: Optional[Dict[str, Any]] = None,
         raw_search_answer: str = "",
     ) -> Dict[str, Any]:
-        direct_result = self.direct_agent.run(
+        local_result = self.tool_agent.run(
             llm,
             question=question,
             answer_type=answer_type,
@@ -479,9 +484,9 @@ class ToolSearchAgent:
         trace = self._base_trace(
             category=category,
             tool_context=tool_context,
-            path="direct_fallback",
+            path="local_tool_fallback",
             search_used=False,
-            final_output=direct_result["final_output"],
+            final_output=local_result["final_output"],
         )
         trace.update(
             {
@@ -490,13 +495,14 @@ class ToolSearchAgent:
                 "search_error": search_error,
                 "search_output": search_output or {},
                 "raw_search_answer": raw_search_answer,
-                "direct_result": direct_result,
+                "direct_result": local_result,
+                "local_tool_result": local_result,
             }
         )
 
         return {
             "agent": self.name,
-            "final_output": direct_result["final_output"],
+            "final_output": local_result["final_output"],
             "trace": trace,
         }
 
