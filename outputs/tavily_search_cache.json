@@ -16948,5 +16948,173 @@
     "response_time": 0.99,
     "request_id": "73eb7572-6cfb-47ca-9677-d13a443e279d",
     "from_cache": false
+  },
+  "tavily:basic:general:5:what is the next number in the sequence 111, 142, 111, 41, 67, 67, 67, 93, 111, 111, 62": {
+    "provider": "tavily",
+    "query": "what is the next number in the sequence 111, 142, 111, 41, 67, 67, 67, 93, 111, 111, 62",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "What is the pattern in 1, 7, 18, 37, 67, 111? It was on a test I ... - Quora",
+        "snippet": "Next number is 17; next difference between numbers is 61; next number is 111 + 61, 172 ... sequence to the next number in the decimal. 1, (4+1), (",
+        "link": "https://www.quora.com/What-is-the-pattern-in-1-7-18-37-67-111-It-was-on-a-test-I-did-today-and-I-couldnt-figure-it-out-Am-I-missing-something-obvious",
+        "score": 0.4558047
+      },
+      {
+        "title": "IQ Test: 111=13, 112=24, 113=35, 114=46, 115=57, 117=___?",
+        "snippet": "IQ Test: 111=13, 112=24, 113=35, 114=46, 115=57, 117=___? | What is the next number? [Number puzzle]. @MsLeonalynTayone53 likes5.4K views6",
+        "link": "https://www.youtube.com/watch?v=4j7bEuLO9NM",
+        "score": 0.28225106
+      },
+      {
+        "title": "Counting numbers from 1 to 950 - Facebook",
+        "snippet": "142 is the number of planar graphs with 6 vertices. square in the Fibonacci sequence. 146 = 222 in base 8.",
+        "link": "https://www.facebook.com/groups/609715201325990/posts/1114107610886744",
+        "score": 0.27273628
+      },
+      {
+        "title": "Factor Chart",
+        "snippet": "Factor Chart Prime Numbers less than 200 All prime numbers, x, have only factors: 1 • x 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199 4 6 8 9 10 12 14 15 16 18 1 • 4 2 • 2 1 • 6 2 • 3 1 • 8 2 • 4 1 • 9 3 • 3 1 • 10 2 • 5 1 • 12 2 • 6 3 • 4 1 • 14 2 • 7 1 • 15 3 • 5 1 • 16 2 • 8 4 • 4 1 • 18 2 • 9 3 • 6 20 21 22 24 25 26 27 28 30 32 1 • 20 2 • 10 4 • 5 1 • 21 3 • 7 1 • 22 2 • 11 1 • 24 2 • 12 3 • 8 4 • 6 1 • 25 5 • 5 1 • 26 2 • 13 1 • 27 3 • 9 1 • 28 2 • 14 4 • 7 1 • 30 2 • 15 3 • 10 5 • 6 1 • 32 2 • 16 4 • 8 34 35 36 38 39 40 42 44 45 46 1 • 34 2 • 17 1 • 35 5 • 7 1 • 36 2 • 18 3 • 12 4 • 9 1 • 38 2 • 19 1 • 39 3 • 13 1 • 40 2 • 20 4 • 10 5 • 8 1 • 42 2 • 21 3 • 14 6 • 7 1 • 44 2 • 22 4 • 11 1 • 45 3 • 15 5 •",
+        "link": "https://pittsburgusd.net/documents/Employee-Essentials/Resources-for-Educators/Elementary-Teacher-Resources/Math-Files-K-5th-Grade/Factor-Chart_noprimes.pdf",
+        "score": 0.20606238
+      },
+      {
+        "title": "co678-rwl-noaa.txt",
+        "snippet": "... 93 NaN NaN NaN NaN NaN 1645 NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN NaN ... 111 181 NaN NaN NaN NaN NaN 1650 NaN NaN NaN NaN NaN NaN NaN NaN NaN",
+        "link": "https://www.ncei.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/co678-rwl-noaa.txt",
+        "score": 0.16004303
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.2,
+    "request_id": "fba04a2d-213c-47b9-8192-c8cc870a7667",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:what is the next number in the sequence 1014, 1020, 1032, 1050, 1104, 1224, 1230, 1290,": {
+    "provider": "tavily",
+    "query": "what is the next number in the sequence 1014, 1020, 1032, 1050, 1104, 1224, 1230, 1290,",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Can you please help me with sequence number and their pattern",
+        "snippet": "... 1014, 1023, 1032, 1041, 1050 ... 1 11 21 1211 111221 312211 13112221 What is logic of this sequence and what is the next number in it?",
+        "link": "https://www.facebook.com/groups/maththinkers/posts/1258259562583385",
+        "score": 0.53400564
+      },
+      {
+        "title": "[PDF] A7015 - OEIS",
+        "snippet": "... 1020, 1050, 1104, 1116, 1140, 1216, 1232,. 1240, 1274, 1332, 1392 ... To expand on your Sequence Number 1328, (n) = (n+2) = \"1, 4, 7, 8",
+        "link": "https://oeis.org/A007015/a007015.pdf",
+        "score": 0.50241756
+      },
+      {
+        "title": "What is the next number in the sequence: 10, 30, 150, 1050 ... - Filo",
+        "snippet": "So the missing term is 11,550. Step-By-Step Solution. Step 1. List the known terms in the sequence: 10, 30, 150, 1050,",
+        "link": "https://askfilo.com/user-question-answers-smart-solutions/what-is-the-next-number-in-the-sequence-10-30-150-1050-3336313238323933",
+        "score": 0.38567597
+      },
+      {
+        "title": "What would be next number in this sequence? : r/learnmath",
+        "snippet": "# What would be next number in this sequence? Skip to main contentWhat would be next number in this sequence? 100 50 25 17.5 _I am trying to solve this problem. Image 3: Thumbnail image: Get the ultimate college PC deal. My best guess is that 17.5 is a mistake in the question and was meant to be 12.5, and the intended answer is 8.75 since that's half of 17.5. Any number can be the next number. but the next number should be 12.5 not 17.5. Can you help me identify the pattern in the sequence. Unless we are given more information, any number can be placed as the \"next number\". Now given that this is a Highschool problem, it looks like the 17.5 is a typo. so 100 50 25 17.5 becomes (50-100) (25-50) (17.5-25) or -50 -25 -7.5, then do the same with that list so -50 -25 -7.5 becomes 25 17.5, then do the same with that list and you get -7.5.",
+        "link": "https://www.reddit.com/r/learnmath/comments/13qi0y1/what_would_be_next_number_in_this_sequence",
+        "score": 0.34052956
+      },
+      {
+        "title": "How to get the next number in this sequence: 1, 2, 5, 10, 20, 50",
+        "snippet": "It is clear then that the next number in the sequence is equal to the earlier number's amount, plus the integer of it's place in the sequence.",
+        "link": "https://www.quora.com/How-do-you-get-the-next-number-in-this-sequence-1-2-5-10-20-50",
+        "score": 0.24821557
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.52,
+    "request_id": "48e5fd30-69e3-4d0a-aeca-f3dee9f57a8b",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:maeqvalsrt qvcgilreel fqgdafhqsd thifiimgas gdlakkkiyp tiwwlfrdgl lpentfivgy arsrltvadi rkqsepffka tpeeklkled ff": {
+    "provider": "tavily",
+    "query": "MAEQVALSRT QVCGILREEL FQGDAFHQSD THIFIIMGAS GDLAKKKIYP TIWWLFRDGL LPENTFIVGY ARSRLTVADI RKQSEPFFKA TPEEKLKLED FF",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Final Fantasy XV Episode Duscae in 2026 - YouTube",
+        "snippet": "I am LIVE playing Final Fantasy XV Episode Duscae in 2026! We revisit this decade old demo of Final Fantasy XV in preparation for the game's",
+        "link": "https://www.youtube.com/watch?v=JSFJ8DUJb6Q",
+        "score": 0.25412512
+      },
+      {
+        "title": "Final Fantasy XV PLATINUM DEMO in 2026 - YouTube",
+        "snippet": "I am LIVE playing Final Fantasy XV Platinum Demo in 2026! We revisit this decade old demo of Final Fantasy XV in preparation for the game's",
+        "link": "https://www.youtube.com/watch?v=6SeiZ1pfK0o",
+        "score": 0.1952106
+      },
+      {
+        "title": "Final Fantasy 15: Rumored Release Date Revealed - IGN News",
+        "snippet": "Final Fantasy 15's release date may have been revealed ahead of the major announcement event happening later this month.",
+        "link": "https://www.youtube.com/watch?v=qBcjkeQfyUk",
+        "score": 0.19392508
+      },
+      {
+        "title": "FINAL FANTASY XV - 1/4/2026 - YouTube",
+        "snippet": "[Start Of The Track]-------------------------- Welcome to CSP Dreaw. My name is Dreaw, that likes to do random stuff, like making Youtube",
+        "link": "https://www.youtube.com/watch?v=WdKvxqIxak4",
+        "score": 0.16709661
+      },
+      {
+        "title": "FFTCG Organized Play 2026 – North America Details and Schedule | FF Trading Card Game",
+        "snippet": "2026 Competitive Season Events for North America will be structured by the following competitions. ### **North American Materia Cup 2026**. Materia Cup events will run from Mid-May throughout August. The top 1 player (champion) of each Materia Cup will qualify for Grade 2 invite to the World Championship 2026. The top 4 players of each Materia Cup will qualify for the North American Championship 2026. * [PR-224/12-112L] Selh'teus (*Materia Cups in May and June*) **OR**  [PR-225/12-116L] Locke (*Materia Cups in July and August*). [PR-222/27-028H] Seymour, [PR-223/18-121L] Fran,  [PR-224/12-112L] Selh'teus or [PR-225/12-116L] Locke,  [PR-226/16-116L] Tidus, \"Road to Worlds 2026\" Sleeve, Opus 28 Dreamlike Ocean Booster Display Box (Materia Cups up to August 1 & 2) OR Opus 29 Blissful Eternity Booster Display Box (Materia Cups on and after August 15 & 16), Materia Cup Playmat. The top 1 player of a Local Qualifiers tournament will qualify for North American Championship 2026. The top 4 players of North American Championship will qualify for Grade 1 invite to the World Championship 2026.",
+        "link": "https://fftcg.square-enix-games.com/na/news/fftcg-organized-play-2026-north-america-details-and-schedule",
+        "score": 0.1624999
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.97,
+    "request_id": "efaf5e63-accb-49cc-ab01-f61f2669641f",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:methyl 2-(4-(hydroxymethyl)phenyl)-1-methyl-8-(prop-2-yn-1 ylcarbamoyl)bicyclo[4.2.0]octa-2,4-diene-7-carboxyl": {
+    "provider": "tavily",
+    "query": "methyl 2-(4-(hydroxymethyl)phenyl)-1-methyl-8-(prop-2-yn-1 ylcarbamoyl)bicyclo[4.2.0]octa-2,4-diene-7-carboxyl",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "CA2478065A1 - Macrocyclic compounds useful as pharmaceuticals \n      - Google Patents",
+        "snippet": "# CA2478065A1 - Macrocyclic compounds useful as pharmaceuticals - Google Patents. | PCT/US2003/007377 WO2003076424A1 (en) | 2002-03-08 | 2003-03-07 | Macrocyclic compounds useful as pharmaceuticals |. | CA2478065A Expired - Lifetime CA2478065C (en) | 2002-03-08 | 2003-03-07 | Macrocyclic compounds useful as pharmaceuticals |. | CA2892332C (en) | 2004-05-21 | 2017-03-21 | President And Fellows Of Harvard College | Synthesis of tetracyclines and analogues thereof |. | CN103820562B (en) | 2005-08-01 | 2015-05-13 | 俄亥俄州立大学研究基金会 | MicroRNA-based methods and compositions for the diagnosis, prognosis and treatment of breast cancer |. | EP1969147B1 (en) | 2006-01-05 | 2014-07-30 | The Ohio State University Research Foundation | microRNA-based methods for the diagnosis of stomach cancer |. | ES2553442T3 (en) | 2006-01-05 | 2015-12-09 | The Ohio State University Research Foundation | Procedures based on microRNAs for the diagnosis, prognosis and treatment of lung cancer |. | WO2008094545A2 (en) | 2007-01-31 | 2008-08-07 | The Ohio State University Research Foundation | Mic orna-based methods and compositions for the treatment of acute myeloid leukemia |.",
+        "link": "https://patents.google.com/patent/CA2478065A1/en",
+        "score": 0.33980626
+      },
+      {
+        "title": "AM6538 | C26H25Cl2N5O4 | CID 46912833 - PubChem - NIH",
+        "snippet": "AM6538 | C26H25Cl2N5O4 | CID 46912833 - structure, chemical names, physical and chemical properties, classification, patents, literature,",
+        "link": "https://pubchem.ncbi.nlm.nih.gov/compound/am6538",
+        "score": 0.21133581
+      },
+      {
+        "title": "Ozmosi | Full Drug List",
+        "snippet": "Your session will expire due to inactivity in:. * [[11C]-Lu AF88370](/product/31261). * 15(S)-15-METHYL-PGD2. * [177Lu]Lu-DPI-4452](/product/29062). * [[177Lu]Lu-NeoB](/product/31263). * [[177Lu]Lu-XT033 Injection](/product/31555). * [[18F] SPAL-T-06](/product/29455). * 2-(5-fluoro-pentyl)-2-methyl-malonic-acid. * [(5E)-1-(4-FLUOROPHENYL)-5-[(5-METHYLTHIOPHEN-2-YL)METHYLIDENE]-2-SULFANYLIDENE-13-DIAZINANE-46-DIONE](/product/8608). * antibiotics in combination with other drugs. * anti-CD19-CAR-T cells. * aPD1-MSLN-CAR T cells. * B7-H3 Antibody Drug Conjugate. * barbiturates in combination with other drugs. * BAT CAR-T - Dynamic Cell Therapies. * B-cell lymphoma - In vivo autologous CAR-T reprogramming. * BCMA CAR-T - Chongqing Precision Biotech. * BCMA CAR-T - Hebei Senlang Biotechnology. * BCMA CAR-T - Orbital Tx. * BCMA/CD19 CAR-T - Hrain Biotechnology. * Beijing Zhifei Lvzhu Hib conjugate Vaccine. * Beijing Zhifei Lvzhu Shigella sonnei bivalent, conjugate Vaccine. * T-cell Immunotherapy Platform - Sift Bio. * Technetium tc-99m albumin aggregated kit. * Technetium tc-99m albumin colloid kit. * Technetium tc-99m albumin kit. * Technetium tc-99m albumin microspheres kit. * Technetium tc-99m red blood cell kit. * Thesian Bio in-vivo CAR-T therapy. * Yake Biotechnology - CD19-BCMA CAR-T.",
+        "link": "https://pryzm.ozmosi.com/drug-list",
+        "score": 0.1366893
+      },
+      {
+        "title": "Drug List Flashcards | Quizlet",
+        "snippet": "Trade Name: Gaviscon, Rolaids, etc. ... Classification based on use: Anti- emetic/drying of secretion agent (used as a pre-op or post-op med). ... The best way to",
+        "link": "https://quizlet.com/ca/1046883189/drug-list-flash-cards",
+        "score": 0.13510676
+      },
+      {
+        "title": "AM6538 | Ligand page | IUPHAR/BPS Guide to PHARMACOLOGY",
+        "snippet": "#### AM6538   Click here for help \"Click here for help\"). | **Synonyms:** 4-(4-(1-(2,4-dichlorophenyl)-4-methyl-3-(piperidin-1-ylcarbamoyl)-1 H-pyrazol-5- yl)phenyl)but-3-ynyl nitrate [2 Novel hetero pyrrole analogs acting on cannapinoid receptors. Click here for help Ligand Activity Visualisation Charts These are box plot that provide a unique visualisation, summarising all the activity data for a ligand taken from ChEMBL and GtoPdb across multiple targets and species. ✖  View interactive charts of activity data across species  **AM6538** is commercially available from our sponsors | |  | | --- | | 2D Structure  Click here for help 2D Structure An image of the ligand's 2D structure. 2017, doi:10.1186/s13321-017-0220-4; ) | | SMILES / InChI / InChIKey  Click here for help SMILES / InChI / InChIKey **SMILES** (Simplified Molecular Input Line Entry Specification) A specification for unambiguously describing the structure of chemical molecules using short ASCII strings. | Synonyms Click here for help \"Click here for help\") |. | Database Links Click here for help \"Click here for help\") |.",
+        "link": "https://www.guidetopharmacology.org/GRAC/LigandDisplayForward?ligandId=9338",
+        "score": 0.13245869
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.99,
+    "request_id": "d15b98e5-13c5-4acc-869a-6bfb67485083",
+    "from_cache": false
   }
 }

@@ -4,8 +4,8 @@
 |---|---|---:|---:|---:|---:|---:|
 | Qwen/Qwen2.5-7B-Instruct | direct | 0.0551 | 105 / 1904 | -- | -- | -- |
 | Qwen/Qwen2.5-7B-Instruct | feedback | 0.0362 | 69 / 1904 | 21 | 57 | -36 |
-| Qwen/Qwen2.5-7B-Instruct | tool | 0.1100 | 22 / 200 | 6 | 0 | +6 |
-| Qwen/Qwen2.5-7B-Instruct | tool_search | 0.0572 | 109 / 1904 | 4 | 0 | +4 |
+| Qwen/Qwen2.5-7B-Instruct | tool | 0.0604 | 115 / 1904 | 10 | 0 | +10 |
+| Qwen/Qwen2.5-7B-Instruct | tool_search | 0.0609 | 116 / 1904 | 11 | 0 | +11 |
 | Qwen/Qwen2.5-7B-Instruct | oracle_feedback | 0.1192 | 227 / 1904 | 122 | 0 | +122 |
 | Qwen/Qwen2.5-7B-Instruct | oracle_tool | 0.1176 | 224 / 1904 | 121 | 2 | +119 |
 
