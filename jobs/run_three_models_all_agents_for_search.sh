@@ -39,12 +39,12 @@ MODEL_TAGS=(
 )
 
 AGENTS=(
-#  "direct"
-#  "feedback"
-#  "tool"
-  "tool_search"
-#  "oracle_feedback"
-#  "oracle_tool"
+  "direct"
+  "feedback"
+  "tool"
+#  "tool_search"
+  "oracle_feedback"
+  "oracle_tool"
 )
 
 # All experiment parameters are intentionally fixed here.
@@ -377,7 +377,7 @@ for i in "${!MODELS[@]}"; do
     run_one_agent "${model_name}" "${model_tag}" "${agent}"
   done
 
-  write_model_summary "${model_name}" "${model_tag}"
+#  write_model_summary "${model_name}" "${model_tag}"
 done
 
 write_overall_summary
