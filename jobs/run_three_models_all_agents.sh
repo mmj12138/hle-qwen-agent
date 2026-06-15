@@ -27,24 +27,24 @@ cd "${PROJECT_ROOT}"
 # Experiment configuration
 # ----------------------------
 MODELS=(
-#  "Qwen/Qwen3.5-0.8B"
-  "Qwen/Qwen2.5-7B-Instruct"
+  "Qwen/Qwen3.5-0.8B"
+#  "Qwen/Qwen2.5-7B-Instruct"
 #  "Qwen/Qwen3.5-27B"
 )
 
 MODEL_TAGS=(
-#  "qwen35_08b"
-  "qwen25_7b"
+  "qwen35_08b"
+#  "qwen25_7b"
 #  "qwen35_27b"
 )
 
 AGENTS=(
-#  "direct"
-#  "feedback"
+  "direct"
+  "feedback"
   "tool"
   "tool_search"
-#  "oracle_feedback"
-#  "oracle_tool"
+  "oracle_feedback"
+  "oracle_tool"
 )
 
 # All experiment parameters are intentionally fixed here.
