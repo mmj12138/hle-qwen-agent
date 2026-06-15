@@ -443,8 +443,44 @@ def _is_multiple_choice(answer_type: str) -> bool:
 
 
 def _parse_router_output(text: str) -> Dict[str, Any]:
+    """Parse router output using several increasingly tolerant formats.
+
+    Supported formats:
+
+    1. Preferred three-line format:
+       USE_SEARCH: YES
+       SEARCH_QUERY: Kant Critique of Judgment purposiveness
+       REASON: This requires a specific external fact.
+
+    2. Short format:
+       YES
+       Kant Critique of Judgment purposiveness
+       REASON: This requires external knowledge.
+
+    3. Short NO format:
+       NO
+       REASON: This can be solved without web search.
+
+    4. Strict or partially malformed JSON:
+       {
+           "use_search": true,
+           "search_query": "...",
+           "reason": "..."
+       }
+    """
     raw = str(text or "").strip()
 
+    if not raw:
+        return {
+            "use_search": False,
+            "search_query": "",
+            "reason": "empty_router_output",
+            "_parser": "empty",
+        }
+
+    # ------------------------------------------------------------
+    # 1. Preferred explicit line format
+    # ------------------------------------------------------------
     use_match = re.search(
         r"(?im)^\s*USE_SEARCH\s*:\s*(YES|NO|TRUE|FALSE|1|0)\s*$",
         raw,
@@ -459,49 +495,205 @@ def _parse_router_output(text: str) -> Dict[str, Any]:
     )
 
     if use_match:
+        use_search = _coerce_bool(use_match.group(1))
+        search_query = (
+            query_match.group(1).strip()
+            if query_match
+            else ""
+        )
+        reason = (
+            reason_match.group(1).strip()
+            if reason_match
+            else ""
+        )
+
         return {
-            "use_search": _coerce_bool(use_match.group(1)),
-            "search_query": query_match.group(1).strip() if query_match else "",
-            "reason": reason_match.group(1).strip() if reason_match else "",
+            "use_search": use_search,
+            "search_query": search_query if use_search else "",
+            "reason": reason or "parsed_from_line_format",
             "_parser": "line_format",
         }
 
-    parsed_json = _extract_json_object(raw)
-    if parsed_json is not None:
-        parsed_json["_parser"] = "strict_json"
-        return parsed_json
+    # ------------------------------------------------------------
+    # 2. Short line format
+    #
+    # Examples:
+    #
+    # YES
+    # Kant Critique of Judgment purposiveness
+    # REASON: Requires external textual evidence.
+    #
+    # or:
+    #
+    # YES
+    # SEARCH_QUERY: Kant Critique of Judgment
+    # REASON: Requires external textual evidence.
+    #
+    # or:
+    #
+    # NO
+    # REASON: This is a computational problem.
+    # ------------------------------------------------------------
+    first_line_match = re.match(
+        r"(?is)^\s*(YES|NO|TRUE|FALSE|1|0)\s*(?:\n|$)",
+        raw,
+    )
 
+    if first_line_match:
+        use_search = _coerce_bool(first_line_match.group(1))
+
+        short_query_match = re.search(
+            r"(?im)^\s*SEARCH_QUERY\s*:\s*(.*?)\s*$",
+            raw,
+        )
+        short_reason_match = re.search(
+            r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
+            raw,
+        )
+
+        search_query = (
+            short_query_match.group(1).strip()
+            if short_query_match
+            else ""
+        )
+
+        # Some models output:
+        #
+        # YES
+        # actual search query
+        # REASON: ...
+        #
+        # Recover the second non-empty line as the query.
+        if use_search and not search_query:
+            lines = [
+                line.strip()
+                for line in raw.splitlines()
+                if line.strip()
+            ]
+
+            if len(lines) >= 2:
+                second_line = lines[1]
+
+                if not re.match(
+                    r"(?i)^(REASON|USE_SEARCH|SEARCH_QUERY)\s*:",
+                    second_line,
+                ):
+                    search_query = second_line
+
+        reason = (
+            short_reason_match.group(1).strip()
+            if short_reason_match
+            else "recovered_from_short_format"
+        )
+
+        return {
+            "use_search": use_search,
+            "search_query": search_query if use_search else "",
+            "reason": reason,
+            "_parser": "short_line_recovery",
+        }
+
+    # ------------------------------------------------------------
+    # 3. Strict JSON
+    # ------------------------------------------------------------
+    parsed_json = _extract_json_object(raw)
+
+    if parsed_json is not None:
+        use_search = _coerce_bool(
+            parsed_json.get("use_search", False)
+        )
+        search_query = str(
+            parsed_json.get("search_query", "")
+        ).strip()
+        reason = str(
+            parsed_json.get("reason", "")
+        ).strip()
+
+        return {
+            "use_search": use_search,
+            "search_query": search_query if use_search else "",
+            "reason": reason or "parsed_from_json",
+            "_parser": "strict_json",
+        }
+
+    # ------------------------------------------------------------
+    # 4. Recover fields from incomplete or invalid JSON
+    #
+    # Handles:
+    # - missing closing brace;
+    # - invalid LaTeX backslash escapes;
+    # - extra text before/after the JSON;
+    # - partially generated JSON.
+    # ------------------------------------------------------------
     bool_match = re.search(
-        r'(?is)["\']?use_search["\']?\s*:\s*(true|false|yes|no|1|0)',
+        r'''(?is)
+        ["']?use_search["']?
+        \s*:\s*
+        (true|false|yes|no|1|0)
+        ''',
         raw,
+        flags=re.VERBOSE,
     )
+
     json_query_match = re.search(
-        r'(?is)["\']?search_query["\']?\s*:\s*["\'](.*?)(?<!\\)["\']'
-        r'(?=\s*[,}\n]|$)',
+        r'''(?is)
+        ["']?search_query["']?
+        \s*:\s*
+        ["'](.*?)(?<!\\)["']
+        (?=\s*[,}\n]|$)
+        ''',
         raw,
+        flags=re.VERBOSE,
     )
+
     json_reason_match = re.search(
-        r'(?is)["\']?reason["\']?\s*:\s*["\'](.*?)(?<!\\)["\']'
-        r'(?=\s*,\s*["\']?search_query|\s*}\s*$)',
+        r'''(?is)
+        ["']?reason["']?
+        \s*:\s*
+        ["'](.*?)(?<!\\)["']
+        (?=
+            \s*,\s*["']?search_query
+            |
+            \s*}\s*$
+            |
+            \s*$
+        )
+        ''',
         raw,
+        flags=re.VERBOSE,
     )
 
     if bool_match:
+        use_search = _coerce_bool(bool_match.group(1))
+
+        search_query = (
+            _unescape_router_text(
+                json_query_match.group(1)
+            )
+            if json_query_match
+            else ""
+        )
+
+        reason = (
+            _unescape_router_text(
+                json_reason_match.group(1)
+            )
+            if json_reason_match
+            else "recovered_from_malformed_router_output"
+        )
+
         return {
-            "use_search": _coerce_bool(bool_match.group(1)),
-            "search_query": (
-                _unescape_router_text(json_query_match.group(1))
-                if json_query_match
-                else ""
-            ),
-            "reason": (
-                _unescape_router_text(json_reason_match.group(1))
-                if json_reason_match
-                else "recovered_from_malformed_router_output"
-            ),
+            "use_search": use_search,
+            "search_query": search_query if use_search else "",
+            "reason": reason,
             "_parser": "regex_recovery",
         }
 
+    # ------------------------------------------------------------
+    # 5. Final conservative fallback
+    #
+    # Unrecognized output does not spend a Tavily credit.
+    # ------------------------------------------------------------
     return {
         "use_search": False,
         "search_query": "",

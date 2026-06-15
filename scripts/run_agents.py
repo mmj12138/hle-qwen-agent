@@ -122,6 +122,23 @@ def main():
                     answer_type=ex["answer_type"],
                     gold_answer=ex["answer"],
                 )
+
+            elif args.agent == "oracle_tool":
+                result = agent.run(
+                    llm,
+                    question=question,
+                    answer_type=ex["answer_type"],
+                    gold_answer=ex["answer"],
+                )
+
+            elif args.agent == "tool_search":
+                result = agent.run(
+                    llm,
+                    question=question,
+                    answer_type=ex["answer_type"],
+                    category=ex["category"],
+                )
+
             else:
                 result = agent.run(
                     llm,
