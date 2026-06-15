@@ -15,6 +15,7 @@ from src.tools import (
     run_tools,
     rule_based_tool_plan,
     extract_recommended_final_answer,
+    has_real_tool,
 )
 from src.python_executor import (
     PythonExecutor,
@@ -40,19 +41,18 @@ class ToolAgent:
         self.max_iterations = max_iterations
         self.python_executor = PythonExecutor()
 
-    def run(
-        self,
-        llm,
-        question: str,
-        answer_type: str = "",
+    def prepare_tool_context(
+            self,
+            question: str,
+            answer_type: str = "",
     ) -> Dict[str, Any]:
-        # ----------------------------------------------------------
-        # 1. Existing deterministic rule-based tools
-        # ----------------------------------------------------------
+        """Run deterministic tools and return reusable tool context."""
+
         plan = rule_based_tool_plan(
             question,
             answer_type=answer_type,
         )
+
         tools = plan.get("tools", [])
         if isinstance(tools, str):
             tools = [tools]
@@ -66,9 +66,70 @@ class ToolAgent:
             if tools
             else {}
         )
+
         recommended_answer = extract_recommended_final_answer(
             tool_results
         )
+        recommended_answer = str(
+            recommended_answer or ""
+        ).strip()
+
+        real_tool_used = has_real_tool(plan)
+
+        weak_hint_markers = (
+            "use this as a hint only",
+            "no exact controlled math template matched",
+            "no exact controlled template matched",
+            "no supported exact",
+            "no recommended final answer",
+            "no text provided",
+            "no expression provided",
+        )
+
+        non_format_results = [
+            str(value).lower()
+            for key, value in tool_results.items()
+            if key != "answer_format_hint"
+        ]
+
+        weak_hints_only = bool(non_format_results) and all(
+            any(
+                marker in result
+                for marker in weak_hint_markers
+            )
+            for result in non_format_results
+        )
+
+        if weak_hints_only:
+            real_tool_used = False
+
+        return {
+            "plan": plan,
+            "tools": tools,
+            "tool_results": tool_results,
+            "recommended_answer": recommended_answer,
+            "real_tool_used": real_tool_used,
+            "weak_hints_only": weak_hints_only,
+        }
+
+    def run(
+        self,
+        llm,
+        question: str,
+        answer_type: str = "",
+    ) -> Dict[str, Any]:
+        # ----------------------------------------------------------
+        # 1. Existing deterministic rule-based tools
+        # ----------------------------------------------------------
+        context = self.prepare_tool_context(
+            question=question,
+            answer_type=answer_type,
+        )
+
+        plan = context["plan"]
+        tools = context["tools"]
+        tool_results = context["tool_results"]
+        recommended_answer = context["recommended_answer"]
 
         trace: Dict[str, Any] = {
             "planner_type": "rule_based_then_python",

