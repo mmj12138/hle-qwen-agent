@@ -4,6 +4,9 @@ import ast
 import math
 import operator
 import re
+from functools import lru_cache
+from itertools import combinations
+from collections import deque
 from ipaddress import IPv4Address, IPv4Network, summarize_address_range
 from typing import Any, Dict, List, Tuple
 
@@ -806,6 +809,439 @@ def _solve_multi_knapsack_unique(values: List[int], weights: List[int], capaciti
     return max(dp.values()) if dp else 0
 
 
+
+
+# ============================================================
+# General deterministic tools
+# ============================================================
+
+def number_theory_tool(question: str) -> str:
+    """Handle explicit factorization and base-palindrome prime searches."""
+    q = question.replace(",", "")
+
+    m = re.search(
+        r"largest\s+prime\s+divisor\s+of\s+(\d+)",
+        q,
+        flags=re.IGNORECASE,
+    )
+    if m:
+        n = int(m.group(1))
+        if n < 2:
+            return _weak_tool_result("number_theory_tool", "invalid integer")
+        factors = _factor_integer(n)
+        answer = max(factors)
+        return (
+            "number_theory_tool result:\n"
+            f"- factorization: {factors}\n"
+            f"- Recommended final answer: {answer}"
+        )
+
+    m = re.search(
+        r"largest\s+prime.*?written\s+in\s+base\s+(\d+).*?"
+        r"(?:a|an)\s+([a-z]+|\d+)[- ]digit\s+palindrome",
+        q,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if m:
+        base = int(m.group(1))
+        digit_words = {
+            "one": 1, "two": 2, "three": 3, "four": 4, "five": 5,
+            "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+            "eleven": 11, "twelve": 12,
+        }
+        raw_digits = m.group(2).lower()
+        digits = int(raw_digits) if raw_digits.isdigit() else digit_words.get(raw_digits, 0)
+        if not (2 <= base <= 36 and 1 <= digits <= 12):
+            return _weak_tool_result("number_theory_tool", "unsupported base/digit range")
+        answer = _largest_prime_base_palindrome(base, digits)
+        if answer is not None:
+            return (
+                "number_theory_tool result:\n"
+                f"- base: {base}\n"
+                f"- palindrome digits: {digits}\n"
+                f"- Recommended final answer: {answer}"
+            )
+
+    return _weak_tool_result("number_theory_tool", "no supported exact pattern")
+
+
+def _factor_integer(n: int) -> Dict[int, int]:
+    factors: Dict[int, int] = {}
+    while n % 2 == 0:
+        factors[2] = factors.get(2, 0) + 1
+        n //= 2
+    divisor = 3
+    while divisor * divisor <= n:
+        while n % divisor == 0:
+            factors[divisor] = factors.get(divisor, 0) + 1
+            n //= divisor
+        divisor += 2
+    if n > 1:
+        factors[n] = factors.get(n, 0) + 1
+    return factors
+
+
+def _is_prime_64(n: int) -> bool:
+    if n < 2:
+        return False
+    small_primes = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+    for p in small_primes:
+        if n == p:
+            return True
+        if n % p == 0:
+            return False
+
+    d = n - 1
+    s = 0
+    while d % 2 == 0:
+        s += 1
+        d //= 2
+
+    # Deterministic Miller-Rabin bases for unsigned 64-bit integers.
+    for a in (2, 325, 9375, 28178, 450775, 9780504, 1795265022):
+        if a % n == 0:
+            continue
+        x = pow(a, d, n)
+        if x in (1, n - 1):
+            continue
+        for _ in range(s - 1):
+            x = (x * x) % n
+            if x == n - 1:
+                break
+        else:
+            return False
+    return True
+
+
+def _largest_prime_base_palindrome(base: int, digits: int) -> int | None:
+    half = (digits + 1) // 2
+    low = base ** (half - 1)
+    high = base ** half - 1
+
+    for prefix in range(high, low - 1, -1):
+        prefix_digits = _int_to_base_digits(prefix, base, half)
+        if digits % 2:
+            full_digits = prefix_digits + prefix_digits[-2::-1]
+        else:
+            full_digits = prefix_digits + prefix_digits[::-1]
+        value = 0
+        for digit in full_digits:
+            value = value * base + digit
+        if _is_prime_64(value):
+            return value
+    return None
+
+
+def _int_to_base_digits(value: int, base: int, width: int) -> List[int]:
+    digits = [0] * width
+    for i in range(width - 1, -1, -1):
+        digits[i] = value % base
+        value //= base
+    return digits
+
+
+def pattern_waiting_time_tool(question: str) -> str:
+    """Expected waiting time for a fixed pattern in an iid uniform alphabet."""
+    q = question
+    if not re.search(r"expected\s+time\s+until", q, re.IGNORECASE):
+        return _weak_tool_result("pattern_waiting_time_tool", "not a waiting-time question")
+
+    quoted = re.findall(r'["“]([^"”]+)["”]', q)
+    if not quoted:
+        return _weak_tool_result("pattern_waiting_time_tool", "no quoted pattern")
+    pattern = quoted[-1].strip()
+
+    alphabet_size = None
+    if re.search(r"random\s+english\s+letter", q, re.IGNORECASE):
+        alphabet_size = 26
+    m = re.search(r"each\s+with\s+probability\s+1\s*/\s*(\d+)", q, re.IGNORECASE)
+    if m:
+        alphabet_size = int(m.group(1))
+    m = re.search(r"fair\s+(\d+)[- ]sided\s+(?:die|dice)", q, re.IGNORECASE)
+    if m:
+        alphabet_size = int(m.group(1))
+
+    if alphabet_size is None or alphabet_size < 2:
+        return _weak_tool_result("pattern_waiting_time_tool", "uniform alphabet size unavailable")
+
+    borders = [
+        k for k in range(1, len(pattern) + 1)
+        if pattern[:k] == pattern[len(pattern) - k:]
+    ]
+    answer = sum(alphabet_size ** k for k in borders)
+    return (
+        "pattern_waiting_time_tool result:\n"
+        f"- pattern: {pattern}\n"
+        f"- alphabet size: {alphabet_size}\n"
+        f"- border lengths: {borders}\n"
+        f"- Recommended final answer: {answer}"
+    )
+
+
+def generic_tiling_tool(question: str) -> str:
+    """Count tilings of a small 2 x n board using listed rectangles, rotations allowed."""
+    q = question
+    if not re.search(r"\btil(?:e|ing)", q, re.IGNORECASE):
+        return _weak_tool_result("generic_tiling_tool", "not a tiling question")
+
+    target_matches = re.findall(r"T[_\{]?\s*(\d+)\}?", q, flags=re.IGNORECASE)
+    if not target_matches:
+        return _weak_tool_result("generic_tiling_tool", "target T_n unavailable")
+    n = int(target_matches[-1])
+    if not (0 <= n <= 12):
+        return _weak_tool_result("generic_tiling_tool", "board width outside safe range")
+
+    normalized = q.replace("\\times", "x").replace("×", "x")
+    dims = [
+        (int(a), int(b))
+        for a, b in re.findall(r"(\d+)\s*x\s*(\d+)", normalized, re.IGNORECASE)
+    ]
+    # The board is written as 2 x n in the supported template, so all
+    # explicit numeric dimensions belong to the listed tile set.
+    tile_dims = list(dict.fromkeys(dims))
+    if not tile_dims:
+        return _weak_tool_result("generic_tiling_tool", "tile dimensions unavailable")
+
+    answer = _count_rectangle_tilings(height=2, width=n, rectangles=tile_dims)
+    return (
+        "generic_tiling_tool result:\n"
+        f"- board: 2 x {n}\n"
+        f"- rectangles: {tile_dims} (rotations allowed when they fit)\n"
+        f"- Recommended final answer: {answer}"
+    )
+
+
+def _count_rectangle_tilings(height: int, width: int, rectangles: List[Tuple[int, int]]) -> int:
+    orientations = set()
+    for a, b in rectangles:
+        for h, w in ((a, b), (b, a)):
+            if 1 <= h <= height and 1 <= w <= width:
+                orientations.add((h, w))
+    full_mask = (1 << (height * width)) - 1
+
+    @lru_cache(maxsize=None)
+    def dp(mask: int) -> int:
+        if mask == full_mask:
+            return 1
+        first = next(i for i in range(height * width) if not (mask >> i) & 1)
+        row, col = divmod(first, width)
+        total = 0
+        for h, w in orientations:
+            if row + h > height or col + w > width:
+                continue
+            cells = [(row + dr) * width + (col + dc) for dr in range(h) for dc in range(w)]
+            if any((mask >> cell) & 1 for cell in cells):
+                continue
+            new_mask = mask
+            for cell in cells:
+                new_mask |= 1 << cell
+            total += dp(new_mask)
+        return total
+
+    return dp(0)
+
+
+def toroidal_queens_tool(question: str) -> str:
+    m = re.search(r"(\d+)\s*x\s*(\d+)\s+toroidal\s+chessboard", question, re.IGNORECASE)
+    qn = re.search(r"place\s+(\d+)\s+non-attacking\s+queens", question, re.IGNORECASE)
+    if not (m and qn):
+        return _weak_tool_result("toroidal_queens_tool", "no supported toroidal-queens pattern")
+    rows, cols, k = int(m.group(1)), int(m.group(2)), int(qn.group(1))
+    if rows != cols or rows > 9 or k > rows:
+        return _weak_tool_result("toroidal_queens_tool", "unsupported board size")
+    n = rows
+    count = 0
+
+    def backtrack(row: int, placed: int, used_cols: set, diag1: set, diag2: set):
+        nonlocal count
+        if placed == k:
+            count += 1
+            return
+        if row == n or placed + (n - row) < k:
+            return
+        backtrack(row + 1, placed, used_cols, diag1, diag2)
+        for col in range(n):
+            d1 = (row - col) % n
+            d2 = (row + col) % n
+            if col in used_cols or d1 in diag1 or d2 in diag2:
+                continue
+            backtrack(row + 1, placed + 1, used_cols | {col}, diag1 | {d1}, diag2 | {d2})
+
+    backtrack(0, 0, set(), set(), set())
+    return (
+        "toroidal_queens_tool result:\n"
+        f"- board: {n} x {n} toroidal\n"
+        f"- queens: {k}\n"
+        f"- Recommended final answer: {count}"
+    )
+
+
+def hypercube_shortest_path_tool(question: str) -> str:
+    dm = re.search(r"(\d+)[- ]dimensional", question, re.IGNORECASE)
+    nm = re.search(r"side\s+length\s+[^=]*=\s*(\d+)", question, re.IGNORECASE)
+    cm = re.search(r"changes\s+exactly\s+(\d+)\s+coordinates", question, re.IGNORECASE)
+    if not (dm and nm and cm and "modulo" in question.lower()):
+        return _weak_tool_result("hypercube_shortest_path_tool", "no supported finite hypercube pattern")
+    d, n, changed = int(dm.group(1)), int(nm.group(1)), int(cm.group(1))
+    if n ** d > 100000 or not (1 <= changed <= d):
+        return _weak_tool_result("hypercube_shortest_path_tool", "state space outside safe range")
+    start = (0,) * d
+    target = (n - 1,) * d
+    queue = deque([(start, 0)])
+    seen = {start}
+    while queue:
+        state, dist = queue.popleft()
+        if state == target:
+            return (
+                "hypercube_shortest_path_tool result:\n"
+                f"- dimension: {d}, side length: {n}, changed coordinates: {changed}\n"
+                f"- Recommended final answer: {dist}"
+            )
+        for coords in combinations(range(d), changed):
+            for signs in range(1 << changed):
+                nxt = list(state)
+                for pos, coord in enumerate(coords):
+                    delta = 1 if (signs >> pos) & 1 else -1
+                    nxt[coord] = (nxt[coord] + delta) % n
+                nxt = tuple(nxt)
+                if nxt not in seen:
+                    seen.add(nxt)
+                    queue.append((nxt, dist + 1))
+    return _weak_tool_result("hypercube_shortest_path_tool", "target unreachable")
+
+
+def switch_dynamics_tool(question: str) -> str:
+    if "influence set" not in question.lower() or "expected value" not in question.lower():
+        return _weak_tool_result("switch_dynamics_tool", "no supported switch-dynamics pattern")
+    entries = re.findall(
+        r"Person\s+(\d+)'s\s+influence\s+set:\s*\{([^}]*)\}",
+        question,
+        flags=re.IGNORECASE,
+    )
+    if not entries:
+        return _weak_tool_result("switch_dynamics_tool", "influence sets unavailable")
+    n = max(int(person) for person, _ in entries)
+    if n > 16:
+        return _weak_tool_result("switch_dynamics_tool", "state space outside safe range")
+    influence = [[] for _ in range(n)]
+    for person, raw in entries:
+        influence[int(person) - 1] = [int(x) - 1 for x in re.findall(r"\d+", raw)]
+
+    total = 0
+    for initial in range(1 << n):
+        state = initial
+        rounds = 0
+        while True:
+            rounds += 1
+            for person in range(n - 1, -1, -1):
+                if (state >> person) & 1:
+                    for target in influence[person]:
+                        state ^= 1 << target
+            if state == initial:
+                total += rounds
+                break
+            if rounds > (1 << n) + 1:
+                return _weak_tool_result("switch_dynamics_tool", "non-returning state detected")
+    answer = total / (1 << n)
+    formatted = f"{answer:.2f}"
+    return (
+        "switch_dynamics_tool result:\n"
+        f"- states enumerated: {1 << n}\n"
+        f"- Recommended final answer: {formatted}"
+    )
+
+
+def combinatorics_count_tool(question: str) -> str:
+    """Exact counting for a small set of structurally recognized families."""
+    q = question.lower()
+
+    m = None
+    if "partition" in q and "n$-element set" in q and "weak order" in q:
+        m = re.search(r"a_\{(\d+)\}", q)
+    if m:
+        n = int(m.group(1))
+        if 0 <= n <= 50:
+            answer = _count_partitions_with_weak_ordered_blocks(n)
+            return (
+                "combinatorics_count_tool result:\n"
+                "- family: set partitions with a weak order on every block\n"
+                f"- n: {n}\n"
+                f"- Recommended final answer: {answer}"
+            )
+
+    m = re.search(
+        r"pair\s+the\s+natural\s+numbers\s+from\s+1\s+to\s+n.*?"
+        r"what\s+is\s+a\((\d+)\)",
+        q,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if m and "y_i" in question and "all different" in q:
+        n = int(m.group(1))
+        if 1 <= n <= 10:
+            answer = _count_distinct_sum_difference_pairings(n)
+            return (
+                "combinatorics_count_tool result:\n"
+                "- family: permutation pairing with distinct y_i+i and y_i-i values\n"
+                f"- n: {n}\n"
+                f"- Recommended final answer: {answer}"
+            )
+
+    return _weak_tool_result("combinatorics_count_tool", "no supported exact family")
+
+
+def _ordered_bell_number(n: int) -> int:
+    # Fubini number: sum_k k! S(n,k).
+    stirling = [[0] * (n + 1) for _ in range(n + 1)]
+    stirling[0][0] = 1
+    for i in range(1, n + 1):
+        for k in range(1, i + 1):
+            stirling[i][k] = stirling[i - 1][k - 1] + k * stirling[i - 1][k]
+    return sum(math.factorial(k) * stirling[n][k] for k in range(1, n + 1))
+
+
+def _count_partitions_with_weak_ordered_blocks(n: int) -> int:
+    # Labeled SET construction recurrence.
+    weak_orders = [1] + [_ordered_bell_number(k) for k in range(1, n + 1)]
+    counts = [0] * (n + 1)
+    counts[0] = 1
+    for m in range(1, n + 1):
+        counts[m] = sum(
+            math.comb(m - 1, k - 1) * weak_orders[k] * counts[m - k]
+            for k in range(1, m + 1)
+        )
+    return counts[n]
+
+
+def _count_distinct_sum_difference_pairings(n: int) -> int:
+    import itertools
+
+    values = range(n + 1, 2 * n + 1)
+    count = 0
+    for permutation in itertools.permutations(values):
+        seen = set()
+        valid = True
+        for i, y in enumerate(permutation, start=1):
+            plus = y + i
+            minus = y - i
+            if plus == minus or plus in seen or minus in seen:
+                valid = False
+                break
+            seen.add(plus)
+            seen.add(minus)
+        if valid:
+            count += 1
+    return count
+
+
+def _weak_tool_result(name: str, reason: str) -> str:
+    return (
+        f"{name} result:\n"
+        f"- {reason}.\n"
+        "- No recommended final answer.\n"
+        "- Use this as a hint only; solve normally."
+    )
+
+
 # ============================================================
 # Planner / runner helpers
 # ============================================================
@@ -851,6 +1287,39 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
         tools.append("knapsack_solver")
         return {"tools": tools}
 
+    if re.search(r"largest\s+prime\s+divisor\s+of\s+\d+", q):
+        return {"tools": ["number_theory_tool"]}
+
+    if (
+        "largest prime" in q
+        and "written in base" in q
+        and "palindrome" in q
+    ):
+        return {"tools": ["number_theory_tool"]}
+
+    if "expected time until" in q and ("uniform probability" in q or "random english letter" in q):
+        return {"tools": ["pattern_waiting_time_tool"]}
+
+    if "influence set" in q and "expected value" in q and "switch" in q:
+        return {"tools": ["switch_dynamics_tool"]}
+
+    if (
+        "partition" in q
+        and "weak order" in q
+        and re.search(r"a_\{\d+\}", q)
+    ):
+        return {"tools": ["combinatorics_count_tool"]}
+
+    if (
+        "pair the natural numbers" in q
+        and "all different" in q
+        and re.search(r"a\(\d+\)", q)
+    ):
+        return {"tools": ["combinatorics_count_tool"]}
+
+    if "tiling" in q or "tile" in q:
+        return {"tools": ["generic_tiling_tool"]}
+
     integer_keywords = [
         "perfect square",
         "perfect cube",
@@ -861,14 +1330,18 @@ def rule_based_tool_plan(question: str, answer_type: str = "") -> Dict[str, Any]
         "diophantine",
         "sum of five squares",
         "sum of 5 squares",
-        "modulo",
-        "divisible by",
-        "remainder",
     ]
     if any(k in q for k in integer_keywords):
         tools.append("integer_search")
         tools.append("controlled_math_tool")
         return {"tools": tools}
+
+    explicit_modular_request = (
+        re.search(r"(?:find|count|how many).*?(?:integers?|numbers?).*?(?:modulo|divisible by|remainder)", q, re.DOTALL)
+        or re.search(r"(?:integers?|numbers?)\s+x.*?(?:modulo|divisible by|remainder)", q, re.DOTALL)
+    )
+    if explicit_modular_request:
+        return {"tools": ["integer_search", "controlled_math_tool"]}
 
     controlled_math_keywords = [
         "gcd",
@@ -900,6 +1373,13 @@ def has_real_tool(plan: Dict[str, Any]) -> bool:
         "integer_search",
         "knapsack_solver",
         "controlled_math_tool",
+        "number_theory_tool",
+        "pattern_waiting_time_tool",
+        "generic_tiling_tool",
+        "toroidal_queens_tool",
+        "hypercube_shortest_path_tool",
+        "switch_dynamics_tool",
+        "combinatorics_count_tool",
     }
     return any(t in real_tools for t in tools)
 
@@ -940,6 +1420,27 @@ def run_tools(plan: Dict[str, Any], question: str, answer_type: str = "") -> Dic
 
     if "controlled_math_tool" in tools:
         results["controlled_math_tool"] = controlled_math_tool(question)
+
+    if "number_theory_tool" in tools:
+        results["number_theory_tool"] = number_theory_tool(question)
+
+    if "pattern_waiting_time_tool" in tools:
+        results["pattern_waiting_time_tool"] = pattern_waiting_time_tool(question)
+
+    if "generic_tiling_tool" in tools:
+        results["generic_tiling_tool"] = generic_tiling_tool(question)
+
+    if "toroidal_queens_tool" in tools:
+        results["toroidal_queens_tool"] = toroidal_queens_tool(question)
+
+    if "hypercube_shortest_path_tool" in tools:
+        results["hypercube_shortest_path_tool"] = hypercube_shortest_path_tool(question)
+
+    if "switch_dynamics_tool" in tools:
+        results["switch_dynamics_tool"] = switch_dynamics_tool(question)
+
+    if "combinatorics_count_tool" in tools:
+        results["combinatorics_count_tool"] = combinatorics_count_tool(question)
 
     return results
 

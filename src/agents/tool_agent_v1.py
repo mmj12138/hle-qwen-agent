@@ -1,0 +1,270 @@
+# Author: mmj
+# DATE: 30.05.2026
+import json
+from typing import Any, Dict
+
+from src.prompts import (
+    BASE_SOLVER_INSTRUCTIONS,
+    TOOL_SOLVER_PROMPT,
+    TOOL_VERIFIER_PROMPT,
+)
+from src.tools import (
+    run_tools,
+    rule_based_tool_plan,
+    has_real_tool,
+    extract_recommended_final_answer
+)
+from src.agents.base import chat
+from src.evaluator import extract_final_answer
+from src.agents.direct_agent import DirectAgent
+
+
+class ToolAgent:
+    name = "tool"
+
+    def __init__(self, max_iterations: int = 2):
+        self.max_iterations = max_iterations
+
+    def prepare_tool_context(
+        self,
+        question: str,
+        answer_type: str = "",
+    ) -> Dict[str, Any]:
+        """Run the shared rule-based planner and local tools once.
+
+        This helper is reused by ToolAgent and ToolSearchAgent so both agents
+        use exactly the same tool matching, execution, and exact-answer logic.
+        """
+        plan = rule_based_tool_plan(question, answer_type=answer_type)
+        tools = plan.get("tools", [])
+        if isinstance(tools, str):
+            tools = [tools]
+
+        tool_results = (
+            run_tools(plan, question, answer_type=answer_type)
+            if tools
+            else {}
+        )
+        recommended_answer = extract_recommended_final_answer(
+            tool_results
+        ).strip()
+        real_tool_used = has_real_tool(plan)
+
+        weak_hint_markers = [
+            "use this as a hint only",
+            "no exact controlled math template matched",
+            "no exact controlled template matched",
+            "no supported exact",
+            "no recommended final answer",
+            "no text provided",
+            "no expression provided",
+        ]
+
+        non_format_results = [
+            str(value).lower()
+            for key, value in tool_results.items()
+            if key != "answer_format_hint"
+        ]
+
+        weak_hints_only = bool(non_format_results) and all(
+            any(marker in result for marker in weak_hint_markers)
+            for result in non_format_results
+        )
+
+        if weak_hints_only:
+            real_tool_used = False
+
+        return {
+            "plan": plan,
+            "tools": tools,
+            "tool_results": tool_results,
+            "recommended_answer": recommended_answer,
+            "real_tool_used": real_tool_used,
+            "weak_hints_only": weak_hints_only,
+        }
+
+    def run(self, llm, question: str, answer_type: str = "") -> Dict[str, Any]:
+        context = self.prepare_tool_context(
+            question=question,
+            answer_type=answer_type,
+        )
+        plan = context["plan"]
+        tools = context["tools"]
+
+        if not tools:
+            direct_result = DirectAgent().run(
+                llm,
+                question=question,
+                answer_type=answer_type,
+            )
+
+            trace = {
+                "planner_type": "rule_based",
+                "parsed_plan": plan,
+                "tool_results": {},
+                "real_tool_used": False,
+                "recommended_answer": "",
+                "iterations": [
+                    {
+                        "step": 1,
+                        "mode": "no_tool_use_direct_agent",
+                        "direct_result": direct_result,
+                        "should_stop": True,
+                        "stop_reason": "no_tool_matched",
+                    }
+                ],
+            }
+
+            return {
+                "agent": self.name,
+                "final_output": direct_result["final_output"],
+                "trace": trace,
+            }
+        tool_results = context["tool_results"]
+        real_tool_used = context["real_tool_used"]
+        recommended_answer = context["recommended_answer"]
+
+        trace = {
+            "planner_type": "rule_based",
+            "parsed_plan": plan,
+            "tool_results": tool_results,
+            "real_tool_used": real_tool_used,
+            "recommended_answer": recommended_answer,
+            "iterations": [],
+        }
+
+        # If a deterministic tool gives a recommended final answer,
+        # trust the tool and skip LLM regeneration.
+        if recommended_answer:
+            final_output = f"Final Answer: {recommended_answer}"
+
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "deterministic_tool_direct",
+                    "recommended_answer": recommended_answer,
+                    "final_answer_for_this_step": final_output,
+                    "should_stop": True,
+                    "stop_reason": "recommended_tool_answer",
+                }
+            )
+
+            return {
+                "agent": self.name,
+                "final_output": final_output,
+                "trace": trace,
+            }
+
+        # If only answer_format_hint is available, do not run verifier loop.
+        # This avoids answer drift on questions where tools add no real evidence.
+        if not real_tool_used:
+            solver_prompt = TOOL_SOLVER_PROMPT.format(
+                question=question,
+                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
+                verifier_feedback="None.",
+                base_instructions=BASE_SOLVER_INSTRUCTIONS,
+            )
+            candidate_answer = chat(llm, solver_prompt)
+
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "format_only_direct",
+                    "solver_prompt": solver_prompt,
+                    "candidate_answer": candidate_answer,
+                    "final_answer_for_this_step": candidate_answer,
+                    "should_stop": True,
+                }
+            )
+
+            return {
+                "agent": self.name,
+                "final_output": candidate_answer,
+                "trace": trace,
+            }
+
+        verifier_feedback = "None."
+        final_answer = ""
+
+        for step in range(self.max_iterations):
+            solver_prompt = TOOL_SOLVER_PROMPT.format(
+                question=question,
+                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
+                verifier_feedback=verifier_feedback,
+                base_instructions=BASE_SOLVER_INSTRUCTIONS,
+            )
+            candidate_answer = chat(llm, solver_prompt)
+
+            verifier_prompt = TOOL_VERIFIER_PROMPT.format(
+                question=question,
+                candidate_answer=candidate_answer,
+                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
+            )
+            verifier_output = chat(llm, verifier_prompt)
+
+            should_stop = self._should_stop(verifier_output)
+
+            candidate_final = extract_final_answer(candidate_answer)
+            verifier_final = extract_final_answer(verifier_output)
+
+            # Conservative rule:
+            # If verifier says incorrect but gives the same final answer,
+            # it did not actually provide a better correction. Stop.
+            same_final_answer = (
+                candidate_final.strip().lower() == verifier_final.strip().lower()
+                and candidate_final.strip() != ""
+            )
+
+            if should_stop or same_final_answer:
+                final_answer = candidate_answer
+                stop_reason = "verifier_correct" if should_stop else "same_final_answer"
+                trace["iterations"].append(
+                    {
+                        "step": step + 1,
+                        "mode": "real_tool_verify",
+                        "solver_prompt": solver_prompt,
+                        "candidate_answer": candidate_answer,
+                        "verifier_prompt": verifier_prompt,
+                        "verifier_output": verifier_output,
+                        "candidate_final": candidate_final,
+                        "verifier_final": verifier_final,
+                        "same_final_answer": same_final_answer,
+                        "final_answer_for_this_step": final_answer,
+                        "should_stop": True,
+                        "stop_reason": stop_reason,
+                    }
+                )
+                break
+
+            # If verifier really proposes a different answer, use it as feedback
+            # for the next iteration, but do not immediately overwrite unless
+            # max iterations is reached.
+            final_answer = verifier_output
+            verifier_feedback = verifier_output
+
+            trace["iterations"].append(
+                {
+                    "step": step + 1,
+                    "mode": "real_tool_verify",
+                    "solver_prompt": solver_prompt,
+                    "candidate_answer": candidate_answer,
+                    "verifier_prompt": verifier_prompt,
+                    "verifier_output": verifier_output,
+                    "candidate_final": candidate_final,
+                    "verifier_final": verifier_final,
+                    "same_final_answer": same_final_answer,
+                    "final_answer_for_this_step": final_answer,
+                    "should_stop": False,
+                    "stop_reason": "retry",
+                }
+            )
+
+        return {
+            "agent": self.name,
+            "final_output": final_answer,
+            "trace": trace,
+        }
+
+    @staticmethod
+    def _should_stop(verifier_output: str) -> bool:
+        return "status: correct" in verifier_output.lower()

@@ -331,3 +331,98 @@ FINAL_ANSWER: copy exactly one candidate answer
 REASON: one short evidence-based reason
 """
 
+PYTHON_PROGRAMMER_PROMPT = """You are a Python computation planner.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Decide whether the question can be solved or checked by a short deterministic
+Python program.
+
+Python is appropriate for:
+- arithmetic, algebraic substitution, finite enumeration, combinatorics;
+- dynamic programming, graph algorithms, shortest paths, matching, scheduling;
+- probability calculations over a finite state space;
+- modular arithmetic, primality, factorization, recurrence evaluation;
+- simulations that can be replaced by exact finite enumeration.
+
+Python is NOT appropriate for:
+- historical, legal, literary, medical, or scientific factual lookup;
+- questions requiring web search, audio, images, diagrams, or unavailable data;
+- open-ended proofs or conceptual arguments;
+- questions where the required information is not present in the prompt.
+
+Return one of the following formats.
+
+When Python should not be used:
+
+USE_PYTHON: NO
+REASON: <short reason>
+
+When Python should be used:
+
+USE_PYTHON: YES
+REASON: <short reason>
+```python
+<complete program>
+```
+
+Program rules:
+- Use only the Python standard library.
+- Allowed modules: math, cmath, itertools, functools, collections, fractions,
+  decimal, statistics, heapq, bisect, random, and re.
+- Do not read files, write files, access the network, spawn processes, call
+  input(), eval(), exec(), compile(), or open().
+- Keep the program below 120 lines.
+- Compute the answer from the question; do not simply assign a guessed answer.
+- The final output must contain exactly one line in this format:
+  FINAL_ANSWER: <answer>
+- For multiple-choice questions, print exactly the option letter after
+  FINAL_ANSWER.
+"""
+
+PYTHON_RESULT_VERIFIER_PROMPT = """You are a conservative verifier comparing a
+Direct answer with the output of a generated Python computation.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Direct candidate:
+{direct_answer}
+
+Generated Python program:
+{python_code}
+
+Python stdout:
+{python_stdout}
+
+Python candidate:
+{python_answer}
+
+Rules:
+- Default to KEEP_DIRECT.
+- Choose USE_PYTHON only when the program actually models the question,
+  completes successfully, and its computation clearly supports the Python
+  candidate.
+- Reject code that hard-codes or merely guesses the answer.
+- Reject code that ignores an important condition, parses the question
+  incorrectly, uses an approximation where an exact answer is required, or
+  maps a numeric result to an option incorrectly.
+- Do not invent a third answer.
+- When uncertain, choose KEEP_DIRECT.
+
+Return exactly three lines:
+
+DECISION: KEEP_DIRECT or USE_PYTHON
+FINAL_ANSWER: copy exactly one candidate answer
+REASON: one short reason
+"""
+
+
+

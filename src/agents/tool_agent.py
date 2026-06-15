@@ -1,21 +1,25 @@
 # Author: mmj
-# DATE: 30.05.2026
+# Python-enabled conservative ToolAgent
+from __future__ import annotations
+
 import json
-from typing import Any, Dict
+import re
+from typing import Any, Dict, Optional
 
 from src.prompts import (
-    BASE_SOLVER_INSTRUCTIONS,
-    TOOL_SOLVER_PROMPT,
-    TOOL_VERIFIER_PROMPT,
+    PYTHON_PROGRAMMER_PROMPT,
+    PYTHON_RESULT_VERIFIER_PROMPT,
 )
 from src.tools import (
     run_tools,
     rule_based_tool_plan,
-    has_real_tool,
-    extract_recommended_final_answer
+    extract_recommended_final_answer,
+)
+from src.python_executor import (
+    PythonExecutor,
+    extract_python_final_answer,
 )
 from src.agents.base import chat
-from src.evaluator import extract_final_answer
 from src.agents.direct_agent import DirectAgent
 
 
@@ -24,247 +28,419 @@ class ToolAgent:
 
     def __init__(self, max_iterations: int = 2):
         self.max_iterations = max_iterations
+        self.python_executor = PythonExecutor()
 
-    def prepare_tool_context(
+    def run(
         self,
+        llm,
         question: str,
         answer_type: str = "",
     ) -> Dict[str, Any]:
-        """Run the shared rule-based planner and local tools once.
-
-        This helper is reused by ToolAgent and ToolSearchAgent so both agents
-        use exactly the same tool matching, execution, and exact-answer logic.
-        """
-        plan = rule_based_tool_plan(question, answer_type=answer_type)
+        # ----------------------------------------------------------
+        # 1. Existing deterministic rule-based tools
+        # ----------------------------------------------------------
+        plan = rule_based_tool_plan(
+            question,
+            answer_type=answer_type,
+        )
         tools = plan.get("tools", [])
         if isinstance(tools, str):
             tools = [tools]
 
         tool_results = (
-            run_tools(plan, question, answer_type=answer_type)
+            run_tools(
+                plan,
+                question,
+                answer_type=answer_type,
+            )
             if tools
             else {}
         )
         recommended_answer = extract_recommended_final_answer(
             tool_results
-        ).strip()
-        real_tool_used = has_real_tool(plan)
-
-        weak_hint_markers = [
-            "use this as a hint only",
-            "no exact controlled math template matched",
-            "no exact controlled template matched",
-            "no supported exact",
-            "no recommended final answer",
-            "no text provided",
-            "no expression provided",
-        ]
-
-        non_format_results = [
-            str(value).lower()
-            for key, value in tool_results.items()
-            if key != "answer_format_hint"
-        ]
-
-        weak_hints_only = bool(non_format_results) and all(
-            any(marker in result for marker in weak_hint_markers)
-            for result in non_format_results
         )
 
-        if weak_hints_only:
-            real_tool_used = False
-
-        return {
-            "plan": plan,
-            "tools": tools,
-            "tool_results": tool_results,
-            "recommended_answer": recommended_answer,
-            "real_tool_used": real_tool_used,
-            "weak_hints_only": weak_hints_only,
-        }
-
-    def run(self, llm, question: str, answer_type: str = "") -> Dict[str, Any]:
-        context = self.prepare_tool_context(
-            question=question,
-            answer_type=answer_type,
-        )
-        plan = context["plan"]
-        tools = context["tools"]
-
-        if not tools:
-            direct_result = DirectAgent().run(
-                llm,
-                question=question,
-                answer_type=answer_type,
-            )
-
-            trace = {
-                "planner_type": "rule_based",
-                "parsed_plan": plan,
-                "tool_results": {},
-                "real_tool_used": False,
-                "recommended_answer": "",
-                "iterations": [
-                    {
-                        "step": 1,
-                        "mode": "no_tool_use_direct_agent",
-                        "direct_result": direct_result,
-                        "should_stop": True,
-                        "stop_reason": "no_tool_matched",
-                    }
-                ],
-            }
-
-            return {
-                "agent": self.name,
-                "final_output": direct_result["final_output"],
-                "trace": trace,
-            }
-        tool_results = context["tool_results"]
-        real_tool_used = context["real_tool_used"]
-        recommended_answer = context["recommended_answer"]
-
-        trace = {
-            "planner_type": "rule_based",
+        trace: Dict[str, Any] = {
+            "planner_type": "rule_based_then_python",
             "parsed_plan": plan,
             "tool_results": tool_results,
-            "real_tool_used": real_tool_used,
             "recommended_answer": recommended_answer,
             "iterations": [],
         }
 
-        # If a deterministic tool gives a recommended final answer,
-        # trust the tool and skip LLM regeneration.
         if recommended_answer:
-            final_output = f"Final Answer: {recommended_answer}"
-
+            final_output = (
+                f"Final Answer: {recommended_answer}"
+            )
             trace["iterations"].append(
                 {
                     "step": 1,
                     "mode": "deterministic_tool_direct",
                     "recommended_answer": recommended_answer,
-                    "final_answer_for_this_step": final_output,
                     "should_stop": True,
-                    "stop_reason": "recommended_tool_answer",
                 }
             )
-
             return {
                 "agent": self.name,
                 "final_output": final_output,
                 "trace": trace,
             }
 
-        # If only answer_format_hint is available, do not run verifier loop.
-        # This avoids answer drift on questions where tools add no real evidence.
-        if not real_tool_used:
-            solver_prompt = TOOL_SOLVER_PROMPT.format(
-                question=question,
-                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
-                verifier_feedback="None.",
-                base_instructions=BASE_SOLVER_INSTRUCTIONS,
-            )
-            candidate_answer = chat(llm, solver_prompt)
+        # Always create the baseline candidate before considering
+        # generated Python. This prevents weak tools from causing drift.
+        direct_result = DirectAgent().run(
+            llm,
+            question=question,
+            answer_type=answer_type,
+        )
+        direct_answer = _normalize_candidate(
+            direct_result.get("final_output", ""),
+            answer_type,
+        )
 
+        trace["direct_result"] = direct_result
+        trace["direct_candidate"] = direct_answer
+
+        # ----------------------------------------------------------
+        # 2. Cheap conservative pre-router
+        # ----------------------------------------------------------
+        if not _looks_computational(question):
             trace["iterations"].append(
                 {
                     "step": 1,
-                    "mode": "format_only_direct",
-                    "solver_prompt": solver_prompt,
-                    "candidate_answer": candidate_answer,
-                    "final_answer_for_this_step": candidate_answer,
+                    "mode": "direct_fallback_noncomputational",
                     "should_stop": True,
                 }
             )
-
             return {
                 "agent": self.name,
-                "final_output": candidate_answer,
+                "final_output": direct_result["final_output"],
                 "trace": trace,
             }
 
-        verifier_feedback = "None."
-        final_answer = ""
+        # ----------------------------------------------------------
+        # 3. Ask the model for a short deterministic Python program
+        # ----------------------------------------------------------
+        programmer_prompt = PYTHON_PROGRAMMER_PROMPT.format(
+            question=question,
+            answer_type=answer_type or "unknown",
+        )
+        programmer_output = chat(llm, programmer_prompt)
+        use_python, reason, python_code = _parse_programmer_output(
+            programmer_output
+        )
 
-        for step in range(self.max_iterations):
-            solver_prompt = TOOL_SOLVER_PROMPT.format(
-                question=question,
-                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
-                verifier_feedback=verifier_feedback,
-                base_instructions=BASE_SOLVER_INSTRUCTIONS,
-            )
-            candidate_answer = chat(llm, solver_prompt)
+        trace["python_programmer_prompt"] = programmer_prompt
+        trace["python_programmer_output"] = programmer_output
+        trace["python_router_use"] = use_python
+        trace["python_router_reason"] = reason
+        trace["python_code"] = python_code
 
-            verifier_prompt = TOOL_VERIFIER_PROMPT.format(
-                question=question,
-                candidate_answer=candidate_answer,
-                tool_results=json.dumps(tool_results, ensure_ascii=False, indent=2),
-            )
-            verifier_output = chat(llm, verifier_prompt)
-
-            should_stop = self._should_stop(verifier_output)
-
-            candidate_final = extract_final_answer(candidate_answer)
-            verifier_final = extract_final_answer(verifier_output)
-
-            # Conservative rule:
-            # If verifier says incorrect but gives the same final answer,
-            # it did not actually provide a better correction. Stop.
-            same_final_answer = (
-                candidate_final.strip().lower() == verifier_final.strip().lower()
-                and candidate_final.strip() != ""
-            )
-
-            if should_stop or same_final_answer:
-                final_answer = candidate_answer
-                stop_reason = "verifier_correct" if should_stop else "same_final_answer"
-                trace["iterations"].append(
-                    {
-                        "step": step + 1,
-                        "mode": "real_tool_verify",
-                        "solver_prompt": solver_prompt,
-                        "candidate_answer": candidate_answer,
-                        "verifier_prompt": verifier_prompt,
-                        "verifier_output": verifier_output,
-                        "candidate_final": candidate_final,
-                        "verifier_final": verifier_final,
-                        "same_final_answer": same_final_answer,
-                        "final_answer_for_this_step": final_answer,
-                        "should_stop": True,
-                        "stop_reason": stop_reason,
-                    }
-                )
-                break
-
-            # If verifier really proposes a different answer, use it as feedback
-            # for the next iteration, but do not immediately overwrite unless
-            # max iterations is reached.
-            final_answer = verifier_output
-            verifier_feedback = verifier_output
-
+        if not use_python or not python_code:
             trace["iterations"].append(
                 {
-                    "step": step + 1,
-                    "mode": "real_tool_verify",
-                    "solver_prompt": solver_prompt,
-                    "candidate_answer": candidate_answer,
-                    "verifier_prompt": verifier_prompt,
-                    "verifier_output": verifier_output,
-                    "candidate_final": candidate_final,
-                    "verifier_final": verifier_final,
-                    "same_final_answer": same_final_answer,
-                    "final_answer_for_this_step": final_answer,
-                    "should_stop": False,
-                    "stop_reason": "retry",
+                    "step": 1,
+                    "mode": "python_router_kept_direct",
+                    "should_stop": True,
+                    "reason": reason,
                 }
             )
+            return {
+                "agent": self.name,
+                "final_output": direct_result["final_output"],
+                "trace": trace,
+            }
+
+        # ----------------------------------------------------------
+        # 4. Execute in an isolated resource-limited subprocess
+        # ----------------------------------------------------------
+        execution = self.python_executor.run(python_code)
+        python_answer = (
+            extract_python_final_answer(execution.stdout)
+            if execution.ok
+            else ""
+        )
+        python_answer = _normalize_candidate(
+            python_answer,
+            answer_type,
+        )
+
+        trace["python_execution"] = {
+            "ok": execution.ok,
+            "stdout": execution.stdout,
+            "stderr": execution.stderr,
+            "returncode": execution.returncode,
+            "error": execution.error,
+        }
+        trace["python_candidate"] = python_answer
+
+        if not execution.ok or not python_answer:
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "python_execution_failed_keep_direct",
+                    "should_stop": True,
+                    "error": execution.error,
+                }
+            )
+            return {
+                "agent": self.name,
+                "final_output": direct_result["final_output"],
+                "trace": trace,
+            }
+
+        if (
+            direct_answer is not None
+            and _answers_equivalent(
+                direct_answer,
+                python_answer,
+                answer_type,
+            )
+        ):
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "python_direct_agree",
+                    "should_stop": True,
+                }
+            )
+            return {
+                "agent": self.name,
+                "final_output": direct_result["final_output"],
+                "trace": trace,
+            }
+
+        # ----------------------------------------------------------
+        # 5. Conservative candidate arbitration
+        # ----------------------------------------------------------
+        verifier_prompt = PYTHON_RESULT_VERIFIER_PROMPT.format(
+            question=question,
+            answer_type=answer_type or "unknown",
+            direct_answer=direct_answer or "",
+            python_code=python_code,
+            python_stdout=execution.stdout,
+            python_answer=python_answer,
+        )
+        verifier_output = chat(llm, verifier_prompt)
+        verifier = _parse_verifier_output(
+            verifier_output,
+            answer_type,
+        )
+
+        use_python_answer = (
+            verifier["decision"] == "USE_PYTHON"
+            and verifier["selected_answer"] is not None
+            and _answers_equivalent(
+                verifier["selected_answer"],
+                python_answer,
+                answer_type,
+            )
+        )
+
+        trace["python_verifier_prompt"] = verifier_prompt
+        trace["python_verifier_output"] = verifier_output
+        trace["python_verifier_decision"] = verifier["decision"]
+        trace["python_verifier_reason"] = verifier["reason"]
+        trace["python_answer_adopted"] = use_python_answer
+
+        selected = (
+            python_answer
+            if use_python_answer
+            else direct_answer
+        )
+
+        if selected is None:
+            selected = python_answer
+
+        final_output = f"Final Answer: {selected}"
+        trace["iterations"].append(
+            {
+                "step": 1,
+                "mode": (
+                    "python_verified"
+                    if use_python_answer
+                    else "python_kept_direct"
+                ),
+                "should_stop": True,
+            }
+        )
 
         return {
             "agent": self.name,
-            "final_output": final_answer,
+            "final_output": final_output,
             "trace": trace,
         }
 
-    @staticmethod
-    def _should_stop(verifier_output: str) -> bool:
-        return "status: correct" in verifier_output.lower()
+
+def _looks_computational(question: str) -> bool:
+    q = re.sub(r"\s+", " ", str(question or "")).lower()
+
+    cues = (
+        r"\bcalculate\b",
+        r"\bcompute\b",
+        r"\bcount\b",
+        r"\bhow many\b",
+        r"\bexpected\b",
+        r"\bprobability\b",
+        r"\bmaximum\b",
+        r"\bminimum\b",
+        r"\blargest\b",
+        r"\bsmallest\b",
+        r"\bprime\b",
+        r"\bdivisor\b",
+        r"\bfactor\b",
+        r"\bmodulo\b",
+        r"\brecurrence\b",
+        r"\btiling\b",
+        r"\bknapsack\b",
+        r"\bshortest path\b",
+        r"\bmaximum flow\b",
+        r"\bmatching\b",
+        r"\bschedule\b",
+        r"\bpermutation\b",
+        r"\bpartition\b",
+        r"\benumerat",
+        r"\bbinary states?\b",
+        r"\bdynamic programming\b",
+        r"\bsolve\b.*=",
+    )
+    return any(re.search(pattern, q) for pattern in cues)
+
+
+def _parse_programmer_output(
+    text: str,
+) -> tuple[bool, str, str]:
+    raw = str(text or "").strip()
+
+    use_match = re.search(
+        r"(?im)^\s*USE_PYTHON\s*:\s*(YES|NO)\s*$",
+        raw,
+    )
+    reason_match = re.search(
+        r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
+        raw,
+    )
+    code_match = re.search(
+        r"```python\s*(.*?)```",
+        raw,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+
+    use_python = (
+        bool(use_match)
+        and use_match.group(1).upper() == "YES"
+    )
+    reason = (
+        reason_match.group(1).strip()
+        if reason_match
+        else "unparsed_programmer_reason"
+    )
+    code = code_match.group(1).strip() if code_match else ""
+
+    return use_python, reason, code
+
+
+def _normalize_candidate(
+    text: str,
+    answer_type: str,
+) -> Optional[str]:
+    raw = str(text or "").strip()
+    if not raw:
+        return None
+
+    matches = list(
+        re.finditer(
+            r"(?is)(?:final_answer|final\s+answer)\s*:\s*(.+)",
+            raw,
+        )
+    )
+    value = matches[-1].group(1).strip() if matches else raw
+    value = value.splitlines()[0].strip()
+    value = value.strip("`*_ ")
+
+    if not value:
+        return None
+
+    if _is_multiple_choice(answer_type):
+        match = re.fullmatch(
+            r"(?:option\s*)?\(?([A-F])\)?[.\s]*",
+            value,
+            flags=re.IGNORECASE,
+        )
+        return match.group(1).upper() if match else None
+
+    if len(value) > 200:
+        return None
+
+    return value
+
+
+def _parse_verifier_output(
+    text: str,
+    answer_type: str,
+) -> Dict[str, Any]:
+    raw = str(text or "").strip()
+
+    decision_match = re.search(
+        r"(?im)^\s*DECISION\s*:\s*"
+        r"(KEEP_DIRECT|USE_PYTHON)\s*$",
+        raw,
+    )
+    answer_match = re.search(
+        r"(?im)^\s*FINAL_ANSWER\s*:\s*(.*?)\s*$",
+        raw,
+    )
+    reason_match = re.search(
+        r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
+        raw,
+    )
+
+    if not decision_match:
+        return {
+            "decision": "KEEP_DIRECT",
+            "selected_answer": None,
+            "reason": "verifier_output_unrecognized",
+        }
+
+    selected = (
+        _normalize_candidate(
+            answer_match.group(1),
+            answer_type,
+        )
+        if answer_match
+        else None
+    )
+
+    return {
+        "decision": decision_match.group(1).upper(),
+        "selected_answer": selected,
+        "reason": (
+            reason_match.group(1).strip()
+            if reason_match
+            else "parsed_without_reason"
+        ),
+    }
+
+
+def _answers_equivalent(
+    left: str,
+    right: str,
+    answer_type: str,
+) -> bool:
+    if _is_multiple_choice(answer_type):
+        return left.strip().upper() == right.strip().upper()
+
+    def canonical(value: str) -> str:
+        value = value.casefold()
+        value = re.sub(r"\s+", " ", value)
+        return value.strip(" .,:;!?\"'`")
+
+    return canonical(left) == canonical(right)
+
+
+def _is_multiple_choice(answer_type: str) -> bool:
+    normalized = str(answer_type or "").lower()
+    return (
+        "multiple" in normalized
+        or normalized in {"mcq", "choice", "multiple_choice"}
+    )
