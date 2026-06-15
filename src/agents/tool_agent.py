@@ -111,6 +111,22 @@ class ToolAgent:
         trace["direct_result"] = direct_result
         trace["direct_candidate"] = direct_answer
 
+        # Dynamic Python is temporarily disabled for multiple-choice questions.
+        # Existing deterministic tools above are still allowed to answer MCQs.
+        if _is_multiple_choice(answer_type):
+            trace["iterations"].append(
+                {
+                    "step": 1,
+                    "mode": "python_skipped_multiple_choice",
+                    "should_stop": True,
+                }
+            )
+            return {
+                "agent": self.name,
+                "final_output": direct_result["final_output"],
+                "trace": trace,
+            }
+
         # ----------------------------------------------------------
         # 2. Cheap conservative pre-router
         # ----------------------------------------------------------
@@ -321,36 +337,83 @@ def _chat_with_token_limit(
 def _looks_computational(question: str) -> bool:
     q = re.sub(r"\s+", " ", str(question or "")).lower()
 
-    cues = (
-        r"\bcalculate\b",
-        r"\bcompute\b",
-        r"\bcount\b",
-        r"\bhow many\b",
-        r"\bexpected\b",
-        r"\bprobability\b",
-        r"\bmaximum\b",
-        r"\bminimum\b",
-        r"\blargest\b",
-        r"\bsmallest\b",
-        r"\bprime\b",
-        r"\bdivisor\b",
-        r"\bfactor\b",
+    # 明显需要外部知识、理论证明或专业概念，不交给 Python。
+    reject_patterns = (
+        r"\bprove\b",
+        r"\btheorem\b",
+        r"\bmoduli space\b",
+        r"\bhomology\b",
+        r"\bmanifold\b",
+        r"\btopolog",
+        r"\baccording to\b",
+        r"\bwhich statements?\b",
+        r"\bidentify the correct\b",
+        r"\bconcept\b",
+        r"\bdefinition\b",
+        r"\brubik",
+        r"\bchess\b",
+        r"\bgame of life\b",
+        r"\bgraphical models?\b",
+        r"\bimitation learning\b",
+        r"\binformation theory\b",
+        r"\bmutual information\b",
+        r"\bupper bound\b",
+        r"\blower bound\b",
+        r"\btightest bound\b",
+    )
+
+    if any(re.search(pattern, q) for pattern in reject_patterns):
+        return False
+
+    # 必须出现明确的算法或有限计算信号。
+    strong_patterns = (
         r"\bmodulo\b",
+        r"\bdivisib",
+        r"\bprime\b",
+        r"\bfactor(?:ization)?\b",
+        r"\bgcd\b",
+        r"\blcm\b",
         r"\brecurrence\b",
-        r"\btiling\b",
+        r"\bfinite enumeration\b",
+        r"\benumerate all\b",
+        r"\bpermutation\b",
+        r"\bcombination\b",
+        r"\bsubset sum\b",
         r"\bknapsack\b",
         r"\bshortest path\b",
         r"\bmaximum flow\b",
+        r"\bminimum spanning tree\b",
         r"\bmatching\b",
-        r"\bschedule\b",
-        r"\bpermutation\b",
-        r"\bpartition\b",
-        r"\benumerat",
-        r"\bbinary states?\b",
         r"\bdynamic programming\b",
-        r"\bsolve\b.*=",
+        r"\btiling\b",
+        r"\bbinary states?\b",
+        r"\bbase[- ]\d+\b",
+        r"\bpalindrome\b",
+        r"\bsolve\b.{0,40}=",
     )
-    return any(re.search(pattern, q) for pattern in cues)
+
+    if any(re.search(pattern, q) for pattern in strong_patterns):
+        return True
+
+    # 普通数值题必须同时有明确数字和计算动作。
+    has_number = bool(
+        re.search(r"(?<![A-Za-z])[-+]?\d+(?:\.\d+)?", q)
+    )
+
+    numerical_action = any(
+        re.search(pattern, q)
+        for pattern in (
+            r"\bcalculate\b",
+            r"\bcompute\b",
+            r"\bevaluate\b",
+            r"\bfind the exact value\b",
+            r"\bnumber of ways\b",
+            r"\bexpected number\b",
+            r"\bexpected waiting time\b",
+        )
+    )
+
+    return has_number and numerical_action
 
 
 def _parse_programmer_output(

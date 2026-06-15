@@ -331,7 +331,7 @@ FINAL_ANSWER: copy exactly one candidate answer
 REASON: one short evidence-based reason
 """
 
-PYTHON_PROGRAMMER_PROMPT = """You are a Python computation agent.
+PYTHON_PROGRAMMER_PROMPT = """You are a conservative Python computation agent.
 
 Question:
 {question}
@@ -339,20 +339,22 @@ Question:
 Answer type:
 {answer_type}
 
-Decide whether the question can be solved exactly by a short deterministic
-Python program using only information explicitly present in the question.
+Determine whether the question can be solved exactly by a short deterministic
+Python program using only information explicitly provided in the question.
 
-Use Python for:
-- exact arithmetic, finite enumeration, combinatorics, and dynamic programming;
-- graph algorithms, shortest paths, matching, scheduling, and finite games;
-- finite-state probabilities and exact expected values;
-- modular arithmetic, primality, factorization, recurrences, and optimization.
+Python is appropriate for:
+- exact arithmetic and finite enumeration;
+- combinatorics and dynamic programming;
+- graph algorithms and finite-state search;
+- modular arithmetic, primality, factorization, and recurrence evaluation;
+- exact probability calculations over a finite state space.
 
-Do not use Python for:
-- external factual lookup;
-- audio, image, diagram, or unavailable-data questions;
-- open-ended proofs or conceptual explanations;
-- questions whose required constants or data are missing.
+Python is not appropriate for:
+- questions requiring external factual or domain-specific knowledge;
+- theorem recall, conceptual interpretation, or open-ended proof;
+- audio, images, diagrams, or unavailable data;
+- questions with missing numerical inputs or missing constraints;
+- questions where the program cannot clearly identify the target quantity.
 
 If Python should not be used, output exactly:
 
@@ -361,6 +363,9 @@ REASON: <short reason>
 
 If Python should be used, output exactly:
 
+INPUTS: <all explicit values and constraints taken from the question>
+TARGET: <the exact quantity the program will compute>
+ALGORITHM: <one short deterministic method>
 USE_PYTHON: YES
 REASON: <short reason>
 ```python
@@ -368,7 +373,7 @@ REASON: <short reason>
 ```
 
 Strict program rules:
-- Output only the two header lines and one Python code block.
+- Use only information explicitly present in the question.
 - Use only the Python standard library.
 - Allowed imports: math, cmath, itertools, functools, collections, fractions,
   decimal, statistics, heapq, bisect, random, and re.
@@ -376,13 +381,14 @@ Strict program rules:
   pathlib, socket, requests, or any third-party package.
 - Do not read or write files.
 - Do not access the network.
-- Do not use input(), eval(), exec(), compile(), or open().
-- Keep the code concise, preferably below 60 lines.
+- Do not use input(), eval(), exec(), compile(), open(), or __import__().
+- Keep the program concise, preferably below 60 lines.
 - Do not include long comments or explanations.
-- Compute the answer rather than assigning a guessed constant.
-- The program must finish by printing exactly one answer line:
-  print("FINAL_ANSWER:", answer)
-- For multiple-choice questions, answer must be exactly one option letter.
+- Do not hard-code or guess the final answer.
+- The program must compute the result from the stated inputs.
+- The program must print exactly one final answer line:
+
+print("FINAL_ANSWER:", answer)
 """
 
 
