@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from typing import Any, Dict, Optional
 
@@ -21,6 +22,15 @@ from src.python_executor import (
 )
 from src.agents.base import chat
 from src.agents.direct_agent import DirectAgent
+
+
+PYTHON_PROGRAMMER_MAX_NEW_TOKENS = int(
+    os.getenv("PYTHON_PROGRAMMER_MAX_NEW_TOKENS", "512")
+)
+PYTHON_VERIFIER_MAX_NEW_TOKENS = int(
+    os.getenv("PYTHON_VERIFIER_MAX_NEW_TOKENS", "96")
+)
+
 
 
 class ToolAgent:
@@ -125,12 +135,19 @@ class ToolAgent:
             question=question,
             answer_type=answer_type or "unknown",
         )
-        programmer_output = chat(llm, programmer_prompt)
+        programmer_output = _chat_with_token_limit(
+            llm,
+            programmer_prompt,
+            max_new_tokens=PYTHON_PROGRAMMER_MAX_NEW_TOKENS,
+        )
         use_python, reason, python_code = _parse_programmer_output(
             programmer_output
         )
 
         trace["python_programmer_prompt"] = programmer_prompt
+        trace["python_programmer_max_new_tokens"] = (
+            PYTHON_PROGRAMMER_MAX_NEW_TOKENS
+        )
         trace["python_programmer_output"] = programmer_output
         trace["python_router_use"] = use_python
         trace["python_router_reason"] = reason
@@ -221,7 +238,11 @@ class ToolAgent:
             python_stdout=execution.stdout,
             python_answer=python_answer,
         )
-        verifier_output = chat(llm, verifier_prompt)
+        verifier_output = _chat_with_token_limit(
+            llm,
+            verifier_prompt,
+            max_new_tokens=PYTHON_VERIFIER_MAX_NEW_TOKENS,
+        )
         verifier = _parse_verifier_output(
             verifier_output,
             answer_type,
@@ -238,6 +259,9 @@ class ToolAgent:
         )
 
         trace["python_verifier_prompt"] = verifier_prompt
+        trace["python_verifier_max_new_tokens"] = (
+            PYTHON_VERIFIER_MAX_NEW_TOKENS
+        )
         trace["python_verifier_output"] = verifier_output
         trace["python_verifier_decision"] = verifier["decision"]
         trace["python_verifier_reason"] = verifier["reason"]
@@ -270,6 +294,28 @@ class ToolAgent:
             "final_output": final_output,
             "trace": trace,
         }
+
+
+def _chat_with_token_limit(
+    llm,
+    prompt: str,
+    max_new_tokens: int,
+) -> str:
+    """Call the existing chat function with a temporary token budget.
+
+    Direct and other agents keep the global MAX_NEW_TOKENS value. Only this
+    single call receives the larger programmer/verifier budget.
+    """
+    config = getattr(llm, "config", None)
+    if config is None or not hasattr(config, "max_new_tokens"):
+        return chat(llm, prompt)
+
+    original = config.max_new_tokens
+    try:
+        config.max_new_tokens = int(max_new_tokens)
+        return chat(llm, prompt)
+    finally:
+        config.max_new_tokens = original
 
 
 def _looks_computational(question: str) -> bool:
@@ -320,11 +366,6 @@ def _parse_programmer_output(
         r"(?im)^\s*REASON\s*:\s*(.*?)\s*$",
         raw,
     )
-    code_match = re.search(
-        r"```python\s*(.*?)```",
-        raw,
-        flags=re.IGNORECASE | re.DOTALL,
-    )
 
     use_python = (
         bool(use_match)
@@ -335,9 +376,33 @@ def _parse_programmer_output(
         if reason_match
         else "unparsed_programmer_reason"
     )
-    code = code_match.group(1).strip() if code_match else ""
 
-    return use_python, reason, code
+    if not use_python:
+        return False, reason, ""
+
+    # Preferred: complete fenced code block.
+    complete_match = re.search(
+        r"```(?:python)?\s*(.*?)```",
+        raw,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if complete_match:
+        return True, reason, complete_match.group(1).strip()
+
+    # Recovery: model reached the token limit after opening a code fence.
+    # The executor's AST validation decides whether the recovered code is
+    # syntactically complete. Incomplete code is safely rejected.
+    open_match = re.search(
+        r"```(?:python)?\s*(.*)\Z",
+        raw,
+        flags=re.IGNORECASE | re.DOTALL,
+    )
+    if open_match:
+        recovered = open_match.group(1).strip()
+        recovered = re.sub(r"\n?`{1,3}\s*\Z", "", recovered).strip()
+        return True, reason, recovered
+
+    return True, reason, ""
 
 
 def _normalize_candidate(

@@ -331,7 +331,7 @@ FINAL_ANSWER: copy exactly one candidate answer
 REASON: one short evidence-based reason
 """
 
-PYTHON_PROGRAMMER_PROMPT = """You are a Python computation planner.
+PYTHON_PROGRAMMER_PROMPT = """You are a Python computation agent.
 
 Question:
 {question}
@@ -339,53 +339,54 @@ Question:
 Answer type:
 {answer_type}
 
-Decide whether the question can be solved or checked by a short deterministic
-Python program.
+Decide whether the question can be solved exactly by a short deterministic
+Python program using only information explicitly present in the question.
 
-Python is appropriate for:
-- arithmetic, algebraic substitution, finite enumeration, combinatorics;
-- dynamic programming, graph algorithms, shortest paths, matching, scheduling;
-- probability calculations over a finite state space;
-- modular arithmetic, primality, factorization, recurrence evaluation;
-- simulations that can be replaced by exact finite enumeration.
+Use Python for:
+- exact arithmetic, finite enumeration, combinatorics, and dynamic programming;
+- graph algorithms, shortest paths, matching, scheduling, and finite games;
+- finite-state probabilities and exact expected values;
+- modular arithmetic, primality, factorization, recurrences, and optimization.
 
-Python is NOT appropriate for:
-- historical, legal, literary, medical, or scientific factual lookup;
-- questions requiring web search, audio, images, diagrams, or unavailable data;
-- open-ended proofs or conceptual arguments;
-- questions where the required information is not present in the prompt.
+Do not use Python for:
+- external factual lookup;
+- audio, image, diagram, or unavailable-data questions;
+- open-ended proofs or conceptual explanations;
+- questions whose required constants or data are missing.
 
-Return one of the following formats.
-
-When Python should not be used:
+If Python should not be used, output exactly:
 
 USE_PYTHON: NO
 REASON: <short reason>
 
-When Python should be used:
+If Python should be used, output exactly:
 
 USE_PYTHON: YES
 REASON: <short reason>
 ```python
-<complete program>
+<complete executable program>
 ```
 
-Program rules:
+Strict program rules:
+- Output only the two header lines and one Python code block.
 - Use only the Python standard library.
-- Allowed modules: math, cmath, itertools, functools, collections, fractions,
+- Allowed imports: math, cmath, itertools, functools, collections, fractions,
   decimal, statistics, heapq, bisect, random, and re.
-- Do not read files, write files, access the network, spawn processes, call
-  input(), eval(), exec(), compile(), or open().
-- Keep the program below 120 lines.
-- Compute the answer from the question; do not simply assign a guessed answer.
-- The final output must contain exactly one line in this format:
-  FINAL_ANSWER: <answer>
-- For multiple-choice questions, print exactly the option letter after
-  FINAL_ANSWER.
+- Never import sympy, numpy, scipy, pandas, networkx, os, sys, subprocess,
+  pathlib, socket, requests, or any third-party package.
+- Do not read or write files.
+- Do not access the network.
+- Do not use input(), eval(), exec(), compile(), or open().
+- Keep the code concise, preferably below 60 lines.
+- Do not include long comments or explanations.
+- Compute the answer rather than assigning a guessed constant.
+- The program must finish by printing exactly one answer line:
+  print("FINAL_ANSWER:", answer)
+- For multiple-choice questions, answer must be exactly one option letter.
 """
 
-PYTHON_RESULT_VERIFIER_PROMPT = """You are a conservative verifier comparing a
-Direct answer with the output of a generated Python computation.
+
+PYTHON_RESULT_VERIFIER_PROMPT = """You are a conservative verifier.
 
 Question:
 {question}
@@ -396,7 +397,7 @@ Answer type:
 Direct candidate:
 {direct_answer}
 
-Generated Python program:
+Generated Python:
 {python_code}
 
 Python stdout:
@@ -405,24 +406,17 @@ Python stdout:
 Python candidate:
 {python_answer}
 
-Rules:
-- Default to KEEP_DIRECT.
-- Choose USE_PYTHON only when the program actually models the question,
-  completes successfully, and its computation clearly supports the Python
-  candidate.
-- Reject code that hard-codes or merely guesses the answer.
-- Reject code that ignores an important condition, parses the question
-  incorrectly, uses an approximation where an exact answer is required, or
-  maps a numeric result to an option incorrectly.
-- Do not invent a third answer.
-- When uncertain, choose KEEP_DIRECT.
+Choose USE_PYTHON only when:
+- the program correctly models all relevant conditions in the question;
+- it computed the result rather than hard-coding or guessing it;
+- execution completed successfully;
+- the printed answer has the required format.
 
-Return exactly three lines:
+Otherwise choose KEEP_DIRECT. Do not invent a third answer.
+
+Return exactly:
 
 DECISION: KEEP_DIRECT or USE_PYTHON
-FINAL_ANSWER: copy exactly one candidate answer
+FINAL_ANSWER: copy exactly one candidate
 REASON: one short reason
 """
-
-
-
