@@ -1,7 +1,7 @@
 model,model_tag,agent,accuracy,correct,total,wrong_to_right,right_to_wrong,net_vs_direct
-Qwen/Qwen3.5-27B,qwen35_27b,direct,0.052307692307692305,68,1300,,,
-Qwen/Qwen3.5-27B,qwen35_27b,feedback,0.025,5,200,4,6,-2
-Qwen/Qwen3.5-27B,qwen35_27b,tool,0.065,13,200,6,0,6
-Qwen/Qwen3.5-27B,qwen35_27b,tool_search,0.07,14,200,7,0,7
-Qwen/Qwen3.5-27B,qwen35_27b,oracle_feedback,0.055,11,200,4,0,4
-Qwen/Qwen3.5-27B,qwen35_27b,oracle_tool,0.085,17,200,10,0,10
+Qwen/Qwen3.5-0.8B,qwen35_08b,direct,0.04726890756302521,90,1904,,,
+Qwen/Qwen3.5-0.8B,qwen35_08b,feedback,0.05567226890756303,106,1904,61,45,16
+Qwen/Qwen3.5-0.8B,qwen35_08b,tool,0.05304621848739496,101,1904,11,0,11
+Qwen/Qwen3.5-0.8B,qwen35_08b,tool_search,0.05672268907563025,108,1904,24,6,18
+Qwen/Qwen3.5-0.8B,qwen35_08b,oracle_feedback,0.0819327731092437,156,1904,66,0,66
+Qwen/Qwen3.5-0.8B,qwen35_08b,oracle_tool,0.08718487394957983,166,1904,76,0,76
