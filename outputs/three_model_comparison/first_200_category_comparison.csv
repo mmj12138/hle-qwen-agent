@@ -1,58 +1,52 @@
 model,precision,agent,category,correct,total,accuracy
-Qwen3.5-0.8B,BF16/FP16,Direct,Biology/Medicine,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Direct,Biology/Medicine,1,20,0.05
 Qwen3.5-0.8B,BF16/FP16,Direct,Chemistry,0,1,0.0
 Qwen3.5-0.8B,BF16/FP16,Direct,Computer Science/AI,1,39,0.02564102564102564
 Qwen3.5-0.8B,BF16/FP16,Direct,Engineering,0,4,0.0
 Qwen3.5-0.8B,BF16/FP16,Direct,Humanities/Social Science,5,27,0.18518518518518517
-Qwen3.5-0.8B,BF16/FP16,Direct,Math,3,75,0.04
+Qwen3.5-0.8B,BF16/FP16,Direct,Math,2,75,0.02666666666666667
 Qwen3.5-0.8B,BF16/FP16,Direct,Other,0,24,0.0
 Qwen3.5-0.8B,BF16/FP16,Direct,Physics,0,10,0.0
 Qwen3.5-0.8B,BF16/FP16,Feedback,Biology/Medicine,4,20,0.2
 Qwen3.5-0.8B,BF16/FP16,Feedback,Chemistry,0,1,0.0
 Qwen3.5-0.8B,BF16/FP16,Feedback,Computer Science/AI,2,39,0.05128205128205128
 Qwen3.5-0.8B,BF16/FP16,Feedback,Engineering,0,4,0.0
-Qwen3.5-0.8B,BF16/FP16,Feedback,Humanities/Social Science,4,27,0.14814814814814814
+Qwen3.5-0.8B,BF16/FP16,Feedback,Humanities/Social Science,5,27,0.18518518518518517
 Qwen3.5-0.8B,BF16/FP16,Feedback,Math,3,75,0.04
 Qwen3.5-0.8B,BF16/FP16,Feedback,Other,0,24,0.0
 Qwen3.5-0.8B,BF16/FP16,Feedback,Physics,0,10,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool,Biology/Medicine,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Tool,Biology/Medicine,1,20,0.05
 Qwen3.5-0.8B,BF16/FP16,Tool,Chemistry,0,1,0.0
 Qwen3.5-0.8B,BF16/FP16,Tool,Computer Science/AI,3,39,0.07692307692307693
 Qwen3.5-0.8B,BF16/FP16,Tool,Engineering,0,4,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool,Humanities/Social Science,5,27,0.18518518518518517
-Qwen3.5-0.8B,BF16/FP16,Tool,Math,5,75,0.06666666666666667
+Qwen3.5-0.8B,BF16/FP16,Tool,Humanities/Social Science,4,27,0.14814814814814814
+Qwen3.5-0.8B,BF16/FP16,Tool,Math,7,75,0.09333333333333334
 Qwen3.5-0.8B,BF16/FP16,Tool,Other,0,24,0.0
 Qwen3.5-0.8B,BF16/FP16,Tool,Physics,0,10,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Biology/Medicine,0,1,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Computer Science/AI,1,4,0.25
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Humanities/Social Science,0,3,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Math,0,7,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Other,0,2,0.0
-Qwen3.5-0.8B,BF16/FP16,Tool + Search,Physics,0,3,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Biology/Medicine,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Biology/Medicine,3,20,0.15
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Chemistry,0,1,0.0
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Computer Science/AI,1,39,0.02564102564102564
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Engineering,0,4,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Humanities/Social Science,5,27,0.18518518518518517
+Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Humanities/Social Science,6,27,0.2222222222222222
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Math,4,75,0.05333333333333334
-Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Other,2,24,0.08333333333333333
-Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Physics,1,10,0.1
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Biology/Medicine,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Other,3,24,0.125
+Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Physics,0,10,0.0
+Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Biology/Medicine,3,20,0.15
 Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Chemistry,0,1,0.0
 Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Computer Science/AI,3,39,0.07692307692307693
 Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Engineering,0,4,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Humanities/Social Science,5,27,0.18518518518518517
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Math,6,75,0.08
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Other,2,24,0.08333333333333333
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Physics,1,10,0.1
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Biology/Medicine,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Humanities/Social Science,6,27,0.2222222222222222
+Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Math,9,75,0.12
+Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Other,3,24,0.125
+Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Physics,0,10,0.0
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Biology/Medicine,5,20,0.25
 Qwen2.5-7B-Instruct,BF16/FP16,Direct,Chemistry,0,1,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Computer Science/AI,0,39,0.0
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Computer Science/AI,1,39,0.02564102564102564
 Qwen2.5-7B-Instruct,BF16/FP16,Direct,Engineering,0,4,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Humanities/Social Science,1,27,0.037037037037037035
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Math,2,75,0.02666666666666667
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Other,2,24,0.08333333333333333
-Qwen2.5-7B-Instruct,BF16/FP16,Direct,Physics,1,10,0.1
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Humanities/Social Science,2,27,0.07407407407407407
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Math,3,75,0.04
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Other,3,24,0.125
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,Physics,2,10,0.2
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Biology/Medicine,4,20,0.2
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Chemistry,0,1,0.0
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Computer Science/AI,0,39,0.0
@@ -61,49 +55,67 @@ Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Humanities/Social Science,1,27,0.03703703
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Math,2,75,0.02666666666666667
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Other,2,24,0.08333333333333333
 Qwen2.5-7B-Instruct,BF16/FP16,Feedback,Physics,0,10,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Biology/Medicine,4,20,0.2
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Biology/Medicine,5,20,0.25
 Qwen2.5-7B-Instruct,BF16/FP16,Tool,Chemistry,0,1,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Computer Science/AI,2,39,0.05128205128205128
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Computer Science/AI,4,39,0.10256410256410256
 Qwen2.5-7B-Instruct,BF16/FP16,Tool,Engineering,0,4,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Humanities/Social Science,1,27,0.037037037037037035
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Math,4,75,0.05333333333333334
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Other,2,24,0.08333333333333333
-Qwen2.5-7B-Instruct,BF16/FP16,Tool,Physics,1,10,0.1
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Biology/Medicine,4,20,0.2
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Humanities/Social Science,2,27,0.07407407407407407
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Math,7,75,0.09333333333333334
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Other,3,24,0.125
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,Physics,2,10,0.2
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Biology/Medicine,6,20,0.3
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Chemistry,0,1,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Computer Science/AI,3,39,0.07692307692307693
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Computer Science/AI,2,39,0.05128205128205128
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Engineering,0,4,0.0
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Humanities/Social Science,6,27,0.2222222222222222
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Math,5,75,0.06666666666666667
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Math,6,75,0.08
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Other,4,24,0.16666666666666666
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Physics,1,10,0.1
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Biology/Medicine,4,20,0.2
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Physics,2,10,0.2
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Biology/Medicine,5,20,0.25
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Chemistry,0,1,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Computer Science/AI,5,39,0.1282051282051282
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Computer Science/AI,4,39,0.10256410256410256
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Engineering,0,4,0.0
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Humanities/Social Science,6,27,0.2222222222222222
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Math,6,75,0.08
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Other,4,24,0.16666666666666666
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Physics,1,10,0.1
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Physics,2,10,0.2
 Qwen3.5-27B,NF4 4-bit,Direct,Biology/Medicine,0,20,0.0
 Qwen3.5-27B,NF4 4-bit,Direct,Chemistry,0,1,0.0
-Qwen3.5-27B,NF4 4-bit,Direct,Computer Science/AI,3,39,0.07692307692307693
-Qwen3.5-27B,NF4 4-bit,Direct,Engineering,0,4,0.0
-Qwen3.5-27B,NF4 4-bit,Direct,Humanities/Social Science,0,27,0.0
-Qwen3.5-27B,NF4 4-bit,Direct,Math,0,75,0.0
-Qwen3.5-27B,NF4 4-bit,Direct,Other,1,24,0.041666666666666664
+Qwen3.5-27B,NF4 4-bit,Direct,Computer Science/AI,0,39,0.0
+Qwen3.5-27B,NF4 4-bit,Direct,Engineering,1,4,0.25
+Qwen3.5-27B,NF4 4-bit,Direct,Humanities/Social Science,2,27,0.07407407407407407
+Qwen3.5-27B,NF4 4-bit,Direct,Math,2,75,0.02666666666666667
+Qwen3.5-27B,NF4 4-bit,Direct,Other,2,24,0.08333333333333333
 Qwen3.5-27B,NF4 4-bit,Direct,Physics,0,10,0.0
-Qwen3.5-27B,NF4 4-bit,Feedback,Biology/Medicine,0,20,0.0
+Qwen3.5-27B,NF4 4-bit,Feedback,Biology/Medicine,1,20,0.05
 Qwen3.5-27B,NF4 4-bit,Feedback,Chemistry,0,1,0.0
 Qwen3.5-27B,NF4 4-bit,Feedback,Computer Science/AI,2,39,0.05128205128205128
 Qwen3.5-27B,NF4 4-bit,Feedback,Engineering,0,4,0.0
-Qwen3.5-27B,NF4 4-bit,Feedback,Humanities/Social Science,1,27,0.037037037037037035
+Qwen3.5-27B,NF4 4-bit,Feedback,Humanities/Social Science,2,27,0.07407407407407407
 Qwen3.5-27B,NF4 4-bit,Feedback,Math,0,75,0.0
-Qwen3.5-27B,NF4 4-bit,Feedback,Other,1,24,0.041666666666666664
+Qwen3.5-27B,NF4 4-bit,Feedback,Other,0,24,0.0
 Qwen3.5-27B,NF4 4-bit,Feedback,Physics,0,10,0.0
-Qwen3.5-27B,NF4 4-bit,Tool,Biology/Medicine,0,4,0.0
-Qwen3.5-27B,NF4 4-bit,Tool,Computer Science/AI,1,8,0.125
-Qwen3.5-27B,NF4 4-bit,Tool,Humanities/Social Science,0,3,0.0
-Qwen3.5-27B,NF4 4-bit,Tool,Math,0,13,0.0
-Qwen3.5-27B,NF4 4-bit,Tool,Other,0,5,0.0
-Qwen3.5-27B,NF4 4-bit,Tool,Physics,0,3,0.0
+Qwen3.5-27B,NF4 4-bit,Tool,Biology/Medicine,0,20,0.0
+Qwen3.5-27B,NF4 4-bit,Tool,Chemistry,0,1,0.0
+Qwen3.5-27B,NF4 4-bit,Tool,Computer Science/AI,2,39,0.05128205128205128
+Qwen3.5-27B,NF4 4-bit,Tool,Engineering,1,4,0.25
+Qwen3.5-27B,NF4 4-bit,Tool,Humanities/Social Science,2,27,0.07407407407407407
+Qwen3.5-27B,NF4 4-bit,Tool,Math,7,75,0.09333333333333334
+Qwen3.5-27B,NF4 4-bit,Tool,Other,2,24,0.08333333333333333
+Qwen3.5-27B,NF4 4-bit,Tool,Physics,0,10,0.0
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Biology/Medicine,1,20,0.05
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Chemistry,0,1,0.0
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Computer Science/AI,2,39,0.05128205128205128
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Engineering,1,4,0.25
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Humanities/Social Science,2,27,0.07407407407407407
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Math,2,75,0.02666666666666667
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Other,3,24,0.125
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Physics,0,10,0.0
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Biology/Medicine,1,20,0.05
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Chemistry,0,1,0.0
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Computer Science/AI,4,39,0.10256410256410256
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Engineering,1,4,0.25
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Humanities/Social Science,2,27,0.07407407407407407
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Math,6,75,0.08
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Other,3,24,0.125
+Qwen3.5-27B,NF4 4-bit,Oracle Tool,Physics,0,10,0.0

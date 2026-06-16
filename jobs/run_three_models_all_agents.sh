@@ -29,13 +29,15 @@ cd "${PROJECT_ROOT}"
 MODELS=(
 #  "Qwen/Qwen3.5-0.8B"
 #  "Qwen/Qwen2.5-7B-Instruct"
-  "Qwen/Qwen3.5-27B"
+#  "Qwen/Qwen3.5-27B"
+  "Qwen/Qwen3.5-9B"
 )
 
 MODEL_TAGS=(
 #  "qwen35_08b"
 #  "qwen25_7b"
-  "qwen35_27b"
+#  "qwen35_27b"
+  "qwen35_9b"
 )
 
 AGENTS=(

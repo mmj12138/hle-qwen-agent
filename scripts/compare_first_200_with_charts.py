@@ -44,8 +44,7 @@ MODELS = [
 AGENTS = [
     "direct",
     "feedback",
-    "tool",
-    # "tool_search",
+    "tool_search",
     "oracle_feedback",
     "oracle_tool",
 ]
@@ -120,8 +119,7 @@ def display_agent(agent: str) -> str:
     return {
         "direct": "Direct",
         "feedback": "Feedback",
-        "tool": "Tool",
-        # "tool_search": "Tool + Search",
+        "tool_search": "Tool",
         "oracle_feedback": "Oracle Feedback",
         "oracle_tool": "Oracle Tool",
     }.get(agent, agent)
