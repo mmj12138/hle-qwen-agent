@@ -14,7 +14,7 @@ import numpy as np
 # Fixed analysis configuration
 # ============================================================
 # The script is expected at:
-#   <project_root>/scripts/compare_first_200.py
+#   <project_root>/scripts/compare_first_100.py
 #
 # Therefore the parent directory of ``scripts`` is the project root.
 # This works both locally and on Ubelix without hard-coded paths.
@@ -34,6 +34,11 @@ MODELS = [
         "tag": "qwen25_7b",
         "precision": "BF16/FP16",
     },
+    # {
+    #     "name": "Qwen3.5-9B",
+    #     "tag": "qwen35_9b",
+    #     "precision": "BF16/FP16",
+    # },
     {
         "name": "Qwen3.5-27B",
         "tag": "qwen35_27b",
@@ -46,7 +51,7 @@ AGENTS = [
     "feedback",
     "tool_search",
     "oracle_feedback",
-    "oracle_tool",
+    # "oracle_tool",
 ]
 
 EXTRACT_ROOT = RESULT_ROOT / "first_200_results"
@@ -121,13 +126,13 @@ def display_agent(agent: str) -> str:
         "feedback": "Feedback",
         "tool_search": "Tool",
         "oracle_feedback": "Oracle Feedback",
-        "oracle_tool": "Oracle Tool",
+        # "oracle_tool": "Oracle Tool",
     }.get(agent, agent)
 
 
 
 def create_accuracy_chart(comparison_rows: list[dict[str, Any]]) -> None:
-    """Grouped bar chart: first-200 accuracy by model and agent."""
+    """Grouped bar chart: first-100 accuracy by model and agent."""
     complete_rows = [
         row
         for row in comparison_rows
@@ -189,7 +194,7 @@ def create_accuracy_chart(comparison_rows: list[dict[str, Any]]) -> None:
                 rotation=90,
             )
 
-    ax.set_title("HLE Accuracy by Model and Agent — First 200 Samples")
+    ax.set_title(f"HLE Accuracy by Model and Agent — First {FIRST_N} Samples")
     ax.set_xlabel("Model")
     ax.set_ylabel("Accuracy (%)")
     ax.set_xticks(x)
@@ -277,7 +282,7 @@ def create_transition_chart(comparison_rows: list[dict[str, Any]]) -> None:
 
     ax.axvline(0, linewidth=1)
     ax.set_title(
-        "Answer Transitions Relative to Direct — First 200 Samples"
+        f"Answer Transitions Relative to Direct — First {FIRST_N} Samples"
     )
     ax.set_xlabel(
         "Number of changed answers "
@@ -301,7 +306,7 @@ def main() -> None:
 
     loaded: dict[tuple[str, str], dict[int, dict[str, Any]]] = {}
 
-    # Load and save reproducible first-200 subsets.
+    # Load and save reproducible first-100 subsets.
     for model in MODELS:
         model_dir = RESULT_ROOT / model["tag"]
 
@@ -445,9 +450,9 @@ def main() -> None:
         writer.writerows(comparison_rows)
 
     md_lines = [
-        "# HLE First-200 Comparison",
+        f"# HLE First-{FIRST_N} Comparison",
         "",
-        "All results are restricted to dataset indices `0–199`.",
+        f"All results are restricted to dataset indices `0–{FIRST_N - 1}`.",
         "",
         "| Model | Precision | Agent | Accuracy | Correct / N | Coverage | W→R | R→W | Net vs Direct | Status |",
         "|---|---|---|---:|---:|---:|---:|---:|---:|---|",
@@ -457,7 +462,7 @@ def main() -> None:
         if row["status"] == "N/A":
             md_lines.append(
                 f"| {row['model']} | {row['precision']} | {row['agent']} | "
-                "N/A | N/A | 0/200 | N/A | N/A | N/A | N/A |"
+                f"N/A | N/A | 0/{FIRST_N} | N/A | N/A | N/A | N/A |"
             )
             continue
 
@@ -490,9 +495,10 @@ def main() -> None:
             "",
             "## Interpretation notes",
             "",
-            "- Only identical indices `0–199` are compared.",
+            "- Only identical indices `0–99` are compared.",
             "- `W→R` and `R→W` are computed against Direct on shared indices.",
             "- A partial result is retained but marked as `Partial`.",
+            "- Qwen3.5-9B is configured as BF16/FP16; update the precision label if your run used quantization.",
             "- Qwen3.5-27B uses NF4 4-bit quantization.",
             # "- `Tool + Search` may be available only for Qwen2.5-7B-Instruct; missing combinations are shown as `N/A`.",
             "",
@@ -517,7 +523,7 @@ def main() -> None:
         writer.writerows(category_rows)
 
     category_md_lines = [
-        "# HLE First-200 Category Comparison",
+        f"# HLE First-{FIRST_N} Category Comparison",
         "",
         "| Model | Agent | Category | Accuracy | Correct / N |",
         "|---|---|---|---:|---:|",

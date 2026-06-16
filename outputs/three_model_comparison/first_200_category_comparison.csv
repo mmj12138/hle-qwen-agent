@@ -31,14 +31,6 @@ Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Humanities/Social Science,6,27,0.22222222
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Math,4,75,0.05333333333333334
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Other,3,24,0.125
 Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,Physics,0,10,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Biology/Medicine,3,20,0.15
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Chemistry,0,1,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Computer Science/AI,3,39,0.07692307692307693
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Engineering,0,4,0.0
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Humanities/Social Science,6,27,0.2222222222222222
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Math,9,75,0.12
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Other,3,24,0.125
-Qwen3.5-0.8B,BF16/FP16,Oracle Tool,Physics,0,10,0.0
 Qwen2.5-7B-Instruct,BF16/FP16,Direct,Biology/Medicine,5,20,0.25
 Qwen2.5-7B-Instruct,BF16/FP16,Direct,Chemistry,0,1,0.0
 Qwen2.5-7B-Instruct,BF16/FP16,Direct,Computer Science/AI,1,39,0.02564102564102564
@@ -71,14 +63,6 @@ Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Humanities/Social Science,6,27,0.2
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Math,6,75,0.08
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Other,4,24,0.16666666666666666
 Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,Physics,2,10,0.2
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Biology/Medicine,5,20,0.25
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Chemistry,0,1,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Computer Science/AI,4,39,0.10256410256410256
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Engineering,0,4,0.0
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Humanities/Social Science,6,27,0.2222222222222222
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Math,6,75,0.08
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Other,4,24,0.16666666666666666
-Qwen2.5-7B-Instruct,BF16/FP16,Oracle Tool,Physics,2,10,0.2
 Qwen3.5-27B,NF4 4-bit,Direct,Biology/Medicine,0,20,0.0
 Qwen3.5-27B,NF4 4-bit,Direct,Chemistry,0,1,0.0
 Qwen3.5-27B,NF4 4-bit,Direct,Computer Science/AI,0,39,0.0
@@ -111,11 +95,3 @@ Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Humanities/Social Science,2,27,0.074074074
 Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Math,2,75,0.02666666666666667
 Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Other,3,24,0.125
 Qwen3.5-27B,NF4 4-bit,Oracle Feedback,Physics,0,10,0.0
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Biology/Medicine,1,20,0.05
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Chemistry,0,1,0.0
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Computer Science/AI,4,39,0.10256410256410256
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Engineering,1,4,0.25
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Humanities/Social Science,2,27,0.07407407407407407
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Math,6,75,0.08
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Other,3,24,0.125
-Qwen3.5-27B,NF4 4-bit,Oracle Tool,Physics,0,10,0.0
