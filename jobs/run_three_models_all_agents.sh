@@ -29,28 +29,28 @@ cd "${PROJECT_ROOT}"
 MODELS=(
 #  "Qwen/Qwen3.5-0.8B"
 #  "Qwen/Qwen2.5-7B-Instruct"
-  "Qwen/Qwen3.5-27B"
+#  "Qwen/Qwen3.5-27B"
   "Qwen/Qwen3.5-9B"
 )
 
 MODEL_TAGS=(
 #  "qwen35_08b"
 #  "qwen25_7b"
-  "qwen35_27b"
+#  "qwen35_27b"
   "qwen35_9b"
 )
 
 AGENTS=(
-  "direct"
-  "feedback"
-  "tool"
-  "tool_search"
+#  "direct"
+#  "feedback"
+#  "tool"
+#  "tool_search"
   "oracle_feedback"
   "oracle_tool"
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=500
+LIMIT=200
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=64
