@@ -10,7 +10,7 @@ PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${PROJECT_ROOT}"
 echo "PROJECT_ROOT = ${PROJECT_ROOT}"
 
-OUTPUT_DIR="outputs/three_model_comparison/qwen25_7b"
+OUTPUT_DIR="outputs/three_model_comparison/qwen35_27b"
 DIRECT_OUTPUT="${OUTPUT_DIR}/direct_results.jsonl"
 FEEDBACK_OUTPUT="${OUTPUT_DIR}/feedback_results.jsonl"
 TOOL_OUTPUT="${OUTPUT_DIR}/tool_results.jsonl"

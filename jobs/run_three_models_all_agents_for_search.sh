@@ -39,9 +39,9 @@ MODEL_TAGS=(
 )
 
 AGENTS=(
-  "direct"
-  "feedback"
-  "tool"
+#  "direct"
+#  "feedback"
+#  "tool"
   "tool_search"
   "oracle_feedback"
   "oracle_tool"

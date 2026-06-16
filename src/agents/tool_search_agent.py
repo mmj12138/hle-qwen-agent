@@ -575,7 +575,9 @@ def _normalize_search_answer(
     ).strip()
 
     # Search output must be concise; multiline explanations are rejected.
-    answer = answer.splitlines()[0].strip()
+    answer = str(answer or "").strip()
+    answer = answer.splitlines()[0].strip() if answer.splitlines() else ""
+
     answer = answer.strip("`*_ ")
 
     if not answer:
@@ -630,7 +632,8 @@ def _normalize_candidate_answer(
         "",
         answer,
     ).strip()
-    answer = answer.splitlines()[0].strip()
+    answer = str(answer or "").strip()
+    answer = answer.splitlines()[0].strip() if answer.splitlines() else ""
     answer = answer.strip("`*_ ")
 
     if not answer:
