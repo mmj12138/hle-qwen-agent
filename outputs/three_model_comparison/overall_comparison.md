@@ -2,12 +2,12 @@
 
 | Model | Agent | Accuracy | Correct / Total | Wrong→Right | Right→Wrong | Net vs Direct |
 |---|---|---:|---:|---:|---:|---:|
-| Qwen/Qwen3.5-9B | direct | 0.0300 | 6 / 200 | -- | -- | -- |
-| Qwen/Qwen3.5-9B | feedback | 0.0200 | 4 / 200 | 2 | 4 | -2 |
-| Qwen/Qwen3.5-9B | tool | 0.0650 | 13 / 200 | 7 | 0 | +7 |
-| Qwen/Qwen3.5-9B | tool_search | 0.0650 | 13 / 200 | 7 | 0 | +7 |
-| Qwen/Qwen3.5-9B | oracle_feedback | 0.0450 | 9 / 200 | 3 | 0 | +3 |
-| Qwen/Qwen3.5-9B | oracle_tool | 0.0800 | 16 / 200 | 10 | 0 | +10 |
+| Qwen/Qwen3.5-27B | direct | 0.0523 | 68 / 1300 | -- | -- | -- |
+| Qwen/Qwen3.5-27B | feedback | 0.0200 | 20 / 1000 | 15 | 46 | -31 |
+| Qwen/Qwen3.5-27B | tool | 0.0590 | 59 / 1000 | 8 | 0 | +8 |
+| Qwen/Qwen3.5-27B | tool_search | 0.0600 | 60 / 1000 | 9 | 0 | +9 |
+| Qwen/Qwen3.5-27B | oracle_feedback | 0.0750 | 75 / 1000 | 24 | 0 | +24 |
+| Qwen/Qwen3.5-27B | oracle_tool | 0.0830 | 83 / 1000 | 32 | 0 | +32 |
 
 ## Notes
 
