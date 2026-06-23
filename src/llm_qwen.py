@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import os
 from typing import Dict, List, Any
 
 import torch
@@ -9,14 +8,10 @@ from transformers import (
     AutoModelForMultimodalLM,
     AutoProcessor,
     AutoTokenizer,
-    BitsAndBytesConfig,
 )
 
 from src.config import Config
 
-
-def _env_flag(name: str, default: str = "auto") -> str:
-    return os.getenv(name, default).strip().lower()
 
 
 class QwenLLM:
@@ -24,12 +19,8 @@ class QwenLLM:
     Supports:
     - Qwen2.5 text-only causal LMs
     - Qwen3.5 multimodal LMs in text-only mode
-    - Automatic NF4 4-bit loading for Qwen3.5-27B
-
-    Environment controls:
-    - LOAD_IN_4BIT=auto   -> quantize only models whose name contains "27b"
-    - LOAD_IN_4BIT=1      -> force 4-bit
-    - LOAD_IN_4BIT=0      -> disable 4-bit
+    - Full-precision BF16 inference for Qwen3.5-27B on H100
+    - Qwen3.5 thinking mode with final-answer extraction
     """
 
     def __init__(self, config: Config):
@@ -37,44 +28,23 @@ class QwenLLM:
         self.model_name_lower = config.model_name.lower()
         self.is_qwen35 = "qwen3.5" in self.model_name_lower
 
-        quantize_setting = _env_flag("LOAD_IN_4BIT", "auto")
-        if quantize_setting in {"1", "true", "yes", "on"}:
-            self.use_4bit = True
-        elif quantize_setting in {"0", "false", "no", "off"}:
-            self.use_4bit = False
-        else:
-            # Default: only quantize the 27B model.
-            self.use_4bit = "27b" in self.model_name_lower
-
-        torch_dtype: Any = "auto"
-        if config.dtype == "float16":
+        # H100 supports BF16 natively. Qwen3.5-27B is loaded without
+        # 4-bit quantization so that the experiment uses the full BF16 model.
+        if self.is_qwen35:
+            torch_dtype: Any = torch.bfloat16
+        elif config.dtype == "float16":
             torch_dtype = torch.float16
         elif config.dtype == "bfloat16":
             torch_dtype = torch.bfloat16
+        else:
+            torch_dtype = "auto"
 
         model_kwargs: Dict[str, Any] = {
             "device_map": config.device_map,
             "trust_remote_code": True,
             "low_cpu_mem_usage": True,
+            "dtype": torch_dtype,
         }
-
-        if self.use_4bit:
-            compute_dtype = (
-                torch.bfloat16
-                if torch.cuda.is_available() and torch.cuda.is_bf16_supported()
-                else torch.float16
-            )
-
-            model_kwargs["quantization_config"] = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_quant_type="nf4",
-                bnb_4bit_compute_dtype=compute_dtype,
-                bnb_4bit_use_double_quant=True,
-            )
-            # The non-quantized layers use this dtype.
-            model_kwargs["dtype"] = compute_dtype
-        else:
-            model_kwargs["dtype"] = torch_dtype
 
         if self.is_qwen35:
             # Qwen3.5 is released as an image-text-to-text / multimodal model,
@@ -106,7 +76,8 @@ class QwenLLM:
         print(
             f"[QwenLLM] model={config.model_name} "
             f"qwen3.5={self.is_qwen35} "
-            f"load_in_4bit={self.use_4bit}"
+            f"dtype={torch_dtype} "
+            f"thinking={self.is_qwen35}"
         )
 
         if hasattr(self.model, "get_memory_footprint"):
@@ -119,9 +90,9 @@ class QwenLLM:
             "add_generation_prompt": True,
         }
 
-        # Keep Qwen2.5 unchanged. Disable thinking only for Qwen3.5.
+        # Keep Qwen2.5 unchanged. Enable thinking for Qwen3.5.
         if self.is_qwen35:
-            template_kwargs["enable_thinking"] = False
+            template_kwargs["enable_thinking"] = True
 
         template_owner = self.processor if self.processor is not None else self.tokenizer
 
@@ -152,8 +123,12 @@ class QwenLLM:
 
         do_sample = self.config.temperature > 0
 
+        max_new_tokens = self.config.max_new_tokens
+        if self.is_qwen35:
+            max_new_tokens = max(max_new_tokens, 512)
+
         generation_kwargs: Dict[str, Any] = {
-            "max_new_tokens": self.config.max_new_tokens,
+            "max_new_tokens": max_new_tokens,
             "do_sample": do_sample,
             "pad_token_id": self.tokenizer.eos_token_id,
         }
@@ -170,7 +145,15 @@ class QwenLLM:
         prompt_length = inputs["input_ids"].shape[-1]
         new_tokens = output_ids[0][prompt_length:]
 
-        return self.tokenizer.decode(
+        decoded = self.tokenizer.decode(
             new_tokens,
             skip_special_tokens=True,
         ).strip()
+
+        # Qwen3.5 thinking mode may return:
+        # <think>...</think> followed by the final answer.
+        # Keep only the answer after the thinking block.
+        if self.is_qwen35 and "</think>" in decoded:
+            decoded = decoded.split("</think>", 1)[1].strip()
+
+        return decoded

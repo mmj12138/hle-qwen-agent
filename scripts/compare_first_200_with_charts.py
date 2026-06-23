@@ -21,7 +21,7 @@ import numpy as np
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison"
-FIRST_N = 200
+FIRST_N = 1000
 
 MODELS = [
     {
@@ -54,13 +54,13 @@ AGENTS = [
     # "oracle_tool",
 ]
 
-EXTRACT_ROOT = RESULT_ROOT / "first_200_results"
-SUMMARY_CSV = RESULT_ROOT / "first_200_comparison.csv"
-SUMMARY_MD = RESULT_ROOT / "first_200_comparison.md"
-CATEGORY_CSV = RESULT_ROOT / "first_200_category_comparison.csv"
-CATEGORY_MD = RESULT_ROOT / "first_200_category_comparison.md"
-ACCURACY_CHART = RESULT_ROOT / "first_200_accuracy_by_model_agent.png"
-TRANSITION_CHART = RESULT_ROOT / "first_200_answer_transitions.png"
+EXTRACT_ROOT = RESULT_ROOT / "first_1000_results"
+SUMMARY_CSV = RESULT_ROOT / "first_1000_comparison.csv"
+SUMMARY_MD = RESULT_ROOT / "first_1000_comparison.md"
+CATEGORY_CSV = RESULT_ROOT / "first_1000_category_comparison.csv"
+CATEGORY_MD = RESULT_ROOT / "first_1000_category_comparison.md"
+ACCURACY_CHART = RESULT_ROOT / "first_1000_accuracy_by_model_agent.png"
+TRANSITION_CHART = RESULT_ROOT / "first_1000_answer_transitions.png"
 
 
 def read_first_n_by_index(path: Path, first_n: int) -> dict[int, dict[str, Any]]:

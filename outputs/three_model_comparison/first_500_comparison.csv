@@ -1,0 +1,13 @@
+model,precision,agent,correct,total,accuracy,coverage,wrong_to_right,right_to_wrong,net_vs_direct,shared_with_direct,missing_indices,status
+Qwen3.5-0.8B,BF16/FP16,Direct,19,500,0.038,500/500,,,,,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Feedback,26,500,0.052,500/500,20,13,7,500,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Tool,25,500,0.05,500/500,9,3,6,500,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Oracle Feedback,35,500,0.07,500/500,16,0,16,500,0,Complete
+Qwen2.5-7B-Instruct,BF16/FP16,Direct,34,500,0.068,500/500,,,,,0,Complete
+Qwen2.5-7B-Instruct,BF16/FP16,Feedback,19,500,0.038,500/500,6,21,-15,500,0,Complete
+Qwen2.5-7B-Instruct,BF16/FP16,Tool,41,500,0.082,500/500,7,0,7,500,0,Complete
+Qwen2.5-7B-Instruct,BF16/FP16,Oracle Feedback,62,500,0.124,500/500,28,0,28,500,0,Complete
+Qwen3.5-27B,NF4 4-bit,Direct,27,500,0.054,500/500,,,,,0,Complete
+Qwen3.5-27B,NF4 4-bit,Feedback,10,500,0.02,500/500,7,24,-17,500,0,Complete
+Qwen3.5-27B,NF4 4-bit,Tool,34,500,0.068,500/500,7,0,7,500,0,Complete
+Qwen3.5-27B,NF4 4-bit,Oracle Feedback,36,500,0.072,500/500,9,0,9,500,0,Complete
