@@ -92,7 +92,7 @@ class QwenLLM:
 
         # Keep Qwen2.5 unchanged. Enable thinking for Qwen3.5.
         if self.is_qwen35:
-            template_kwargs["enable_thinking"] = True
+            template_kwargs["enable_thinking"] = False
 
         template_owner = self.processor if self.processor is not None else self.tokenizer
 

@@ -50,10 +50,10 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=100
+LIMIT=200
 MAX_ITERATIONS=3
 TEXT_ONLY=1
-MAX_NEW_TOKENS=1024
+MAX_NEW_TOKENS=512
 TEMPERATURE=0.0
 OUTPUT_ROOT="outputs/three_model_comparison"
 RUN_SCRIPT="scripts/run_agents.py"
