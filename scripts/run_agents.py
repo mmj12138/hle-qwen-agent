@@ -11,7 +11,6 @@ from src.config import get_config
 from src.dataset_hle import load_hle_dataset, normalize_hle_item, format_question
 from src.llm_qwen import QwenLLM
 from src.agents import get_agent
-from src.agents.tool_search_agent import ToolSearchAgent
 from src.evaluator import score_prediction
 
 
@@ -31,6 +30,43 @@ def compute_accuracy(records: list[dict]) -> dict:
         "correct": correct,
         "total": total,
         "accuracy": correct / total if total else 0.0,
+    }
+
+
+def compute_generation_summary(records: list[dict]) -> dict:
+    calls = [
+        call
+        for record in records
+        for call in record.get("generation_diagnostics", [])
+    ]
+
+    total_calls = len(calls)
+    reached_limit_calls = sum(
+        1 for call in calls if call.get("reached_token_limit") is True
+    )
+    empty_output_calls = sum(
+        1 for call in calls if call.get("output_empty") is True
+    )
+
+    generated_counts = [
+        int(call["generated_tokens"])
+        for call in calls
+        if call.get("generated_tokens") is not None
+    ]
+
+    return {
+        "total_model_calls": total_calls,
+        "reached_token_limit_calls": reached_limit_calls,
+        "reached_token_limit_rate": (
+            reached_limit_calls / total_calls if total_calls else 0.0
+        ),
+        "empty_output_calls": empty_output_calls,
+        "average_generated_tokens": (
+            sum(generated_counts) / len(generated_counts)
+            if generated_counts
+            else 0.0
+        ),
+        "max_generated_tokens": max(generated_counts) if generated_counts else 0,
     }
 
 
@@ -107,13 +143,18 @@ def main():
 
     with output_file.open("a", encoding="utf-8", buffering=1) as f:
         for idx, item in enumerate(
-                tqdm(data, desc=f"Running {args.agent} agent")
+            tqdm(data, desc=f"Running {args.agent} agent")
         ):
             if idx in completed_indices:
                 continue
 
             ex = normalize_hle_item(dict(item))
             question = format_question(ex)
+
+            # Store diagnostics only for calls made for this sample.
+            llm.reset_generation_diagnostics()
+            if critic_llm is not None:
+                critic_llm.reset_generation_diagnostics()
 
             if args.agent == "oracle_feedback":
                 result = agent.run(
@@ -146,6 +187,14 @@ def main():
                     answer_type=ex["answer_type"],
                 )
 
+            generation_diagnostics = llm.get_generation_diagnostics(clear=True)
+            if critic_llm is not None:
+                critic_diagnostics = critic_llm.get_generation_diagnostics(
+                    clear=True
+                )
+            else:
+                critic_diagnostics = []
+
             score = score_prediction(
                 result["final_output"],
                 ex["answer"],
@@ -162,7 +211,11 @@ def main():
                 "final_output": result["final_output"],
                 "score": score,
                 "trace": result["trace"],
+                "generation_diagnostics": generation_diagnostics,
             }
+
+            if critic_diagnostics:
+                record["critic_generation_diagnostics"] = critic_diagnostics
 
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
             f.flush()
@@ -170,6 +223,7 @@ def main():
             records.append(record)
 
     metrics = compute_accuracy(records)
+    generation_summary = compute_generation_summary(records)
 
     print("=" * 80)
     print("Run finished.")
@@ -177,6 +231,15 @@ def main():
     print(
         f"Accuracy: {metrics['accuracy']:.4f} "
         f"({metrics['correct']}/{metrics['total']})"
+    )
+    print(
+        "Generation diagnostics: "
+        f"limit reached in "
+        f"{generation_summary['reached_token_limit_calls']}/"
+        f"{generation_summary['total_model_calls']} calls "
+        f"({generation_summary['reached_token_limit_rate']:.2%}); "
+        f"average generated tokens="
+        f"{generation_summary['average_generated_tokens']:.1f}"
     )
     print("=" * 80)
 

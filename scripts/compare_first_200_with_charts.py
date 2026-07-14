@@ -29,16 +29,16 @@ MODELS = [
         "tag": "qwen35_08b",
         "precision": "BF16/FP16",
     },
-    {
-        "name": "Qwen2.5-7B-Instruct",
-        "tag": "qwen25_7b",
-        "precision": "BF16/FP16",
-    },
     # {
-    #     "name": "Qwen3.5-9B",
-    #     "tag": "qwen35_9b",
+    #     "name": "Qwen2.5-7B-Instruct",
+    #     "tag": "qwen25_7b",
     #     "precision": "BF16/FP16",
     # },
+    {
+        "name": "Qwen3.5-9B",
+        "tag": "qwen35_9b",
+        "precision": "BF16/FP16",
+    },
     {
         "name": "Qwen3.5-27B",
         "tag": "qwen35_27b",

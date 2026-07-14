@@ -1,0 +1,7 @@
+model,model_tag,agent,accuracy,correct,total,wrong_to_right,right_to_wrong,net_vs_direct
+Qwen/Qwen3.5-27B,qwen35_27b,direct,0.052307692307692305,68,1300,,,
+Qwen/Qwen3.5-27B,qwen35_27b,feedback,0.02,20,1000,15,46,-31
+Qwen/Qwen3.5-27B,qwen35_27b,tool,0.059,59,1000,8,0,8
+Qwen/Qwen3.5-27B,qwen35_27b,tool_search,0.06,60,1000,9,0,9
+Qwen/Qwen3.5-27B,qwen35_27b,oracle_feedback,0.075,75,1000,24,0,24
+Qwen/Qwen3.5-27B,qwen35_27b,oracle_tool,0.083,83,1000,32,0,32

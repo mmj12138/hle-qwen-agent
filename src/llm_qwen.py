@@ -1,140 +1,100 @@
 from __future__ import annotations
 
-from typing import Dict, List, Any
+from typing import Any, Dict, List
 
 import torch
-from transformers import (
-    AutoModelForCausalLM,
-    AutoModelForMultimodalLM,
-    AutoProcessor,
-    AutoTokenizer,
-)
+from transformers import AutoModelForMultimodalLM, AutoProcessor
 
 from src.config import Config
 
 
-
 class QwenLLM:
     """
-    Supports:
-    - Qwen2.5 text-only causal LMs
-    - Qwen3.5 multimodal LMs in text-only mode
-    - Full-precision BF16 inference for Qwen3.5-27B on H100
-    - Qwen3.5 thinking mode with final-answer extraction
+    Simple Qwen3.5 text-only inference wrapper.
+
+    - Uses one loading path for all Qwen3.5 model sizes
+    - Loads the model in BF16
+    - Disables thinking
+    - Uses deterministic greedy decoding
+    - Stores generation diagnostics for each model call
     """
 
     def __init__(self, config: Config):
         self.config = config
-        self.model_name_lower = config.model_name.lower()
-        self.is_qwen35 = "qwen3.5" in self.model_name_lower
+        self.thinking_enabled = False
+        self.torch_dtype = torch.bfloat16
+        self._generation_diagnostics: List[Dict[str, Any]] = []
 
-        # H100 supports BF16 natively. Qwen3.5-27B is loaded without
-        # 4-bit quantization so that the experiment uses the full BF16 model.
-        if self.is_qwen35:
-            torch_dtype: Any = torch.bfloat16
-        elif config.dtype == "float16":
-            torch_dtype = torch.float16
-        elif config.dtype == "bfloat16":
-            torch_dtype = torch.bfloat16
-        else:
-            torch_dtype = "auto"
+        self.processor = AutoProcessor.from_pretrained(
+            config.model_name,
+            trust_remote_code=True,
+        )
+        self.tokenizer = self.processor.tokenizer
 
         model_kwargs: Dict[str, Any] = {
             "device_map": config.device_map,
             "trust_remote_code": True,
             "low_cpu_mem_usage": True,
-            "dtype": torch_dtype,
+            "dtype": self.torch_dtype,
         }
 
-        if self.is_qwen35:
-            # Qwen3.5 is released as an image-text-to-text / multimodal model,
-            # but this project uses it with text-only inputs.
-            self.processor = AutoProcessor.from_pretrained(
-                config.model_name,
-                trust_remote_code=True,
-            )
-            self.tokenizer = self.processor.tokenizer
-
-            self.model = AutoModelForMultimodalLM.from_pretrained(
-                config.model_name,
-                **model_kwargs,
-            )
-        else:
-            self.tokenizer = AutoTokenizer.from_pretrained(
-                config.model_name,
-                trust_remote_code=True,
-            )
-            self.processor = None
-
-            self.model = AutoModelForCausalLM.from_pretrained(
-                config.model_name,
-                **model_kwargs,
-            )
-
+        self.model = AutoModelForMultimodalLM.from_pretrained(
+            config.model_name,
+            **model_kwargs,
+        )
         self.model.eval()
 
         print(
             f"[QwenLLM] model={config.model_name} "
-            f"qwen3.5={self.is_qwen35} "
-            f"dtype={torch_dtype} "
-            f"thinking={self.is_qwen35}"
+            f"dtype={self.torch_dtype} "
+            f"thinking={self.thinking_enabled}"
         )
 
         if hasattr(self.model, "get_memory_footprint"):
             footprint_gib = self.model.get_memory_footprint() / (1024 ** 3)
             print(f"[QwenLLM] model memory footprint: {footprint_gib:.2f} GiB")
 
+    def reset_generation_diagnostics(self) -> None:
+        """Clear diagnostics before starting a new benchmark sample."""
+        self._generation_diagnostics.clear()
+
+    def get_generation_diagnostics(
+        self,
+        clear: bool = False,
+    ) -> List[Dict[str, Any]]:
+        """Return diagnostics for model calls made since the last reset."""
+        diagnostics = [dict(item) for item in self._generation_diagnostics]
+        if clear:
+            self._generation_diagnostics.clear()
+        return diagnostics
+
     def _build_prompt(self, messages: List[Dict[str, str]]) -> str:
-        template_kwargs: Dict[str, Any] = {
-            "tokenize": False,
-            "add_generation_prompt": True,
-        }
-
-        # Keep Qwen2.5 unchanged. Enable thinking for Qwen3.5.
-        if self.is_qwen35:
-            template_kwargs["enable_thinking"] = False
-
-        template_owner = self.processor if self.processor is not None else self.tokenizer
-
-        return template_owner.apply_chat_template(
+        return self.processor.apply_chat_template(
             messages,
-            **template_kwargs,
+            tokenize=False,
+            add_generation_prompt=True,
+            enable_thinking=False,
         )
 
     def _prepare_inputs(self, text: str):
-        if self.processor is not None:
-            inputs = self.processor(
-                text=[text],
-                return_tensors="pt",
-            )
-        else:
-            inputs = self.tokenizer(
-                [text],
-                return_tensors="pt",
-            )
-
-        # With device_map="auto", the input embedding normally lives on the
-        # first CUDA device. model.device resolves to that device.
+        inputs = self.processor(
+            text=[text],
+            return_tensors="pt",
+        )
         return inputs.to(self.model.device)
 
     def generate(self, messages: List[Dict[str, str]]) -> str:
         text = self._build_prompt(messages)
         inputs = self._prepare_inputs(text)
 
-        do_sample = self.config.temperature > 0
-
-        max_new_tokens = self.config.max_new_tokens
-        if self.is_qwen35:
-            max_new_tokens = max(max_new_tokens, 512)
+        max_new_tokens = int(self.config.max_new_tokens)
 
         generation_kwargs: Dict[str, Any] = {
             "max_new_tokens": max_new_tokens,
-            "do_sample": do_sample,
+            "do_sample": False,
             "pad_token_id": self.tokenizer.eos_token_id,
+            "eos_token_id": self.tokenizer.eos_token_id,
         }
-
-        if do_sample:
-            generation_kwargs["temperature"] = self.config.temperature
 
         with torch.inference_mode():
             output_ids = self.model.generate(
@@ -142,18 +102,26 @@ class QwenLLM:
                 **generation_kwargs,
             )
 
-        prompt_length = inputs["input_ids"].shape[-1]
+        prompt_length = int(inputs["input_ids"].shape[-1])
         new_tokens = output_ids[0][prompt_length:]
+
+        generated_token_count = int(new_tokens.shape[-1])
+        reached_token_limit = generated_token_count >= max_new_tokens
 
         decoded = self.tokenizer.decode(
             new_tokens,
             skip_special_tokens=True,
         ).strip()
 
-        # Qwen3.5 thinking mode may return:
-        # <think>...</think> followed by the final answer.
-        # Keep only the answer after the thinking block.
-        if self.is_qwen35 and "</think>" in decoded:
-            decoded = decoded.split("</think>", 1)[1].strip()
+        self._generation_diagnostics.append(
+            {
+                "call_index": len(self._generation_diagnostics),
+                "prompt_tokens": prompt_length,
+                "generated_tokens": generated_token_count,
+                "max_new_tokens": max_new_tokens,
+                "reached_token_limit": reached_token_limit,
+                "output_empty": decoded == "",
+            }
+        )
 
         return decoded
