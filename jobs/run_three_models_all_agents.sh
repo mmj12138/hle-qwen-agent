@@ -50,7 +50,7 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=500
+LIMIT=1904
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=256
