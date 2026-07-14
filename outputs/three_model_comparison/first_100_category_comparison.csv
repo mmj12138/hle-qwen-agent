@@ -1,0 +1,25 @@
+model,precision,agent,category,correct,total,accuracy
+Qwen3.5-0.8B,BF16/FP16,Direct,Biology/Medicine,1,8,0.125
+Qwen3.5-0.8B,BF16/FP16,Direct,Chemistry,0,1,0.0
+Qwen3.5-0.8B,BF16/FP16,Direct,Computer Science/AI,1,18,0.05555555555555555
+Qwen3.5-0.8B,BF16/FP16,Direct,Engineering,0,2,0.0
+Qwen3.5-0.8B,BF16/FP16,Direct,Humanities/Social Science,4,20,0.2
+Qwen3.5-0.8B,BF16/FP16,Direct,Math,0,26,0.0
+Qwen3.5-0.8B,BF16/FP16,Direct,Other,0,17,0.0
+Qwen3.5-0.8B,BF16/FP16,Direct,Physics,0,8,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Biology/Medicine,0,8,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Chemistry,0,1,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Computer Science/AI,0,18,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Engineering,0,2,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Humanities/Social Science,2,20,0.1
+Qwen3.5-9B,BF16/FP16,Direct,Math,0,26,0.0
+Qwen3.5-9B,BF16/FP16,Direct,Other,1,17,0.058823529411764705
+Qwen3.5-9B,BF16/FP16,Direct,Physics,0,8,0.0
+Qwen3.5-27B,NF4 4-bit,Direct,Biology/Medicine,0,8,0.0
+Qwen3.5-27B,NF4 4-bit,Direct,Chemistry,0,1,0.0
+Qwen3.5-27B,NF4 4-bit,Direct,Computer Science/AI,0,18,0.0
+Qwen3.5-27B,NF4 4-bit,Direct,Engineering,1,2,0.5
+Qwen3.5-27B,NF4 4-bit,Direct,Humanities/Social Science,2,20,0.1
+Qwen3.5-27B,NF4 4-bit,Direct,Math,3,26,0.11538461538461539
+Qwen3.5-27B,NF4 4-bit,Direct,Other,1,17,0.058823529411764705
+Qwen3.5-27B,NF4 4-bit,Direct,Physics,1,8,0.125
