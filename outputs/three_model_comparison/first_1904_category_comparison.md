@@ -4,10 +4,10 @@
 |---|---|---|---:|---:|
 | Qwen3.5-0.8B | Direct | Biology/Medicine | 9.57% | 20 / 209 |
 | Qwen3.5-0.8B | Direct | Chemistry | 5.26% | 4 / 76 |
-| Qwen3.5-0.8B | Direct | Computer Science/AI | 4.48% | 9 / 201 |
+| Qwen3.5-0.8B | Direct | Computer Science/AI | 4.98% | 10 / 201 |
 | Qwen3.5-0.8B | Direct | Engineering | 7.02% | 4 / 57 |
 | Qwen3.5-0.8B | Direct | Humanities/Social Science | 5.62% | 10 / 178 |
-| Qwen3.5-0.8B | Direct | Math | 3.00% | 26 / 866 |
+| Qwen3.5-0.8B | Direct | Math | 3.46% | 30 / 866 |
 | Qwen3.5-0.8B | Direct | Other | 4.96% | 7 / 141 |
 | Qwen3.5-0.8B | Direct | Physics | 5.68% | 10 / 176 |
 | Qwen3.5-9B | Direct | Biology/Medicine | 10.05% | 21 / 209 |
