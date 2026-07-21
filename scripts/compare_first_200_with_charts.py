@@ -20,7 +20,7 @@ import numpy as np
 # This works both locally and on Ubelix without hard-coded paths.
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison"
+RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison_thinking"
 FIRST_N = 1904
 
 MODELS = [
