@@ -73,7 +73,7 @@ class QwenLLM:
             messages,
             tokenize=False,
             add_generation_prompt=True,
-            enable_thinking=False,
+            enable_thinking=True,
         )
 
     def _prepare_inputs(self, text: str):
