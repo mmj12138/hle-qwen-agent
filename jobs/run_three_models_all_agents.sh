@@ -27,14 +27,14 @@ cd "${PROJECT_ROOT}"
 # Experiment configuration
 # ----------------------------
 MODELS=(
-#  "Qwen/Qwen3.5-0.8B"
+  "Qwen/Qwen3.5-0.8B"
 #  "Qwen/Qwen2.5-7B-Instruct"
   "Qwen/Qwen3.5-9B"
   "Qwen/Qwen3.5-27B"
 )
 
 MODEL_TAGS=(
-#  "qwen35_08b"
+  "qwen35_08b"
 #  "qwen25_7b"
   "qwen35_9b"
   "qwen35_27b"
@@ -55,7 +55,7 @@ MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=512
 TEMPERATURE=0.0
-OUTPUT_ROOT="outputs/three_model_comparison"
+OUTPUT_ROOT="outputs/three_model_comparison_thinking"
 RUN_SCRIPT="scripts/run_agents.py"
 
 # Tavily search settings.

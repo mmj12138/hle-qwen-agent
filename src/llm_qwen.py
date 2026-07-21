@@ -21,7 +21,7 @@ class QwenLLM:
 
     def __init__(self, config: Config):
         self.config = config
-        self.thinking_enabled = False
+        self.thinking_enabled = True
         self.torch_dtype = torch.bfloat16
         self._generation_diagnostics: List[Dict[str, Any]] = []
 
