@@ -5,6 +5,7 @@ from src.agents.oracle_feedback_agent import OracleFeedbackAgent
 from src.agents.strong_feedback_agent import StrongFeedbackAgent
 from src.agents.oracle_tool_agent import OracleToolAgent
 from src.agents.tool_search_agent import ToolSearchAgent
+from src.agents.xmaster_feedback_agent import XMasterFeedbackAgent
 
 
 def get_agent(agent_name: str, max_iterations: int = 2):
@@ -30,5 +31,8 @@ def get_agent(agent_name: str, max_iterations: int = 2):
 
     elif agent_name == "tool_search":
         return ToolSearchAgent(max_iterations=max_iterations)
+
+    elif agent_name == "xmaster_feedback":
+        return XMasterFeedbackAgent(num_candidates=max_iterations)
 
     raise ValueError(f"Unknown agent: {agent_name}")

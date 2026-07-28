@@ -426,3 +426,82 @@ DECISION: KEEP_DIRECT or USE_PYTHON
 FINAL_ANSWER: copy exactly one candidate
 REASON: one short reason
 """
+
+
+# ---------------------------------------------------------------------------
+# X-Master-inspired multi-candidate feedback prompts
+# Keep the original FEEDBACK_* prompts above for the existing FeedbackAgent.
+# ---------------------------------------------------------------------------
+
+XMASTER_FEEDBACK_CANDIDATE_PROMPT = """You are Independent Solver {candidate_index}.
+
+Solve the following HLE benchmark question independently.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Rules:
+- Develop a fresh solution from scratch.
+- Check factual claims, calculations, and logical steps carefully.
+- Do not assume another candidate's answer.
+- Keep any explanation concise.
+- End with one final-answer line.
+
+{base_instructions}
+"""
+
+XMASTER_FEEDBACK_COMPARE_PROMPT = """You are the Comparative Critic Agent.
+
+Evaluate the independent candidate solutions below.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Candidates:
+{candidates}
+
+Check every candidate for factual, mathematical, and logical errors.
+Do not automatically trust the majority or the longest answer.
+If all candidates appear wrong, identify the needed correction.
+
+Return:
+Candidate assessments:
+- Candidate 1: <brief assessment>
+- Candidate 2: <brief assessment>
+- Continue for every candidate.
+
+Preferred candidate: <candidate number or NONE>
+Correction: <brief correction or NONE>
+"""
+
+XMASTER_FEEDBACK_SELECT_PROMPT = """You are the Final Selection Agent.
+
+Answer the benchmark question using the candidates and comparative critique.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Candidates:
+{candidates}
+
+Comparative critique:
+{comparison}
+
+Re-evaluate the evidence yourself because the critique may be mistaken.
+Select the best-supported candidate or correct all candidates if necessary.
+
+For multiple-choice questions, output exactly one option letter.
+For exact-match questions, output only the concise answer.
+Do not include reasoning, markdown, or additional text.
+
+Final Answer:
+"""

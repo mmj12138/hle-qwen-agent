@@ -20,42 +20,53 @@ set -euo pipefail
 # contains LIMIT non-empty records, that model/agent run is skipped.
 # ============================================================
 
-PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
+cd /Users/mmj/PycharmProjects/hle_qwen_agent_project
+
+source .venv/bin/activate
+
+python -m pip install torchvision
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${PROJECT_ROOT}"
+
+#PROJECT_ROOT="/storage/homefs/mj24z011/hle-qwen-agent"
+#cd "${PROJECT_ROOT}"
 
 # ----------------------------
 # Experiment configuration
 # ----------------------------
 MODELS=(
-#  "Qwen/Qwen3.5-0.8B"
+  "Qwen/Qwen3.5-0.8B"
 #  "Qwen/Qwen2.5-7B-Instruct"
-  "Qwen/Qwen3.5-9B"
-  "Qwen/Qwen3.5-27B"
+#  "Qwen/Qwen3.5-9B"
+#  "Qwen/Qwen3.5-27B"
 )
 
 MODEL_TAGS=(
-#  "qwen35_08b"
+  "qwen35_08b"
 #  "qwen25_7b"
-  "qwen35_9b"
-  "qwen35_27b"
+#  "qwen35_9b"
+#  "qwen35_27b"
 )
 
 AGENTS=(
-  "direct"
+#  "direct"
 #  "feedback"
 #  "tool"
 #  "tool_search"
 #  "oracle_feedback"
 #  "oracle_tool"
+  "xmaster_feedback"
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=200
+LIMIT=10
 MAX_ITERATIONS=3
 TEXT_ONLY=1
-MAX_NEW_TOKENS=2048
+MAX_NEW_TOKENS=128
 TEMPERATURE=0.0
-OUTPUT_ROOT="outputs/three_model_comparison_thinking"
+OUTPUT_ROOT="outputs/three_model_comparison"
 RUN_SCRIPT="scripts/run_agents.py"
 
 # Tavily search settings.
@@ -89,10 +100,16 @@ if [[ -f "${HOME}/.hle_search_env" ]]; then
   source "${HOME}/.hle_search_env"
 fi
 
-if [[ -z "${TAVILY_API_KEY:-}" ]]; then
-  echo "ERROR: TAVILY_API_KEY is not configured."
-  echo "Create ~/.hle_search_env or export TAVILY_API_KEY before running."
-  exit 1
+if [[ " ${AGENTS[*]} " == *" tool "* ]]; then
+  if [[ -f "${HOME}/.hle_search_env" ]]; then
+    # shellcheck disable=SC1090
+    source "${HOME}/.hle_search_env"
+  fi
+
+  if [[ -z "${TAVILY_API_KEY:-}" ]]; then
+    echo "ERROR: TAVILY_API_KEY is required for the tool agent."
+    exit 1
+  fi
 fi
 
 if [[ ! -f "${RUN_SCRIPT}" ]]; then
