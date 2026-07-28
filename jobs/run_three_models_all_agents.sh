@@ -20,12 +20,6 @@ set -euo pipefail
 # contains LIMIT non-empty records, that model/agent run is skipped.
 # ============================================================
 
-cd /Users/mmj/PycharmProjects/hle_qwen_agent_project
-
-source .venv/bin/activate
-
-python -m pip install torchvision
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 cd "${PROJECT_ROOT}"
