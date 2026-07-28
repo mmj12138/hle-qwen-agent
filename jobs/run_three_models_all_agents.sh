@@ -48,7 +48,7 @@ AGENTS=(
 #  "direct"
 #  "feedback"
 #  "tool"
-#  "tool_search"
+  "tool_search"
 #  "oracle_feedback"
 #  "oracle_tool"
   "xmaster_feedback"
