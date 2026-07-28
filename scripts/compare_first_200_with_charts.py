@@ -20,7 +20,7 @@ import numpy as np
 # This works both locally and on Ubelix without hard-coded paths.
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison_thinking"
+RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison"
 FIRST_N = 1904
 
 MODELS = [
@@ -34,24 +34,25 @@ MODELS = [
     #     "tag": "qwen25_7b",
     #     "precision": "BF16/FP16",
     # },
-    {
-        "name": "Qwen3.5-9B",
-        "tag": "qwen35_9b",
-        "precision": "BF16/FP16",
-    },
-    {
-        "name": "Qwen3.5-27B",
-        "tag": "qwen35_27b",
-        "precision": "NF4 4-bit",
-    },
+    # {
+    #     "name": "Qwen3.5-9B",
+    #     "tag": "qwen35_9b",
+    #     "precision": "BF16/FP16",
+    # },
+    # {
+    #     "name": "Qwen3.5-27B",
+    #     "tag": "qwen35_27b",
+    #     "precision": "NF4 4-bit",
+    # },
 ]
 
 AGENTS = [
     "direct",
-    # "feedback",
+    "xmaster_feedback",
     # "tool_search",
     # "oracle_feedback",
     # "oracle_tool",
+
 ]
 
 EXTRACT_ROOT = RESULT_ROOT / "first_1904_results"
