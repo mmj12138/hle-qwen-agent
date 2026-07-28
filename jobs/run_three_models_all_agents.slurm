@@ -6,7 +6,7 @@
 #SBATCH --account=gratis
 #SBATCH --partition=gpu
 #SBATCH --qos=job_gratis
-#SBATCH --gres=gpu:h100:1
+#SBATCH --gres=gpu:rtx4090:1
 #SBATCH --time=08:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
