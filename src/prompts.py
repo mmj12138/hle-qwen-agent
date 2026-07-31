@@ -505,3 +505,92 @@ Do not include reasoning, markdown, or additional text.
 
 Final Answer:
 """
+
+# ---------------------------------------------------------------------------
+# Lightweight simulated X-Master prompts
+# ---------------------------------------------------------------------------
+
+SIM_XMASTER_SOLVER_PROMPT = """You are Independent Solver {solver_index}.
+
+Solve the following HLE benchmark question independently.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Rules:
+- Develop a fresh solution from scratch.
+- Check factual claims, calculations, and logical steps carefully.
+- Do not assume another solver's answer.
+- Keep the explanation concise but sufficient for later verification.
+- End with exactly one line in this form:
+  Final Answer: <answer>
+"""
+
+SIM_XMASTER_CRITIC_PROMPT = """You are the Critic in a lightweight
+X-Master-inspired agent.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Category:
+{category}
+
+Anonymous candidates:
+{candidates}
+
+Assess every candidate independently.
+
+Rules:
+- Check factual, mathematical, and logical correctness.
+- Do not infer which candidate used tools or web search.
+- Do not prefer the majority, the longest response, or a confident tone.
+- Agreement is evidence only when the underlying reasoning is sound.
+- If all candidates are wrong, identify the correction needed.
+- Do not invent external evidence not present in the question or candidates.
+
+Return:
+Candidate assessments:
+- Candidate 1: <brief assessment>
+- Candidate 2: <brief assessment>
+- Continue for every candidate.
+
+Preferred candidate: <candidate number or NONE>
+Correction: <brief correction or NONE>
+"""
+
+SIM_XMASTER_SELECTOR_PROMPT = """You are the final selector in a lightweight
+X-Master-inspired agent.
+
+Question:
+{question}
+
+Answer type:
+{answer_type}
+
+Category:
+{category}
+
+Anonymous candidates:
+{candidates}
+
+Critic assessment:
+{critique}
+
+Produce the final answer.
+
+Rules:
+- Re-evaluate the candidates yourself because the critic may be wrong.
+- Select the best-supported candidate or correct all candidates when needed.
+- Do not mention candidates, tools, search, feedback, or the selection process.
+- For multiple-choice questions, output exactly one option letter.
+- For exact-match questions, output only the concise answer.
+- Do not include reasoning, markdown, or extra text.
+
+Final Answer:
+"""

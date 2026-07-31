@@ -4,9 +4,12 @@ All results are restricted to dataset indices `0–499`.
 
 | Model | Precision | Agent | Accuracy | Correct / N | Coverage | W→R | R→W | Net vs Direct | Status |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
-| Qwen3.5-0.8B | BF16/FP16 | Direct | 3.80% | 19 / 500 | 500/500 | — | — | — | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | Direct | 4.00% | 20 / 500 | 500/500 | — | — | — | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | xmaster_feedback | 4.80% | 24 / 500 | 500/500 | 18 | 14 | +4 | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | Tool | 5.20% | 26 / 500 | 500/500 | 9 | 3 | +6 | Complete |
 | Qwen3.5-9B | BF16/FP16 | Direct | 4.80% | 24 / 500 | 500/500 | — | — | — | Complete |
-| Qwen3.5-27B | NF4 4-bit | Direct | 5.80% | 29 / 500 | 500/500 | — | — | — | Complete |
+| Qwen3.5-9B | BF16/FP16 | xmaster_feedback | 4.80% | 24 / 500 | 500/500 | 12 | 12 | +0 | Complete |
+| Qwen3.5-9B | BF16/FP16 | Tool | 6.40% | 32 / 500 | 500/500 | 8 | 0 | +8 | Complete |
 
 ## Interpretation notes
 

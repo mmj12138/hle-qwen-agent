@@ -34,22 +34,22 @@ MODELS = [
     #     "tag": "qwen25_7b",
     #     "precision": "BF16/FP16",
     # },
-    # {
-    #     "name": "Qwen3.5-9B",
-    #     "tag": "qwen35_9b",
-    #     "precision": "BF16/FP16",
-    # },
-    # {
-    #     "name": "Qwen3.5-27B",
-    #     "tag": "qwen35_27b",
-    #     "precision": "NF4 4-bit",
-    # },
+    {
+        "name": "Qwen3.5-9B",
+        "tag": "qwen35_9b",
+        "precision": "BF16/FP16",
+    },
+    {
+        "name": "Qwen3.5-27B",
+        "tag": "qwen35_27b",
+        "precision": "NF4 4-bit",
+    },
 ]
 
 AGENTS = [
     "direct",
     "xmaster_feedback",
-    # "tool_search",
+    "tool_search",
     # "oracle_feedback",
     # "oracle_tool",
 

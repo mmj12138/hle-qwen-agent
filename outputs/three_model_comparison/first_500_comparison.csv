@@ -1,4 +1,7 @@
 model,precision,agent,correct,total,accuracy,coverage,wrong_to_right,right_to_wrong,net_vs_direct,shared_with_direct,missing_indices,status
-Qwen3.5-0.8B,BF16/FP16,Direct,19,500,0.038,500/500,,,,,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Direct,20,500,0.04,500/500,,,,,0,Complete
+Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,24,500,0.048,500/500,18,14,4,500,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Tool,26,500,0.052,500/500,9,3,6,500,0,Complete
 Qwen3.5-9B,BF16/FP16,Direct,24,500,0.048,500/500,,,,,0,Complete
-Qwen3.5-27B,NF4 4-bit,Direct,29,500,0.058,500/500,,,,,0,Complete
+Qwen3.5-9B,BF16/FP16,xmaster_feedback,24,500,0.048,500/500,12,12,0,500,0,Complete
+Qwen3.5-9B,BF16/FP16,Tool,32,500,0.064,500/500,8,0,8,500,0,Complete

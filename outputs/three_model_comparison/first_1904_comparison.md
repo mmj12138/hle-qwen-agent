@@ -6,6 +6,13 @@ All results are restricted to dataset indices `0–1903`.
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
 | Qwen3.5-0.8B | BF16/FP16 | Direct | 4.99% | 95 / 1904 | 1904/1904 | — | — | — | Complete |
 | Qwen3.5-0.8B | BF16/FP16 | xmaster_feedback | 6.30% | 120 / 1904 | 1904/1904 | 72 | 47 | +25 | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | Tool | 5.78% | 110 / 1904 | 1904/1904 | 26 | 11 | +15 | Complete |
+| Qwen3.5-9B | BF16/FP16 | Direct | 5.25% | 100 / 1904 | 1904/1904 | — | — | — | Complete |
+| Qwen3.5-9B | BF16/FP16 | xmaster_feedback | 5.46% | 104 / 1904 | 1904/1904 | 51 | 47 | +4 | Complete |
+| Qwen3.5-9B | BF16/FP16 | Tool | 5.88% | 112 / 1904 | 1904/1904 | 12 | 0 | +12 | Complete |
+| Qwen3.5-27B | NF4 4-bit | Direct | 4.83% | 92 / 1904 | 1904/1904 | — | — | — | Complete |
+| Qwen3.5-27B | NF4 4-bit | xmaster_feedback | 4.97% | 8 / 161 | 161/1904 | 4 | 5 | -1 | Partial |
+| Qwen3.5-27B | NF4 4-bit | Tool | 5.88% | 112 / 1904 | 1904/1904 | 20 | 0 | +20 | Complete |
 
 ## Interpretation notes
 

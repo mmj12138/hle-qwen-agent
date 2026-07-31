@@ -83,6 +83,7 @@ def main():
             "oracle_tool",
             "strong_feedback",
             "xmaster_feedback",
+            "xmaster_total",
         ],
         required=True,
     )
