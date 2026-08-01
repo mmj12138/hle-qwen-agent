@@ -70576,5 +70576,47 @@
     "response_time": 1.93,
     "request_id": "63a494d8-8a85-4448-a5f9-90ce38d6ebc9",
     "from_cache": false
+  },
+  "tavily:basic:general:5:what conormal space does the resolvent of a conormal function of order $2+\\alpha$ on the radial compactification of $\\mathbb{r}^3$ belong to?": {
+    "provider": "tavily",
+    "query": "What conormal space does the resolvent of a conormal function of order $2+\\alpha$ on the radial compactification of $\\mathbb{R}^3$ belong to?",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Conormal distributions at the origin",
+        "snippet": "For the radial compactiﬁcation we know we can take as boundary deﬁning function (L2.2) Z0 = ρ = 1 (1 + |ξ|2) 1 2 for any metric.\nThen the space ρ−mC∞(W) for any real vector space W is deﬁned by (L2.3) u ∈ρ−mC∞(W) ⇐ ⇒ρmu ∈C∞(W).\nTraditionally this is called the space of ‘classical symbols or order m on W’ and denoted Sm cl (W). I will not use this notation (at least not much) because it is redundant and also there is some confusion in the literature between closely related, but diﬀerent, spaces. [...] □ Continuing to follow the discussion of the radial compactiﬁcation, this shows that we may deﬁne [W, {0}] as a manifold associated to the principal GL(n, R)-space, P(W), of bases of W. Thus GL(n, R) acts on P(W) by replacing a basis by the corresponding linear combination of its elements and GL(W) acts on it by acting on the elements of the basis. From this abstract point of view we may set (2+.59) [W, {0}] = \u0000P(W) × [0, ∞) × Sn−1\u0001 / GL(n, R). [...] Just as for the map deﬁning radial compactiﬁcation, it is important to know that a general element of GL(n, R) lifts under β.\nLemma 9. There is a smooth action of GL(n, R) on [0, ∞) × Sn−1 which is intertwined with the standard action on Rn by β : (2+.56) [0, ∞) × Sn−1 ˜ A \u000f β / Rn A \u000f [0, ∞) × Sn−1 β / Rn.\nProof. See the discussion in the case of radial compactiﬁcation.",
+        "link": "https://math.mit.edu/~rbm/18.157-F05-Chapter2.pdf",
+        "score": 0.7089592
+      },
+      {
+        "title": "Resolvents and complex powers of semiclassical cone ...",
+        "snippet": "□ Less precise mapping properties require only conormal bounds; hence we record: Corollary 6.2. For Re w > −n 2 , we have (h2∆g + 1)(w) ∈ \u0000x x+h \u0001−2wΨ2w cℏ(X) + A−ϵ,−2 Re w,n−ϵ,0(X2 cℏ) (6.11a) for all ϵ > 0, where A denotes the space of L∞-conormal functions vanishing rapidly at sf, df, with the exponents denoting the decay rates at lb, ﬀ, rb, tf. For Re w ≤−n 2 , we have (h2∆g + 1)(w) ∈ \u0000x x+h \u0001−2wΨ2w cℏ(X) + A−ϵ,n−ϵ,n−ϵ,0(X2 cℏ). [...] Furthermore, we say that A is said to be elliptic if the polynomial P |α|+|β|=m aαβ(x, y)ξαηβ does not vanish for (0, 0) ̸= (ξ, η) ∈Rk × Rn−k.\nFor α ∈RM1(X), we deﬁne the space of distributions conormal to the boundary, Aα(X), to consist of all distributions on X◦which lie in ραL∞(X) together with all their derivatives along any ﬁnite number of b-vector ﬁelds; here ρα := Q H∈M1(X) ραH H . [...] 7One can take this as the deﬁnition of the radial compactiﬁcation, similarly to [Mel93, Equation (4.92)].\nAlternatively, if +N∂X ∼ = [0, ∞)x×∂X is a local trivialization, giving (+N∂X)2 ∼ = [0, ∞)x×[0, ∞)x′×(∂X)2, we have (+N∂X)2 b ∼ = [0, ∞)r × (S1 ++)θ × (∂X)2 where r = |(x, x′)|, θ = (x, x′)/|(x, x′)| (lying in the ﬁrst quadrant), and then (+N∂X)2 b = [0, ∞]r × (S1 ++)θ × (∂X)2.",
+        "link": "https://sites.psu.edu/phintz/files/2025/07/conic-power-r.pdf",
+        "score": 0.47943115
+      },
+      {
+        "title": "arXiv:1806.01813v3 [math.AP] 7 Apr 2021",
+        "snippet": "(3) If ψ ∈C∞ c (O) has support in a boundary coordinate patch O and κ : O → Oκ ⊂Rn + is a diﬀeomorphism, then (κ−1)∗ψAψκ∗= Opb,h(a) + R (3.6) for some a ∈Sm bc,h(bT ∗Rn +) and R ∈h∞Ψ−∞ bc,h(Rn +) We say that A belongs to Ψm b,h(X) if (3.6) holds for some a ∈Sm b,h(bT ∗Rn +) and R ∈ h∞Ψ−∞ b,h (X).\nThe space Ψbc,h(X) of semiclassical b-pseudodiﬀerential operators with conormal coeﬃcients on a compact manifold X with boundary has the following properties.",
+        "link": "https://arxiv.org/pdf/1806.01813",
+        "score": 0.4622066
+      },
+      {
+        "title": "Resolvents and complex powers of semiclassical cone ...",
+        "snippet": "7One can take this as the definition of the radial compactification, similarly to [33, Equation (4.92)]. Alternatively, if +𝑁𝜕𝑋≅[0, ∞)𝑥× 𝜕𝑋 is a local trivialization, giving (+𝑁𝜕𝑋)2 ≅[0, ∞)𝑥× [0, ∞)𝑥′ × (𝜕𝑋)2, we have (+𝑁𝜕𝑋)2 b ≅[0, ∞)𝑟× ( 𝕊1 ++ ) 𝜃× (𝜕𝑋)2 where 𝑟= |(𝑥, 𝑥′)|, 𝜃= (𝑥, 𝑥′)∕|(𝑥, 𝑥′)| (lying in the first quadrant), and then (+𝑁𝜕𝑋)2 b = [0, ∞]𝑟× ( 𝕊1 ++ ) 𝜃× (𝜕𝑋)2. [...] We first observe then that tf ′ ∶= front face of [ [0, 1) × 𝑋2 b; {0} × ff b ] ≅front face of [ [0, ∞) × (+𝑁𝜕𝑋)2 b; {0} × ff b ] is canonically diffeomorphic to the radial compactification (+𝑁𝜕𝑋)2 b.7 The latter has 4 boundary hypersurfaces which we denote lb′, ff ′, rb′, ff ′ ∞: the first three are the closures of the left boundary, front face, and right boundary of (+𝑁𝜕𝑋)2 b in the radial compactification, and ff ′ ∞is the boundary ‘at infinity’ (i.e. the complement of (+𝑁𝜕𝑋)2 b in the radial [...] HINTZ 11 F I G U R E 3 . 1 Left: the radial compactification (+𝑁𝜕𝑋)2 b ≅tf ′. Right: its blow-up along the b-diagonal at infinity is naturally diffeomorphic to the transition face tf (The definition (3.9) uses that there is a natural diffeomorphism of ff b and the front face of (+𝑁𝜕𝑋)2 b, and that there is a natural restriction map bΩ 1 2 ( 𝑋2 b ) |ffb ≅bΩ 1 2 ( ff b ) , see [33, Equation (4.90)].) The corresponding short exact sequence is 0 →𝜌ffΨ𝑚 cℏ(𝑋) →Ψ𝑚 cℏ(𝑋) 𝑁ff w w w →∞( [0, 1)ℎ; Ψ𝑚",
+        "link": "https://d-nb.info/1269454161/34",
+        "score": 0.45711306
+      },
+      {
+        "title": "[PDF] Lectures on Pseudodifferential operators Richard Melrose",
+        "snippet": "Namely, the space on the right is the space of conormal distributions on the compact manifold X2, with respect to the submanifold Diag, the diagonal, as sections of the bundle Hom(E, F) ⊗ΩR, where the precise deﬁnition of these bundles is discussed later. So we will proceed to deﬁne the right side, but in general for any embedded compact submanifold of a compact manifold and any complex vector bundle over the latter (0.3) C∞(X; E) ֒ →Im(X, Y ; E). [...] 16 1. COMPACTIFICATIONS OF A VECTOR SPACE 1+. Addenda to Lecture 1 1+.1. Explicit models. It is useful to think of the radial compactiﬁcation of a vector space, W, as an explicit set with a C∞structure. By abstract nonsense one can do this from the embedding of Rn into Sn,1, but as I show below there is also a more natural geometric approach. [...] Here I have included the fact that smooth sections of the bundle are included in the conormal space, for any order. In fact the elements of Im(X, Y ; E) are arbitrary smooth sections away from Y, they are singular only at Y and then only in a very special way.",
+        "link": "https://math.mit.edu/~rbm/18.157-F05-Intro-Chapter1.pdf",
+        "score": 0.2245401
+      }
+    ],
+    "result_count": 5,
+    "response_time": 3.63,
+    "request_id": "5a62e718-29e5-4ba0-a1cd-a1851ac1b3a7",
+    "from_cache": false
   }
 }
