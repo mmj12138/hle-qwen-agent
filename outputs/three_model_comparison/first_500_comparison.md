@@ -10,6 +10,9 @@ All results are restricted to dataset indices `0–499`.
 | Qwen3.5-9B | BF16/FP16 | Direct | 4.80% | 24 / 500 | 500/500 | — | — | — | Complete |
 | Qwen3.5-9B | BF16/FP16 | xmaster_feedback | 4.80% | 24 / 500 | 500/500 | 12 | 12 | +0 | Complete |
 | Qwen3.5-9B | BF16/FP16 | Tool | 6.40% | 32 / 500 | 500/500 | 8 | 0 | +8 | Complete |
+| Qwen3.5-27B | NF4 4-bit | Direct | 5.80% | 29 / 500 | 500/500 | — | — | — | Complete |
+| Qwen3.5-27B | NF4 4-bit | xmaster_feedback | 5.80% | 29 / 500 | 500/500 | 14 | 14 | +0 | Complete |
+| Qwen3.5-27B | NF4 4-bit | Tool | 7.40% | 37 / 500 | 500/500 | 8 | 0 | +8 | Complete |
 
 ## Interpretation notes
 

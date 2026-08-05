@@ -14,14 +14,14 @@ import numpy as np
 # Fixed analysis configuration
 # ============================================================
 # The script is expected at:
-#   <project_root>/scripts/compare_first_1904.py
+#   <project_root>/scripts/compare_first_1000.py
 #
 # Therefore the parent directory of ``scripts`` is the project root.
 # This works both locally and on Ubelix without hard-coded paths.
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison"
-FIRST_N = 1904
+FIRST_N = 1000
 
 MODELS = [
     {
@@ -55,13 +55,13 @@ AGENTS = [
 
 ]
 
-EXTRACT_ROOT = RESULT_ROOT / "first_1904_results"
-SUMMARY_CSV = RESULT_ROOT / "first_1904_comparison.csv"
-SUMMARY_MD = RESULT_ROOT / "first_1904_comparison.md"
-CATEGORY_CSV = RESULT_ROOT / "first_1904_category_comparison.csv"
-CATEGORY_MD = RESULT_ROOT / "first_1904_category_comparison.md"
-ACCURACY_CHART = RESULT_ROOT / "first_1904_accuracy_by_model_agent.png"
-TRANSITION_CHART = RESULT_ROOT / "first_1904_answer_transitions.png"
+EXTRACT_ROOT = RESULT_ROOT / "first_1000_results"
+SUMMARY_CSV = RESULT_ROOT / "first_1000_comparison.csv"
+SUMMARY_MD = RESULT_ROOT / "first_1000_comparison.md"
+CATEGORY_CSV = RESULT_ROOT / "first_1000_category_comparison.csv"
+CATEGORY_MD = RESULT_ROOT / "first_1000_category_comparison.md"
+ACCURACY_CHART = RESULT_ROOT / "first_1000_accuracy_by_model_agent.png"
+TRANSITION_CHART = RESULT_ROOT / "first_1000_answer_transitions.png"
 
 
 def read_first_n_by_index(path: Path, first_n: int) -> dict[int, dict[str, Any]]:
@@ -133,7 +133,7 @@ def display_agent(agent: str) -> str:
 
 
 def create_accuracy_chart(comparison_rows: list[dict[str, Any]]) -> None:
-    """Grouped bar chart: first-1904 accuracy by model and agent."""
+    """Grouped bar chart: first-1000 accuracy by model and agent."""
     complete_rows = [
         row
         for row in comparison_rows
@@ -307,7 +307,7 @@ def main() -> None:
 
     loaded: dict[tuple[str, str], dict[int, dict[str, Any]]] = {}
 
-    # Load and save reproducible first-1904 subsets.
+    # Load and save reproducible first-1000 subsets.
     for model in MODELS:
         model_dir = RESULT_ROOT / model["tag"]
 

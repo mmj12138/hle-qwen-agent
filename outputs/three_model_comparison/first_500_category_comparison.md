@@ -50,3 +50,27 @@
 | Qwen3.5-9B | Tool | Math | 6.48% | 14 / 216 |
 | Qwen3.5-9B | Tool | Other | 2.78% | 1 / 36 |
 | Qwen3.5-9B | Tool | Physics | 3.70% | 1 / 27 |
+| Qwen3.5-27B | Direct | Biology/Medicine | 9.68% | 6 / 62 |
+| Qwen3.5-27B | Direct | Chemistry | 4.76% | 1 / 21 |
+| Qwen3.5-27B | Direct | Computer Science/AI | 3.12% | 2 / 64 |
+| Qwen3.5-27B | Direct | Engineering | 10.00% | 1 / 10 |
+| Qwen3.5-27B | Direct | Humanities/Social Science | 7.81% | 5 / 64 |
+| Qwen3.5-27B | Direct | Math | 4.63% | 10 / 216 |
+| Qwen3.5-27B | Direct | Other | 5.56% | 2 / 36 |
+| Qwen3.5-27B | Direct | Physics | 7.41% | 2 / 27 |
+| Qwen3.5-27B | xmaster_feedback | Biology/Medicine | 8.06% | 5 / 62 |
+| Qwen3.5-27B | xmaster_feedback | Chemistry | 0.00% | 0 / 21 |
+| Qwen3.5-27B | xmaster_feedback | Computer Science/AI | 6.25% | 4 / 64 |
+| Qwen3.5-27B | xmaster_feedback | Engineering | 10.00% | 1 / 10 |
+| Qwen3.5-27B | xmaster_feedback | Humanities/Social Science | 7.81% | 5 / 64 |
+| Qwen3.5-27B | xmaster_feedback | Math | 6.02% | 13 / 216 |
+| Qwen3.5-27B | xmaster_feedback | Other | 2.78% | 1 / 36 |
+| Qwen3.5-27B | xmaster_feedback | Physics | 0.00% | 0 / 27 |
+| Qwen3.5-27B | Tool | Biology/Medicine | 9.68% | 6 / 62 |
+| Qwen3.5-27B | Tool | Chemistry | 4.76% | 1 / 21 |
+| Qwen3.5-27B | Tool | Computer Science/AI | 6.25% | 4 / 64 |
+| Qwen3.5-27B | Tool | Engineering | 10.00% | 1 / 10 |
+| Qwen3.5-27B | Tool | Humanities/Social Science | 9.38% | 6 / 64 |
+| Qwen3.5-27B | Tool | Math | 6.94% | 15 / 216 |
+| Qwen3.5-27B | Tool | Other | 5.56% | 2 / 36 |
+| Qwen3.5-27B | Tool | Physics | 7.41% | 2 / 27 |

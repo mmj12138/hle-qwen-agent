@@ -38,10 +38,10 @@ MODELS=(
 )
 
 MODEL_TAGS=(
-#  "qwen35_08b"
+  "qwen35_08b"
 #  "qwen25_7b"
-#  "qwen35_9b"
-  "qwen35_27b"
+  "qwen35_9b"
+#  "qwen35_27b"
 )
 
 AGENTS=(
@@ -51,15 +51,15 @@ AGENTS=(
 #  "tool_search"
 #  "oracle_feedback"
 #  "oracle_tool"
-  "xmaster_feedback"
-#  "xmaster_total"
+#  "xmaster_feedback"
+  "xmaster_total"
 )
 
 # All experiment parameters are intentionally fixed here.
 LIMIT=2000
 MAX_ITERATIONS=3
 TEXT_ONLY=1
-MAX_NEW_TOKENS=512
+MAX_NEW_TOKENS=256
 TEMPERATURE=0.0
 OUTPUT_ROOT="outputs/three_model_comparison"
 RUN_SCRIPT="scripts/run_agents.py"
