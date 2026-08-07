@@ -23,6 +23,14 @@ Qwen3.5-0.8B,BF16/FP16,Tool,Humanities/Social Science,4,64,0.0625
 Qwen3.5-0.8B,BF16/FP16,Tool,Math,9,216,0.041666666666666664
 Qwen3.5-0.8B,BF16/FP16,Tool,Other,1,36,0.027777777777777776
 Qwen3.5-0.8B,BF16/FP16,Tool,Physics,3,27,0.1111111111111111
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Biology/Medicine,4,62,0.06451612903225806
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Chemistry,0,21,0.0
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Computer Science/AI,6,64,0.09375
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Engineering,1,10,0.1
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Humanities/Social Science,5,64,0.078125
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Math,12,216,0.05555555555555555
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Other,3,36,0.08333333333333333
+Qwen3.5-0.8B,BF16/FP16,xmaster_total,Physics,0,27,0.0
 Qwen3.5-9B,BF16/FP16,Direct,Biology/Medicine,5,62,0.08064516129032258
 Qwen3.5-9B,BF16/FP16,Direct,Chemistry,1,21,0.047619047619047616
 Qwen3.5-9B,BF16/FP16,Direct,Computer Science/AI,1,64,0.015625

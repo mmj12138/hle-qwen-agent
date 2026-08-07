@@ -52,6 +52,7 @@ AGENTS = [
     "tool_search",
     # "oracle_feedback",
     # "oracle_tool",
+    "xmaster_total",
 
 ]
 
@@ -62,6 +63,7 @@ CATEGORY_CSV = RESULT_ROOT / "first_1000_category_comparison.csv"
 CATEGORY_MD = RESULT_ROOT / "first_1000_category_comparison.md"
 ACCURACY_CHART = RESULT_ROOT / "first_1000_accuracy_by_model_agent.png"
 TRANSITION_CHART = RESULT_ROOT / "first_1000_answer_transitions.png"
+CATEGORY_CHART_DIR = RESULT_ROOT / "first_1000_category_charts"
 
 
 def read_first_n_by_index(path: Path, first_n: int) -> dict[int, dict[str, Any]]:
@@ -126,6 +128,8 @@ def display_agent(agent: str) -> str:
         "direct": "Direct",
         "feedback": "Feedback",
         "tool_search": "Tool",
+        "xmaster_feedback": "XMaster-Feedback",
+        "xmaster_total": "Sim-XMaster",
         "oracle_feedback": "Oracle Feedback",
         # "oracle_tool": "Oracle Tool",
     }.get(agent, agent)
@@ -301,9 +305,138 @@ def create_transition_chart(comparison_rows: list[dict[str, Any]]) -> None:
 
 
 
+def create_category_correct_charts(
+    category_rows: list[dict[str, Any]],
+) -> list[Path]:
+    """Create one grouped bar chart per model.
+
+    X-axis: HLE category
+    Series: agents
+    Bar height: number of correct answers
+
+    A separate chart is produced for each model to avoid overcrowding.
+    """
+    CATEGORY_CHART_DIR.mkdir(parents=True, exist_ok=True)
+    saved_paths: list[Path] = []
+
+    for model in MODELS:
+        model_name = model["name"]
+        model_tag = model["tag"]
+
+        rows = [
+            row
+            for row in category_rows
+            if row["model"] == model_name
+        ]
+
+        if not rows:
+            print(
+                f"[WARN] No category data available for {model_name}."
+            )
+            continue
+
+        categories = sorted(
+            {
+                str(row["category"])
+                for row in rows
+            }
+        )
+        agents = [
+            display_agent(agent)
+            for agent in AGENTS
+            if any(
+                row["agent"] == display_agent(agent)
+                for row in rows
+            )
+        ]
+
+        if not categories or not agents:
+            continue
+
+        correct_lookup = {
+            (
+                str(row["category"]),
+                str(row["agent"]),
+            ): int(row["correct"])
+            for row in rows
+        }
+
+        x = np.arange(len(categories))
+        width = min(0.82 / max(len(agents), 1), 0.20)
+        offsets = (
+            np.arange(len(agents))
+            - (len(agents) - 1) / 2
+        ) * width
+
+        fig_width = max(13, 1.6 * len(categories) + 4)
+        fig, ax = plt.subplots(figsize=(fig_width, 7.5))
+
+        for offset, agent in zip(offsets, agents):
+            values = [
+                correct_lookup.get((category, agent), 0)
+                for category in categories
+            ]
+            bars = ax.bar(
+                x + offset,
+                values,
+                width,
+                label=agent,
+            )
+
+            for bar, value in zip(bars, values):
+                if value == 0:
+                    continue
+                ax.text(
+                    bar.get_x() + bar.get_width() / 2,
+                    bar.get_height() + 0.08,
+                    str(value),
+                    ha="center",
+                    va="bottom",
+                    fontsize=7,
+                    rotation=90,
+                )
+
+        ax.set_title(
+            f"Correct Answers by HLE Category and Agent — "
+            f"{model_name}, First {FIRST_N} Samples"
+        )
+        ax.set_xlabel("HLE category")
+        ax.set_ylabel("Number of correct answers")
+        ax.set_xticks(x)
+        ax.set_xticklabels(
+            categories,
+            rotation=35,
+            ha="right",
+        )
+        ax.set_ylim(bottom=0)
+        ax.grid(axis="y", alpha=0.3)
+        ax.legend(
+            title="Agent",
+            loc="upper left",
+            bbox_to_anchor=(1.01, 1),
+        )
+
+        output_path = (
+            CATEGORY_CHART_DIR
+            / f"{model_tag}_correct_by_category_agent.png"
+        )
+        fig.tight_layout()
+        fig.savefig(
+            output_path,
+            dpi=220,
+            bbox_inches="tight",
+        )
+        plt.close(fig)
+
+        saved_paths.append(output_path)
+
+    return saved_paths
+
+
 def main() -> None:
     RESULT_ROOT.mkdir(parents=True, exist_ok=True)
     EXTRACT_ROOT.mkdir(parents=True, exist_ok=True)
+    CATEGORY_CHART_DIR.mkdir(parents=True, exist_ok=True)
 
     loaded: dict[tuple[str, str], dict[int, dict[str, Any]]] = {}
 
@@ -543,6 +676,7 @@ def main() -> None:
 
     create_accuracy_chart(comparison_rows)
     create_transition_chart(comparison_rows)
+    category_chart_paths = create_category_correct_charts(category_rows)
 
     print()
     print(f"Saved main table:     {SUMMARY_MD}")
@@ -551,6 +685,8 @@ def main() -> None:
     print(f"Saved category CSV:   {CATEGORY_CSV}")
     print(f"Saved accuracy chart: {ACCURACY_CHART}")
     print(f"Saved transition chart: {TRANSITION_CHART}")
+    for chart_path in category_chart_paths:
+        print(f"Saved category chart:   {chart_path}")
 
 
 if __name__ == "__main__":

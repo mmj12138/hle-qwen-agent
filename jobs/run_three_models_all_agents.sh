@@ -41,7 +41,7 @@ MODEL_TAGS=(
   "qwen35_08b"
 #  "qwen25_7b"
   "qwen35_9b"
-#  "qwen35_27b"
+  "qwen35_27b"
 )
 
 AGENTS=(
@@ -56,7 +56,7 @@ AGENTS=(
 )
 
 # All experiment parameters are intentionally fixed here.
-LIMIT=2000
+LIMIT=1000
 MAX_ITERATIONS=3
 TEXT_ONLY=1
 MAX_NEW_TOKENS=256

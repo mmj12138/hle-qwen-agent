@@ -7,14 +7,14 @@ Qwen3.5-0.8B,BF16/FP16,Direct,Humanities/Social Science,8,103,0.0776699029126213
 Qwen3.5-0.8B,BF16/FP16,Direct,Math,15,430,0.03488372093023256
 Qwen3.5-0.8B,BF16/FP16,Direct,Other,3,78,0.038461538461538464
 Qwen3.5-0.8B,BF16/FP16,Direct,Physics,6,68,0.08823529411764706
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Biology/Medicine,7,116,0.0603448275862069
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Chemistry,3,47,0.06382978723404255
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Computer Science/AI,7,118,0.059322033898305086
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Engineering,2,40,0.05
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Humanities/Social Science,10,103,0.0970873786407767
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Math,19,430,0.044186046511627906
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Other,4,78,0.05128205128205128
-Qwen3.5-0.8B,BF16/FP16,xmaster_feedback,Physics,4,68,0.058823529411764705
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Biology/Medicine,7,116,0.0603448275862069
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Chemistry,3,47,0.06382978723404255
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Computer Science/AI,7,118,0.059322033898305086
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Engineering,2,40,0.05
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Humanities/Social Science,10,103,0.0970873786407767
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Math,19,430,0.044186046511627906
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Other,4,78,0.05128205128205128
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,Physics,4,68,0.058823529411764705
 Qwen3.5-0.8B,BF16/FP16,Tool,Biology/Medicine,12,116,0.10344827586206896
 Qwen3.5-0.8B,BF16/FP16,Tool,Chemistry,0,47,0.0
 Qwen3.5-0.8B,BF16/FP16,Tool,Computer Science/AI,6,118,0.05084745762711865
@@ -23,6 +23,14 @@ Qwen3.5-0.8B,BF16/FP16,Tool,Humanities/Social Science,8,103,0.07766990291262135
 Qwen3.5-0.8B,BF16/FP16,Tool,Math,18,430,0.04186046511627907
 Qwen3.5-0.8B,BF16/FP16,Tool,Other,3,78,0.038461538461538464
 Qwen3.5-0.8B,BF16/FP16,Tool,Physics,7,68,0.10294117647058823
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Biology/Medicine,6,116,0.05172413793103448
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Chemistry,2,47,0.0425531914893617
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Computer Science/AI,13,118,0.11016949152542373
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Engineering,5,40,0.125
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Humanities/Social Science,5,103,0.04854368932038835
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Math,21,430,0.04883720930232558
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Other,6,78,0.07692307692307693
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,Physics,0,68,0.0
 Qwen3.5-9B,BF16/FP16,Direct,Biology/Medicine,10,116,0.08620689655172414
 Qwen3.5-9B,BF16/FP16,Direct,Chemistry,3,47,0.06382978723404255
 Qwen3.5-9B,BF16/FP16,Direct,Computer Science/AI,4,118,0.03389830508474576
@@ -31,14 +39,14 @@ Qwen3.5-9B,BF16/FP16,Direct,Humanities/Social Science,8,103,0.07766990291262135
 Qwen3.5-9B,BF16/FP16,Direct,Math,15,430,0.03488372093023256
 Qwen3.5-9B,BF16/FP16,Direct,Other,5,78,0.0641025641025641
 Qwen3.5-9B,BF16/FP16,Direct,Physics,1,68,0.014705882352941176
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Biology/Medicine,12,116,0.10344827586206896
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Chemistry,1,47,0.02127659574468085
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Computer Science/AI,9,118,0.07627118644067797
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Engineering,3,40,0.075
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Humanities/Social Science,5,103,0.04854368932038835
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Math,17,430,0.03953488372093023
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Other,5,78,0.0641025641025641
-Qwen3.5-9B,BF16/FP16,xmaster_feedback,Physics,1,68,0.014705882352941176
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Biology/Medicine,12,116,0.10344827586206896
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Chemistry,1,47,0.02127659574468085
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Computer Science/AI,9,118,0.07627118644067797
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Engineering,3,40,0.075
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Humanities/Social Science,5,103,0.04854368932038835
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Math,17,430,0.03953488372093023
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Other,5,78,0.0641025641025641
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,Physics,1,68,0.014705882352941176
 Qwen3.5-9B,BF16/FP16,Tool,Biology/Medicine,10,116,0.08620689655172414
 Qwen3.5-9B,BF16/FP16,Tool,Chemistry,4,47,0.0851063829787234
 Qwen3.5-9B,BF16/FP16,Tool,Computer Science/AI,6,118,0.05084745762711865
@@ -55,14 +63,14 @@ Qwen3.5-27B,NF4 4-bit,Direct,Humanities/Social Science,6,103,0.05825242718446602
 Qwen3.5-27B,NF4 4-bit,Direct,Math,15,430,0.03488372093023256
 Qwen3.5-27B,NF4 4-bit,Direct,Other,4,78,0.05128205128205128
 Qwen3.5-27B,NF4 4-bit,Direct,Physics,2,68,0.029411764705882353
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Biology/Medicine,11,116,0.09482758620689655
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Chemistry,2,47,0.0425531914893617
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Computer Science/AI,9,118,0.07627118644067797
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Engineering,4,40,0.1
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Humanities/Social Science,8,103,0.07766990291262135
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Math,24,430,0.05581395348837209
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Other,3,78,0.038461538461538464
-Qwen3.5-27B,NF4 4-bit,xmaster_feedback,Physics,1,68,0.014705882352941176
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Biology/Medicine,11,116,0.09482758620689655
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Chemistry,2,47,0.0425531914893617
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Computer Science/AI,9,118,0.07627118644067797
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Engineering,4,40,0.1
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Humanities/Social Science,8,103,0.07766990291262135
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Math,24,430,0.05581395348837209
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Other,3,78,0.038461538461538464
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,Physics,1,68,0.014705882352941176
 Qwen3.5-27B,NF4 4-bit,Tool,Biology/Medicine,10,116,0.08620689655172414
 Qwen3.5-27B,NF4 4-bit,Tool,Chemistry,2,47,0.0425531914893617
 Qwen3.5-27B,NF4 4-bit,Tool,Computer Science/AI,10,118,0.0847457627118644
