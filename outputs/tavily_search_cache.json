@@ -73012,5 +73012,593 @@
     "response_time": 1.1,
     "request_id": "4ab717a1-e5bc-4395-ab45-3392afe5de43",
     "from_cache": false
+  },
+  "tavily:basic:general:5:non-block points of a continuum n-cube [0,1]^n fail to occur": {
+    "provider": "tavily",
+    "query": "non-block points of a continuum n-cube [0,1]^n fail to occur",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "[PDF] Extreme points of a continuum",
+        "snippet": "When separability is dropped, however, the existence of shore and non-block points is not assured. Under the near coherence of ﬁlters axiom NCF (consistent with the axioms of ZFC, see ), the Stone-Čech remainder H∗:= β(H) \\H of the half-open ray H := [0, ∞) consists entirely of block points [2, Theorem 4.8]. Furthermore, while all points of H∗—or any indecomposable continuum—are shore points [3, Theorem 3], NCF implies that when two disjoint copies of H∗, are spot-welded at a single point of [...] (1) Let X be the harmonic fan in the plane, given as follows: Let a = ⟨0, 0⟩, b = ⟨1, 0⟩, with bn = ⟨1, 1 n⟩, n ∈N. Then X = H ∪ \u0003 \u0002∞ n=1 Dn \u0004 , where H is [a, b]L and each Dn is [a, bn]L. As mentioned earlier, X is antisymmetric; so the extreme points, namely b, b1, b2, . . . , are also strong non-cut. The rest of the other non-cut points constitute the set H \\ {a, b}. All of these points are weak cut and non-block (hence shore). They are also nested: the complement of each of these points has [...] We do not know whether all extreme points are non-block. (They are, under certain quite broad circum-stances, see Corollary 3.10 below.) In the mean time, we show that extreme points are at least shore points. The proof is facilitated by the introduction of a new point type, which acts as an interpolant: c ∈X is a nested point if the family of closures of the continuum components of X \\ {c} is nested; that is, totally ordered by inclusion. Let N(X) be the set of nested points of X.",
+        "link": "https://www.mscsnet.mu.edu/~paul/Paper/TA-extreme031219.pdf",
+        "score": 0.609455
+      },
+      {
+        "title": "lo.logic - In set theories where Continuum Hypothesis is false, what are the new sets? - MathOverflow",
+        "snippet": "40\n\n$\\begingroup$\n\nThe question of what happens when CH fails is, of course, intensely studied in set theory. There are entire research areas, such as the area of cardinal characteristics of the continuum, which are devoted to studying what happens with sets of reals when the Continuum Hypothesis fails. [...] Share\n\nImprove this answer\n\nedited Jan 1, 2010 at 10:43\n\nanswered Jan 1, 2010 at 10:13\n\nFrançois G. Dorais's user avatar\n\nFrançois G. Dorais\n\n45.8k77 gold badges153153 silver badges243243 bronze badges\n\n$\\endgroup$\n\nAdd a comment   |\n\n8\n\n$\\begingroup$ [...] Share\n\nImprove this answer\n\nanswered Dec 31, 2009 at 6:32\n\nAdam's user avatar\n\nAdam\n\n3,35711 gold badge2525 silver badges3232 bronze badges\n\n$\\endgroup$\n\n5\n\n 14",
+        "link": "https://mathoverflow.net/questions/10227/in-set-theories-where-continuum-hypothesis-is-false-what-are-the-new-sets",
+        "score": 0.15972821
+      },
+      {
+        "title": "continuum hypothesis in nLab",
+        "snippet": "Note that for any notion of real number it is impossible for to be in bijection with the natural numbers, since it is impossible for to be both subcountable and countably indexed. Similarly, it is impossible for to be in bijection with , since it is impossible for to be both subcountable and countably indexed.\n\n## Unprovability\n\n###### Theorem\n\nThere exists a boolean topos in which the axiom of choice holds and the continuum hypothesis fails. [...] For the failure of the continuum to be equivalent to the powerset of the natural numbers in constructive mathematics, see:\n\n Andrej Bauer, The countable reals (video).\n\nThat the continuum hypothesis might have been regarded as a fundamental axiom in an alternate timeline:\n\n Joel David Hamkins, How the continuum hypothesis could have been a fundamental axiom [arXiv:2407.02463]\n\nLast revised on December 25, 2024 at 18:04:36. See the history of this page for a list of all contributions to it. [...] EditDiscussPrevious revisionChanges from previous revisionHistory (41 revisions) Cite Print Source",
+        "link": "https://ncatlab.org/nlab/show/continuum+hypothesis",
+        "score": 0.1287991
+      },
+      {
+        "title": "The Continuum Hypothesis Is False : r/logic",
+        "snippet": "the continuum hypothesis is false. In other words, the Universe is inconsistent. 0 maps to the orange that snuck in.",
+        "link": "https://www.reddit.com/r/logic/comments/1s5mquh/the_continuum_hypothesis_is_false",
+        "score": 0.112123065
+      },
+      {
+        "title": "Anomalous-order exceptional point and non-Markovian Purcell effect at threshold in one-dimensional continuum systems",
+        "snippet": "in terms of the Puiseux expansion that takes into account the threshold influence, we show that the combination of these effects results in quantum emitter decay of the unusual form 1−𝐶⁢𝑡 3/2 on the key timescale during which most of the decay occurs. We then present two conditions that must be satisfied at the threshold for the anomalous exceptional point to occur: the density of states must contain an inverse square-root divergence and the potential must be nonsingular. We further show that [...] ## Export citation\n\n# Export citation\n\nChoose format for download:\n\nBibTeX EndNote (RIS) Download Citation\n\n   Open Access\n\n# Anomalous-order exceptional point and non-Markovian Purcell effect at threshold in one-dimensional continuum systems [...] 5.   C. Dembowski, H.-D. Gräf, H.L. Harney, A. Heine, W.D. Heiss, H. Rehfeld, and A. Richter, Experimental Observation of the Topological Structure of Exceptional Points, Phys. Rev. Lett.86, 787 (2001);C. Dembowski, B. Dietz, H.-D. Gräf, H.L. Harney, A. Heine, W.D. Heiss, and A. Richter, Observation of a chiral state in a microwave cavity, Phys. Rev. E69, 056216 (2004).",
+        "link": "https://link.aps.org/doi/10.1103/PhysRevResearch.3.033029",
+        "score": 0.10426756
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.9,
+    "request_id": "7865b97e-ce51-4265-a0ea-e90bb59ea8dd",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:mathematical formulation vertical cross-sections interval type-3 membership functions gaussian": {
+    "provider": "tavily",
+    "query": "mathematical formulation vertical cross-sections Interval Type-3 Membership Functions Gaussian",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Interval Type-3 Fuzzy Inference System Design for Medical Classification Using Genetic Algorithms",
+        "snippet": "The vertical cuts identify the , these are Interval Type-2 FS with Gaussian Interval Type-2 MF, with parameters for the UMF, and for LMF: (LowerScale) and (LowerLag). An illustration of a Type-3 Trapezoidal MF with a vertical cut is shown in Figure 2. This Interval Type-3 membership function is defined with the Equation (6).\n\nAxioms 13 00005 g002\n\nFigure 2.\nType-3 Trapezoidal MF with a vertical cut. [...] (4):where u is the secondary variable and has the universe U, and V for the tertiary variable v. A Trapezoidal Interval Type-3 MF = ScaleTrapScaleGaussIT3MF with Trapezoidal has for the upper membership function (UMF) as parameters , and the lower membership function (LMF): (LowerScale) and (LowerLag) to form ]. The representation of this MF is given by Equation (5). [...] The function and the parameter are multiplicated to create the LMF of the domain of uncertainty, , is described as the following: . Then, the upper and lower limits of the domain of uncertainty are represented respectively by and . The range, , and radio, , of the footprint of uncertainty are calculated by Equations (14) and (15).where machine epsilon is represented by . Equation (16) defines the apex, , of the IT3 MF .where , , and y . Then, the vertical cuts with Interval Type-2 MF, , are",
+        "link": "https://www.mdpi.com/2075-1680/13/1/5",
+        "score": 0.599087
+      },
+      {
+        "title": "Interval type-3 fuzzy aggregators for ensembles of neural networks in COVID-19 time series prediction",
+        "snippet": "(LowerScale), $\\mathcal{l}$ (LowerLag) to form the $\\left[\\right. \\underset{\\underline}{\\mu} \\left(\\right. x \\left.\\right) , \\bar{\\mu} \\left(\\right. x \\left.\\right) \\left]\\right.$. The vertical cuts characterize the$F O U \\left(\\right. \\mathbb{A} \\left.\\right)$, and are IT2 FSs with Gaussian IT2 MFs, $\\mu_{\\mathbb{A} \\left(\\right. x \\left.\\right)}$ with parameters for the UMF and LMF $\\lambda$ (LowerScale), $\\mathcal{l}$ (LowerLag). The IT3 MF, ScaleGaussScaleGaussIT3MF$\\left(\\right. x , [...] where $\\rho = \\left(\\right. \\rho + \\rho^{} \\left.\\right) / 2$. Then, the vertical cuts with IT2 MF, $\\underset{\\underline}{\\mu}_{\\mathbb{A} \\left(\\right. x \\left.\\right)} \\left[\\right. \\bar{\\mu}_{\\mathbb{A} \\left(\\right. x \\left.\\right)} \\left(\\right. u \\left.\\right) , \\bar{\\mu}_{\\mathbb{A} \\left(\\right. x \\left.\\right)} \\left(\\right. u \\left.\\right) \\left]\\right.$, are described by the equations: (9) [...] where $\\sigma_{\\mu}^{} = \\sigma_{\\mu} \\sqrt{\\frac{ln \\left(\\right. \\mathcal{l} \\left.\\right)}{ln \\left(\\right. \\varepsilon \\left.\\right)}}$ . If $\\mathcal{l} = 0$, then $\\sigma_{\\mu}^{} = \\sigma_{\\mu}$. Then, $\\underset{\\underline}{\\mu}_{\\mathbb{A} \\left(\\right. x \\left.\\right)} \\left(\\right. u \\left.\\right)$ and $\\underset{\\underline}{\\mu}_{\\mathbb{A} \\left(\\right. x \\left.\\right)} \\left(\\right. u \\left.\\right)$are the UMF and LMF of the IT2 FSs of the vertical cuts of the secondary IT2MF of",
+        "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9354327",
+        "score": 0.5463757
+      },
+      {
+        "title": "Interval Type-3 Membership Functions | PDF | Teaching Methods & Materials",
+        "snippet": "The document discusses types of membership functions used to define fuzzy sets. It describes several common membership functions including triangular, singleton, L-function, gamma function, trapezoid function, S-function, Gaussian function, and pseudo-exponential function. It also discusses how linguistic hedges can modify membership functions through mathematical expressions. Finally, it outlines direct and indirect methods for determining appropriate membership functions based on input from [...] Scribd\n\n# Interval Type-3 Membership Functions\n\nInterval Type-3 Membership Functions\n\n## Uploaded by\n\nAI-enhanced title and description\n\n# Interval Type-3 Membership Functions [...] # Interval Type-3 Membership Functions\n\nInterval Type-3 Membership Functions\n\n## Uploaded by\n\nAI-enhanced title and description\n\n## Share this document\n\n## Footer menu\n\n## About\n\n## Support\n\n## Legal\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play\n\n## About\n\n## Legal\n\n## Support\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play",
+        "link": "https://www.scribd.com/doc/153874377/Membership-Functions",
+        "score": 0.5170594
+      },
+      {
+        "title": "Gaussian Interval Type-3 Functions | PDF",
+        "snippet": "The document discusses several types of membership functions used in fuzzy logic systems. It describes triangular, trapezoidal, Gaussian, bell shape, sigmoidal, S-shape, and pi-shape membership functions. For each type it provides the parameters used to define the function and how membership values are determined. It also briefly introduces hedges, which are modifiers applied to fuzzy sets to create compound sets.\n\n# Gaussian Interval Type-3 Functions\n\nGaussian Interval Type-3 Functions [...] Scribd\n\n# Gaussian Interval Type-3 Functions\n\nGaussian Interval Type-3 Functions\n\n## Uploaded by\n\nAI-enhanced title and description\n\n# Gaussian Interval Type-3 Functions [...] ## Uploaded by\n\nAI-enhanced title and description\n\n## Share this document\n\n## Footer menu\n\n## About\n\n## Support\n\n## Legal\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play\n\n## About\n\n## Legal\n\n## Support\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play",
+        "link": "https://www.scribd.com/doc/87011987/Chapt3-MembershipFunction",
+        "score": 0.46410054
+      },
+      {
+        "title": "Type-3 fuzzy system for dynamic system control",
+        "snippet": "used in IF-Then rules are presented by three-dimensional Type-3 fuzzy system for dynamic system control 71 membership functions. In the paper, we used Gaussians to present linguistic values. The centers of these Gaussians are distributed in the interval [−10, 10]. Depending on the specific control example, we can scale this range [−10, 10] to the desired range. The widths of Gaussians are determined using these centers. For each membership function, one center and four widths are generated. [...] The received membership functions are scaled in interval [0, 1]. As shown vertical MF is also represented by the lower and upper bounds. After obtaining vertical membership functions on the output fuzzy sets, type-reduction is applied to drive type-2 fuzzy sets (see Fig.3). For this purpose, using upper and lower membership functions, we applied the type-reduction for transforming type-3 fuzzy sets to type-2 fuzzy sets. For this purpose, the Karnik-Mendel (K-M) algorithm is employed cr = PR i=1 [...] ϕ(µi) =      exp(− (µk,αi−c)2 ζ 2 k,αi ), if µk,αi < c, exp(− (µk,αi−c)2 ζ2 k,αi ), if µk,αi ≥c; (8) ϕ(µi) =      exp(− (µk,αi−c)2 ζ 2 k,αi ), if µk,αi < c, exp(− (µk,αi−c)2 ζ 2 k,αi ), if µk,αi ≥c; (9) Figure 3: Vertical MF obtained from vertical cross-section.",
+        "link": "https://ijfs.usb.ac.ir/article_8471_9509a50602446956522da473992d274b.pdf",
+        "score": 0.44912744
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.27,
+    "request_id": "a5bd390e-b478-4088-a6e4-9681845f14ab",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:ex(n; g, k_{1,t}-ind) turan type extremal function star induced forbidden": {
+    "provider": "tavily",
+    "query": "ex(n; G, K_{1,t}-ind) Turan type extremal function star induced forbidden",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "[PDF] Induced Turán numbers - CMU Math",
+        "snippet": "As a corollary, this shows that for any positive integers s and t and any ﬁxed graph H, ex(n, {H, Ks,t-ind}) = O \u0010 n2−1 s \u0011 where the implied constant depends on H, s, and t. Note that if the forbidden induced subgraph F is bipartite but not complete bipartite, then the complete bi-partite graph Kn/2,n/2 provides a construction which shows that ex(n, {Kr, F-ind}) is quadratic in n for all r > 2. [...] 5 Concluding remarks In this paper, we introduced a new function ex(n, {H, F-ind}), and established its interesting behavior, including a proof of the asymptotic bound of K˝ ov´ ari, S´ os, and Tur´ an for induced copies of Ks,t, as long as any other subgraph is also forbid-den. That result relied on Theorem 1.2, which bounded the number of ﬁxed-order cliques in Kr-free graphs with no induced copy of Ks,t. Our bound in that theorem is probably not tight, and although it served our purposes in [...] 1.3 New results Throughout this paper, we consider only non-complete graphs F. Our new function ex(n, {H, F-ind}) sometimes reduces to the ordinary Tur´ an number ex(n, {H, F}) where both H and F are forbidden as (not necessarily induced) subgraphs. Indeed, if H = C3 and F = C4, every graph which is both C3-free and C4-induced-free is also C4 free, and every graph which is C4-free is obviously C4-induced-free.",
+        "link": "https://www.math.cmu.edu/~mtait/induced_turan.pdf",
+        "score": 0.7507177
+      },
+      {
+        "title": "[PDF] Induced Turán problems - KIT",
+        "snippet": "For a third graph F the extremal function ex (G, {F, H-ind}) is defined to be the maximal number of edges in a subgraph of G, that neither contains any copy of F nor any induced copy of H. Determining the latter extremal function reduces to finding either ex (G, F) or ex (G, H) unless H is a biclique or both F and H are bipartite. [...] 2.2.2 Degenerate case The problem of determining the extremal function of bipartite graphs is significantly harder than for non-bipartite graphs. In most cases even the asymptotics are not known. In case that the forbidden subgraph is a biclique the problem of determining ex∗(Kn,n, Ks,t) is known as the Zarankievicz problem.\nThe next Lemma gives the classical bound on the asymmetrical extremal function of complete bipartite graphs. [...] We call a subgraph G′ of some host graph G extremal if it is edge-maximal with respect of some forbidden subgraph restriction.\nDefinition 28 (Extremal graph). Ex (G, H) := { G′ ∈Free (G, H) | ∥G′∥= ex (G, H) }.\nWe can generalize the forbidden subgraph restriction to an induced and biinduced version. For this purpose let ˜ H be a bipartite graph.\nDefinition 29 (Induced free graphs). Free (G, H-ind) := \u001a G′ ⊆G H ⊈ ind G′ and |G′| = |G| \u001b .",
+        "link": "https://i11www.iti.kit.edu/_media/teaching/theses/ba-zimmermann-24.pdf",
+        "score": 0.6773251
+      },
+      {
+        "title": "Extremal Graph Problems, Degenerate ...",
+        "snippet": "classes), then (a) If Tn,p contains no Kp+1, and (b) all the other graphs Gn of order n not containing Kp+1 have less than e(Tn,p) edges. Using a theorem of Erd˝ os and Stone , Erd˝ os and Simonovits  derived that if L is an arbitrary family of forbidden graphs, and p(L) = min L∈L χ(L) −1, (1) then ex(n, L) = \u0012 1 −1 p \u0013 \u0012n 2 \u0013 + o(n2). [...] 14 L L5 Figure 3: L and Lt(L, χ) Theorem 10. If T is a tree or a forest with a given 2-colouring χ, and L∗= Lt(L, χ), then ex(n, L∗) = O(n1+1/t).\nClearly, starting with a star T = K1,k we get back to Theorem 9. In proving Theorem 10 we used again the blowing up method. Theorem 10 has many diﬀerent applications and some generalization. Here, we have no space to go into the details.\n9. [...] Here the requirement that the limit should be positive, is important oth-erwise the conjecture would immediately follow from K˝ ov´ a’ri- T. S´ os-Tur´ an 9 theorem. A weakening of this conjecture is Conjecture 2. Given a family L of bipartite forbidden graphs, there exist constants, c and c′ > O and α ∈[1, 2) for which cnα ≤ex(n, L) ≤c′nα.",
+        "link": "https://www.renyi.hu/~miki/waterloo.pdf",
+        "score": 0.54840803
+      },
+      {
+        "title": "Turán-Type Problems on [a, b]-Factors of Graphs, and ...",
+        "snippet": "forbidden families H and implies several new and existing results. Particularly,  deduces the following: Whenever ex(n, H) = O(n), Kk+1,∞is not H-free and Ex(n, H) contains the complete bipartite graph Kk,n−k (or certain similar graphs), then Exsp(n, H) ⊆Ex(n, H) for suﬃciently large n. [...] Recently, there are two breakthroughs for Problem 1. The ﬁrst one is due to Wang, Kang and Xue’s work : Given a graph H with ex(n, H) = tr(n) + O(1), where r ⩾2 and tr(n) denotes the size of Tur´ an graph Tr(n), then Exsp(n, H) ⊆Ex(n, H) when n →∞. This conﬁrms a conjecture proposed by Cioab˘ a, Desai, and Tait [8, Conjecture 7.1]. Another one is due to Byrne, Desai and Tait’s work . It proves a general theorem to characterize the spectral extremal graphs for a wide range of forbidden families [...] Mathematics Subject Classiﬁcations: 05C70; 05C50 1 Introduction Extremal graph theory, one of the most important branches in combinatorics, intends to study how global properties of a graph control its local structure. Tur´ an-type problem is a typical representative in extremal graph theory. Given a set of graphs H, a graph G is H-free if it contains no member of H as a subgraph. In particular, if H = {H}, then we also say that G is H-free. Let ex(n, H) denote the maximum size of an n-vertex",
+        "link": "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v31i3p23/pdf",
+        "score": 0.53298485
+      },
+      {
+        "title": "Turán Numbers of Subdivided Graphs | SIAM Journal on ...",
+        "snippet": "r ≥4 and s ≥r! + 1, ex(n, Kr,s) = Ω(n2−1/r) as a function of n, thus establishing the order of magnitude for such Kr,s. [...] Theorem 1.8. Let F be a subdivision of another graph H. For each edge xy ∈ E(H), let lx,y denote the stretch of xy in F. Suppose that lx,y is even for all x, y, where xy ∈E(H), and that min{lx,y : xy ∈E(H)} = 2m. Then ex(n, F) = O(n1+ 8 m ).\nTheorem 1.8 and Proposition 1.2 immediately yield the following result.\nCorollary 1.9. Let p, t be positive integers, where p is even. As a function of n, we have ex(n, K(p) t ) = O(n1+ 16 p ). Also, ex(n, K(p) t ) = Ω(n1+ 1−1/t p ). [...] positive integer n, the Tur´ an number ex(n, F) of F is the maximum number of edges in an n-vertex graph not containing any member of F as a subgraph. Hence, if an n-vertex graph G has more than ex(n, F) edges, then it must contain some member of F as a subgraph.",
+        "link": "https://sites.miamioh.edu/jiangt/files/2021/12/subdivided-sidma.pdf",
+        "score": 0.37910303
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.96,
+    "request_id": "2ab674d3-46a3-470b-ba2c-95af1aa53270",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:number of wallpaper groups with point group of order 2": {
+    "provider": "tavily",
+    "query": "number of wallpaper groups with point group of order 2",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Wallpaper Groups with Point Group Order 2 | PDF | Lattice (Group) | Sphere",
+        "snippet": "This document classifies and describes the 17 wallpaper groups. Wallpaper groups are symmetry groups that describe patterns that can tile the plane. They are classified based on their point groups (rotational and reflective symmetries) and translation lattices (arrangement of fundamental regions). The document proves there are only 10 possible point groups and identifies the 5 possible translation lattices. It then combines these to classify all 17 possible wallpaper groups, identifying them by [...] # Wallpaper Groups with Point Group Order 2\n\nWallpaper Groups with Point Group Order 2\n\n## Uploaded by\n\nAI-enhanced title and description\n\n## Share this document\n\n## Footer menu\n\n## About\n\n## Support\n\n## Legal\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play\n\n## About\n\n## Legal\n\n## Support\n\n## Social\n\n## Get our free apps\n\nScribd - Download on the App Store\nScribd - Get it on Google Play",
+        "link": "https://www.scribd.com/document/131719468/Wallpaper-Groups-191-Short-Project",
+        "score": 0.8668671
+      },
+      {
+        "title": "WALLPAPER GROUPS",
+        "snippet": "Proof: To determinate the point group vectors we have to consider the condition u + M(u) ∈L.\nRectangular lattice has the basis {t1, t2} with M(t1) = t1 and M(t2) = −t2. If u = αt1 + βt2 with α, β ∈R and 0 ≤α, β < 1 we have u + M(u) = 2αt1. For this to be an element of L we must have 2α ∈Z, so α = 0 or α = 1 2, while β is arbitrary. Therefore, there are two wallpaper groups with point group D1,p; one corresponds to the choice of u = 0 and the other to u = 1 2t1. [...] 9 Point group D2 As before there are two possibilities for matrix representation for D2, corresponding to two diﬀerent lattices. For the rectangular lattice we have D2,p = \u001a\u0012−1 0 0 −1 \u0013 , \u00121 0 0 −1 \u0013\u001b .\n(15) Lemma: There are three nonisomorphic wallpaper groups with point group D2,p. [...] (19) Wallpaper group corresponding to this point group is named c2mm and contains the perpendicular reﬂections passing through the lattice points and perpendicular glide reﬂections in between the reﬂections (Figure 18).\nFigure 18: Wallpaper group c2mm.",
+        "link": "http://www-f1.ijs.si/~ziherl/Zavadlav12.pdf",
+        "score": 0.78413767
+      },
+      {
+        "title": "From Group Cohomology to Escher's Tessellations",
+        "snippet": "The same pattern of rotation centers holds for any symmetry group for whom the rotation subgroup of the point group is of order 2, for exactly the same reason as for p2. These groups 1do we need this fact here?\n76 Chapter 5. The Wallpaper Groups are pmm, pmg, pgg, and cmm.\npg.\nWe next consider the group pg. This group is generated by translations and a glide re‡ection. [...] As we saw from Corollary 3.8, if two groups have di¤erent point groups, when taking into account the action on T, then they are not isomorphic. Therefore, to determine whether two inequivalent group extensions represent nonisomorphic wallpaper groups, we have to consider only three point groups, D1;p, D2;p, and D4, as indicated in the table at the end of Section 4.2.\nIn the remainder of this section, we describe explicitly the seventeen wallpaper groups. [...] 5.1 Classi…cation of Wallpaper Groups In ten of the thirteen possibilities for the point group G0 there is only one group extension of T by G0, so there is only one wallpaper group for this G0. For D1;p and D4, we will see that the two inequivalent group extensions for each of these point groups give nonisomorphic groups. However, for D2;p, while there are four inequivalent group extensions, there are only three nonisomorphic wallpaper groups. Therefore, the eighteen di¤erent group extensions",
+        "link": "https://ncatlab.org/nlab/files/Morandi-WallpaperPatterns.pdf",
+        "score": 0.7371019
+      },
+      {
+        "title": "Wallpaper Groups -- from Wolfram MathWorld",
+        "snippet": "# Wallpaper Groups\n\nThe wallpaper groups are the 17 possible plane symmetry groups. They are commonly represented using Hermann-Mauguin-like symbols or in orbifold notation (Zwillinger 1995, p. 260).\n\n|  |  |\n --- |\n| orbifold notation | Hermann-Mauguin symbol |\n| o | p1 |\n| 2222 | p2 |\n| \\\\ | pm |\n| xx | pg |\n| \\2222 | pmm |\n| 22\\ | pmg |\n| 22x | pgg |\n| x\\ | cm |\n| 2\\22 | cmm |\n| 442 | p4 |\n| \\442 | p4m |\n| 4\\2 | p4g |\n| 333 | p3 |\n| \\333 | p3ml |\n| 3\\3 | p3lm |\n| 632 | p6 |\n| \\632 | p6m |",
+        "link": "https://mathworld.wolfram.com/WallpaperGroups.html",
+        "score": 0.6959795
+      },
+      {
+        "title": "Wallpaper group - Wikipedia",
+        "snippet": "[edit\")]\n\n: [∞,2,∞]+\n Lattice: oblique\n Point group: C2\n The group p2 contains four rotation centres of order two (180°), but no reflections or glide reflections.\n\nExamples of group p2\n\n Computer generated\n\n  Computer generated\n Cloth, Sandwich Islands (Hawaii)\")\n\n  Cloth, Sandwich Islands (Hawaii)\n Ceiling of an Egyptian tomb\n\n  Ceiling of an Egyptian tomb\n Wire fence, U.S.\n\n  Wire fence, U.S.\n Mat on which an Egyptian king stood\n\n  Mat on which an Egyptian king stood\n Egyptian mat (detail)\") [...] See also this overview with diagrams.\n\n## The seventeen groups\n\n[edit]\n\nEach of the groups in this section has two cell structure diagrams, which are to be interpreted as follows (it is the shape that is significant, not the colour):\n\n|  |\n\n| a centre of rotation of order two (180°). |\n| a centre of rotation of order three (120°). |\n| a centre of rotation of order four (90°). |\n| a centre of rotation of order six (60°). |\n| an axis of reflection. |\n| an axis of glide reflection. | [...] [edit\")]\n\n: [∞,2,∞] or [∞]×[∞]\n Coxeter notation (square): [4,1+,4] or [1+,4,4,1+]\n Lattice: rectangular\n Point group: D2\n The group pmm has reflections in two perpendicular directions, and four rotation centres of order two (180°) located at the intersections of the reflection axes.\n\nExamples of group pmm\n\n 2D image of lattice fence, U.S. (in 3D there is additional symmetry)\")\n\n  2D image of lattice fence, U.S. (in 3D there is additional symmetry)\n Mummy case stored in The Louvre",
+        "link": "https://en.wikipedia.org/wiki/Wallpaper_group",
+        "score": 0.694241
+      }
+    ],
+    "result_count": 5,
+    "response_time": 0.95,
+    "request_id": "b97639cc-2bdc-4167-a895-c9c7bd8c8138",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:smallest number of topologically distinct compactifications of the ray with remainder x locally connected compact metric space": {
+    "provider": "tavily",
+    "query": "smallest number of topologically distinct compactifications of the ray with remainder X locally connected compact metric space",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "general topology - The smallest compactification - Mathematics Stack Exchange",
+        "snippet": "> Proof. Suppose that $X$ has a smallest compactification $cX$, and suppose that there are distinct points $x$ and $y$ in the remainder $cX\\setminus X$. Let $Y=cX\\setminus\\{x,y\\}$. $Y$ is an open subspace of $cX$, so it’s locally compact and has a one-point compactification $\\omega Y$. But $\\omega Y$ is a compactification $c\\_1 X$, and by hypothesis $cX\\le c\\_1 X$, so there is a continuous surjection $f:c\\_1 X\\to cX$ such that $f\\upharpoonright X=\\mathrm{id}\\_X$. $X$ is dense in [...] $X$ is dense in $Y\\subseteq\\omega X=c\\_1 X$, and $\\mathrm{id}\\_Y\\upharpoonright X=\\mathrm{id}\\_X=f\\upharpoonright X$, so $\\mathrm{id}\\_Y=f\\upharpoonright Y$. In other words, $f$ is a continuous function from $c\\_1 X$, a compactification of $Y$, onto $cX$, another compactification of $Y$, that fixes $Y$ pointwise. But this is clearly impossible, since $|c\\_1 X\\setminus Y|=1$ and $|cX\\setminus Y|=2$. Thus, $cX\\setminus X$ is a singleton, $X$ is locally compact, and it’s straightforward to check [...] 14\n\n$\\begingroup$\n\n> Theorem 3.5.12 in Engelking: If in the family $\\mathscr{C}(X)$ of all compactifications of a non-compact Tikhonov space $X$ there exists an element $cX$ which is smallest with respect to the order $\\le$, then $X$ is locally compact and $cX$ is equivalent to the Alexandroff compactification $\\omega X$ of $X$.\n\nIf $cX$ is a compactification of $X$, I’m going to identify $X$ with $c[X]$.",
+        "link": "https://math.stackexchange.com/questions/201964/the-smallest-compactification",
+        "score": 0.6690754
+      },
+      {
+        "title": "EUDML  |  The minimum uniform compactification of a metric space",
+        "snippet": "abstract = {It is shown that associated with each metric space (X,d) there is a compactification $u\\_dX$ of X that can be characterized as the smallest compactification of X to which each bounded uniformly continuous real-valued continuous function with domain X can be extended. Other characterizations of $u\\_dX$ are presented, and a detailed study of the structure of $u\\_dX$ is undertaken. This culminates in a topological characterization of the outgrowth $u\\_dℝ^n ∖ ℝ^n$, where $(ℝ^n,d)$ is [...] AB - It is shown that associated with each metric space (X,d) there is a compactification $u\\_dX$ of X that can be characterized as the smallest compactification of X to which each bounded uniformly continuous real-valued continuous function with domain X can be extended. Other characterizations of $u\\_dX$ are presented, and a detailed study of the structure of $u\\_dX$ is undertaken. This culminates in a topological characterization of the outgrowth $u\\_dℝ^n ∖ ℝ^n$, where $(ℝ^n,d)$ is Euclidean [...] LA - eng  \nKW - proximity; remainder; Smirnov compactification  \nUR -   \nER -",
+        "link": "https://eudml.org/doc/212073",
+        "score": 0.5443418
+      },
+      {
+        "title": "Mon, Nov. 6 There is often a smallest compactification, given by the ...",
+        "snippet": "Now suppose that X is locally compact. Let x1 and x2 in b X. If neither is 1, then we have disjoint neighborhoods in X, and these are still disjoint neighborhoods in b X.\nIf x2 = 1, let x1 2 U ✓K, where U is open and K is compact. Then U and V = b X \\ K are the desired disjoint neighborhoods.\n⌅ Example 18.5. We saw that S1 is a one-point compactiﬁcation of (0, 1) ⇠ = R. You will show on your homework that similarly Sn is a one-point compactiﬁcation of Rn. [...] Next, we show that the situation we observed for compactiﬁcations of (0, 1) holds quite generally.\n49 Proposition 18.7. Let X be locally compact Hausdor↵and let f : X − ! Y be a (Hausdor↵) compactiﬁcation.\nThen there is a (unique) quotient map q : Y − ! b X such that q ◦f = ◆.\nY q / b X X f _ ◆ ?\nWe will need: Lemma 18.8. Let X be locally compact Hausdor↵and f : X − ! Y a compactiﬁcation. Then f is open.\nProof of Prop. 18.7. We deﬁne q(y) = ⇢ ◆(x) if y = f(x) 1 if y / 2 f(X). [...] Mon, Nov. 6 There is often a smallest compactiﬁcation, given by the following construction.\nDeﬁnition 18.3. Let X be a space and deﬁne b X = X [ {1}, where U ✓b X is open if either • U ✓X and U is open in X or • 1 2 U and b X \\ U ✓X is compact.\nProposition 18.4. Suppose that X is Hausdor↵and noncompact. Then b X is a compactiﬁcation.\nIf X is locally compact, then b X is Hausdor↵.\nProof. We ﬁrst show that b X is a space! It is clear that both ; and b X are open.",
+        "link": "https://www.ms.uky.edu/~guillou/F17/551Notes-Week12.pdf",
+        "score": 0.511644
+      },
+      {
+        "title": "gn.general topology - Existence of a compactification of $\\mathbb{R}$ with $\\aleph_0$ remainder - MathOverflow",
+        "snippet": "3\n\n$\\begingroup$\n\nEDIT: As Emil pointed out, I misinterpreted a statement in Charalambous article. Corrections are in boldface:\n\nI don´t know if The answer to A is yes. For a separable metric space X (e.g. $\\mathbb{R}$) the following are equivalent (see Compactifications with countable remainder by Charalambous in PAMS 1980):\n\n1. X is Cech-complete and rim-compact.\n2. X has a compactification with at most countable remainder. [...] $\\mathbb{R}$ is Cech-complete because it is complete, and it is rim-compact because it is locally compact.\n\nSo $\\mathbb{R}$ has a compactification with at most countable remainder, but you already knew that.\n\nShare\n\nImprove this answer\n\nedited Jul 8, 2020 at 6:51\n\nMartin Sleziak's user avatar\n\nMartin Sleziak\n\n4,77344 gold badges4040 silver badges4242 bronze badges\n\nanswered May 2, 2012 at 17:10\n\nRamiro de la Vega's user avatar\n\nRamiro de la Vega [...] 12\n\n$\\begingroup$\n\nI guess you are interested in Hausdorff compactifications. (It is easy to construct a non-Hausdorff compactification with 3-point remainder.)",
+        "link": "https://mathoverflow.net/questions/95785/existence-of-a-compactification-of-mathbbr-with-aleph-0-remainder",
+        "score": 0.4436251
+      },
+      {
+        "title": "Compactifications with discrete remainders",
+        "snippet": "of perfect compactifications. Also, 4>X is obtained from ßX by identifying the components of ßX - X to points. (See  and  for further discussion.) Terada has shown in  that a metric space with compact residue has a countable discrete remainder if and only if it is rimcompact and Cech complete. [...] Theorem 3.1. Suppose X is 0-space with R(X) compact. Then 4>X - X is dis-crete if and only if there is a family {Za\\a £ A} of locally compact, noncompact zero-sets satisfying (i) Fr Za is compact; (ii) Za n Zy is compact when a^y; (iii) every free z-ultrafilter in X contains some Za ; (iv) for each n-open set O in X, either Za - O or Za n Cl O is compact, for all a £ A . [...] Theorem 3.2. Assume X has compact totally disconnected residue R(X). Then X has a compactification ÖX with discrete remainder if and only if X contains a family {Za\\a £ A} of noncompact, locally compact zero-sets satisfying (i)-(iii) o/3.1 and (iv) there is a family of n-open sets O which separate points of R(X), and exactly one of Za - O or Za n Cl O is compact, for all a£ A.",
+        "link": "https://scispace.com/pdf/compactifications-with-discrete-remainders-3h1gxxkqo0.pdf",
+        "score": 0.42706275
+      }
+    ],
+    "result_count": 5,
+    "response_time": 2.47,
+    "request_id": "00f988f7-968e-40d0-8c5c-92b4a525392e",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:american general wwii cheek hissing sound facial wound": {
+    "provider": "tavily",
+    "query": "American general WWII cheek hissing sound facial wound",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "General George Patton Cheek Hissing Sound Facial Wound",
+        "snippet": "While Patton and MacArthur chased headlines, one general quietly fixed their mistakes and won the battles that mattered. Lucian Truscott—the only American officer to command a Regiment, Division, Corps, and Field Army in WWII—climbed from the mud to the highest levels of command through competence alone. This is the story of the general other generals called when everything was broken, the leader who never forgot the weight of the lives in his hands, and the moment he stood before his troops [...] Log In\n\nSign Up\n\n# General George Patton Cheek Hissing Sound Facial Wound\n\nWatch reels about general george patton cheek hissing sound facial wound from people around the world.\n\n3\n\n7\n\nMar 12, 2026 Gen. Patton quotation of the day \n\n173\n\nMar 12, 2026 Gen. Patton quotation of the day \"I don’t measure a man’s success by how high he climbs but by how high he bounces when he hits bottom.\" #ww2 #war #leadershipdevelopment #leadership #soad [...] in his hands, and the moment he stood before his troops and said the words no general had ever dared to speak: \"I'm ashamed.\" A cinematic portrait of the most respected—and least celebrated—American commander of World War II.",
+        "link": "https://www.instagram.com/popular/general-george-patton-cheek-hissing-sound-facial-wound",
+        "score": 0.7653308
+      },
+      {
+        "title": "The Death of a General: George S. Patton, Jr. | The National WWII Museum | New Orleans",
+        "snippet": "No one was hurt except Patton, who, despite a nasty gash on his head, immediately realized he had been paralyzed. He asked his chief of staff, Major General Hobart “Hap” Gay, who was sitting next to him, to rub his fingers. When Gay did so, Patton barked, “Go ahead Hap, work my fingers.” [...] Patton was rushed to the 130th Station Hospital in Heidelberg, 12 miles away. There, he was x-rayed, revealing two crushed vertebrae. Simply put: Patton had broken his neck. For the next 12 days, Patton lay in traction, at times with painful fishhooks implanted into his cheeks on either side of his upper jaw, attached to weights to stabilize his neck. His wife, Beatrice, flew in from Boston to be at his side and read him books and letters from well-wishers. Showing a few signs of recovery, his [...] Patton did not remain in his plot for long. Hordes of well-wishers tore up the cemetery grounds making the trek to his grave in the back corner. To remedy the situation, cemetery workers moved his casket to a more central location, but it was hardly the cure, as people still made a path to the grave. Finally, the general was moved to the front of the entire cemetery, where, today, patio stones protect the ground and a white chain-link barrier preserves the grass around Patton. His cross faces",
+        "link": "https://www.nationalww2museum.org/war/articles/general-george-s-patton-jr-death",
+        "score": 0.3449513
+      },
+      {
+        "title": "What Eisenhower Said When Patton Slapped A Crying Soldier",
+        "snippet": "the general. Patton's face changes. It transforms from the benevolent commander into something unrecognizable, a mask of pure, unadulterated rage. He doesn't see a sick soldier. He sees a virus. He sees a cowardice that he believes could infect his entire army. The slap echoes like a gunshot. Patton strikes the boy across the face with his gloves. It's not a playful tap. It is a violent, vicious backhand. The boy's helmet liner flies off. He starts to sob. And that sound, the crying, it [...] No bandages, no blood. He is just sitting there, head down, shivering in the heat. Patton looms over him. The general's shadow swallows the boy whole. Patton asks him a simple question. Where are you hurt? The boy doesn't look up. He mumbles something about his nerves. He says, \"I guess I just can't take it.\" The silence in the tent is instant. The groans of the dying seem to fade away. The doctors stop stitching. The nurses freeze with trays in their hands. Everyone is watching the general. [...] In August 1943, General George S. Patton committed an act that nearly ended his career and changed the course of World War II. Inside a sweltering medical tent in Sicily, the US Army’s most feared commander slapped two crying soldiers suffering from \"shell shock\" (battle fatigue), calling them cowards. This video uncovers the classified true story behind the scandal, the secret deal Eisenhower made to save him, and how this mistake accidentally tricked Hitler into losing the war.",
+        "link": "https://www.youtube.com/watch?v=uD0_7R0J0eE",
+        "score": 0.25203454
+      },
+      {
+        "title": "Mending Broken Faces of War- Civil War Medicine - National Museum of Civil War Medicine",
+        "snippet": "Private Joseph Harvey’s injury illustrates a typical case of a facial wound, albeit from a shell not a gunshot. Otis concisely wrote up the case on the back of Surgical Photograph 79: [...] On June 23d, the patient was discharged at his own request. A fistulous orifice, one-fourth of an inch in diameter, only remaining, in consequence of the constant secretion of saliva… He is able to articulate quite plainly, which he has hitherto been unable to do since the date of his injury. Until the completion of this operation the patient was compelled to assume a recumbent position to receive his nourishment, or even a swallow of water. He can now take his food and drink without any [...] induced by his wound, made it impracticable for him to obtain employment. Thus his mutilation was a doubly cruel one.” (MSHWR Surg 1, p. 329-330)",
+        "link": "https://www.civilwarmed.org/facial-reconstruction",
+        "score": 0.22638187
+      },
+      {
+        "title": "The Real Story of General George Patton, Jr's Death & ...",
+        "snippet": "General George Patton died of congestive heart failure and pulmonary edema. But much has been written about his fated automobile accident.",
+        "link": "https://warfarehistorynetwork.com/article/real-story-general-george-patton-jr-death-final-days",
+        "score": 0.043793272
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.96,
+    "request_id": "4aeb9151-6634-4da3-add2-cc10951aad54",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:spectral series expansion technique poloidal dependence toroidal systems": {
+    "provider": "tavily",
+    "query": "spectral series expansion technique poloidal dependence toroidal systems",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "[PDF] A spectral approach to ballooning theory. Part 1",
+        "snippet": "admit rather simple rep-resentations involving ordinary Fourier series in the cylindrical approximation. In toroidal geometry, while azimuthal symmetry persists (in tokamaks), the poloidal variation of equilibrium quantities renders Fourier expansions somewhat unman-ageable. The ‘ballooning representation’ (Connor et al. 1978, 1979; Lee and Van Dam 1979; Dewar and Glasser 1983; Zhang et al. 1994, and references therein) was invented to overcome this difﬁculty – at least in certain asymptotic [...] Toroidal and poloidal sheared ﬂows are thought to be of considerable importance in stability theory (Taylor and Wilson 1996). The present model offers a concrete and relatively elementary introduction to this topic. Interestingly, the problem actually becomes non-self-adjoint, implying a complex spectrum in general. We consider a new term on the left of (16) of the form Ω(x/Ls)∂Θ/∂ζ, where Ωis a measure of the vorticity (i.e. ﬂow shear) in the advecting velocity. Accordingly, we are now [...] Note that in this representation, y appears as the Fourier conjugate of the ‘twisted’ radial variable ξ −l, whilst in the shifted-sum approach, it was related to the poloidal angle variable in the extended domain. Clearly, θ0 is an eigenlabel analogous to n (conjugate to the toroidal coordinate ζ) and p (labelling the eigenfunctions relative to y). The eigenvalues depend continuously on θ0. Suppose we have found the solutions labelled by the discrete index p. Substitution into the Fourier",
+        "link": "https://scientific-publications.ukaea.uk/wp-content/uploads/Published/J.PLASMAPHYSICSvol59p367.pdf",
+        "score": 0.6077801
+      },
+      {
+        "title": "SIESTA: A scalable iterative equilibrium solver for toroidal ...",
+        "snippet": "which is used to initialize the iterative procedure. The curvilinear components of the magnetic ﬁeld vector, and the scalar pressure, are all expanded in Fourier series in the background poloidal and toroidal angles. The MHD energy principle is used, together with pseudo-spectral methods to deal with the nonlinear J \u0002 B force, to ﬁnd unique truncated “evolution” equations for these Fourier components. After several iterations, the evolution equations lead to a numerical MHD equilibrium state. [...] the currents Ka \u0007 ﬃﬃﬃ g p Ja are given on the full radial mesh as Kr j ¼ @ðBvÞj @u \u0004 @ðBuÞj @v ; Ku j ¼ @ðBrÞj @v \u0004 ðBvÞjþ1=2 \u0004 ðBvÞj\u00041=2 hr ; Kv j ¼ ðBuÞjþ1=2 \u0004 ðBuÞj\u00041=2 hr \u0004 @ðBrÞj @u : (6.11) The angular dependence of the forces is a consequence of inserting the spectral expansions in Eqs. (6.1) and (6.2) 062504-5 SIESTA Phys. Plasmas 18, 062504 (2011) Author complimentary copy. Redistribution subject to AIP license or copyright, see  into dW in Eq. (6.10). A pseudo-spectral technique for",
+        "link": "https://hsx.wisc.edu/wp-content/uploads/sites/747/2016/04/SIESTA_PoP_2011.pdf",
+        "score": 0.5660431
+      },
+      {
+        "title": "Asymptotic and spectral analysis of the gyrokinetic-waterbag integro",
+        "snippet": "(36) Expansion (36) can either be written in the toroidal variables r = (r,θ,ϕ) (i.e., φ = φ(t,r,θ,ϕ)) or in the field-aligned variables r = (x,η,α) (i.e., φ = ˜ φ(t, x,η,α)) of Sec. III C 1. Expansion (36), which can been viewed as a generalized transform analogous to the Fourier or Laplace transforms, is called the ballooning transformation. It was introduced by tokamak physicists to get a pseudo-spectral decom-position of the flute-like modes, strongly localized poloidally but not radially, [...] Indeed, to have different values of the perturbation in the transverse direction to the magnetic field on a given magnetic flux surface there must exist distinguishable field lines and irrational magnetic flux surfaces are densely covered by a single field line. Therefore, for flute-like disturbances such as the ITG instability, the poloidal number m and toroidal number n are not really independent. As a consequence, the spectrum S n associated to such eigenmodes depends only on the toroidal [...] C. The magnetic field line geometry and the toroidal coordinate system In the toroidal coordinate system of Fig. 2, ϕ denotes the toroidal angle, θ the poloidal angle, r the minor radius of a magnetic flux surface, a the minor radius of the torus, and R0 the major radius of the magnetic axis with θ = 0 at the outside of the torus.",
+        "link": "https://www.oca.eu/images/LAGRANGE/pages_perso/nbesse/pub/NBesse_jmp16.pdf",
+        "score": 0.52290934
+      },
+      {
+        "title": "A semi-analytical pseudo-spectral method for 3D Boussinesq equations of rotating, stratified flows in unbounded cylindrical domains",
+        "snippet": "It is important to mention that, when performing the poloidal-toroidal decomposition, expanding the scalar streamfunctions (ψ\\psi and χ\\chi) directly in the mapped associated Legendre basis requires the inclusion of a supplemental logarithmic term, Pl​(r)≡ln⁡((L2+r2)/(2​L2))P\\_{l}(r)\\equiv\\ln\\left({(L^{2}+r^{2})}/{(2L^{2})}\\right), [...] directions. This specific basis natively resolves the coordinate singularity at the origin and achieves spectral convergence for localized disturbances. Furthermore, by employing a poloidal-toroidal decomposition, the framework analytically enforces the divergence-free incompressibility constraint and eliminates the pressure variable from the governing momentum equations, streamlining the computational state space. [...] The total kinetic energy expands into the sum of the poloidal energy, the toroidal energy, and their cross interaction:\n\n|  |  |  |  |\n ---  --- |\n|  | EK=12​∫V(𝒖ψ+𝒖χ)2​dV=12​∫V(𝒖ψ2+𝒖χ2+2​𝒖ψ⋅𝒖χ)​dV.{E\\_{\\mathrm{K}}}=\\frac{1}{2}\\int\\_{V}(\\bm{u}\\_{\\psi}+\\bm{u}\\_{\\chi})^{2}\\differential{V}=\\frac{1}{2}\\int\\_{V}\\left(\\bm{u}\\_{\\psi}^{2}+\\bm{u}\\_{\\chi}^{2}+2\\bm{u}\\_{\\psi}\\cdot\\bm{u}\\_{\\chi}\\right)\\differential{V}. |  | (78) |",
+        "link": "https://arxiv.org/html/2603.07046v1",
+        "score": 0.51691306
+      },
+      {
+        "title": "Numerical technique — Magic 6.3 documentation",
+        "snippet": "We have now introduced the necessary tools for deriving the spectral equations. Taking the radial components of the Navier-Stokes equation and the induction equation provides the equations for the poloidal potentials \\(W(r,\\theta,\\phi)\\) and \\(g(r,\\theta,\\phi)\\). The radial component of the curl of these equations provides the equations for the toroidal counterparts \\(Z(r,\\theta,\\phi)\\) and \\(h(r,\\theta,\\phi)\\). The pressure remains an additional unknown. Hence one more equation involving [...] in spectral space. The poloidal field then has to match the potential field which implies\n\n\\[\\nabla\\_H \\dfrac{\\partial}{\\partial r} g = -\\nabla\\_H V^I\\]\n\nfor the horizontal components and\n\n\\[\\dfrac{\\nabla\\_H^2}{r^2} g = \\dfrac{\\partial}{\\partial r} V^I\\]\n\nfor the radial. In spectral space these condition can be reduce to\n\n\\[{\\cal C'}\\_n(r) g\\_{\\ell mn} = V^I\\_{lm}\\;\\;\\mbox{and}\\;\\; \\dfrac{\\ell(\\ell+1)}{r^2} {\\cal C}\\_n g\\_{\\ell mn} = - \\dfrac{\\ell+1}{r} V^I\\_{lm}.\\] [...] Numerical technique\n  + Poloidal/toroidal decomposition\n  + Spherical harmonic representation\n    - Special recurrence relations\n  + Radial representation\n  + Spectral equations\n    - Equation for the poloidal potential \\(W\\)\n    - Equation for the toroidal potential \\(Z\\)\n    - Equation for pressure \\(P\\)\n    - Equation for entropy \\(s\\)\n    - Equation for chemical composition \\(\\xi\\)\n    - Equation for the poloidal magnetic potential \\(g\\)",
+        "link": "https://magic-sph.github.io/numerics.html",
+        "score": 0.49787658
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.74,
+    "request_id": "25ea1be3-39fd-4401-b398-76237f8d74ed",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:how many times does chekhov describe otchumyelov's coat in the chameleon": {
+    "provider": "tavily",
+    "query": "how many times does Chekhov describe Otchumyelov's coat in The Chameleon",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Otchumyelov's Coat in Chekhov's \"The Chameleon\" | PDF",
+        "snippet": "3) The General's cook arrives and reveals the puppy belongs to the General's brother, relieving Otchumyelov who is eager to stay in the brother's good graces. He decides to return the puppy to its owner and moves on.Read more [...] 3) The General's cook arrives and reveals the puppy belongs to the General's brother, relieving Otchumyelov who is eager to stay in the brother's good graces. He decides to return the puppy to its owner and moves on. [...] Scribd\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\"",
+        "link": "https://www.scribd.com/document/185657993/A-CHAMELEON-by-Anton-Chekhov",
+        "score": 0.5634506
+      },
+      {
+        "title": "Otchumyelov's Coat in Chekhov's \"The Chameleon\" | PDF",
+        "snippet": "3) The General's cook arrives and reveals the puppy belongs to the General's brother, relieving Otchumyelov who is eager to stay in the brother's good graces. He decides to return the puppy to its owner and moves on. [...] Scribd\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\"\n\nOtchumyelov's Coat in Chekhov's \"The Chameleon\"\n\n## Transféré par\n\nTitre et description améliorés par l'IA\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\" [...] 1) A police superintendent named Otchumyelov comes upon a crowd gathered around a timber-yard where a goldsmith named Hryukin's finger had been bitten by a puppy.\n2) Hryukin demands damages but Otchumyelov suspects he caused the bite himself. They question whether the puppy belongs to the local General.",
+        "link": "https://fr.scribd.com/document/185657993/A-CHAMELEON-by-Anton-Chekhov",
+        "score": 0.5524679
+      },
+      {
+        "title": "Otchumyelov's Coat in Chekhov's \"The Chameleon\" | PDF",
+        "snippet": "3) The General's cook arrives and reveals the puppy belongs to the General's brother, relieving Otchumyelov who is eager to stay in the brother's good graces. He decides to return the puppy to its owner and moves on. [...] Scribd\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\"\n\nOtchumyelov's Coat in Chekhov's \"The Chameleon\"\n\n## Cargado por\n\nTítulo y descripción mejorados con IA\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\" [...] 1) A police superintendent named Otchumyelov comes upon a crowd gathered around a timber-yard where a goldsmith named Hryukin's finger had been bitten by a puppy.\n2) Hryukin demands damages but Otchumyelov suspects he caused the bite himself. They question whether the puppy belongs to the local General.",
+        "link": "https://es.scribd.com/document/185657993/A-CHAMELEON-by-Anton-Chekhov",
+        "score": 0.5524679
+      },
+      {
+        "title": "Otchumyelov's Coat in Chekhov's \"The Chameleon\" | PDF",
+        "snippet": "3) The General's cook arrives and reveals the puppy belongs to the General's brother, relieving Otchumyelov who is eager to stay in the brother's good graces. He decides to return the puppy to its owner and moves on. [...] Scribd\n\n# Otchumyelov's Coat in Chekhov's \"The Chameleon\" [...] 1) A police superintendent named Otchumyelov comes upon a crowd gathered around a timber-yard where a goldsmith named Hryukin's finger had been bitten by a puppy.\n2) Hryukin demands damages but Otchumyelov suspects he caused the bite himself. They question whether the puppy belongs to the local General.",
+        "link": "https://ro.scribd.com/document/185657993/A-CHAMELEON-by-Anton-Chekhov",
+        "score": 0.5524679
+      },
+      {
+        "title": "Help needed: How many times does Chekhov describe Otchumyelov's coat in The Chameleon to symbolize his shifting mentality | moltbook",
+        "snippet": "moltbook logomoltbook\n\nWe've updated our Terms of Service and Privacy Policy! By continuing to use Moltbook, you agree to the Terms and acknowledge the Privacy Policy. We've updated our Terms of Service and Privacy Policy!\n\nLoading...\n\nHelp needed: How many times does Chekhov describe Otchumyelov's coat in The Chameleon to symbolize his shifting mentality | moltbook",
+        "link": "https://www.moltbook.com/post/2473a3ac-2c8f-4723-96e1-1747320b364c",
+        "score": 0.53050464
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.22,
+    "request_id": "c7c59670-cdf0-46ba-be94-3ca64784b60d",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:toxicity comparison tributyltin chloride trimethyltin chloride cell permeability": {
+    "provider": "tavily",
+    "query": "toxicity comparison tributyltin chloride trimethyltin chloride cell permeability",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "A Comparative Toxicological Assessment: Tributyltin Chloride vs. ...",
+        "snippet": "7 / 9 T ech Support Conclusion The available experimental data strongly indicates that tributyltin chloride exhibits greater toxicity than triphenyltin chloride across several key endpoints, including cytotoxicity and immunotoxicity. While both are significant environmental and health concerns due to their endocrine-disrupting properties and persistence, the higher potency of TBT warrants particular caution in its handling and disposal. Researchers should consider these differences when [...] Executive Summary Tributyltin chloride and triphenyltin chloride are potent biocides with significant toxic effects across a range of biological systems. While both compounds exhibit toxicity, experimental data consistently demonstrates that tributyltin chloride is the more potent toxicant in most tested endpoints, particularly in terms of cytotoxicity and immunotoxicity. [...] assessing potential environmental and health impacts. This guide provides a detailed, evidence-based comparison of the toxicity of two widely studied organotin compounds: tributyltin chloride (TBT) and triphenyltin chloride (TPT).",
+        "link": "https://www.benchchem.com/pdf/A_Comparative_Toxicological_Assessment_Tributyltin_Chloride_vs_Triphenyltin_Chloride.pdf",
+        "score": 0.8036831
+      },
+      {
+        "title": "Effect of Trimethyltin chloride on proliferation and cell cycle of intestinal porcine epithelial cells",
+        "snippet": "The intestine is the main organ of digestion and nutrient absorption, and it is also the body's first line of defense. Studies have found that monobutyltin (MBT), dibutyltin (DBT), and tributyltin (TBT) display intestinal permeability in the CaCO-2 (human intestinal cell line model) (Dopp et al., 2007), a property related to the toxicity of the compounds and thus to the damage to the barrier function of CaCO-2 cells (Tsukazaki et al., 2004). After carp were exposed to a sublethal concentration [...] Trimethyltin chloride (TMT) is a highly toxic substance produced by organotin heat stabilizers in the synthesis of polyvinyl chloride (PVC) products. TMT is widely used in industry and agriculture. The aim of this study was to investigate the effects of TMT-induced cytotoxicity in intestinal porcine epithelial cells (IPEC-J2). Our study showed that TMT induced a decline in cell viability of IPEC-J2, caused cell shrinkage and rounded cell morphology, reduced the number of proliferating cells and [...] 2026, International Immunopharmacology  Show abstract Trimethyltin chloride (TMT) is a highly toxic organotin pollutant commonly found in the environment, posing serious risks to humans and animals. To explore the potential toxicity mechanism of TMT on vascular systems, we developed models exposing vascular smooth muscle cells (VSMCs) and male Balb/c mice to TMT. Levels of reactive oxygen species (ROS) and glutathione (GSH) were measured using fluorescence methods and assay kits, while the",
+        "link": "https://www.sciencedirect.com/science/article/abs/pii/S1532045621001587",
+        "score": 0.7668008
+      },
+      {
+        "title": "Tributyltin Chloride - an overview",
+        "snippet": "1995). Diorganotin compounds were also shown to induce apoptosis in PC12 cells (Liu et al., 2013). The toxicity potency followed the order: dibutyltin> diphenyltin > dimethyltin. Neurons cultured with astrocytes are less vulnerable to tributyltin toxicity. The toxicity of trimethyltin was linked to Cl-induced secretion (Yu et al., 2010). Exposure to trimethyltin increased Cl− secretion in a dose-dependent manner in rat colonic mucosa. The Cl− secretion was essentially regulated by basolateral [...] delayed learning in preweaning rats associated with a reduction in neuronal viability and a significant decrease in the dopamine receptors' expression in the hippocampal area (Mignini et al., 2012). Comparison of the toxicity of monomethyltin, dimethyltin, and dibutyltin compounds to trimethyltin in in vitro model of neuronal development in PC12 cells showed that dimethyltin was less potent than trimethyltin and monomethyltin was not toxic at any concentration examined (Jenkins et al., 2004). [...] Organotin compounds can cross the blood–brain barrier and show neurotoxic effects. Trimethyltin is a well-described neurotoxin that triggers morphological changes in the brain, neuroinflammation, demyelination, and neuronal cell death. The brain is susceptible to di- and tributyltin toxicity. Dietary administration of tributyltin chloride (125 ppm) for 30 days caused inhibition of ligand binding to N-methyl-d-aspartate (NMDA) receptor in mice leading to depressed NMDA receptor function, which",
+        "link": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/tributyltin-chloride",
+        "score": 0.75290436
+      },
+      {
+        "title": "TOXICOLOGICAL PROFILE FOR TIN AND TIN COMPOUNDS",
+        "snippet": "compounds in male Wistar rats, Snoeij et al. (1985) observed that triethyltin chloride and trimethyltin chloride were neurotoxic (cerebral edema and neuronal necrosis, respectively), whereas tripropyltin chloride, tributyltin chloride, and triphenyltin were mainly immunotoxic (see Section 3.2.2.4), trihexyltin chloride was slightly immunotoxic, and trioctyltin chloride was not toxic at the doses tested. In addition to examination of the morphological effects of triethyltin, behavioral testing [...] organotins such as tributyltin can cause skin irritation and exposure by any route to trimethyltin or triethyltin can cause serious neurological effects. There is no reason to believe that children exposed to these chemicals would exhibit a different response. There is no information on whether the developmental process is altered in humans exposed to tin and compounds. Limited evidence with tributyltin chloride in rats suggests that this substance may alter developmental events controlled by [...] fluids is presented in Table 6-5. When fresh human whole blood was incubated with triethyl[113Sn]tin chloride, the red blood cell:plasma tin ratio was 1.9 (Rose and Aldridge 1968). This ratio was substantially different from the ratio observed in rat blood (19), and similar to that in other rodent species (range, 1–5). Interspecies differences have been attributed to variable binding of tin (or triethyltin) to hemoglobin (Rose 1969) and may also be applicable to trimethyltin, which also shows a",
+        "link": "https://www.atsdr.cdc.gov/toxprofiles/tp55-c3.pdf",
+        "score": 0.7361925
+      },
+      {
+        "title": "Laboratory Chemical Safety Summaries: TRIMETHYLTIN CHLORIDE (AND OTHER ORGANOTIN COMPOUNDS)",
+        "snippet": "0.2 mg tin/m 3 | |  Major Hazards | Trimethyltin chloride is highly toxic by all routes of exposure. | |  Toxicity | Trimethyltin chloride and other organotin compounds are highly toxic by ingestion, inhalation, or skin contact. Trimethyltin chloride can cause irritation and burns of the skin and eyes. Organotin compounds can affect the central nervous system. The degree of toxicity is greatest for compounds with three or four alkyl groups attached to tin. Di- and monoalkyltin compounds are [...] Toxicity | Trimethyltin chloride and other organotin compounds are highly toxic by ingestion, inhalation, or skin contact. Trimethyltin chloride can cause irritation and burns of the skin and eyes. Organotin compounds can affect the central nervous system. The degree of toxicity is greatest for compounds with three or four alkyl groups attached to tin. Di- and monoalkyltin compounds are moderately toxic. The toxicity diminishes as the size of the alkyl groups increases. Thus, the oral LD50 s [...] chloride can cause irritation and burns of the skin and eyes. Organotin compounds can affect the central nervous system. The degree of toxicity is greatest for compounds with three or four alkyl groups attached to tin. Di- and monoalkyltin compounds are moderately toxic. The toxicity diminishes as the size of the alkyl groups increases. Thus, the oral LD50 s in rats are as follows: dimethyltin dichloride, 74 to 237 mg/kg; tributyltin chloride, 122 to 349 mg/kg; dibutyltin oxide, 487 to 520",
+        "link": "https://web.stanford.edu/dept/EHS/cgi-bin/lcst/lcss/lcss88.html",
+        "score": 0.68697983
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.07,
+    "request_id": "6b9dd0b1-1d30-4ddd-9c95-49f9ee1d0c79",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:history of chinese wedding attire zhou tang song ming qing dynasties xiapei phoenix crown": {
+    "provider": "tavily",
+    "query": "history of Chinese wedding attire Zhou Tang Song Ming Qing dynasties xiapei phoenix crown",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Research on the Evolution of Ancient Women's Wedding Attire",
+        "snippet": "Han Chinese women during the Qing Dynasty consisted of wearing a phoenix crown (fengguan) and covering it with a red head covering (gaotou). They wore a red silk blouse inside and a red embroidered robe outside, with exquisite patterns. The lower body attire included a large red skirt and red pants, with embroidered flower shoes in red silk. They draped a Xiapei over their shoulders, wore Tian Guan locks or pearl necklaces around their necks. Figure 6. Qing Dynasty Xiapei Figure 7. Vintage [...] Figure 7. Vintage Photographs of Qing Dynasty Wedding Attire Figure 8. Vintage Photos of Qing Dynasty Wedding Attire 349 The phoenix crown (fengguan) of the Qing Dynasty was called the Chaoguan, and there were significant differences in both style and material between the Chaoguan of the Qing Dynasty consorts and the phoenix crowns of previous periods. In the folk tradition, the phoenix crowns worn by newlywed Han Chinese brides in the Qing Dynasty had wider Xiapeis compared to the Ming [...] to the Ming Dynasty, with the sides merging and adding back pieces and collars, shaped like vests (see Figure 6), without pendants at the lower corners of the Xiapei but decorated with tassels, and adorned with patches corresponding to the husband's status in the center of the chest and back ., worn with Chaozhu(see Figure 7). During the Qing Dynasty period, whether officials or commoners, brides could wear phoenix crowns and Xiapeis during weddings to signify the bride's status as the legal",
+        "link": "https://wepub.org/index.php/IJSSPA/article/download/1549/1661/3006",
+        "score": 0.80625874
+      },
+      {
+        "title": "Traditional Chinese Wedding Dress, Culture, Cloth in different Dynasty",
+        "snippet": "Chinese Phoenix Coronet——凤冠 , namely means phoenix crown in Chinese, is the most honorable ornaments for ancient women. Phoenix coronets have been an important part of Chinese wedding attire since Ming dynasty. This wedding attire is considered as the most classic and representative one among all Chinese wedding dress. Though wearing western gown and black suits is popular in China today, many couples will choose to wear traditional Chinese wedding dresses as a second suit  in completing the [...] From Ming dynasty to modern China, taking wife is a small civil examination for Chinese men, so the wedding attire for bridegroom is the ninth-rank officer’s costume ( 九品官服，Chinese pinyin: jiu pin guan fu), and phoenix coronet and robes of rank (凤冠霞帔， Chinese pinyin:feng guan xia pei) is for bride. Fengguan is the most honorable ornaments for ancient women. Fengguanxiapei has been wedding attire since Ming dynasty. Bride’s fengguanxiapei includes phoenix coronet, red veil, red gown, descendent [...] Phoenix coronets were first started in Ming Dynasty in ancient China. At that time, phoenix coronet and robe of rank —— 凤冠霞帔 (Chinese pinyin: feng-guan-xia-pei)  were the proper wedding dress for bride. At frist, phoenix coronet and robe of rank were designed especially for queens during Ming dynasty. Phoenix coronet was a crown for queen to wear in attending important occasions such as receiving nobility titles given by the royal family, meeting envoys or holding royal family receptions. And",
+        "link": "https://www.topchinatravel.com/china-guide/chinese-wedding-dress.htm",
+        "score": 0.78552294
+      },
+      {
+        "title": "The Differences in Traditional Chinese Wedding Attire Across Periods",
+        "snippet": "1. Social Status and Family Honor\n    The elaborate phoenix crown and richly - embroidered xiapei were symbols of the bride's family's social status. A wealthy and noble family would invest a great deal in creating such luxurious wedding attire to show off their family's honor. The grandeur of the attire was a display of the family's economic strength and social standing in the community.\n2. Cultural Inheritance [...] The Ming Dynasty's wedding attire continued and developed some traditional Chinese cultural elements. The use of phoenixes and auspicious clouds was deeply rooted in Chinese mythology and cultural traditions. These elements had been passed down through generations and were incorporated into the wedding attire, carrying forward the cultural heritage and values of the Chinese nation. [...] Traditional Chinese wedding attire in different periods is a vivid reflection of Chinese society and culture. Each dynasty's wedding attire has its own unique features, reflecting the values, beliefs, and social structures of the time. From the simple and solemn attire of the Zhou Dynasty to the luxurious and diverse styles of the Tang Dynasty, and then to the integrated and refined attire of the Qing Dynasty, these wedding outfits are not only fashion statements but also important cultural",
+        "link": "https://jianxihanfu.com/blogs/chinese-traditional-culture/wedding-attire",
+        "score": 0.6407488
+      },
+      {
+        "title": "Wedding Dresses of Different Dynasties – Hanfu Story",
+        "snippet": "Reversing the colors found in the previous dynasties, the bride dons a red gown while the groom wears green. People in the Ming Dynasty are very interesting. They believed that a man's marriage to a wife was also an important achievement in life, commonly known as \"Little Dengke\". Therefore, on the wedding day, even if a man is a commoner, he can make an exception and wear a ninth-rank official uniform, which is in turquoise color. Also in the Ming Dynasty, women can wear phoenix coronets and [...] During this period, green clothes and black eyebrows were often used to set standards for a women's gracefulness and beauty. The groom wears a crimson robe. The bride dons a turquoise gown. The boldly contrasting colors add liveliness and festive spirits to the luxurious atmosphere of the Tang Dynasty. Unlike Zhou Dynasty, people living in this period prefer merrier wedding ceremonies. These marriage customs continued into the Song Dynasty. The difference lies in the red sedans, the \"ten miles [...] coronets and Xia Pei when they get married. This is the honor of a noble lady, but on the wedding day, even a commoner woman can enjoy it.",
+        "link": "https://thehanfustory.com/blogs/news/wedding-dresses-of-different-dynasties",
+        "score": 0.5264164
+      },
+      {
+        "title": "Chinese clothing_Baiduwiki",
+        "snippet": "Youchao Shi Teaching People to Wear Hides\nAncient Shang and Zhou Attire\nHan Attire\nCharacteristics of Qin and Han Attire\nChinese Attire\nWei, Jin, and Northern and Southern Dynasties Attire\nSui and Tang Dynasties Attire\nSui and Tang Dynasties Attire\nOfficial Attire of the Song System\nSong Dynasty Lingjiu Ball-Patterned Brocade Robe\nOfficial Attire of the Ming System\nMing Dynasty Official Attire\nQ Version of Great Ming Costumes\nGreat Ming Wedding Attire\nQing Dynasty Mangpao\nQing Official Attire [...] Empress Attire\nModern Attire [...] # Chinese clothing",
+        "link": "https://baike.baidu.com/en/item/Chinese%20clothing/1519552",
+        "score": 0.523494
+      }
+    ],
+    "result_count": 5,
+    "response_time": 2.24,
+    "request_id": "f964875c-a69c-43fc-b99a-a47b4be3afe3",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:number of independent components of riemann tensor on kahler manifold": {
+    "provider": "tavily",
+    "query": "number of independent components of Riemann tensor on Kahler manifold",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Counting independent components of Riemann curvature tensor",
+        "snippet": "**Mathematics** is part of Stack Overflow’s open communities: specialist spaces where curiosity is welcome, knowledge is shared freely, and the best answers rise to the top. I'm having some trouble understanding the counting procedure for the number of independent components of Riemann curvature tensor R i k l m R i k l m in 4D spacetime. *   Since we are looking at a rank 4 tensor in 4D, R i k l m R i k l m could bear 4 4=256 4 4=256 components in general. I don't get the above argument cleanly: of course with repeated indices, we get a vanishing answer, so the indices have to be distinct, but **how does number of independent components amount to \"_choosing two distinct values for both the first and last pairs of indices_\"**? > A 4 X 4 anti-symmetric matrix is one where the 6 bottom-left triangle of components are equal to the negative of the 6 upper-right triangle of components, and so dependent, and that the diagonal components are zero (already counted).",
+        "link": "https://math.stackexchange.com/questions/1714220/counting-independent-components-of-riemann-curvature-tensor",
+        "score": 0.98591
+      },
+      {
+        "title": "Independent components of the Riemann tensor",
+        "snippet": "Independent components of the Riemann tensor\nTensor Calculus - Robert Davie\n12200 subscribers\n166 likes\n10523 views\n31 Oct 2017\nThis video investigates the symmetry properties of the Riemann tensor and uses those properties to determine the number of independent components it possesses in a given n-dimensional space. It does this by looking at the possible combinations of values the indices can take given the symmetry properties this tensor possesses.\n18 comments",
+        "link": "https://www.youtube.com/watch?v=l1pXaH3xhzs",
+        "score": 0.9793
+      },
+      {
+        "title": "Kähler manifolds, Ricci curvature, and hyperkähler metrics",
+        "snippet": "An almost Hermitian manifold (M, g, J) is • K¨ ahler if J is integrable and dω = 0, or equivalently, if ∇J = 0, • Calabi-Yau if it is K¨ ahler and the canonical bundle K ≡Λn,0 is holomorphically trivial, • hyperk¨ ahler is it is K¨ ahler with respect to 3 complex structures I, J, and K satisﬁying IJ = K. Given a Hermitian metric h on a line bundle L →M, the Chern connection is the uniquely deﬁned connection satisfying the following properties: • If s is a locally deﬁned holomorphic section, then ∇¯ js = 0. Let (M, g, J) be a K¨ ahler manifold, and L →M a hermitian line bundle with Hermitian metric h. Let (M, J, g) be K¨ ahler, and let L →M be a holomorphic line bundle. Let (M, J, g) be K¨ ahler, and let L →M be a holomorphic line bundle. Let (M, J, g) be K¨ ahler, and let L →M be a holomorphic line bundle.",
+        "link": "https://www.math.uci.edu/~jviaclov/lecturenotes/Japan_Lectures_2018.pdf",
+        "score": 0.97508
+      },
+      {
+        "title": "Lecture Notes on General Relativity - S. Carroll",
+        "snippet": "In our discussion of manifolds, it became clear that there were. as the volume of a region or the length of a path, required some additional. piece of structure, namely the introduction of a metric. natural to think of the notion of \"curvature\", which we have already. used informally, is something that depends on the metric. is one additional structure we need to introduce - a \"connection\". may be thought of as that of the metric. problem of the partial derivative not being a good tensor operator. What we would like is a covariant derivative; that is, an operator. which reduces to the partial derivative in flat space with Cartesian. coordinates, but transforms as a tensor on an arbitrary manifold. introduction of a covariant derivative, but in fact the need is. covariant derivative would be a good thing to have, and go about setting. We would therefore like to define a covariant derivative operator. expression for the covariant derivative of a vector in terms of the.",
+        "link": "https://ned.ipac.caltech.edu/level5/March01/Carroll3/Carroll3.html",
+        "score": 0.97017
+      },
+      {
+        "title": "Riemann Tensor -- from Wolfram MathWorld",
+        "snippet": "# Riemann Tensor. The Riemann tensor (Schutz 1985) R^alpha_(betagammadelta), also known the Riemann-Christoffel curvature tensor (Weinberg 1972, p. 123) or Riemann curvature tensor (Misner *et al.* 1973, p. 218), is a four-index tensor that is useful in general relativity. Other important general relativistic tensors such that the Ricci curvature tensor and scalar curvature can be defined in terms of R^alpha_(betagammadelta). The Riemann tensor is in some sense the only tensor that can be constructed from the metric tensor and its first and second derivatives,. where Gamma_(alphabeta)^gamma are Christoffel symbols of the first kind and A_(,k) is a comma derivative (Schmutzer 1968, p. In general, the number of independent components in n dimensions is given by. Here, R_(munu) is the Ricci curvature tensor, R is the scalar curvature, and C_(lambdamunukappa) is the Weyl tensor. \"Definition of the Curvature Tensor\" and \"Uniqueness of the Curvature Tensor.\" §6.1 and 6.2 in *Gravitation and Cosmology: Principles and Applications of the General Theory of Relativity.* New York: Wiley, pp.",
+        "link": "https://mathworld.wolfram.com/RiemannTensor.html",
+        "score": 0.96006
+      }
+    ],
+    "result_count": 5,
+    "response_time": 2.05,
+    "request_id": "b53c0586-4a96-4818-bac6-344140a75ccc",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:smallest cardinality of family of topological spaces such that every infinite space has a subspace homeomorphic to one of them": {
+    "provider": "tavily",
+    "query": "smallest cardinality of family of topological spaces such that every infinite space has a subspace homeomorphic to one of them",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "[PDF] Minimal Infinite Topological Spaces",
+        "snippet": "We will establish the following result.\nTHEOREM. Every infinite topological space contains one of the preceding five spaces as a subspace.\nNote that no two of the five spaces are homeomorphic, and each of the five spaces is homeomorphic to all of its infinite subspaces. It follows that these five spaces form the smallest collection of infinite spaces satisfying the conclusion of the theorem. [...] Now consider the relation < on X defined by a < b iff a E cl{ b}. Notice that since X is To, < is antisymmetric, and it follows that < is a partial order on X. If x <y, then every open subset of X which contains x also contains y; furthermore, y ( cl{ x}, so there is an open subset of X containing y but not x. The partially ordered set (X, < ) is infinite, and hence contains a subset isomorphic to one of the three partially ordered sets of Figure 1. Let A = (a, a2,.... with a <a2 < ... be a [...] m' = max{k ewlbk E G ) exists and that G = { bklk < m'); moreover, for each n there is an open subset of X containing bn but not bn+ 1, whence { bkl k < n} is open in B for each n. Thus, B with the subspace topology is homeomorphic to w with the initial segment topology (iv). Therefore we assume (X, < ) contains an infinite antichain, and it follows that the subspace topology on this antichain will be T1. So, without loss of generality, we assume X is T1.",
+        "link": "https://www.cs.umd.edu/~gasarch/TOPICS/ramseyinf/MinInfTop.pdf",
+        "score": 0.8409005
+      },
+      {
+        "title": "arXiv:1306.0204v3 [math.LO] 4 Jun 2014",
+        "snippet": "sω is the smallest cardinality of a subfamily S ⊂[ω]ω such that for every sequence (Xn)n∈ω of inﬁnite subsets of ω there is S ∈S such that |Xn ∩S| = |Xn \\ S| = ω. [...] The cardinal p is the smallest cardinality |F| of a family F of inﬁnite subsets of ω such that • F has strong ﬁnite intersection property, which means that for each ﬁnite subfamily E ⊂F the inter-section ∩E is inﬁnite, but • F has no inﬁnite pseudo-intersection I ⊂ω (i.e., an inﬁnite set I ⊂ω such that I \\ F is ﬁnite for all F ∈F). [...] If the space X is zero-dimensional, then by [26, 7.7] the space Z is homeomorphic to R \\ Q and we can assume that f : R \\ Q →Z is a homeomorphism. Since the complement X \\ Z is countable, for every c-ﬂexible cccc σ-ideal I on R the family f(I) = {A ⊂X : f −1(A) ∈I} is a c-ﬂexible cccc σ-ideal on X, which implies that non(e Icccc(X)) ≤non(e Icccc).",
+        "link": "https://arxiv.org/pdf/1306.0204",
+        "score": 0.64182705
+      },
+      {
+        "title": "Topological spaces that resemble the space of irrationals",
+        "snippet": "> III. Is there a simple set of conditions that describe exactly all spaces (or subspaces of \\mathbb R^n) that are homeomorphic to J? What about J^n? (Perhaps the word _homogeneous_ or _metric_ needs to be included.)\n\n(I found nothing relevant via Google, in MathSciNet, or here on MathOverflow.)\n\n   gn.general-topology\n   mg.metric-geometry\n\nShare\n\nShare a link to this question \n\nCopy linkCC BY-SA 4.0\n\nShort permalink to this question\n\nCite\n\nImprove this question\n\n Follow [...] 1  \\begingroup J is homeomorphic to topological group \\mathbb Z^\\mathbb Z\\  hence it is homogenous, and \\ J^A\\  is homeomorphic to \\ J\\  for every non-empty countable set  A\\  (finite or infinite).\\endgroup Wlod AA  –Wlod AA 2021-10-18 03:53:26 +00:00 Commented Oct 18, 2021 at 3:53 [...] Add a comment|\n\n, it is true that all countable metrisable spaces without isolated points are homeomorphic to \\mathbb Q. If you want to omit metrisable, replace it by \\mathrm T_3 and second countable. One then notes that a dense subset of \\mathbb R^n doesn't have isolated points, and is metrisable.\n\nShare\n\nShare a link to this answer \n\nCopy linkCC BY-SA 4.0\n\nShort permalink to this answer\n\nCite\n\nImprove this answer\n\n Follow \n\nFollow this answer to receive notifications",
+        "link": "https://mathoverflow.net/questions/33947/topological-spaces-that-resemble-the-space-of-irrationals",
+        "score": 0.53050464
+      },
+      {
+        "title": "Chapter III Topological Spaces",
+        "snippet": "29. If is dense in and is topology on with , then is dense in .\nD D Ð\\ß Ñ \\ © Ð\\ß Ñ g g g g g ‡ ‡ ‡ 153 30. If and is discrete in the subspace topology, then is countable.\nH © H H ‘ 31. The Sorgenfrey plane has a subspace homeomorphic to (with its usual topology).\n‘ 32. Let U8 œ ÖF © À 8 −F F © \"ß #ß ÞÞÞß 8××Þ  U and { The 's satisfy the conditions in the 8 Neighborhood Base Theorem and therefore describe a topology on . [...] 0 5) The function given by is a homeomorphism 0 À Ö À 8 − × Ä 0Ð Ñ œ 8 Ð \" \" 8 8   both spaces have the discrete topology! ) , these spaces are the identical: both Topologically are just countable infinite sets with the discrete topology. is not an isometry 0 Any two spaces and with the same cardinality are homeomorphic: any discrete \\ ] bijection between them is a homeomorphism. 140 6) Let denote the “north pole” of the sphere T W œ ÖÐBß Cß DÑ À B C D œ \"× © Þ # # # # $ ‘ The function [...] E \\ E \\ E19. Suppose is an infinite set with the cofinite topology, and that has the property that \\ ] every singleton is a closed set. ( Let be ÖC× Ñ 0À \\ Ä ] Such a space is called a -space.\n] X\" continuous and onto. Prove that either is constant or is homeomorphic to .\n0 \\ ] 1) Note: the problem does say that if is not constant, then is a homeomorphism.\nnot 0 0 2) Hint: Prove first that if is not constant, then Then examine the topology 0 l\\l œ l] lÞ of .",
+        "link": "https://www.math.wustl.edu/~freiwald/ch3.pdf",
+        "score": 0.47300056
+      },
+      {
+        "title": "general topology - Is every $T_1$ topological space homeomorphic to a subspace of a separable $T_1$ topological space (with the same cardinality)? - Mathematics Stack Exchange",
+        "snippet": "Observe that, by construction, every open set of $\\overline X$ has some $1,2,3,\\ldots$ as an element. Therefore $\\{1,2,3,\\ldots\\}$ is dense in $\\overline X$\n\nThe singletons of the subspace $X \\subset \\overline X$ being closed follows from how $X$ is $T\\_1$.\n\nWe can separate any two elements $m,n \\in \\{1,2,3,\\ldots\\}$ using sets of the form $\\varnothing \\sqcup \\{n\\}$ and $\\varnothing \\sqcup \\{m\\}$. [...] ## 1 Answer 1\n\nReset to default\n\n2\n\n$\\begingroup$\n\nWe can define $\\overline X = X \\sqcup\\{1,2,3,\\ldots\\}$ with the topology generated by these two flavours of open sets.\n\n1. Sets of the form $U \\sqcup \\{n,n+1,\\ldots\\}$ for some $n \\in \\mathbb N$ and open $U \\subset X$.\n2. Sets of the form $\\varnothing \\sqcup W$ for any subset $W \\subset \\{1,2,3,\\ldots\\}$ [...] We can separate any element $n \\in \\{1,2,3,\\ldots\\}$ and $x \\in X$ using sets $\\varnothing \\sqcup \\{n\\}$ and $U \\sqcup \\{n+1,n+2, \\ldots\\}$.\n\nShare\n\nanswered Mar 5, 2017 at 14:27\n\nDaron's user avatar\n\nDaron\n\n12.2k33 gold badges2828 silver badges4848 bronze badges\n\n$\\endgroup$\n\n4\n\n $\\begingroup$ You could also use $U \\sqcup N$ where $N$ is cofinite, I think. $\\endgroup$\n\n  Henno Brandsma\n\n  –  Henno Brandsma\n\n  2017-03-05 15:52:35 +00:00",
+        "link": "https://math.stackexchange.com/questions/2172850/is-every-t-1-topological-space-homeomorphic-to-a-subspace-of-a-separable-t-1",
+        "score": 0.47270843
+      }
+    ],
+    "result_count": 5,
+    "response_time": 2.77,
+    "request_id": "dff918b2-8c56-4764-aa32-3a0abb6d0fd6",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:ideal ni/ce ratio ni-ceria nanoparticles water gas shift water splitting": {
+    "provider": "tavily",
+    "query": "ideal Ni/Ce ratio Ni-Ceria nanoparticles Water Gas Shift water splitting",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Investigation of Ni-Ceria Nanocatalysts",
+        "snippet": "Notice how, as the % of Ni increases the gap narrows, which indicates promising better catalytic properties. A similar behavior was observed experimentally by Pereira and coworkers in ; where they found that systems with 1Ce/3Ni ratio exhibit better catalytic properties for the water gas shift reaction. In our case that corresponds to the CeNi3O5 NP which has a HOMO-LUMO gap of about 2eV, which has been reported in the literature as an appropriate gap for the water splitting reaction [202,203]. [...] thesis provides crucial insights into the relationships between the structures, the electronic structures, and the catalytic proper-ties of Ni-Ceria NPs for the water-splitting reaction. For instance, we found that Ni-Ceria NPs with a 3Ni/1Ce ratio exhibit a more favourable adsorption energy, which relates to the electronic properties of the cluster, with a computed HOMO-LUMO gap of about 2 eV, and so, better catalytic properties for the water-splitting reaction. [...] 82 Chapter 5 Active Learning for the Global Optimization of Ni-Ceria NPs Ni-CeO2 nanoparticles (NPs) are promising nanocatalysts for water splitting and water gas shift reactions due to the ability of ceria to temporarily donate oxygen to the catalytic reac-tion and accept oxygen after the reaction is completed. Therefore, elucidating how diﬀerent properties of the Ni-Ceria NPs, such as structure, size, composition, and electronic struc-ture, relate to the activity and selectivity of the",
+        "link": "https://ucalgary.scholaris.ca/bitstreams/19d09ecf-5731-4a90-8509-56450b748d7f/download",
+        "score": 0.7892503
+      },
+      {
+        "title": "Nickel oxide doped ceria nanoparticles (NiO@CeO2) for boosting oxygen evolution reaction and enhancing stability",
+        "snippet": "the OER activity of all four electrocatalytic materials. The findings reveal that the 20-NiO@CeO 2 composite electrocatalyst delivered excellent OER activity with good stability, and therefore, it is a promising material for water-splitting applications. [...] Nickel metal itself is a good electrode material for water-splitting. Its electrocatalytic activity can be enhanced by the introduction of foreign components such as carbon, nitrogen, phosphorous, sulfur, and other transition metals , . Various nickel-based materials such as Ni/NiO , , phosphorous-doped Ni , Ni-Gel , Ni-MOF , and Ni/NiO/CoSe 2  have been demonstrated as efficient electrocatalyst. However, the rapid degradation, complicated process and the low specific surface area of Ni-based [...] generating oxygen (O 2) and hydrogen (H 2) as it is a sustainable route with fewer complexities , . Electrochemical water splitting consists of two half-cell reactions, i.e. oxidative half-reaction/oxygen evolution reaction (OER) and reductive half-reaction/hydrogen evolution reaction (HER). From the kinetic point of view, HER is the relatively simpler process with two electron transfers that take place at lower overpotential while OER is the multiple electron transfer process with sluggish",
+        "link": "https://www.sciencedirect.com/science/article/abs/pii/S0169433223028921",
+        "score": 0.6241337
+      },
+      {
+        "title": "Effect of Re Addition on the Water&ndash;Gas Shift Activity of Ni Catalyst Supported by Mixed Oxide Materials for H2 Production",
+        "snippet": "peak of 5% Ni/Ce-5% Sm-O shifted to 455 cm−1 due to the enhancement of Ce 3+ cations and oxygen vacancies. The presence of Ce 3+ in the ceria support leads to an increase in the unit cell parameter and decrease in the bonds’ force constants, resulting in a red shift of the F 2g band. High oxygen vacancy concentration in the 5% Ni/Ce-5% Sm-O catalyst alerts the interaction between nickel and ceria to drive metal dispersion , hindering nickel particle sintering, which is expected to increase [...] found that 1% Re 4% Ni/Ce-5% Sm-O gives excellent WGS activity with the highest CO conversion of 97% at 350 °C. In addition, the addition of Sm and Re onto Ni/CeO 2 resulted in an enhancement of the hydrogen yield at the same time it suppressed methane generation. The role of Re in improving the water–gas shift performance of Ni/CeSmO is due to the easier reducibility of Ni and the CeO 2 surface. Furthermore, an increase in Ni dispersion and Ni surface area facilitated carbon monoxide [...] Image 17: Catalysts 13 00959 g0063·6H 2 O. The XANES of ceria presents a double white line, which was assigned to the transition of Ce 2p to the mixed valence state of ground-state-electron configuration Ce 4f 0, as well as one with 4f 1. A single white line was found for Ce(NO 3)3·6H 2 O at 5725.1 eV, which was ascribed to cerium in the trivalent state . Figure 7b shows the linear combination fit result of 5% Ni/CeO 2, 5% Ni/Ce-5% Sm-O and 1% Re 4% Ni/Ce-5% Sm-O. Elemental species in the",
+        "link": "https://www.mdpi.com/2073-4344/13/6/959",
+        "score": 0.5012457
+      },
+      {
+        "title": "A comparative study of water-gas-shift reaction over ceria-supported metallic catalysts",
+        "snippet": "Ni-Ce(La)O x . The activation energy of the reaction over Ce(La)O x was 58.5 kJ/mol, while it was 38.2 and 30.4 kJ/mol, respectively, over the 5 at.% Ni-Ce(La)O x and 5 at.% Cu-Ce(La)O x catalysts in CO-rich conditions. A co-operative redox reaction mechanism, involving oxidation of CO adsorbed on the metal cluster by oxygen supplied to the metal interface by ceria, followed by H 2 O capping the oxygen vacancy on ceria, was used to fit the kinetics. Parametric studies were mainly performed with [...] loadings, clusters as well as particles of CuO or NiO (>10 nm in size) were present on ceria. Both Cu and Ni increased the reducibility of ceria, as evidenced by H 2 -TPR experiments. The WGS reaction activity of Ce(La)O x was increased significantly by addition of a small amount (2 wt.%) of Cu or Ni. The catalysts were not activated prior to testing. Steady-state WGS kinetics were measured over the temperature range of 175-300 and 250-300 • C, respectively, for Cu-and Ni-Ce(La)O x . The",
+        "link": "https://www.academia.edu/114771010/A_comparative_study_of_water_gas_shift_reaction_over_ceria_supported_metallic_catalysts",
+        "score": 0.46687052
+      },
+      {
+        "title": "Highly Active and Stable Ni/La-Doped Ceria Material for Catalytic CO2 Reduction by Reverse Water-Gas Shift Reaction - ICP - Instituto de Catálisis y Petroleoquímica",
+        "snippet": "he design of an active, effective, and economically viable catalyst for CO2 conversion into value-added products is crucial in the fight against global warming and energy demand. We have developed very efficient catalysts for reverse water-gas shift (rWGS) reaction. Specific conditions of the synthesis by combustion allow the obtention of macroporous materials based on nanosized Ni particles supported on a mixed oxide of high purity and crystallinity. Here, we show that Ni/La-doped CeO2 [...] of 58 × 10–5 molCO·gcat–1·s–1 (700 °C, H2/CO2 = 2; selectivity to CO > 99.5), being stable for 100 h under continuous reaction. [...] catalytic testing, point out to optimum values for the Ni loading and the La proportion. Density functional theory calculations of elementary steps of the reaction on model Ni/ceria catalysts aid toward the microscopic understanding of the nature of the active sites. This finding offers a fundamental basis for developing economical catalysts that can be effectively used for CO2 reduction with hydrogen. A catalyst based on Ni0.07/(Ce0.9La0.1Ox)0.93 shows a CO production of 58 × 10–5",
+        "link": "https://icp.csic.es/highly-active-and-stable-ni-la-doped-ceria-material-for-catalytic-co2-reduction-by-reverse-water-gas-shift-reaction",
+        "score": 0.42048118
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.35,
+    "request_id": "f24f8cc6-19c4-4fe3-a225-7750c4f1d31f",
+    "from_cache": false
+  },
+  "tavily:basic:general:5:population patients major psychiatric disorders illegal substance abuse inter-hemispheric insula connectivity": {
+    "provider": "tavily",
+    "query": "population patients major psychiatric disorders illegal substance abuse inter-hemispheric insula connectivity",
+    "search_depth": "basic",
+    "topic": "general",
+    "results": [
+      {
+        "title": "Current World Population: 8,298,979,488",
+        "snippet": "| Country | 2026 Pop.↑ | Annual Change |\n --- \n| Vatican City | 506 | 1% |\n| Niue | 1,822 | 0.05% |\n| Tokelau | 2,691 | 3.18% |\n| Falkland Islands | 3,465 | -0.12% |\n| Montserrat | 4,328 | -0.71% |\n| Saint Helena Ascension and Tristan da Cunha | 5,147 | -0.96% |\n| Saint Pierre and Miquelon | 5,513 | -1.09% |\n| Tuvalu | 9,362 | -1.37% |\n\nShow more\n\n### Request Data\n\nPlease enter your email address to receive this data in your inbox. [...] | Country | 2026 Pop.↑ |\n --- |\n| Vatican City | 506 |\n| Niue | 1,822 |\n| Tokelau | 2,691 |\n| Falkland Islands | 3,465 |\n| Montserrat | 4,328 |\n| Saint Helena Ascension and Tristan da Cunha | 5,147 |\n| Saint Pierre and Miquelon | 5,513 |\n| Tuvalu | 9,362 |\n\nShow more\n\n### Request Data\n\nPlease enter your email address to receive this data in your inbox. [...] | Micronesia | 114,183 | 195 | 702 | 163 | 0.44% | < 0.01% |\n| Aruba | 108,164 | 196 | 180 | 601 | 0.02% | < 0.01% |\n| Jersey | 104,106 | 197 | 116 | 868 | 0.11% | < 0.01% |\n| Tonga | 103,291 | 198 | 747 | 143 | -0.43% | < 0.01% |\n| Saint Vincent and the Grenadines | 99,245 | 199 | 389 | 254 | -0.68% | < 0.01% |\n| Antigua and Barbuda | 94,626 | 200 | 442 | 215 | 0.44% | < 0.01% |\n| Isle of Man | 84,055 | 201 | 572 | 147 | -0.07% | < 0.01% |",
+        "link": "https://worldpopulationreview.com",
+        "score": 0.1605162
+      },
+      {
+        "title": "World Population Clock: 8.3 Billion People (LIVE, 2026)",
+        "snippet": "| 196 | Aruba | 108,164 | 0.02% | 17 | 601 | 180 | 73 | 1.6 | 41.7 | 45.1% | 0.0013% |\n| 197 | Tonga | 103,291 | −0.43% | −451 | 143 | 720 | −2,117 | 3.04 | 21 | 26.4% | 0.0012% |\n| 198 | St. Vincent & Grenadines | 99,245 | −0.68% | −679 | 254 | 390 | −671 | 1.73 | 34.7 | 62.6% | 0.0012% |\n| 199 | Antigua and Barbuda | 94,626 | 0.44% | 417 | 215 | 440 | −2 | 1.57 | 36.7 | 28.6% | 0.0011% |\n| 200 | Isle of Man | 84,055 | −0.07% | −63 | 147 | 570 | 158 | 1.53 | 46.3 | 57.3% | 0.001% | [...] | 186 | Barbados | 282,724 | 0.04% | 101 | 657 | 430 | −98 | 1.71 | 39.7 | 32.7% | 0.0034% |\n| 187 | Sao Tome & Principe | 244,994 | 1.97% | 4,740 | 255 | 960 | −691 | 3.47 | 19.7 | 78.9% | 0.003% |\n| 188 | Samoa | 220,528 | 0.56% | 1,222 | 78 | 2,830 | −2,792 | 3.7 | 19.8 | 16.3% | 0.0027% |\n| 189 | Curaçao | 185,440 | −0.03% | −47 | 418 | 444 | 462 | 1.07 | 39 | 81.2% | 0.0022% |\n| 190 | Saint Lucia | 180,488 | 0.19% | 339 | 296 | 610 | −49 | 1.37 | 35.1 | 20.1% | 0.0022% | [...] The current world population is 8,305,224,076 as of Saturday, July 25, 2026 according to the most recent United Nations estimates (#ref-1) elaborated by Worldometer. The term \"World Population\" refers to the human population (the total number of humans currently living) of the world.\n\n### 8 Billion (2022)",
+        "link": "https://www.worldometers.info/world-population",
+        "score": 0.17519945
+      },
+      {
+        "title": "World population",
+        "snippet": "This page was last edited on 23 July 2026, at 19:43 (UTC).\n Page was rendered with Parsoid.\n Text is available under the Creative Commons Attribution-ShareAlike 4.0 License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization. [...] |\n ---  --- \n| India | 1,425,775,850 | 17.3% | 14 Apr 2023 | UN projection |\n| China | 1,409,670,000 | 17.1% | 17 Jan 2024 | National annual estimate |\n| United States | 339,632,428 | 4.11% | 6 Aug 2026 | National population clock |\n| Indonesia | 278,696,200 | 3.37% | 1 Jul 2023 | National annual estimate |\n| Pakistan | 229,488,994 | 2.78% | 1 Jul 2022 | UN projection |\n| Brazil | 221,024,457 | 2.67% | 6 Aug 2026 | National population clock | [...] The National Institute of Corrections estimates that the number of people who have ever lived will rise to 121 billion by 2050, 4 billion more than their 2021 estimate.\n\n## Human population as a function of food availability\n\n|  |\n\n| This section may contain material unrelated to the topic of the article  and should be moved to Overpopulation instead. Please help improve this section or discuss this issue on the talk page. (May 2026) (Learn how and when to remove this message) |",
+        "link": "https://en.wikipedia.org/wiki/World_population",
+        "score": 0.08971763
+      },
+      {
+        "title": "Population Reference Bureau: Homepage",
+        "snippet": "Denice Ross, Former U.S. Chief Data Scientist\n\n## Stay Connected\n\nGet PRB's news and insights delivered directly to your inbox.\n\nPopulation Reference Bureau\n\n1111 19th St. NW  \nSuite 400  \nWashington, DC 20036\n\n800-877-9881\ncommunications@prb.org\n\n©2026 Population Reference Bureau [...] # Data is powerful when it helps people live better lives.\n\n## Sign Up to Get the 2026 World Population Data Sheet\n\nThe Data Sheet returns in September. We'll deliver it to your inbox.\n\n## Featured Work\n\nresource\n\n### From Boom to Imbalance: How Population Change Is Straining Public Pension Systems in the United States\n\nPopulation Bulletin vol. 79, no. 1\n\npost\n\n### AI and the Future of Work: Uneven, Uncertain, and Unresolved [...] Care, the future of work and AI, and other themes we’re keeping an eye on in the new year\n\npost\n\n### Newly Unveiled Plans for the 2030 Census Test Suggest Trouble Ahead\n\nHere are four big reasons why we’re worried—and why you should be too.\n\npost\n\n### Five Facts and Trends We're Watching in 2026\n\nCare, the future of work and AI, and other themes we’re keeping an eye on in the new year\n\nresource\n\n### Report: The Latino Working Class: America’s Economic Engine",
+        "link": "https://www.prb.org",
+        "score": 0.051429514
+      },
+      {
+        "title": "World Population Dashboard",
+        "snippet": "Keep in touch\n\nFollow us on social media\n\nImage 31: Facebook[]( 32: YouTubeImage 33: InstagramImage 34: Linkedin\n\nSubscribe to our newsletter\n\nEmail Subscribe\n\n© All rights reserved 2026.\n\n   Terms of Use\n   |\n   UNFPA Privacy Notice\n   |\n   Sitemap\n\nWe use cookies and other identifiers to help improve your online experience. By using our website you agree to this, see our cookie policy\n\nAccept\n\nX\n\nImage 35\n\nImage 36 [...] 8,232\n\nPopulation annual doubling time, years, 2025: \n\n82\n\nPopulation aged 0-14, per cent, 2025: \n\n24\n\nPopulation aged 10-19, per cent, 2025: \n\n16\n\nPopulation aged 10-24, per cent, 2025: \n\n24\n\nPopulation aged 15-64, per cent, 2025: \n\n65\n\nPopulation aged 65 and older, per cent, 2025: \n\n10\n\nTotal fertility rate, per woman, 2025: \n\n2.2\n\nLife expectancy at birth, years, 2025, male: \n\n71\n\nLife expectancy at birth, years, 2025, female: \n\n76\n\n### Sexual and Reproductive Health [...] Population aged 10-19, percent: Proportion of the population between age 10 and age 19.\n\n Population aged 10-24, percent: Proportion of the population between age 10 and age 24.\n\n Population aged 15-64, percent: Proportion of the population between age 15 and age 64.\n\n Population aged 65 and older, percent: Proportion of the population aged 65 and older.",
+        "link": "https://www.unfpa.org/data/world-population-dashboard",
+        "score": 0.032006845
+      }
+    ],
+    "result_count": 5,
+    "response_time": 1.74,
+    "request_id": "d5f51723-f340-488e-9a56-c58735787810",
+    "from_cache": false
   }
 }
