@@ -38,7 +38,7 @@ MODELS=(
 )
 
 MODEL_TAGS=(
-  "qwen35_08b"
+#  "qwen35_08b"
 #  "qwen25_7b"
   "qwen35_9b"
   "qwen35_27b"
