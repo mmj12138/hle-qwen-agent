@@ -33,7 +33,7 @@ cd "${PROJECT_ROOT}"
 MODELS=(
 #  "Qwen/Qwen3.5-0.8B"
 #  "Qwen/Qwen2.5-7B-Instruct"
-#  "Qwen/Qwen3.5-9B"
+  "Qwen/Qwen3.5-9B"
   "Qwen/Qwen3.5-27B"
 )
 
