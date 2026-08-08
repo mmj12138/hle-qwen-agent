@@ -5,14 +5,17 @@ All results are restricted to dataset indices `0–699`.
 | Model | Precision | Agent | Accuracy | Correct / N | Coverage | W→R | R→W | Net vs Direct | Status |
 |---|---|---|---:|---:|---:|---:|---:|---:|---|
 | Qwen3.5-0.8B | BF16/FP16 | Direct | 4.86% | 34 / 700 | 700/700 | — | — | — | Complete |
-| Qwen3.5-0.8B | BF16/FP16 | xmaster_feedback | 5.71% | 40 / 700 | 700/700 | 25 | 19 | +6 | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | XMaster-Feedback | 5.71% | 40 / 700 | 700/700 | 25 | 19 | +6 | Complete |
 | Qwen3.5-0.8B | BF16/FP16 | Tool | 5.57% | 39 / 700 | 700/700 | 10 | 5 | +5 | Complete |
+| Qwen3.5-0.8B | BF16/FP16 | Sim-XMaster | 5.86% | 41 / 700 | 700/700 | 40 | 33 | +7 | Complete |
 | Qwen3.5-9B | BF16/FP16 | Direct | 5.14% | 36 / 700 | 700/700 | — | — | — | Complete |
-| Qwen3.5-9B | BF16/FP16 | xmaster_feedback | 5.29% | 37 / 700 | 700/700 | 20 | 19 | +1 | Complete |
+| Qwen3.5-9B | BF16/FP16 | XMaster-Feedback | 5.29% | 37 / 700 | 700/700 | 20 | 19 | +1 | Complete |
 | Qwen3.5-9B | BF16/FP16 | Tool | 6.29% | 44 / 700 | 700/700 | 8 | 0 | +8 | Complete |
+| Qwen3.5-9B | BF16/FP16 | Sim-XMaster | 6.00% | 42 / 700 | 700/700 | 17 | 11 | +6 | Complete |
 | Qwen3.5-27B | NF4 4-bit | Direct | 5.43% | 38 / 700 | 700/700 | — | — | — | Complete |
-| Qwen3.5-27B | NF4 4-bit | xmaster_feedback | 6.00% | 42 / 700 | 700/700 | 23 | 19 | +4 | Complete |
+| Qwen3.5-27B | NF4 4-bit | XMaster-Feedback | 6.00% | 42 / 700 | 700/700 | 23 | 19 | +4 | Complete |
 | Qwen3.5-27B | NF4 4-bit | Tool | 6.71% | 47 / 700 | 700/700 | 9 | 0 | +9 | Complete |
+| Qwen3.5-27B | NF4 4-bit | Sim-XMaster | 6.00% | 42 / 700 | 700/700 | 18 | 14 | +4 | Complete |
 
 ## Interpretation notes
 
