@@ -181,7 +181,13 @@ def main():
                     answer_type=ex["answer_type"],
                     category=ex["category"],
                 )
-
+            elif args.agent == "xmaster_total":
+                result = agent.run(
+                    llm,
+                    question=question,
+                    answer_type=ex["answer_type"],
+                    category=ex["category"],
+                )
             else:
                 result = agent.run(
                     llm,
