@@ -7,7 +7,6 @@ from src.agents.oracle_tool_agent import OracleToolAgent
 from src.agents.tool_search_agent import ToolSearchAgent
 from src.agents.xmaster_feedback_agent import XMasterFeedbackAgent
 from src.agents.simulated_xmaster_agent import SimulatedXMasterAgent
-from src.agents.simulated_xmaster_agent_tool_preserving import SimulatedXMasterToolPreAgent
 
 
 def get_agent(agent_name: str, max_iterations: int = 2):
@@ -38,6 +37,6 @@ def get_agent(agent_name: str, max_iterations: int = 2):
         return XMasterFeedbackAgent(num_candidates=max_iterations)
 
     elif agent_name == "xmaster_total":
-        return SimulatedXMasterToolPreAgent(num_candidates=max_iterations, max_tool_iterations=max_iterations)
+        return SimulatedXMasterAgent(num_candidates=max_iterations, max_tool_iterations=max_iterations)
 
     raise ValueError(f"Unknown agent: {agent_name}")
