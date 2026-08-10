@@ -11,11 +11,11 @@ All results are restricted to dataset indices `0–699`.
 | Qwen3.5-9B | BF16/FP16 | Direct | 5.14% | 36 / 700 | 700/700 | — | — | — | Complete |
 | Qwen3.5-9B | BF16/FP16 | XMaster-Feedback | 5.29% | 37 / 700 | 700/700 | 20 | 19 | +1 | Complete |
 | Qwen3.5-9B | BF16/FP16 | Tool | 6.29% | 44 / 700 | 700/700 | 8 | 0 | +8 | Complete |
-| Qwen3.5-9B | BF16/FP16 | Sim-XMaster | 6.57% | 46 / 700 | 700/700 | 18 | 8 | +10 | Complete |
+| Qwen3.5-9B | BF16/FP16 | Sim-XMaster | 7.00% | 49 / 700 | 700/700 | 23 | 10 | +13 | Complete |
 | Qwen3.5-27B | NF4 4-bit | Direct | 5.43% | 38 / 700 | 700/700 | — | — | — | Complete |
 | Qwen3.5-27B | NF4 4-bit | XMaster-Feedback | 6.00% | 42 / 700 | 700/700 | 23 | 19 | +4 | Complete |
 | Qwen3.5-27B | NF4 4-bit | Tool | 6.71% | 47 / 700 | 700/700 | 9 | 0 | +9 | Complete |
-| Qwen3.5-27B | NF4 4-bit | Sim-XMaster | 8.33% | 10 / 120 | 120/700 | 4 | 2 | +2 | Partial |
+| Qwen3.5-27B | NF4 4-bit | Sim-XMaster | 6.00% | 42 / 700 | 700/700 | 15 | 11 | +4 | Complete |
 
 ## Interpretation notes
 

@@ -60,12 +60,12 @@
 | Qwen3.5-9B | Tool | Physics | 2.78% | 1 / 36 |
 | Qwen3.5-9B | Sim-XMaster | Biology/Medicine | 9.41% | 8 / 85 |
 | Qwen3.5-9B | Sim-XMaster | Chemistry | 10.71% | 3 / 28 |
-| Qwen3.5-9B | Sim-XMaster | Computer Science/AI | 5.49% | 5 / 91 |
+| Qwen3.5-9B | Sim-XMaster | Computer Science/AI | 6.59% | 6 / 91 |
 | Qwen3.5-9B | Sim-XMaster | Engineering | 12.50% | 2 / 16 |
-| Qwen3.5-9B | Sim-XMaster | Humanities/Social Science | 3.66% | 3 / 82 |
-| Qwen3.5-9B | Sim-XMaster | Math | 7.03% | 22 / 313 |
-| Qwen3.5-9B | Sim-XMaster | Other | 2.04% | 1 / 49 |
-| Qwen3.5-9B | Sim-XMaster | Physics | 5.56% | 2 / 36 |
+| Qwen3.5-9B | Sim-XMaster | Humanities/Social Science | 4.88% | 4 / 82 |
+| Qwen3.5-9B | Sim-XMaster | Math | 7.35% | 23 / 313 |
+| Qwen3.5-9B | Sim-XMaster | Other | 6.12% | 3 / 49 |
+| Qwen3.5-9B | Sim-XMaster | Physics | 0.00% | 0 / 36 |
 | Qwen3.5-27B | Direct | Biology/Medicine | 9.41% | 8 / 85 |
 | Qwen3.5-27B | Direct | Chemistry | 3.57% | 1 / 28 |
 | Qwen3.5-27B | Direct | Computer Science/AI | 6.59% | 6 / 91 |
@@ -90,11 +90,11 @@
 | Qwen3.5-27B | Tool | Math | 5.43% | 17 / 313 |
 | Qwen3.5-27B | Tool | Other | 4.08% | 2 / 49 |
 | Qwen3.5-27B | Tool | Physics | 5.56% | 2 / 36 |
-| Qwen3.5-27B | Sim-XMaster | Biology/Medicine | 0.00% | 0 / 9 |
-| Qwen3.5-27B | Sim-XMaster | Chemistry | 0.00% | 0 / 1 |
-| Qwen3.5-27B | Sim-XMaster | Computer Science/AI | 9.09% | 2 / 22 |
-| Qwen3.5-27B | Sim-XMaster | Engineering | 25.00% | 1 / 4 |
-| Qwen3.5-27B | Sim-XMaster | Humanities/Social Science | 4.55% | 1 / 22 |
-| Qwen3.5-27B | Sim-XMaster | Math | 12.12% | 4 / 33 |
-| Qwen3.5-27B | Sim-XMaster | Other | 5.00% | 1 / 20 |
-| Qwen3.5-27B | Sim-XMaster | Physics | 11.11% | 1 / 9 |
+| Qwen3.5-27B | Sim-XMaster | Biology/Medicine | 7.06% | 6 / 85 |
+| Qwen3.5-27B | Sim-XMaster | Chemistry | 0.00% | 0 / 28 |
+| Qwen3.5-27B | Sim-XMaster | Computer Science/AI | 9.89% | 9 / 91 |
+| Qwen3.5-27B | Sim-XMaster | Engineering | 0.00% | 0 / 16 |
+| Qwen3.5-27B | Sim-XMaster | Humanities/Social Science | 4.88% | 4 / 82 |
+| Qwen3.5-27B | Sim-XMaster | Math | 6.07% | 19 / 313 |
+| Qwen3.5-27B | Sim-XMaster | Other | 6.12% | 3 / 49 |
+| Qwen3.5-27B | Sim-XMaster | Physics | 2.78% | 1 / 36 |

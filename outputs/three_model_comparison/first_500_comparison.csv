@@ -6,8 +6,8 @@ Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,31,500,0.062,500/500,30,19,11,500,0,Complete
 Qwen3.5-9B,BF16/FP16,Direct,24,500,0.048,500/500,,,,,0,Complete
 Qwen3.5-9B,BF16/FP16,XMaster-Feedback,24,500,0.048,500/500,12,12,0,500,0,Complete
 Qwen3.5-9B,BF16/FP16,Tool,32,500,0.064,500/500,8,0,8,500,0,Complete
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,32,500,0.064,500/500,14,6,8,500,0,Complete
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,36,500,0.072,500/500,18,6,12,500,0,Complete
 Qwen3.5-27B,NF4 4-bit,Direct,29,500,0.058,500/500,,,,,0,Complete
 Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,29,500,0.058,500/500,14,14,0,500,0,Complete
 Qwen3.5-27B,NF4 4-bit,Tool,37,500,0.074,500/500,8,0,8,500,0,Complete
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,32,500,0.064,500/500,14,11,3,500,0,Complete
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,,,,0/500,,,,,500,N/A

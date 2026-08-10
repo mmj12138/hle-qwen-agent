@@ -14,14 +14,14 @@ import numpy as np
 # Fixed analysis configuration
 # ============================================================
 # The script is expected at:
-#   <project_root>/scripts/compare_first_1000.py
+#   <project_root>/scripts/compare_first_800.py
 #
 # Therefore the parent directory of ``scripts`` is the project root.
 # This works both locally and on Ubelix without hard-coded paths.
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 RESULT_ROOT = PROJECT_ROOT / "outputs" / "three_model_comparison"
-FIRST_N = 1000
+FIRST_N = 800
 
 MODELS = [
     {
@@ -56,14 +56,14 @@ AGENTS = [
 
 ]
 
-EXTRACT_ROOT = RESULT_ROOT / "first_1000_results"
-SUMMARY_CSV = RESULT_ROOT / "first_1000_comparison.csv"
-SUMMARY_MD = RESULT_ROOT / "first_1000_comparison.md"
-CATEGORY_CSV = RESULT_ROOT / "first_1000_category_comparison.csv"
-CATEGORY_MD = RESULT_ROOT / "first_1000_category_comparison.md"
-ACCURACY_CHART = RESULT_ROOT / "first_1000_accuracy_by_model_agent.png"
-TRANSITION_CHART = RESULT_ROOT / "first_1000_answer_transitions.png"
-CATEGORY_CHART_DIR = RESULT_ROOT / "first_1000_category_charts"
+EXTRACT_ROOT = RESULT_ROOT / "first_800_results"
+SUMMARY_CSV = RESULT_ROOT / "first_800_comparison.csv"
+SUMMARY_MD = RESULT_ROOT / "first_800_comparison.md"
+CATEGORY_CSV = RESULT_ROOT / "first_800_category_comparison.csv"
+CATEGORY_MD = RESULT_ROOT / "first_800_category_comparison.md"
+ACCURACY_CHART = RESULT_ROOT / "first_800_accuracy_by_model_agent.png"
+TRANSITION_CHART = RESULT_ROOT / "first_800_answer_transitions.png"
+CATEGORY_CHART_DIR = RESULT_ROOT / "first_800_category_charts"
 
 
 def read_first_n_by_index(path: Path, first_n: int) -> dict[int, dict[str, Any]]:
@@ -137,7 +137,7 @@ def display_agent(agent: str) -> str:
 
 
 def create_accuracy_chart(comparison_rows: list[dict[str, Any]]) -> None:
-    """Grouped bar chart: first-1000 accuracy by model and agent."""
+    """Grouped bar chart: first-800 accuracy by model and agent."""
     complete_rows = [
         row
         for row in comparison_rows
@@ -440,7 +440,7 @@ def main() -> None:
 
     loaded: dict[tuple[str, str], dict[int, dict[str, Any]]] = {}
 
-    # Load and save reproducible first-1000 subsets.
+    # Load and save reproducible first-800 subsets.
     for model in MODELS:
         model_dir = RESULT_ROOT / model["tag"]
 

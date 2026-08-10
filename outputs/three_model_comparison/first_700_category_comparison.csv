@@ -57,12 +57,12 @@ Qwen3.5-9B,BF16/FP16,Tool,Other,1,49,0.02040816326530612
 Qwen3.5-9B,BF16/FP16,Tool,Physics,1,36,0.027777777777777776
 Qwen3.5-9B,BF16/FP16,Sim-XMaster,Biology/Medicine,8,85,0.09411764705882353
 Qwen3.5-9B,BF16/FP16,Sim-XMaster,Chemistry,3,28,0.10714285714285714
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,Computer Science/AI,5,91,0.054945054945054944
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,Computer Science/AI,6,91,0.06593406593406594
 Qwen3.5-9B,BF16/FP16,Sim-XMaster,Engineering,2,16,0.125
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,Humanities/Social Science,3,82,0.036585365853658534
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,Math,22,313,0.07028753993610223
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,Other,1,49,0.02040816326530612
-Qwen3.5-9B,BF16/FP16,Sim-XMaster,Physics,2,36,0.05555555555555555
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,Humanities/Social Science,4,82,0.04878048780487805
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,Math,23,313,0.07348242811501597
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,Other,3,49,0.061224489795918366
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,Physics,0,36,0.0
 Qwen3.5-27B,NF4 4-bit,Direct,Biology/Medicine,8,85,0.09411764705882353
 Qwen3.5-27B,NF4 4-bit,Direct,Chemistry,1,28,0.03571428571428571
 Qwen3.5-27B,NF4 4-bit,Direct,Computer Science/AI,6,91,0.06593406593406594
@@ -87,11 +87,11 @@ Qwen3.5-27B,NF4 4-bit,Tool,Humanities/Social Science,7,82,0.08536585365853659
 Qwen3.5-27B,NF4 4-bit,Tool,Math,17,313,0.054313099041533544
 Qwen3.5-27B,NF4 4-bit,Tool,Other,2,49,0.04081632653061224
 Qwen3.5-27B,NF4 4-bit,Tool,Physics,2,36,0.05555555555555555
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Biology/Medicine,0,9,0.0
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Chemistry,0,1,0.0
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Computer Science/AI,2,22,0.09090909090909091
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Engineering,1,4,0.25
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Humanities/Social Science,1,22,0.045454545454545456
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Math,4,33,0.12121212121212122
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Other,1,20,0.05
-Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Physics,1,9,0.1111111111111111
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Biology/Medicine,6,85,0.07058823529411765
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Chemistry,0,28,0.0
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Computer Science/AI,9,91,0.0989010989010989
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Engineering,0,16,0.0
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Humanities/Social Science,4,82,0.04878048780487805
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Math,19,313,0.06070287539936102
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Other,3,49,0.061224489795918366
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,Physics,1,36,0.027777777777777776
