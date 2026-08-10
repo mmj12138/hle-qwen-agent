@@ -56,16 +56,11 @@ class SimulatedXMasterAgent:
             preserve_tool_interventions
         )
 
-        if self.use_search:
-            self.tool_solver = ToolSearchAgent(
-                max_iterations=self.max_tool_iterations
-            )
-            self.tool_solver_name = "tool_search"
-        else:
-            self.tool_solver = ToolAgent(
-                max_iterations=self.max_tool_iterations
-            )
-            self.tool_solver_name = "tool"
+        self.tool_solver = ToolSearchAgent(
+            max_iterations=self.max_tool_iterations
+        )
+        self.tool_solver_name = "tool_search"
+
 
     def run(
         self,
@@ -80,19 +75,13 @@ class SimulatedXMasterAgent:
         # ------------------------------------------------------------
         # Step 1: run the already validated Tool / ToolSearch pipeline.
         # ------------------------------------------------------------
-        if self.use_search:
-            tool_result = self.tool_solver.run(
-                llm,
-                question=question,
-                answer_type=answer_type,
-                category=category,
-            )
-        else:
-            tool_result = self.tool_solver.run(
-                llm,
-                question=question,
-                answer_type=answer_type,
-            )
+
+        tool_result = self.tool_solver.run(
+            llm,
+            question=question,
+            answer_type=answer_type,
+            category=category,
+        )
 
         tool_locked, lock_reason = self._should_lock_tool_result(
             tool_result
