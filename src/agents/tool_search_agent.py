@@ -245,6 +245,12 @@ class ToolSearchAgent:
                     "direct_result": local_result,
                     "direct_candidate": None,
                     "local_tool_result": local_result,
+                    "tool_success": (
+                        local_result.get("trace", {}).get(
+                            "tool_success",
+                            False,
+                        )
+                    ),
                     "local_tool_candidate": None,
                     "verifier_decision": "USE_SEARCH",
                     "verifier_reason": "local_candidate_unparseable",
@@ -285,6 +291,12 @@ class ToolSearchAgent:
                     "direct_result": local_result,
                     "direct_candidate": local_candidate,
                     "local_tool_result": local_result,
+                    "tool_success": (
+                        local_result.get("trace", {}).get(
+                            "tool_success",
+                            False,
+                        )
+                    ),
                     "local_tool_candidate": local_candidate,
                     "verifier_decision": "AGREE",
                     "verifier_reason": "direct_and_search_candidates_match",
@@ -497,6 +509,12 @@ class ToolSearchAgent:
                 "raw_search_answer": raw_search_answer,
                 "direct_result": local_result,
                 "local_tool_result": local_result,
+                    "tool_success": (
+                        local_result.get("trace", {}).get(
+                            "tool_success",
+                            False,
+                        )
+                    ),
             }
         )
 
@@ -523,6 +541,12 @@ class ToolSearchAgent:
             "weak_hints_only": tool_context["weak_hints_only"],
             "recommended_answer": tool_context["recommended_answer"],
             "search_used": search_used,
+            "tool_success": (
+                trace.get("tool_success", False)
+                or search_answer_adopted
+                or use_search_answer
+                or trace.get("real_tool_used", False)
+            ),
             "final_output": final_output,
         }
 

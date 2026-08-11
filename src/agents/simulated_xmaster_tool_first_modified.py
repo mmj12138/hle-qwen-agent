@@ -6,6 +6,7 @@ import hashlib
 from typing import Any, Dict, List, Tuple
 
 from src.agents.base import chat
+from src.agents.tool_agent import ToolAgent
 from src.agents.tool_search_agent import ToolSearchAgent
 from src.prompts import (
     SIM_XMASTER_SOLVER_PROMPT,
@@ -14,7 +15,7 @@ from src.prompts import (
 )
 
 
-class SimulatedXMasterToolFirstAgent:
+class SimulatedXMasterAgent:
     """
     Tool-preserving X-Master-inspired ensemble.
 

@@ -110,6 +110,10 @@ class ToolAgent:
             "recommended_answer": recommended_answer,
             "real_tool_used": real_tool_used,
             "weak_hints_only": weak_hints_only,
+            "tool_success": (
+                real_tool_used
+                or bool(recommended_answer)
+            ),
         }
 
     def run(

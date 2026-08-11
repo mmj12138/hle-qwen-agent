@@ -1,0 +1,13 @@
+model,precision,agent,correct,total,accuracy,coverage,wrong_to_right,right_to_wrong,net_vs_direct,shared_with_direct,missing_indices,status
+Qwen3.5-0.8B,BF16/FP16,Direct,28,600,0.04666666666666667,600/600,,,,,0,Complete
+Qwen3.5-0.8B,BF16/FP16,XMaster-Feedback,32,600,0.05333333333333334,600/600,22,18,4,600,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Tool,33,600,0.055,600/600,9,4,5,600,0,Complete
+Qwen3.5-0.8B,BF16/FP16,Sim-XMaster,37,600,0.06166666666666667,600/600,36,27,9,600,0,Complete
+Qwen3.5-9B,BF16/FP16,Direct,30,600,0.05,600/600,,,,,0,Complete
+Qwen3.5-9B,BF16/FP16,XMaster-Feedback,32,600,0.05333333333333334,600/600,18,16,2,600,0,Complete
+Qwen3.5-9B,BF16/FP16,Tool,38,600,0.06333333333333334,600/600,8,0,8,600,0,Complete
+Qwen3.5-9B,BF16/FP16,Sim-XMaster,43,600,0.07166666666666667,600/600,21,8,13,600,0,Complete
+Qwen3.5-27B,NF4 4-bit,Direct,34,600,0.056666666666666664,600/600,,,,,0,Complete
+Qwen3.5-27B,NF4 4-bit,XMaster-Feedback,36,600,0.06,600/600,19,17,2,600,0,Complete
+Qwen3.5-27B,NF4 4-bit,Tool,42,600,0.07,600/600,8,0,8,600,0,Complete
+Qwen3.5-27B,NF4 4-bit,Sim-XMaster,37,600,0.06166666666666667,600/600,12,9,3,600,0,Complete

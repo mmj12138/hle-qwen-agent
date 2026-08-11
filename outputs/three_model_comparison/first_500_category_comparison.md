@@ -90,3 +90,11 @@
 | Qwen3.5-27B | Tool | Math | 6.94% | 15 / 216 |
 | Qwen3.5-27B | Tool | Other | 5.56% | 2 / 36 |
 | Qwen3.5-27B | Tool | Physics | 7.41% | 2 / 27 |
+| Qwen3.5-27B | Sim-XMaster | Biology/Medicine | 6.45% | 4 / 62 |
+| Qwen3.5-27B | Sim-XMaster | Chemistry | 0.00% | 0 / 21 |
+| Qwen3.5-27B | Sim-XMaster | Computer Science/AI | 7.81% | 5 / 64 |
+| Qwen3.5-27B | Sim-XMaster | Engineering | 0.00% | 0 / 10 |
+| Qwen3.5-27B | Sim-XMaster | Humanities/Social Science | 6.25% | 4 / 64 |
+| Qwen3.5-27B | Sim-XMaster | Math | 7.41% | 16 / 216 |
+| Qwen3.5-27B | Sim-XMaster | Other | 8.33% | 3 / 36 |
+| Qwen3.5-27B | Sim-XMaster | Physics | 3.70% | 1 / 27 |
