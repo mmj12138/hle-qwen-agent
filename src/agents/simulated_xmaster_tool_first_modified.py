@@ -15,7 +15,7 @@ from src.prompts import (
 )
 
 
-class SimulatedXMasterAgent:
+class SimulatedXMasterToolFirstAgent:
     """
     Tool-preserving X-Master-inspired ensemble.
 
