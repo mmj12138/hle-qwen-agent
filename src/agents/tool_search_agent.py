@@ -245,6 +245,14 @@ class ToolSearchAgent:
                     "direct_result": local_result,
                     "direct_candidate": None,
                     "local_tool_result": local_result,
+            "local_tool_success": (
+                local_result.get("trace", {}).get(
+                    "tool_success",
+                    False,
+                )
+                if isinstance(local_result, dict)
+                else False
+            ),
                     "tool_success": (
                         local_result.get("trace", {}).get(
                             "tool_success",
@@ -291,6 +299,14 @@ class ToolSearchAgent:
                     "direct_result": local_result,
                     "direct_candidate": local_candidate,
                     "local_tool_result": local_result,
+            "local_tool_success": (
+                local_result.get("trace", {}).get(
+                    "tool_success",
+                    False,
+                )
+                if isinstance(local_result, dict)
+                else False
+            ),
                     "tool_success": (
                         local_result.get("trace", {}).get(
                             "tool_success",
@@ -509,6 +525,14 @@ class ToolSearchAgent:
                 "raw_search_answer": raw_search_answer,
                 "direct_result": local_result,
                 "local_tool_result": local_result,
+            "local_tool_success": (
+                local_result.get("trace", {}).get(
+                    "tool_success",
+                    False,
+                )
+                if isinstance(local_result, dict)
+                else False
+            ),
                     "tool_success": (
                         local_result.get("trace", {}).get(
                             "tool_success",
@@ -542,10 +566,13 @@ class ToolSearchAgent:
             "recommended_answer": tool_context["recommended_answer"],
             "search_used": search_used,
             "tool_success": (
-                trace.get("tool_success", False)
-                or search_answer_adopted
-                or use_search_answer
-                or trace.get("real_tool_used", False)
+                path in {
+                    "deterministic_tool",
+                    "web_search_verified",
+                    "web_search_candidates_agree",
+                    "web_search_kept_direct",
+                }
+                or tool_context.get("real_tool_used", False)
             ),
             "final_output": final_output,
         }
